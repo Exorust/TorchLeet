@@ -37,8 +37,7 @@ TorchLeet is a curated set of PyTorch practice problems, inspired by LeetCode-st
 4. [Implement Custom Loss Function (Huber Loss)](https://github.com/Exorust/TorchLeet/blob/main/e4/custom-loss.ipynb) [(Solution)](https://github.com/Exorust/TorchLeet/blob/main/e4/custom-loss_SOLN.ipynb)  
 5. [Implement a Deep Neural Network](https://github.com/Exorust/TorchLeet/blob/main/e5/custon-DNN.ipynb) [(Solution)](https://github.com/Exorust/TorchLeet/blob/main/e5/custon-DNN_SOLN.ipynb)  
 6. [Visualize Training Progress with TensorBoard in PyTorch](https://github.com/Exorust/TorchLeet/blob/main/e6/tensorboard.ipynb) [(Solution)](https://github.com/Exorust/TorchLeet/blob/main/e6/tensorboard_SOLN.ipynb)  
-7. [Save and Load Your PyTorch Model](https://github.com/Exorust/TorchLeet/blob/main/e7/save_model.ipynb) [(Solution)](https://github.com/Exorust/TorchLeet/blob/main/e7/save_model_SOLN.ipynb)  
-
+7. [Save and Load Your PyTorch Model](https://github.com/Exorust/TorchLeet/blob/main/e7/save_model.ipynb) [(Solution)](https://github.com/Exorust/TorchLeet/blob/main/e7/save_model_SOLN.ipynb)
 
 ### 🟡Medium 
 1. [Implement an LSTM](https://github.com/Exorust/TorchLeet/blob/main/m1/LSTM.ipynb) [(Solution)](https://github.com/Exorust/TorchLeet/blob/main/m1/LSTM_SOLN.ipynb)  
@@ -47,6 +46,8 @@ TorchLeet is a curated set of PyTorch practice problems, inspired by LeetCode-st
 4. [Use `torchvision.transforms` to apply data augmentation](https://github.com/Exorust/TorchLeet/blob/main/m4/augmentation.ipynb) [(Solution)](https://github.com/Exorust/TorchLeet/blob/main/m4/augmentation_SOLN.ipynb)  
 5. [Add a benchmark to your PyTorch code](https://github.com/Exorust/TorchLeet/blob/main/m5/bench.ipynb) [(Solution)](https://github.com/Exorust/TorchLeet/blob/main/m5/bench_SOLN.ipynb)  
 6. [Train an autoencoder for anomaly detection](https://github.com/Exorust/TorchLeet/blob/main/m6/autoencoder.ipynb) [(Solution)](https://github.com/Exorust/TorchLeet/blob/main/m6/autoencoder_SOLN.ipynb)  
+7. Modify layers of a pretrained model for classification
+
 
 ### 🔴Hard
 1. [Write a custom Autograd function for activation (SILU)](https://github.com/Exorust/TorchLeet/blob/main/h1/custom-autgrad-function.ipynb) [(Solution)](https://github.com/Exorust/TorchLeet/blob/main/h1/custom-autgrad-function_SOLN.ipynb)
@@ -59,6 +60,7 @@ TorchLeet is a curated set of PyTorch practice problems, inspired by LeetCode-st
 8. [Work with Sparse Tensors]
 9. [Implement Mixed Precision Training using torch.cuda.amp](https://github.com/Exorust/TorchLeet/blob/main/h9/cuda-amp.ipynb) [(Solution)](https://github.com/Exorust/TorchLeet/blob/main/h9/cuda-amp_SOLN.ipynb)
 10. [Add GradCam/SHAP to explain the model.](https://github.com/Exorust/TorchLeet/blob/main/h10/xai.ipynb) [(Solution)](https://github.com/Exorust/TorchLeet/blob/main/h10/xai_SOLN.ipynb)
+11. 
 
 **What's cool? 🚀**
 - **Diverse Questions**: Covers beginner to advanced PyTorch concepts (e.g., tensors, autograd, CNNs, GANs, and more).
