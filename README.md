@@ -18,6 +18,8 @@ TorchLeet is broken into two sets of questions:
 
 > [!NOTE]
 > Avoid using GPT. Try to solve these problems on your own. The goal is to learn and understand PyTorch concepts deeply.
+
+>  [!NOTE] 
 > Yes. I used GPT to help write the code and I ended up testing it out myself as practise. I found the strategy to be super useful
 
 ## Table of Contents
