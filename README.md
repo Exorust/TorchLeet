@@ -31,6 +31,14 @@ TorchLeet is broken into two sets of questions:
    - [🟡Medium](#medium)
    - [🔴Hard](#hard)
 - [LLM Set](#llm-set)
+- [Advanced ML Systems Set (v3)](#advanced-ml-systems-set-v3)
+   - [Classical ML from Scratch](#classical-ml-from-scratch)
+   - [LLM Decoding](#llm-decoding)
+   - [LLM Inference & Systems](#llm-inference--systems)
+   - [Modern Architectures](#modern-architectures)
+   - [Alignment & Training](#alignment--training)
+   - [GPU Systems & Kernels](#gpu-systems--kernels)
+   - [Company Quick-Reference](#company-quick-reference)
 - [Getting Started](#getting-started)
    - [1. Install Dependencies](#1-install-dependencies)
    - [2. Structure](#2-structure)
@@ -134,6 +142,96 @@ Each question is designed to take you one step closer to building your own LLM.
 **What's cool? 🚀**
 - **Diverse Questions**: Covers beginner to advanced PyTorch concepts (e.g., tensors, autograd, CNNs, GANs, and more).
 - **Guided Learning**: Includes incomplete code blocks (`...` and `#TODO`) for hands-on practice along with Answers
+
+---
+
+## Advanced ML Systems Set (v3)
+
+**A research-backed set of 30 questions covering what top AI companies actually ask in 2024-2025 interviews.** Each question is tagged with the companies known to test that topic.
+
+> [!NOTE]
+> These questions were compiled from real interview reports across Glassdoor, Blind, Reddit, and first-person accounts from candidates who interviewed at 15+ frontier AI labs. Questions are organized by interview role rather than just difficulty.
+
+### Classical ML from Scratch
+*Still asked at traditional FAANG companies (Google, Meta, Amazon, Uber, LinkedIn).*
+
+1. [Implement Softmax from Scratch (numerically stable)](v3/classical-ml/softmax/softmax.ipynb) [(Solution)](v3/classical-ml/softmax/softmax_SOLN.ipynb) 🟢 Easy — `Apple` `Meta` `Google` `Amazon`
+2. [Implement K-Means Clustering in PyTorch](v3/classical-ml/kmeans/kmeans.ipynb) [(Solution)](v3/classical-ml/kmeans/kmeans_SOLN.ipynb) 🟢 Easy — `Uber` `LinkedIn` `Google` `Amazon`
+3. [Implement KNN in PyTorch](v3/classical-ml/knn/knn.ipynb) [(Solution)](v3/classical-ml/knn/knn_SOLN.ipynb) 🟢 Easy — `Uber` `LinkedIn` `Meta`
+4. [Implement Logistic Regression with Gradient Descent](v3/classical-ml/logistic-regression/logistic-regression.ipynb) [(Solution)](v3/classical-ml/logistic-regression/logistic-regression_SOLN.ipynb) 🟢 Easy — `Google` `Meta` `Amazon`
+
+---
+
+### LLM Decoding
+*Core questions at frontier AI labs — Anthropic, OpenAI, DeepMind, Cohere, Perplexity.*
+
+5. [Implement Contrastive Loss (InfoNCE) + CLIP Training Loop](v3/modern-architectures/contrastive-loss-clip/contrastive-loss-clip.ipynb) [(Solution)](v3/modern-architectures/contrastive-loss-clip/contrastive-loss-clip_SOLN.ipynb) 🟡 Medium — `OpenAI` `Anthropic` `DeepMind` `Midjourney` `Apple`
+6. [Implement 2D Positional Embeddings](v3/modern-architectures/2d-positional-embeddings/2d-positional-embeddings.ipynb) [(Solution)](v3/modern-architectures/2d-positional-embeddings/2d-positional-embeddings_SOLN.ipynb) 🟡 Medium — `Anthropic` `DeepMind` `Midjourney` `Runway`
+7. [Implement Top-p (Nucleus) Sampling](v3/llm-decoding/top-p-sampling/top-p-sampling.ipynb) [(Solution)](v3/llm-decoding/top-p-sampling/top-p-sampling_SOLN.ipynb) 🟡 Medium — `Anthropic` `OpenAI` `DeepMind` `Perplexity` `Cohere`
+8. [Implement Top-k Sampling](v3/llm-decoding/top-k-sampling/top-k-sampling.ipynb) [(Solution)](v3/llm-decoding/top-k-sampling/top-k-sampling_SOLN.ipynb) 🟡 Medium — `Anthropic` `OpenAI` `DeepMind` `Cohere`
+9. [Implement Beam Search for LLM Decoding](v3/llm-decoding/beam-search/beam-search.ipynb) [(Solution)](v3/llm-decoding/beam-search/beam-search_SOLN.ipynb) 🟡 Medium — `Google` `DeepMind` `Meta` `Apple`
+10. [Implement Temperature Sampling](v3/llm-decoding/temperature-sampling/temperature-sampling.ipynb) [(Solution)](v3/llm-decoding/temperature-sampling/temperature-sampling_SOLN.ipynb) 🟢 Easy — `OpenAI` `Anthropic` `Cohere` `Perplexity`
+
+---
+
+### LLM Inference & Systems
+*Hot topic for LLM infrastructure roles at Perplexity, Together AI, Anyscale, Meta.*
+
+11. [Implement LoRA on a Linear Layer](v3/alignment-training/lora/lora.ipynb) [(Solution)](v3/alignment-training/lora/lora_SOLN.ipynb) 🟡 Medium — `Meta` `Google` `Anthropic` `OpenAI` `Databricks`
+12. [Implement KV Cache for Autoregressive Generation](v3/llm-inference/kv-cache/kv-cache.ipynb) [(Solution)](v3/llm-inference/kv-cache/kv-cache_SOLN.ipynb) 🟡 Medium — `Anthropic` `OpenAI` `Meta` `Perplexity` `Together AI`
+13. [Implement Sliding Window Attention](v3/modern-architectures/sliding-window-attention/sliding-window-attention.ipynb) [(Solution)](v3/modern-architectures/sliding-window-attention/sliding-window-attention_SOLN.ipynb) 🟡 Medium — `Mistral` `Anthropic` `Google` `DeepMind`
+14. [Implement DPO Loss from Scratch](v3/alignment-training/dpo/dpo.ipynb) [(Solution)](v3/alignment-training/dpo/dpo_SOLN.ipynb) 🔴 Hard — `Anthropic` `OpenAI` `DeepMind` `Meta`
+15. [Implement PPO for RLHF](v3/alignment-training/ppo-rlhf/ppo-rlhf.ipynb) [(Solution)](v3/alignment-training/ppo-rlhf/ppo-rlhf_SOLN.ipynb) 🔴 Hard — `Anthropic` `OpenAI` `DeepMind` `Meta`
+16. [Implement Gradient Checkpointing](v3/alignment-training/gradient-checkpointing/gradient-checkpointing.ipynb) [(Solution)](v3/alignment-training/gradient-checkpointing/gradient-checkpointing_SOLN.ipynb) 🔴 Hard — `Meta` `Google` `NVIDIA` `Tesla`
+17. [Implement Mixture of Experts Layer](v3/modern-architectures/mixture-of-experts/mixture-of-experts.ipynb) [(Solution)](v3/modern-architectures/mixture-of-experts/mixture-of-experts_SOLN.ipynb) 🔴 Hard — `Google` `DeepMind` `Mistral` `Databricks` `xAI`
+18. [Implement Speculative Decoding](v3/llm-inference/speculative-decoding/speculative-decoding.ipynb) [(Solution)](v3/llm-inference/speculative-decoding/speculative-decoding_SOLN.ipynb) 🔴 Hard — `Google` `DeepMind` `Anthropic` `Apple`
+19. [Implement Continuous Batching for LLM Inference](v3/llm-inference/continuous-batching/continuous-batching.ipynb) [(Solution)](v3/llm-inference/continuous-batching/continuous-batching_SOLN.ipynb) 🔴 Hard — `Perplexity` `Together AI` `Anyscale` `Meta`
+
+---
+
+### Modern Architectures
+*Cutting-edge topics at image-gen companies, research labs, and autonomous driving.*
+
+20. [Implement DDPM (Denoising Diffusion) from Scratch](v3/modern-architectures/ddpm/ddpm.ipynb) [(Solution)](v3/modern-architectures/ddpm/ddpm_SOLN.ipynb) 🔴 Hard — `Midjourney` `Runway` `Stability AI` `Adobe` `Google`
+21. [Implement DDIM Sampling + Classifier-Free Guidance](v3/modern-architectures/ddim-cfg/ddim-cfg.ipynb) [(Solution)](v3/modern-architectures/ddim-cfg/ddim-cfg_SOLN.ipynb) 🔴 Hard — `Midjourney` `Runway` `Stability AI` `Adobe`
+22. [Implement Selective State Space Model (Mamba Block)](v3/modern-architectures/mamba/mamba.ipynb) [(Solution)](v3/modern-architectures/mamba/mamba_SOLN.ipynb) 🔴 Hard — `DeepMind` `Google` `Anthropic`
+23. [Implement Vision Transformer + MAE Pretraining](v3/modern-architectures/vit-mae/vit-mae.ipynb) [(Solution)](v3/modern-architectures/vit-mae/vit-mae_SOLN.ipynb) 🔴 Hard — `Meta` `Google` `Apple` `Tesla` `Waymo`
+29. [Implement Knowledge Distillation](v3/modern-architectures/knowledge-distillation/knowledge-distillation.ipynb) [(Solution)](v3/modern-architectures/knowledge-distillation/knowledge-distillation_SOLN.ipynb) 🟡 Medium — `Google` `Apple` `Meta` `Qualcomm` `Tesla`
+
+---
+
+### GPU Systems & Kernels
+*For ML infrastructure and systems roles at NVIDIA, Meta, xAI, and frontier labs.*
+
+24. [Write a Fused Softmax Kernel in Triton](v3/gpu-systems/triton-fused-softmax/triton-fused-softmax.ipynb) [(Solution)](v3/gpu-systems/triton-fused-softmax/triton-fused-softmax_SOLN.ipynb) 🟣 Expert — `NVIDIA` `Meta` `Google` `xAI` `Tesla`
+25. [Implement FlashAttention-2 in Triton](v3/gpu-systems/flash-attention-triton/flash-attention-triton.ipynb) [(Solution)](v3/gpu-systems/flash-attention-triton/flash-attention-triton_SOLN.ipynb) 🟣 Expert — `NVIDIA` `Meta` `Together AI` `xAI`
+26. [Implement FSDP (Fully Sharded Data Parallel) from Scratch](v3/gpu-systems/fsdp/fsdp.ipynb) [(Solution)](v3/gpu-systems/fsdp/fsdp_SOLN.ipynb) 🟣 Expert — `Meta` `Google` `NVIDIA` `Anthropic` `xAI`
+27. [Implement GRPO (DeepSeek-R1 Algorithm)](v3/alignment-training/grpo/grpo.ipynb) [(Solution)](v3/alignment-training/grpo/grpo_SOLN.ipynb) 🟣 Expert — `DeepMind` `Anthropic` `OpenAI`
+28. [Build a Complete LLM Inference Engine](v3/llm-inference/inference-engine/inference-engine.ipynb) [(Solution)](v3/llm-inference/inference-engine/inference-engine_SOLN.ipynb) 🟣 Expert — `Perplexity` `Together AI` `Anyscale` `Fireworks AI`
+30. [Implement Ring Attention for Long Contexts](v3/gpu-systems/ring-attention/ring-attention.ipynb) [(Solution)](v3/gpu-systems/ring-attention/ring-attention_SOLN.ipynb) 🟣 Expert — `Anthropic` `Google` `Meta` `xAI`
+
+---
+
+### Company Quick-Reference
+
+*"If I'm interviewing at X, which v3 questions should I prioritize?"*
+
+| Company | Priority Questions |
+|---------|--------------------|
+| **Anthropic** | 5, 6, 7, 8, 10, 12, 13, 14, 15, 18, 22, 26, 27, 30 |
+| **OpenAI** | 5, 7, 8, 10, 11, 12, 14, 15, 27 |
+| **DeepMind** | 5, 6, 7, 8, 9, 13, 14, 15, 17, 18, 22, 27 |
+| **Meta** | 1, 2, 3, 4, 9, 11, 12, 14, 15, 16, 19, 23, 24, 25, 26, 30 |
+| **Google** | 1, 2, 4, 9, 11, 13, 16, 17, 18, 20, 22, 23, 24, 26, 29, 30 |
+| **Apple** | 1, 5, 9, 18, 23, 29 |
+| **NVIDIA** | 16, 24, 25, 26 |
+| **Midjourney / Runway / Stability AI** | 5, 6, 20, 21 |
+| **Perplexity / Together AI / Anyscale** | 7, 10, 12, 19, 25, 28 |
+| **Tesla / Waymo** | 16, 23, 24, 29 |
+| **xAI** | 17, 24, 25, 26, 30 |
+| **Mistral / Cohere** | 7, 8, 10, 13, 17 |
+
+---
 
 ## Getting Started
 
