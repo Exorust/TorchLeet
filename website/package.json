@@ -3,7 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "generate-ascii": "node scripts/generate-ascii.mjs",
+    "predev": "node scripts/generate-ascii.mjs",
     "dev": "next dev",
+    "prebuild": "node scripts/generate-ascii.mjs",
     "build": "next build",
     "start": "next start",
     "lint": "eslint"
@@ -18,8 +21,10 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "cfonts": "^3.3.1",
     "eslint": "^9",
     "eslint-config-next": "16.2.7",
+    "figlet": "^1.11.0",
     "tailwindcss": "^4",
     "typescript": "^5"
   }
