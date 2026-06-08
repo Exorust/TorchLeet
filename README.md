@@ -14,15 +14,16 @@
 [![GitHub stars](https://img.shields.io/github/stars/Exorust/TorchLeet?style=social)](https://github.com/Exorust/TorchLeet)
 [![Website](https://img.shields.io/badge/website-torch--leet.vercel.app-8b5cf6)](https://torch-leet.vercel.app)
 
-[Website](https://torch-leet.vercel.app) | [Follow on Twitter](https://twitter.com/charoori_ai) | [Send Feedback](mailto:chandrahas.aroori@gmail.com?subject=TorchLeet)
+[Follow me on Twitter](https://twitter.com/charoori_ai) | [Try the Terminal](https://torch-leet.vercel.app) | [Send Feedback](mailto:chandrahas.aroori@gmail.com?subject=TorchLeet%20Feedback)
 
 </div>
 
 ---
 
-## What is TorchLeet?
+I struggled to grind for ML/AI interviews so I went back to the basics and created a list after careful research. These are real problems from real interviews — sourced from Glassdoor, Blind, Reddit, and first-person reports.
 
-TorchLeet is a collection of PyTorch practice problems sourced from real engineer interviews. Each problem is a Jupyter notebook with incomplete code blocks (`#TODO`) and a corresponding solution.
+> [!IMPORTANT]
+> **Don't use GPT.** The whole point is to struggle through these yourself. If you paste these into ChatGPT you're wasting your time. The goal is to deeply understand PyTorch, not to get an answer. I used GPT to help write some of the initial code, but I tested and solved every problem myself — that's where the learning happens.
 
 Three question sets, 90 problems total:
 
@@ -30,9 +31,9 @@ Three question sets, 90 problems total:
 |-----|-------|-----------|------------|
 | **v1** | Core PyTorch | 35 | Basic to Hard |
 | **v2** | LLMs from Scratch | 25 | Easy to Hard |
-| **v3** | Advanced ML Systems | 30 | Easy to Expert |
+| **v3** | Advanced ML Systems (NEW!) | 30 | Easy to Expert |
 
-> v3 questions are tagged with the companies that actually ask them, compiled from Glassdoor, Blind, Reddit, and first-person interview reports.
+v3 questions are tagged with the companies that actually ask them. If you're interviewing at Anthropic, Google, Meta, or any top AI company — start there.
 
 ---
 
@@ -223,7 +224,9 @@ Build a Large Language Model from scratch, one question at a time.
 
 ## Contributing
 
-Add new questions or improve existing ones. Follow the notebook structure (question file + `_SOLN` file). Submit a PR and tag the authors.
+Found a bug? Have a question from your own interview? PRs are welcome. Follow the notebook structure (question file + `_SOLN` file) and tag the authors.
+
+If you found this helpful, [follow me on Twitter](https://twitter.com/charoori_ai) — I post about ML interviews, PyTorch tips, and what I'm building next. Or just [send me feedback](mailto:chandrahas.aroori@gmail.com?subject=TorchLeet%20Feedback), I read everything.
 
 ---
 
