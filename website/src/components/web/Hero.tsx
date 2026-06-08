@@ -10,18 +10,31 @@ export default function Hero() {
   return (
     <section className="py-16 md:py-24">
       <div className="flex flex-col md:flex-row items-center gap-10">
-        {/* Text content */}
         <div className="flex-1 space-y-6">
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight">
             Grind PyTorch for ML/AI Interviews
           </h1>
+
+          <a
+            href="https://github.com/Exorust/TorchLeet"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block"
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="https://img.shields.io/github/stars/Exorust/TorchLeet?style=social"
+              alt="GitHub stars"
+              height="20"
+            />
+          </a>
+
           <p className="text-lg text-gray-600 leading-relaxed max-w-xl">
             Practice problems from basic PyTorch to advanced LLM systems. Tagged
             with real interview companies. TorchLeet V3 is now out with 30 new
             questions and company-wise filtering!
           </p>
 
-          {/* Stats row */}
           <div className="flex flex-wrap gap-4 pt-4">
             {stats.map((stat) => (
               <div
