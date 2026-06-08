@@ -15,6 +15,7 @@ Available commands:
   open <id>           Open a question (e.g. open v3-14)
   company <name>      Filter by company (e.g. company anthropic)
   filter <difficulty>  Filter by difficulty (basic/easy/medium/hard/expert)
+  github              Open the GitHub repo
   aboutme             About the creator
   feedback <message>  Send feedback to the creator
   clear               Clear the terminal

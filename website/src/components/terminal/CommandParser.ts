@@ -259,6 +259,18 @@ export function parseCommand(input: string): CommandResult {
       };
     }
 
+    case "github": {
+      if (typeof window !== "undefined") {
+        window.open("https://github.com/Exorust/TorchLeet", "_blank");
+      }
+      return {
+        lines: [
+          "  Opening github.com/Exorust/TorchLeet...",
+          "  Star the repo if you find it useful!",
+        ],
+      };
+    }
+
     case "pwd": {
       return { lines: ["  /home/torch/torchleet"] };
     }
