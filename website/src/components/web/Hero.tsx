@@ -1,7 +1,5 @@
 "use client";
 
-import Image from "next/image";
-
 const stats = [
   { value: "35", label: "PyTorch Questions" },
   { value: "25", label: "LLM Questions" },
@@ -41,18 +39,6 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* Hero image (desktop only) */}
-        <div className="hidden md:block flex-shrink-0">
-          <Image
-            src="/torchleet-llm.png"
-            alt="TorchLeet mascot"
-            width={320}
-            height={320}
-            unoptimized
-            className="rounded-2xl"
-            priority
-          />
-        </div>
       </div>
     </section>
   );
