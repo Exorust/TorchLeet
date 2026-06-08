@@ -7,7 +7,7 @@ import {
   type Question,
   type Difficulty,
 } from "@/data/questions";
-import { HELP_TEXT } from "@/lib/constants";
+import { HELP_TEXT, ABOUT_ME } from "@/lib/constants";
 
 export interface CommandResult {
   lines: string[];
@@ -168,6 +168,10 @@ export function parseCommand(input: string): CommandResult {
           ...formatQuestionTable(matches),
         ],
       };
+    }
+
+    case "aboutme": {
+      return { lines: ABOUT_ME.split("\n") };
     }
 
     case "clear": {
