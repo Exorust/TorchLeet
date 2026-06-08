@@ -7,7 +7,16 @@ import {
   type Question,
   type Difficulty,
 } from "@/data/questions";
-import { HELP_TEXT, ABOUT_ME } from "@/lib/constants";
+import {
+  HELP_TEXT,
+  ABOUT_ME,
+  GHOST_QUESTION,
+  SUDO_DENIED,
+  SUDO_ROOT,
+  MATRIX_LINES,
+  CAT_SECRETS,
+  LS_HOME,
+} from "@/lib/constants";
 
 export interface CommandResult {
   lines: string[];
@@ -57,8 +66,7 @@ export function parseCommand(input: string): CommandResult {
       return { lines: HELP_TEXT.split("\n") };
     }
 
-    case "list":
-    case "ls": {
+    case "list": {
       if (!arg) {
         const v1 = getQuestionsBySet("v1");
         const v2 = getQuestionsBySet("v2");
@@ -91,6 +99,9 @@ export function parseCommand(input: string): CommandResult {
         return {
           lines: ["  Usage: open <id>  (e.g. open v3-14)"],
         };
+      }
+      if (arg.toLowerCase() === "v3-31") {
+        return { lines: GHOST_QUESTION.split("\n") };
       }
       const question = getQuestionById(arg.toLowerCase());
       if (!question) {
@@ -172,6 +183,92 @@ export function parseCommand(input: string): CommandResult {
 
     case "aboutme": {
       return { lines: ABOUT_ME.split("\n") };
+    }
+
+    case "feedback": {
+      if (!arg) {
+        return {
+          lines: [
+            "  Usage: feedback <your message>",
+            "  Your feedback will be sent to the creator.",
+          ],
+        };
+      }
+      const subject = encodeURIComponent("TorchLeet Feedback");
+      const body = encodeURIComponent(arg);
+      if (typeof window !== "undefined") {
+        window.open(
+          `mailto:chandrahas.aroori@gmail.com?subject=${subject}&body=${body}`,
+          "_blank",
+        );
+      }
+      return {
+        lines: [
+          "  Opening your email client...",
+          "  Thanks for the feedback!",
+        ],
+      };
+    }
+
+    case "sudo": {
+      if (arg.toLowerCase() === "torchleet" || arg.toLowerCase() === "-i torchleet") {
+        return { lines: SUDO_ROOT.split("\n") };
+      }
+      return { lines: SUDO_DENIED.split("\n") };
+    }
+
+    case "matrix": {
+      return { lines: MATRIX_LINES };
+    }
+
+    case "cat": {
+      if (arg.includes(".secret") || arg.includes("secret")) {
+        return { lines: CAT_SECRETS.split("\n") };
+      }
+      return {
+        lines: [`  cat: ${arg || "(no file)"}: Permission denied`],
+      };
+    }
+
+    case "ls": {
+      if (arg.includes("/home") || arg.includes("~") || arg === "-la" || arg === "-a") {
+        return { lines: LS_HOME.split("\n") };
+      }
+      if (!arg) {
+        const v1 = getQuestionsBySet("v1");
+        const v2 = getQuestionsBySet("v2");
+        const v3 = getQuestionsBySet("v3");
+        return {
+          lines: [
+            "",
+            `  [v1] Question Set        — ${v1.length} questions`,
+            `  [v2] LLM Set             — ${v2.length} questions`,
+            `  [v3] Advanced ML Systems — ${v3.length} questions (NEW!)`,
+            "",
+            "  Type 'list v1', 'list v2', or 'list v3' to see questions.",
+          ],
+        };
+      }
+      const setArg = arg.toLowerCase();
+      if (setArg === "v1" || setArg === "v2" || setArg === "v3") {
+        const questions = getQuestionsBySet(setArg);
+        return { lines: formatQuestionTable(questions) };
+      }
+      return {
+        lines: [`  Unknown set: ${arg}. Available sets: v1, v2, v3`],
+      };
+    }
+
+    case "pwd": {
+      return { lines: ["  /home/torch/torchleet"] };
+    }
+
+    case "cd": {
+      return { lines: ["  Nice try. You're staying right here."] };
+    }
+
+    case "rm": {
+      return { lines: ["  Permission denied. No deleting questions."] };
     }
 
     case "clear": {

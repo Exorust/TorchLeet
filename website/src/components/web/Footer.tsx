@@ -34,6 +34,14 @@ export default function Footer() {
           </a>
         </p>
 
+        {/* Feedback */}
+        <a
+          href="mailto:chandrahas.aroori@gmail.com?subject=TorchLeet%20Feedback"
+          className="text-lavender-500 hover:text-lavender-600 text-sm font-medium transition"
+        >
+          Send Feedback
+        </a>
+
         {/* Tagline */}
         <p className="text-gray-400 text-xs">
           Practice PyTorch. Ace the interview.
