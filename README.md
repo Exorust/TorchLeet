@@ -1,220 +1,208 @@
 <div align="center">
-  <img src="torchleet-llm.png" alt="Robot Image">
-  <!-- <h1>TorchLeet</h1> -->
-  <p align="center">
-    🐦 <a href="https://twitter.com/charoori_ai">Follow me on Twitter</a> •
-    ➡️ <a href="https://github.com/Exorust/TorchLeet/tree/new-llm?tab=readme-ov-file#llm-set">Jump to LLMs!</a>
-    📧 <a href="mailto:chandrahas.aroori@gmail.com?subject=Torchleet">Feedback</a>
-  </p>
-  <p>
-    <a href="https://www.buymeacoffee.com/charoori_ai" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="39" width="170"></a>
-  </p>
+
+```
+████████╗ ██████╗ ██████╗  ██████╗██╗  ██╗██╗     ███████╗███████╗████████╗
+╚══██╔══╝██╔═══██╗██╔══██╗██╔════╝██║  ██║██║     ██╔════╝██╔════╝╚══██╔══╝
+   ██║   ██║   ██║██████╔╝██║     ███████║██║     █████╗  █████╗     ██║
+   ██║   ██║   ██║██╔══██╗██║     ██╔══██║██║     ██╔══╝  ██╔══╝     ██║
+   ██║   ╚██████╔╝██║  ██║╚██████╗██║  ██║███████╗███████╗███████╗   ██║
+   ╚═╝    ╚═════╝ ╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝╚══════╝╚══════╝╚══════╝   ╚═╝
+```
+
+**90 PyTorch problems from real ML/AI interviews at Google, Meta, Anthropic, and more.**
+
+[![GitHub stars](https://img.shields.io/github/stars/Exorust/TorchLeet?style=social)](https://github.com/Exorust/TorchLeet)
+[![Website](https://img.shields.io/badge/website-torch--leet.vercel.app-8b5cf6)](https://torch-leet.vercel.app)
+
+[Website](https://torch-leet.vercel.app) | [Follow on Twitter](https://twitter.com/charoori_ai) | [Send Feedback](mailto:chandrahas.aroori@gmail.com?subject=TorchLeet)
+
 </div>
-<br/>
-
-> I struggled to grind for ML/AI interviews so I went back to the basics and created a list after careful research. 
-
-TorchLeet is broken into two sets of questions:
-1. **Question Set**: A collection of PyTorch practice problems, ranging from basic to hard, designed to enhance your skills in deep learning and PyTorch.
-2. **LLM Set**: A new set of questions focused on understanding and implementing Large Language Models (LLMs) from scratch, including attention mechanisms, embeddings, and more.
-
-> [!NOTE]
-> Avoid using GPT. Try to solve these problems on your own. The goal is to learn and understand PyTorch concepts deeply.
-
->  [!NOTE] 
-> Yes. I used GPT to help write the code and I ended up testing it out myself as practise. I found the strategy to be super useful
-
-## Table of Contents
-- [Question Set](#question-set)
-   - [🔵Basic](#basic)
-   - [🟢Easy](#easy)
-   - [🟡Medium](#medium)
-   - [🔴Hard](#hard)
-- [LLM Set](#llm-set)
-- [Advanced ML Systems Set (v3)](#advanced-ml-systems-set-v3)
-   - [Classical ML from Scratch](#classical-ml-from-scratch)
-   - [LLM Decoding](#llm-decoding)
-   - [LLM Inference & Systems](#llm-inference--systems)
-   - [Modern Architectures](#modern-architectures)
-   - [Alignment & Training](#alignment--training)
-   - [GPU Systems & Kernels](#gpu-systems--kernels)
-   - [Company Quick-Reference](#company-quick-reference)
-- [Getting Started](#getting-started)
-   - [1. Install Dependencies](#1-install-dependencies)
-   - [2. Structure](#2-structure)
-   - [3. How to Use](#3-how-to-use)
-- [Contribution](#contribution)
-
-
-## Question Set
-
-### 🔵Basic
-Mostly for beginners to get started with PyTorch.
-
-1. [Implement linear regression](torch/basic/lin-regression/lin-regression.ipynb) [(Solution)](torch/basic/lin-regression/lin-regression_SOLN.ipynb)
-2. [Write a custom Dataset and Dataloader to load from a CSV file](torch/basic/custom-dataset/custom-dataset.ipynb) [(Solution)](torch/basic/custom-dataset/custom-dataset_SOLN.ipynb) 
-3. [Write a custom activation function (Simple)](torch/basic/custom-activation/custom-activation.ipynb) [(Solution)](torch/basic/custom-activation/custom-activation_SOLN.ipynb)
-4. [Implement Custom Loss Function (Huber Loss)](torch/basic/custom-loss/custom-loss.ipynb) [(Solution)](torch/basic/custom-loss/custom-loss_SOLN.ipynb)  
-5. [Implement a Deep Neural Network](torch/basic/custom-DNN/custon-DNN.ipynb) [(Solution)](torch/basic/custom-DNN/custon-DNN_SOLN.ipynb)  
-6. [Visualize Training Progress with TensorBoard in PyTorch](torch/basic/tensorboard/tensorboard.ipynb) [(Solution)](torch/basic/tensorboard/tensorboard_SOLN.ipynb)  
-7. [Save and Load Your PyTorch Model](torch/basic/save-model/save_model.ipynb) [(Solution)](torch/basic/save-model/save_model_SOLN.ipynb) 
-10. Implement Softmax function from scratch
 
 ---
 
-### 🟢Easy
-Recommended for those who have a basic understanding of PyTorch and want to practice their skills.
-1. [Implement a CNN on CIFAR-10](torch/easy/cnn/CNN.ipynb) [(Solution)](torch/easy/cnn/CNN_SOLN.ipynb)  
-2. [Implement an RNN from Scratch](torch/easy/rnn/RNN.ipynb) [(Solution)](torch/easy/rnn/RNN_SOLN.ipynb)  
-3. [Use `torchvision.transforms` to apply data augmentation](torch/easy/augmentation/augmentation.ipynb) [(Solution)](torch/easy/augmentation/augmentation_SOLN.ipynb)  
-4. [Add a benchmark to your PyTorch code](torch/easy/benchmark/bench.ipynb) [(Solution)](torch/easy/benchmark/bench_SOLN.ipynb)  
-5. [Train an autoencoder for anomaly detection](torch/easy/autoencoder/autoencoder.ipynb) [(Solution)](torch/easy/autoencoder/autoencoder_SOLN.ipynb)
-6. [Quantize your language model](torch/easy/quantize-lm/quantize-language-model.ipynb) [(Solution)](torch/easy/quantize-lm/quantize-language-model_SOLN.ipynb)
-7. [Implement Mixed Precision Training using torch.cuda.amp](torch/easy/cuda-amp/cuda-amp.ipynb) [(Solution)](torch/easy/cuda-amp/cuda-amp_SOLN.ipynb)
-   
----
+## What is TorchLeet?
 
-### 🟡Medium 
-These problems are designed to challenge your understanding of PyTorch and deep learning concepts. They require you to implement things from scratch or apply advanced techniques.
-1. [Implement parameter initialization for a CNN](torch/medium/cnn-param-init/CNN_ParamInit.ipynb) [(Solution)](torch/medium/cnn-param-init/CNN_ParamInit_SOLN.ipynb)
-2. [Implement a CNN from Scratch](torch/medium/cnn-scratch/CNN_scratch.ipynb) [(Solution)](torch/medium/cnn-scratch/CNN_scratch_SOLN.ipynb) 
-3. [Implement an LSTM from Scratch](torch/medium/lstm/LSTM.ipynb) [(Solution)](torch/medium/lstm/LSTM_SOLN.ipynb)  
-4. Implement AlexNet from scratch 
-5. Build a Dense Retrieval System using PyTorch
-6.  Implement KNN from scratch in PyTorch
-7.  [Train a 3D CNN network for segmenting CT images](torch/medium/3dcnn/3DCNN.ipynb) [Solution](torch/medium/3dcnn/3DCNN_SOLN.ipynb)
+TorchLeet is a collection of PyTorch practice problems sourced from real engineer interviews. Each problem is a Jupyter notebook with incomplete code blocks (`#TODO`) and a corresponding solution.
+
+Three question sets, 90 problems total:
+
+| Set | Focus | Questions | Difficulty |
+|-----|-------|-----------|------------|
+| **v1** | Core PyTorch | 35 | Basic to Hard |
+| **v2** | LLMs from Scratch | 25 | Easy to Hard |
+| **v3** | Advanced ML Systems | 30 | Easy to Expert |
+
+> v3 questions are tagged with the companies that actually ask them, compiled from Glassdoor, Blind, Reddit, and first-person interview reports.
 
 ---
 
-### 🔴Hard
-These problems are for advanced users who want to push their PyTorch skills to the limit. They involve complex architectures, custom layers, and advanced techniques.
-1. [Write a custom Autograd function for activation (SILU)](torch/hard/custom-autograd/custom-autgrad-function.ipynb) [(Solution)](torch/hard/custom-autograd/custom-autgrad-function_SOLN.ipynb)
-2. Write a Neural Style Transfer  
-3. Build a Graph Neural Network (GNN) from scratch
-4. Build a Graph Convolutional Network (GCN) from scratch
-5. [Write a Transformer](torch/hard/transformer/transformer.ipynb) [(Solution)](torch/hard/transformer/transformer_SOLN.ipynb)  
-6. [Write a GAN](torch/hard/GAN/GAN.ipynb) [(Solution)](torch/hard/GAN/GAN_SOLN.ipynb)  
-7. [Write Sequence-to-Sequence with Attention](torch/hard/seq-seq/seq-to-seq-with-Attention.ipynb) [(Solution)](torch/hard/seq-seq/seq-to-seq-with-Attention_SOLN.ipynb)  
-8. [Enable distributed training in pytorch (DistributedDataParallel)]
-9. [Work with Sparse Tensors]
-10. [Add GradCam/SHAP to explain the model.](torch/hard/xai/xai.ipynb) [(Solution)](torch/hard/xai/xai_SOLN.ipynb)
-11. Linear Probe on CLIP Features
-12. Add Cross Modal Embedding Visualization to CLIP (t-SNE/UMAP)
-13. Implement a Vision Transformer
-14. Implement a Variational Autoencoder
+## Quick Start
+
+```bash
+# Install PyTorch
+# https://pytorch.org/get-started/locally/
+
+# Pick a problem, fill in the TODOs, compare with the solution
+jupyter notebook torch/basic/lin-regression/lin-regression.ipynb
+```
+
+Each problem has a question file and a `_SOLN` solution file. Fill in the `...` and `#TODO` blocks, then check your work.
 
 ---
 
-## LLM Set
+## v1: Question Set
 
-**An all new set of questions to help you understand and implement Large Language Models from scratch.**
+### Basic
+| # | Problem | Links |
+|---|---------|-------|
+| 1 | Implement linear regression | [Question](torch/basic/lin-regression/lin-regression.ipynb) / [Solution](torch/basic/lin-regression/lin-regression_SOLN.ipynb) |
+| 2 | Write a custom Dataset and Dataloader | [Question](torch/basic/custom-dataset/custom-dataset.ipynb) / [Solution](torch/basic/custom-dataset/custom-dataset_SOLN.ipynb) |
+| 3 | Write a custom activation function | [Question](torch/basic/custom-activation/custom-activation.ipynb) / [Solution](torch/basic/custom-activation/custom-activation_SOLN.ipynb) |
+| 4 | Implement Custom Loss Function (Huber Loss) | [Question](torch/basic/custom-loss/custom-loss.ipynb) / [Solution](torch/basic/custom-loss/custom-loss_SOLN.ipynb) |
+| 5 | Implement a Deep Neural Network | [Question](torch/basic/custom-DNN/custon-DNN.ipynb) / [Solution](torch/basic/custom-DNN/custon-DNN_SOLN.ipynb) |
+| 6 | Visualize Training Progress with TensorBoard | [Question](torch/basic/tensorboard/tensorboard.ipynb) / [Solution](torch/basic/tensorboard/tensorboard_SOLN.ipynb) |
+| 7 | Save and Load Your PyTorch Model | [Question](torch/basic/save-model/save_model.ipynb) / [Solution](torch/basic/save-model/save_model_SOLN.ipynb) |
+| 10 | Implement Softmax function from scratch | |
 
-Each question is designed to take you one step closer to building your own LLM.
+### Easy
+| # | Problem | Links |
+|---|---------|-------|
+| 1 | Implement a CNN on CIFAR-10 | [Question](torch/easy/cnn/CNN.ipynb) / [Solution](torch/easy/cnn/CNN_SOLN.ipynb) |
+| 2 | Implement an RNN from Scratch | [Question](torch/easy/rnn/RNN.ipynb) / [Solution](torch/easy/rnn/RNN_SOLN.ipynb) |
+| 3 | Use torchvision.transforms for data augmentation | [Question](torch/easy/augmentation/augmentation.ipynb) / [Solution](torch/easy/augmentation/augmentation_SOLN.ipynb) |
+| 4 | Add a benchmark to your PyTorch code | [Question](torch/easy/benchmark/bench.ipynb) / [Solution](torch/easy/benchmark/bench_SOLN.ipynb) |
+| 5 | Train an autoencoder for anomaly detection | [Question](torch/easy/autoencoder/autoencoder.ipynb) / [Solution](torch/easy/autoencoder/autoencoder_SOLN.ipynb) |
+| 6 | Quantize your language model | [Question](torch/easy/quantize-lm/quantize-language-model.ipynb) / [Solution](torch/easy/quantize-lm/quantize-language-model_SOLN.ipynb) |
+| 7 | Implement Mixed Precision Training | [Question](torch/easy/cuda-amp/cuda-amp.ipynb) / [Solution](torch/easy/cuda-amp/cuda-amp_SOLN.ipynb) |
 
-1. Implement KL Divergence Loss
-2. Implement RMS Norm
-3. [Implement Byte Pair Encoding from Scratch](llm/Byte-Pair-Encoder/BPE-q3.ipynb) [(Solution)](llm/Byte-Pair-Encoder/BPE-q3.ipynb)
-4. Create a RAG Search of Embeddings from a set of Reviews
-5. Implement Predictive Prefill with Speculative Decoding
-6. [Implement Attention from Scratch](llm/Implement-Attention-from-Scratch/attention-q4-Question.ipynb) [(Solution)](llm/Implement-Attention-from-Scratch/attention-q4.ipynb)
-7. [Implement Multi-Head Attention from Scratch](llm/Multi-Head-Attention/multi-head-attention-q5-Question.ipynb) [(Solution)](llm/Multi-Head-Attention/multi-head-attention-q5.ipynb)
-8. [Implement Grouped Query Attention from Scratch](llm/Grouped-Query-Attention/grouped-query-attention-Question.ipynb) [(Solution)](llm/Grouped-Query-Attention/grouped-query-attention.ipynb)
-9. Implement KV Cache in Multi-Head Attention from Scratch
-10. [Implement Sinusoidal Embeddings](llm/Sinusoidal-Positional-Embedding/sinusoidal-q7-Question.ipynb) [(Solution)](llm/Sinusoidal-Positional-Embedding/sinusoidal-q7.ipynb)
-11. [Implement ROPE Embeddings](llm/Rotary-Positional-Embedding/rope-q8-Question.ipynb) [(Solution)](llm/Rotary-Positional-Embedding/rope-q8.ipynb)
-12. [Implement SmolLM from Scratch](llm/SmolLM/smollm-q12-Question.ipynb) [(Solution)](llm/SmolLM/smollm-q12.ipynb)
-13. Implement Quantization of Models
-    1.  GPTQ
-14. Implement Beam Search atop LLM for decoding
-15. Implement Top K Sampling atop LLM for decoding
-16. Implement Top p Sampling atop LLM for decoding
-17. Implement Temperature Sampling atop LLM for decoding
-18. Implement LoRA on a layer of an LLM
-    1.  QLoRA
-19. Mix two models to create a mixture of Experts
-20. Apply SFT on SmolLM 
-21. Apply RLHF on SmolLM
-22. Implement DPO based RLHF
-23. Add continuous batching to your LLM
-24. Chunk Textual Data for Dense Passage Retrieval
-25. Implement Large scale Training => 5D Parallelism
+### Medium
+| # | Problem | Links |
+|---|---------|-------|
+| 1 | Implement parameter initialization for a CNN | [Question](torch/medium/cnn-param-init/CNN_ParamInit.ipynb) / [Solution](torch/medium/cnn-param-init/CNN_ParamInit_SOLN.ipynb) |
+| 2 | Implement a CNN from Scratch | [Question](torch/medium/cnn-scratch/CNN_scratch.ipynb) / [Solution](torch/medium/cnn-scratch/CNN_scratch_SOLN.ipynb) |
+| 3 | Implement an LSTM from Scratch | [Question](torch/medium/lstm/LSTM.ipynb) / [Solution](torch/medium/lstm/LSTM_SOLN.ipynb) |
+| 4 | Implement AlexNet from scratch | |
+| 5 | Build a Dense Retrieval System | |
+| 6 | Implement KNN from scratch in PyTorch | |
+| 7 | Train a 3D CNN for segmenting CT images | [Question](torch/medium/3dcnn/3DCNN.ipynb) / [Solution](torch/medium/3dcnn/3DCNN_SOLN.ipynb) |
 
-**What's cool? 🚀**
-- **Diverse Questions**: Covers beginner to advanced PyTorch concepts (e.g., tensors, autograd, CNNs, GANs, and more).
-- **Guided Learning**: Includes incomplete code blocks (`...` and `#TODO`) for hands-on practice along with Answers
+### Hard
+| # | Problem | Links |
+|---|---------|-------|
+| 1 | Write a custom Autograd function (SILU) | [Question](torch/hard/custom-autograd/custom-autgrad-function.ipynb) / [Solution](torch/hard/custom-autograd/custom-autgrad-function_SOLN.ipynb) |
+| 2 | Write a Neural Style Transfer | |
+| 3 | Build a Graph Neural Network (GNN) from scratch | |
+| 4 | Build a Graph Convolutional Network (GCN) | |
+| 5 | Write a Transformer | [Question](torch/hard/transformer/transformer.ipynb) / [Solution](torch/hard/transformer/transformer_SOLN.ipynb) |
+| 6 | Write a GAN | [Question](torch/hard/GAN/GAN.ipynb) / [Solution](torch/hard/GAN/GAN_SOLN.ipynb) |
+| 7 | Write Sequence-to-Sequence with Attention | [Question](torch/hard/seq-seq/seq-to-seq-with-Attention.ipynb) / [Solution](torch/hard/seq-seq/seq-to-seq-with-Attention_SOLN.ipynb) |
+| 8 | Enable distributed training (DDP) | |
+| 9 | Work with Sparse Tensors | |
+| 10 | Add GradCam/SHAP to explain the model | [Question](torch/hard/xai/xai.ipynb) / [Solution](torch/hard/xai/xai_SOLN.ipynb) |
+| 11 | Linear Probe on CLIP Features | |
+| 12 | Cross Modal Embedding Visualization (t-SNE/UMAP) | |
+| 13 | Implement a Vision Transformer | |
+| 14 | Implement a Variational Autoencoder | |
 
 ---
 
-## Advanced ML Systems Set (v3)
+## v2: LLM Set
 
-**A research-backed set of 30 questions covering what top AI companies actually ask in 2024-2025 interviews.** Each question is tagged with the companies known to test that topic.
+Build a Large Language Model from scratch, one question at a time.
 
-> [!NOTE]
-> These questions were compiled from real interview reports across Glassdoor, Blind, Reddit, and first-person accounts from candidates who interviewed at 15+ frontier AI labs. Questions are organized by interview role rather than just difficulty.
+| # | Problem | Links |
+|---|---------|-------|
+| 1 | Implement KL Divergence Loss | |
+| 2 | Implement RMS Norm | |
+| 3 | Implement Byte Pair Encoding from Scratch | [Question](llm/Byte-Pair-Encoder/BPE-q3.ipynb) / [Solution](llm/Byte-Pair-Encoder/BPE-q3.ipynb) |
+| 4 | Create a RAG Search of Embeddings | |
+| 5 | Implement Speculative Decoding | |
+| 6 | Implement Attention from Scratch | [Question](llm/Implement-Attention-from-Scratch/attention-q4-Question.ipynb) / [Solution](llm/Implement-Attention-from-Scratch/attention-q4.ipynb) |
+| 7 | Implement Multi-Head Attention | [Question](llm/Multi-Head-Attention/multi-head-attention-q5-Question.ipynb) / [Solution](llm/Multi-Head-Attention/multi-head-attention-q5.ipynb) |
+| 8 | Implement Grouped Query Attention | [Question](llm/Grouped-Query-Attention/grouped-query-attention-Question.ipynb) / [Solution](llm/Grouped-Query-Attention/grouped-query-attention.ipynb) |
+| 9 | Implement KV Cache in Multi-Head Attention | |
+| 10 | Implement Sinusoidal Embeddings | [Question](llm/Sinusoidal-Positional-Embedding/sinusoidal-q7-Question.ipynb) / [Solution](llm/Sinusoidal-Positional-Embedding/sinusoidal-q7.ipynb) |
+| 11 | Implement ROPE Embeddings | [Question](llm/Rotary-Positional-Embedding/rope-q8-Question.ipynb) / [Solution](llm/Rotary-Positional-Embedding/rope-q8.ipynb) |
+| 12 | Implement SmolLM from Scratch | [Question](llm/SmolLM/smollm-q12-Question.ipynb) / [Solution](llm/SmolLM/smollm-q12.ipynb) |
+| 13 | Implement Quantization (GPTQ) | |
+| 14 | Implement Beam Search for decoding | |
+| 15 | Implement Top K Sampling | |
+| 16 | Implement Top p Sampling | |
+| 17 | Implement Temperature Sampling | |
+| 18 | Implement LoRA / QLoRA | |
+| 19 | Mix two models into a Mixture of Experts | |
+| 20 | Apply SFT on SmolLM | |
+| 21 | Apply RLHF on SmolLM | |
+| 22 | Implement DPO based RLHF | |
+| 23 | Add continuous batching to your LLM | |
+| 24 | Chunk Data for Dense Passage Retrieval | |
+| 25 | Implement 5D Parallelism for Large Scale Training | |
+
+---
+
+## v3: Advanced ML Systems (NEW)
+
+**30 questions covering what top AI companies actually ask in 2024-2025 interviews.** Tagged with real companies.
 
 ### Classical ML from Scratch
-*Still asked at traditional FAANG companies (Google, Meta, Amazon, Uber, LinkedIn).*
+| # | Problem | Difficulty | Companies | Links |
+|---|---------|------------|-----------|-------|
+| 1 | Implement Softmax (numerically stable) | Easy | Apple, Meta, Google, Amazon | [Q](v3/classical-ml/softmax/softmax.ipynb) / [S](v3/classical-ml/softmax/softmax_SOLN.ipynb) |
+| 2 | Implement K-Means Clustering | Easy | Uber, LinkedIn, Google, Amazon | [Q](v3/classical-ml/kmeans/kmeans.ipynb) / [S](v3/classical-ml/kmeans/kmeans_SOLN.ipynb) |
+| 3 | Implement KNN in PyTorch | Easy | Uber, LinkedIn, Meta | [Q](v3/classical-ml/knn/knn.ipynb) / [S](v3/classical-ml/knn/knn_SOLN.ipynb) |
+| 4 | Implement Logistic Regression | Easy | Google, Meta, Amazon | [Q](v3/classical-ml/logistic-regression/logistic-regression.ipynb) / [S](v3/classical-ml/logistic-regression/logistic-regression_SOLN.ipynb) |
 
-1. [Implement Softmax from Scratch (numerically stable)](v3/classical-ml/softmax/softmax.ipynb) [(Solution)](v3/classical-ml/softmax/softmax_SOLN.ipynb) 🟢 Easy — `Apple` `Meta` `Google` `Amazon`
-2. [Implement K-Means Clustering in PyTorch](v3/classical-ml/kmeans/kmeans.ipynb) [(Solution)](v3/classical-ml/kmeans/kmeans_SOLN.ipynb) 🟢 Easy — `Uber` `LinkedIn` `Google` `Amazon`
-3. [Implement KNN in PyTorch](v3/classical-ml/knn/knn.ipynb) [(Solution)](v3/classical-ml/knn/knn_SOLN.ipynb) 🟢 Easy — `Uber` `LinkedIn` `Meta`
-4. [Implement Logistic Regression with Gradient Descent](v3/classical-ml/logistic-regression/logistic-regression.ipynb) [(Solution)](v3/classical-ml/logistic-regression/logistic-regression_SOLN.ipynb) 🟢 Easy — `Google` `Meta` `Amazon`
+### LLM Decoding & Architectures
+| # | Problem | Difficulty | Companies | Links |
+|---|---------|------------|-----------|-------|
+| 5 | Contrastive Loss (InfoNCE) + CLIP | Medium | OpenAI, Anthropic, DeepMind, Midjourney | [Q](v3/modern-architectures/contrastive-loss-clip/contrastive-loss-clip.ipynb) / [S](v3/modern-architectures/contrastive-loss-clip/contrastive-loss-clip_SOLN.ipynb) |
+| 6 | 2D Positional Embeddings | Medium | Anthropic, DeepMind, Midjourney, Runway | [Q](v3/modern-architectures/2d-positional-embeddings/2d-positional-embeddings.ipynb) / [S](v3/modern-architectures/2d-positional-embeddings/2d-positional-embeddings_SOLN.ipynb) |
+| 7 | Top-p (Nucleus) Sampling | Medium | Anthropic, OpenAI, DeepMind, Perplexity | [Q](v3/llm-decoding/top-p-sampling/top-p-sampling.ipynb) / [S](v3/llm-decoding/top-p-sampling/top-p-sampling_SOLN.ipynb) |
+| 8 | Top-k Sampling | Medium | Anthropic, OpenAI, DeepMind, Cohere | [Q](v3/llm-decoding/top-k-sampling/top-k-sampling.ipynb) / [S](v3/llm-decoding/top-k-sampling/top-k-sampling_SOLN.ipynb) |
+| 9 | Beam Search for LLM Decoding | Medium | Google, DeepMind, Meta, Apple | [Q](v3/llm-decoding/beam-search/beam-search.ipynb) / [S](v3/llm-decoding/beam-search/beam-search_SOLN.ipynb) |
+| 10 | Temperature Sampling | Easy | OpenAI, Anthropic, Cohere, Perplexity | [Q](v3/llm-decoding/temperature-sampling/temperature-sampling.ipynb) / [S](v3/llm-decoding/temperature-sampling/temperature-sampling_SOLN.ipynb) |
 
----
-
-### LLM Decoding
-*Core questions at frontier AI labs — Anthropic, OpenAI, DeepMind, Cohere, Perplexity.*
-
-5. [Implement Contrastive Loss (InfoNCE) + CLIP Training Loop](v3/modern-architectures/contrastive-loss-clip/contrastive-loss-clip.ipynb) [(Solution)](v3/modern-architectures/contrastive-loss-clip/contrastive-loss-clip_SOLN.ipynb) 🟡 Medium — `OpenAI` `Anthropic` `DeepMind` `Midjourney` `Apple`
-6. [Implement 2D Positional Embeddings](v3/modern-architectures/2d-positional-embeddings/2d-positional-embeddings.ipynb) [(Solution)](v3/modern-architectures/2d-positional-embeddings/2d-positional-embeddings_SOLN.ipynb) 🟡 Medium — `Anthropic` `DeepMind` `Midjourney` `Runway`
-7. [Implement Top-p (Nucleus) Sampling](v3/llm-decoding/top-p-sampling/top-p-sampling.ipynb) [(Solution)](v3/llm-decoding/top-p-sampling/top-p-sampling_SOLN.ipynb) 🟡 Medium — `Anthropic` `OpenAI` `DeepMind` `Perplexity` `Cohere`
-8. [Implement Top-k Sampling](v3/llm-decoding/top-k-sampling/top-k-sampling.ipynb) [(Solution)](v3/llm-decoding/top-k-sampling/top-k-sampling_SOLN.ipynb) 🟡 Medium — `Anthropic` `OpenAI` `DeepMind` `Cohere`
-9. [Implement Beam Search for LLM Decoding](v3/llm-decoding/beam-search/beam-search.ipynb) [(Solution)](v3/llm-decoding/beam-search/beam-search_SOLN.ipynb) 🟡 Medium — `Google` `DeepMind` `Meta` `Apple`
-10. [Implement Temperature Sampling](v3/llm-decoding/temperature-sampling/temperature-sampling.ipynb) [(Solution)](v3/llm-decoding/temperature-sampling/temperature-sampling_SOLN.ipynb) 🟢 Easy — `OpenAI` `Anthropic` `Cohere` `Perplexity`
-
----
+### Alignment & Training
+| # | Problem | Difficulty | Companies | Links |
+|---|---------|------------|-----------|-------|
+| 11 | Implement LoRA on a Linear Layer | Medium | Meta, Google, Anthropic, OpenAI, Databricks | [Q](v3/alignment-training/lora/lora.ipynb) / [S](v3/alignment-training/lora/lora_SOLN.ipynb) |
+| 14 | Implement DPO Loss from Scratch | Hard | Anthropic, OpenAI, DeepMind, Meta | [Q](v3/alignment-training/dpo/dpo.ipynb) / [S](v3/alignment-training/dpo/dpo_SOLN.ipynb) |
+| 15 | Implement PPO for RLHF | Hard | Anthropic, OpenAI, DeepMind, Meta | [Q](v3/alignment-training/ppo-rlhf/ppo-rlhf.ipynb) / [S](v3/alignment-training/ppo-rlhf/ppo-rlhf_SOLN.ipynb) |
+| 16 | Implement Gradient Checkpointing | Hard | Meta, Google, NVIDIA, Tesla | [Q](v3/alignment-training/gradient-checkpointing/gradient-checkpointing.ipynb) / [S](v3/alignment-training/gradient-checkpointing/gradient-checkpointing_SOLN.ipynb) |
+| 27 | Implement GRPO (DeepSeek-R1) | Expert | DeepMind, Anthropic, OpenAI | [Q](v3/alignment-training/grpo/grpo.ipynb) / [S](v3/alignment-training/grpo/grpo_SOLN.ipynb) |
 
 ### LLM Inference & Systems
-*Hot topic for LLM infrastructure roles at Perplexity, Together AI, Anyscale, Meta.*
-
-11. [Implement LoRA on a Linear Layer](v3/alignment-training/lora/lora.ipynb) [(Solution)](v3/alignment-training/lora/lora_SOLN.ipynb) 🟡 Medium — `Meta` `Google` `Anthropic` `OpenAI` `Databricks`
-12. [Implement KV Cache for Autoregressive Generation](v3/llm-inference/kv-cache/kv-cache.ipynb) [(Solution)](v3/llm-inference/kv-cache/kv-cache_SOLN.ipynb) 🟡 Medium — `Anthropic` `OpenAI` `Meta` `Perplexity` `Together AI`
-13. [Implement Sliding Window Attention](v3/modern-architectures/sliding-window-attention/sliding-window-attention.ipynb) [(Solution)](v3/modern-architectures/sliding-window-attention/sliding-window-attention_SOLN.ipynb) 🟡 Medium — `Mistral` `Anthropic` `Google` `DeepMind`
-14. [Implement DPO Loss from Scratch](v3/alignment-training/dpo/dpo.ipynb) [(Solution)](v3/alignment-training/dpo/dpo_SOLN.ipynb) 🔴 Hard — `Anthropic` `OpenAI` `DeepMind` `Meta`
-15. [Implement PPO for RLHF](v3/alignment-training/ppo-rlhf/ppo-rlhf.ipynb) [(Solution)](v3/alignment-training/ppo-rlhf/ppo-rlhf_SOLN.ipynb) 🔴 Hard — `Anthropic` `OpenAI` `DeepMind` `Meta`
-16. [Implement Gradient Checkpointing](v3/alignment-training/gradient-checkpointing/gradient-checkpointing.ipynb) [(Solution)](v3/alignment-training/gradient-checkpointing/gradient-checkpointing_SOLN.ipynb) 🔴 Hard — `Meta` `Google` `NVIDIA` `Tesla`
-17. [Implement Mixture of Experts Layer](v3/modern-architectures/mixture-of-experts/mixture-of-experts.ipynb) [(Solution)](v3/modern-architectures/mixture-of-experts/mixture-of-experts_SOLN.ipynb) 🔴 Hard — `Google` `DeepMind` `Mistral` `Databricks` `xAI`
-18. [Implement Speculative Decoding](v3/llm-inference/speculative-decoding/speculative-decoding.ipynb) [(Solution)](v3/llm-inference/speculative-decoding/speculative-decoding_SOLN.ipynb) 🔴 Hard — `Google` `DeepMind` `Anthropic` `Apple`
-19. [Implement Continuous Batching for LLM Inference](v3/llm-inference/continuous-batching/continuous-batching.ipynb) [(Solution)](v3/llm-inference/continuous-batching/continuous-batching_SOLN.ipynb) 🔴 Hard — `Perplexity` `Together AI` `Anyscale` `Meta`
-
----
+| # | Problem | Difficulty | Companies | Links |
+|---|---------|------------|-----------|-------|
+| 12 | Implement KV Cache | Medium | Anthropic, OpenAI, Meta, Perplexity | [Q](v3/llm-inference/kv-cache/kv-cache.ipynb) / [S](v3/llm-inference/kv-cache/kv-cache_SOLN.ipynb) |
+| 18 | Implement Speculative Decoding | Hard | Google, DeepMind, Anthropic, Apple | [Q](v3/llm-inference/speculative-decoding/speculative-decoding.ipynb) / [S](v3/llm-inference/speculative-decoding/speculative-decoding_SOLN.ipynb) |
+| 19 | Implement Continuous Batching | Hard | Perplexity, Together AI, Anyscale, Meta | [Q](v3/llm-inference/continuous-batching/continuous-batching.ipynb) / [S](v3/llm-inference/continuous-batching/continuous-batching_SOLN.ipynb) |
+| 28 | Build a Complete LLM Inference Engine | Expert | Perplexity, Together AI, Anyscale, Fireworks AI | [Q](v3/llm-inference/inference-engine/inference-engine.ipynb) / [S](v3/llm-inference/inference-engine/inference-engine_SOLN.ipynb) |
 
 ### Modern Architectures
-*Cutting-edge topics at image-gen companies, research labs, and autonomous driving.*
-
-20. [Implement DDPM (Denoising Diffusion) from Scratch](v3/modern-architectures/ddpm/ddpm.ipynb) [(Solution)](v3/modern-architectures/ddpm/ddpm_SOLN.ipynb) 🔴 Hard — `Midjourney` `Runway` `Stability AI` `Adobe` `Google`
-21. [Implement DDIM Sampling + Classifier-Free Guidance](v3/modern-architectures/ddim-cfg/ddim-cfg.ipynb) [(Solution)](v3/modern-architectures/ddim-cfg/ddim-cfg_SOLN.ipynb) 🔴 Hard — `Midjourney` `Runway` `Stability AI` `Adobe`
-22. [Implement Selective State Space Model (Mamba Block)](v3/modern-architectures/mamba/mamba.ipynb) [(Solution)](v3/modern-architectures/mamba/mamba_SOLN.ipynb) 🔴 Hard — `DeepMind` `Google` `Anthropic`
-23. [Implement Vision Transformer + MAE Pretraining](v3/modern-architectures/vit-mae/vit-mae.ipynb) [(Solution)](v3/modern-architectures/vit-mae/vit-mae_SOLN.ipynb) 🔴 Hard — `Meta` `Google` `Apple` `Tesla` `Waymo`
-29. [Implement Knowledge Distillation](v3/modern-architectures/knowledge-distillation/knowledge-distillation.ipynb) [(Solution)](v3/modern-architectures/knowledge-distillation/knowledge-distillation_SOLN.ipynb) 🟡 Medium — `Google` `Apple` `Meta` `Qualcomm` `Tesla`
-
----
+| # | Problem | Difficulty | Companies | Links |
+|---|---------|------------|-----------|-------|
+| 13 | Sliding Window Attention | Medium | Mistral, Anthropic, Google, DeepMind | [Q](v3/modern-architectures/sliding-window-attention/sliding-window-attention.ipynb) / [S](v3/modern-architectures/sliding-window-attention/sliding-window-attention_SOLN.ipynb) |
+| 17 | Mixture of Experts Layer | Hard | Google, DeepMind, Mistral, Databricks, xAI | [Q](v3/modern-architectures/mixture-of-experts/mixture-of-experts.ipynb) / [S](v3/modern-architectures/mixture-of-experts/mixture-of-experts_SOLN.ipynb) |
+| 20 | DDPM (Denoising Diffusion) | Hard | Midjourney, Runway, Stability AI, Adobe, Google | [Q](v3/modern-architectures/ddpm/ddpm.ipynb) / [S](v3/modern-architectures/ddpm/ddpm_SOLN.ipynb) |
+| 21 | DDIM Sampling + Classifier-Free Guidance | Hard | Midjourney, Runway, Stability AI, Adobe | [Q](v3/modern-architectures/ddim-cfg/ddim-cfg.ipynb) / [S](v3/modern-architectures/ddim-cfg/ddim-cfg_SOLN.ipynb) |
+| 22 | Selective State Space Model (Mamba) | Hard | DeepMind, Google, Anthropic | [Q](v3/modern-architectures/mamba/mamba.ipynb) / [S](v3/modern-architectures/mamba/mamba_SOLN.ipynb) |
+| 23 | Vision Transformer + MAE Pretraining | Hard | Meta, Google, Apple, Tesla, Waymo | [Q](v3/modern-architectures/vit-mae/vit-mae.ipynb) / [S](v3/modern-architectures/vit-mae/vit-mae_SOLN.ipynb) |
+| 29 | Knowledge Distillation | Medium | Google, Apple, Meta, Qualcomm, Tesla | [Q](v3/modern-architectures/knowledge-distillation/knowledge-distillation.ipynb) / [S](v3/modern-architectures/knowledge-distillation/knowledge-distillation_SOLN.ipynb) |
 
 ### GPU Systems & Kernels
-*For ML infrastructure and systems roles at NVIDIA, Meta, xAI, and frontier labs.*
-
-24. [Write a Fused Softmax Kernel in Triton](v3/gpu-systems/triton-fused-softmax/triton-fused-softmax.ipynb) [(Solution)](v3/gpu-systems/triton-fused-softmax/triton-fused-softmax_SOLN.ipynb) 🟣 Expert — `NVIDIA` `Meta` `Google` `xAI` `Tesla`
-25. [Implement FlashAttention-2 in Triton](v3/gpu-systems/flash-attention-triton/flash-attention-triton.ipynb) [(Solution)](v3/gpu-systems/flash-attention-triton/flash-attention-triton_SOLN.ipynb) 🟣 Expert — `NVIDIA` `Meta` `Together AI` `xAI`
-26. [Implement FSDP (Fully Sharded Data Parallel) from Scratch](v3/gpu-systems/fsdp/fsdp.ipynb) [(Solution)](v3/gpu-systems/fsdp/fsdp_SOLN.ipynb) 🟣 Expert — `Meta` `Google` `NVIDIA` `Anthropic` `xAI`
-27. [Implement GRPO (DeepSeek-R1 Algorithm)](v3/alignment-training/grpo/grpo.ipynb) [(Solution)](v3/alignment-training/grpo/grpo_SOLN.ipynb) 🟣 Expert — `DeepMind` `Anthropic` `OpenAI`
-28. [Build a Complete LLM Inference Engine](v3/llm-inference/inference-engine/inference-engine.ipynb) [(Solution)](v3/llm-inference/inference-engine/inference-engine_SOLN.ipynb) 🟣 Expert — `Perplexity` `Together AI` `Anyscale` `Fireworks AI`
-30. [Implement Ring Attention for Long Contexts](v3/gpu-systems/ring-attention/ring-attention.ipynb) [(Solution)](v3/gpu-systems/ring-attention/ring-attention_SOLN.ipynb) 🟣 Expert — `Anthropic` `Google` `Meta` `xAI`
+| # | Problem | Difficulty | Companies | Links |
+|---|---------|------------|-----------|-------|
+| 24 | Fused Softmax Kernel in Triton | Expert | NVIDIA, Meta, Google, xAI, Tesla | [Q](v3/gpu-systems/triton-fused-softmax/triton-fused-softmax.ipynb) / [S](v3/gpu-systems/triton-fused-softmax/triton-fused-softmax_SOLN.ipynb) |
+| 25 | FlashAttention-2 in Triton | Expert | NVIDIA, Meta, Together AI, xAI | [Q](v3/gpu-systems/flash-attention-triton/flash-attention-triton.ipynb) / [S](v3/gpu-systems/flash-attention-triton/flash-attention-triton_SOLN.ipynb) |
+| 26 | FSDP (Fully Sharded Data Parallel) | Expert | Meta, Google, NVIDIA, Anthropic, xAI | [Q](v3/gpu-systems/fsdp/fsdp.ipynb) / [S](v3/gpu-systems/fsdp/fsdp_SOLN.ipynb) |
+| 30 | Ring Attention for Long Contexts | Expert | Anthropic, Google, Meta, xAI | [Q](v3/gpu-systems/ring-attention/ring-attention.ipynb) / [S](v3/gpu-systems/ring-attention/ring-attention_SOLN.ipynb) |
 
 ---
 
-### Company Quick-Reference
+## Company Quick-Reference
 
-*"If I'm interviewing at X, which v3 questions should I prioritize?"*
+*"If I'm interviewing at X, which v3 questions should I do?"*
 
 | Company | Priority Questions |
 |---------|--------------------|
@@ -233,29 +221,13 @@ Each question is designed to take you one step closer to building your own LLM.
 
 ---
 
-## Getting Started
+## Contributing
 
-### 1. Install Dependencies
-- Install pytorch: [Install pytorch locally](https://pytorch.org/get-started/locally/)
-- Some problems need other packages. Install as needed.
+Add new questions or improve existing ones. Follow the notebook structure (question file + `_SOLN` file). Submit a PR and tag the authors.
 
-### 2. Structure
-- `<E/M/H><ID>/`: Easy/Medium/Hard along with the question ID.
-- `<E/M/H><ID>/qname.ipynb`: The question file with incomplete code blocks.
-- `<E/M/H><ID>/qname_SOLN.ipynb`: The corresponding solution file.
+---
 
-### 3. How to Use
-- Navigate to questions/ and pick a problem
-- Fill in the missing code blocks `(...)` and address the `#TODO` comments.
-- Test your solution and compare it with the corresponding file in `solutions/`.
-
-**Happy Learning! 🚀**
-
-
-# Contribution
-Feel free to contribute by adding new questions or improving existing ones. Ensure that new problems are well-documented and follow the project structure. Submit a PR and tag the authors.
-
-# Authors
+## Authors
 
 <div align="center">
   <table>
@@ -267,17 +239,9 @@ Feel free to contribute by adding new questions or improving existing ones. Ensu
           <b>Chandrahas Aroori</b>
         </a>
         <br />
-        💻 AI/ML Dev
-        <br />
-        <a href="ttps://twitter.com/charoori_ai" target="_blank">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/6/60/Twitter_Logo_as_of_2021.svg" width="20px;" alt="Twitter"/>
-        </a> 
-        <a href="https://www.linkedin.com/in/chandrahas-aroori/" target="_blank">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/0/0e/LinkedIn_Logo_2013.svg" width="20px;" alt="LinkedIn"/>
-        </a>
-        <a href="mailto:charoori@bu.edu" target="_blank">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/a/a6/Email_icon.svg" width="20px;" alt="Email"/>
-        </a>
+        <a href="https://twitter.com/charoori_ai">Twitter</a> |
+        <a href="https://www.linkedin.com/in/chandrahas-aroori/">LinkedIn</a> |
+        <a href="mailto:chandrahas.aroori@gmail.com">Email</a>
       </td>
       <td align="center">
         <a href="https://github.com/CaslowChien">
@@ -286,22 +250,14 @@ Feel free to contribute by adding new questions or improving existing ones. Ensu
           <b>Caslow Chien</b>
         </a>
         <br />
-        💻 Developer
-        <br />
-        <a href="https://caslowchien.github.io/caslow.github.io/" target="_blank">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/6/60/Twitter_Logo_as_of_2021.svg" width="20px;" alt="Website"/>
-        </a> 
-        <a href="https://www.linkedin.com/in/caslow/" target="_blank">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/0/0e/LinkedIn_Logo_2013.svg" width="20px;" alt="LinkedIn"/>
-        </a>
-        <a href="mailto:caslow@bu.edu" target="_blank">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/a/a6/Email_icon.svg" width="20px;" alt="Email"/>
-        </a>
+        <a href="https://caslowchien.github.io/caslow.github.io/">Website</a> |
+        <a href="https://www.linkedin.com/in/caslow/">LinkedIn</a> |
+        <a href="mailto:caslow@bu.edu">Email</a>
       </td>
     </tr>
   </table>
 </div>
 
-                        
-## Stargazers over time
+## Stargazers
+
 [![Stargazers over time](https://starchart.cc/Exorust/TorchLeet.svg?variant=adaptive)](https://starchart.cc/Exorust/TorchLeet)
