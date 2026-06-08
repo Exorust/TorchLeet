@@ -3,6 +3,7 @@
 import { useApp } from "@/context/AppContext";
 import Terminal from "@/components/terminal/Terminal";
 import WebMode from "@/components/web/WebMode";
+import FeedbackPopup from "@/components/shared/FeedbackPopup";
 
 export default function Home() {
   const { mode } = useApp();
@@ -27,6 +28,7 @@ export default function Home() {
       >
         <WebMode />
       </div>
+      <FeedbackPopup />
     </main>
   );
 }
