@@ -119,7 +119,7 @@ export default function Terminal() {
           <TerminalOutput key={i} line={line.text} type={line.type} />
         ))}
 
-        {/* Input prompt — inline, right after content */}
+        {/* Input prompt - inline, right after content */}
         <TerminalInput onSubmit={handleCommand} disabled={false} />
       </div>
 

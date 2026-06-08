@@ -10,7 +10,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "TorchLeet — PyTorch Interview Prep",
+  title: "TorchLeet - PyTorch Interview Prep",
   description:
     "Practice PyTorch problems for ML/AI interviews. 79 questions from basic to expert, tagged with real interview companies.",
 };

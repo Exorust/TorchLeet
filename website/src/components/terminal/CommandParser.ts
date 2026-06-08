@@ -74,9 +74,9 @@ export function parseCommand(input: string): CommandResult {
         return {
           lines: [
             "",
-            `  [v1] Question Set        — ${v1.length} questions`,
-            `  [v2] LLM Set             — ${v2.length} questions`,
-            `  [v3] Advanced ML Systems — ${v3.length} questions (NEW!)`,
+            `  [v1] Question Set        - ${v1.length} questions`,
+            `  [v2] LLM Set             - ${v2.length} questions`,
+            `  [v3] Advanced ML Systems - ${v3.length} questions (NEW!)`,
             "",
             "  Type 'list v1', 'list v2', or 'list v3' to see questions.",
           ],
@@ -241,9 +241,9 @@ export function parseCommand(input: string): CommandResult {
         return {
           lines: [
             "",
-            `  [v1] Question Set        — ${v1.length} questions`,
-            `  [v2] LLM Set             — ${v2.length} questions`,
-            `  [v3] Advanced ML Systems — ${v3.length} questions (NEW!)`,
+            `  [v1] Question Set        - ${v1.length} questions`,
+            `  [v2] LLM Set             - ${v2.length} questions`,
+            `  [v3] Advanced ML Systems - ${v3.length} questions (NEW!)`,
             "",
             "  Type 'list v1', 'list v2', or 'list v3' to see questions.",
           ],

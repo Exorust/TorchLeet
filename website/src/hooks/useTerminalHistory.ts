@@ -44,7 +44,7 @@ export function useTerminalHistory() {
         return history[indexRef.current] ?? currentInput;
       }
 
-      // At the end — restore saved input
+      // At the end - restore saved input
       indexRef.current = -1;
       return savedInputRef.current;
     },
