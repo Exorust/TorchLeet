@@ -88,13 +88,24 @@ export default function Terminal() {
       className="w-screen h-screen bg-terminal-bg overflow-hidden flex flex-col"
       onClick={handleContainerClick}
     >
+      <style>{`
+        @font-face {
+          font-family: "IBM_VGA";
+          src: url("/fonts/Web437_IBM_VGA_8x16.woff") format("woff");
+          font-display: swap;
+        }
+      `}</style>
+
       {/* Scrollable output area */}
       <div
         ref={scrollRef}
         className="flex-1 overflow-y-auto terminal-scrollbar px-4 pt-4 pb-2"
       >
         {/* ASCII art */}
-        <pre className="font-mono text-terminal-accent text-xs sm:text-base md:text-lg mb-4 leading-snug">
+        <pre
+          className="text-terminal-accent mb-4"
+          style={{ fontFamily: "IBM_VGA, monospace", fontSize: "16px", lineHeight: "16px" }}
+        >
 {ASCII_ART}
         </pre>
 
