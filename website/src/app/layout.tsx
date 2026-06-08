@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { JetBrains_Mono } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import { AppProvider } from "@/context/AppContext";
 import "./globals.css";
 
@@ -24,6 +25,7 @@ export default function RootLayout({
     <html lang="en" className={`${jetbrainsMono.variable} h-full`}>
       <body className="h-full font-mono">
         <AppProvider>{children}</AppProvider>
+        <Analytics />
       </body>
     </html>
   );
