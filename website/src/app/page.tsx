@@ -4,6 +4,7 @@ import { useApp } from "@/context/AppContext";
 import Terminal from "@/components/terminal/Terminal";
 import WebMode from "@/components/web/WebMode";
 import FeedbackPopup from "@/components/shared/FeedbackPopup";
+import GitHubCorner from "@/components/shared/GitHubCorner";
 
 export default function Home() {
   const { mode } = useApp();
@@ -28,6 +29,7 @@ export default function Home() {
       >
         <WebMode />
       </div>
+      <GitHubCorner />
       <FeedbackPopup />
     </main>
   );
