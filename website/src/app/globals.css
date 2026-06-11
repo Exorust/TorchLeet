@@ -21,6 +21,7 @@
   --color-terminal-accent: #8b5cf6;
   --color-terminal-dim: #6b7280;
   --color-terminal-error: #f87171;
+  --color-terminal-success: #4ade80;
   --color-terminal-panel: #111111;
 
   --font-mono: var(--font-jetbrains-mono), "JetBrains Mono", "Fira Code",

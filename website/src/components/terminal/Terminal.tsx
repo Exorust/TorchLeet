@@ -12,7 +12,7 @@ import type { Question } from "@/data/questions";
 
 interface TerminalLine {
   text: string;
-  type: "input" | "output" | "ascii" | "error" | "prompt";
+  type: "input" | "output" | "ascii" | "error" | "prompt" | "success";
 }
 
 export default function Terminal() {
@@ -65,10 +65,17 @@ export default function Terminal() {
       }
 
       // Add output lines
-      const outputLines: TerminalLine[] = result.lines.map((l) => ({
-        text: l,
-        type: "output" as const,
-      }));
+      const outputLines: TerminalLine[] = result.lines.map((l) => {
+        const trimmed = l.trim();
+        const isSuccess =
+          trimmed.startsWith("[x]") ||
+          trimmed.startsWith("Marked complete:") ||
+          trimmed.startsWith("Status: [x] Complete");
+        return {
+          text: l,
+          type: isSuccess ? "success" : ("output" as const),
+        };
+      });
 
       setLines([...newLines, ...outputLines]);
     },

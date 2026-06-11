@@ -1,5 +1,7 @@
 "use client";
 
+import ProgressMeter from "@/components/shared/ProgressMeter";
+
 const stats = [
   { value: "35", label: "PyTorch Questions" },
   { value: "25", label: "LLM Questions" },
@@ -9,7 +11,7 @@ const stats = [
 export default function Hero() {
   return (
     <section className="py-16 md:py-24">
-      <div className="flex flex-col md:flex-row items-center gap-10">
+      <div className="flex flex-col lg:flex-row items-start gap-10">
         <div className="flex-1 space-y-6">
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight">
             Grind PyTorch for ML/AI Interviews
@@ -52,6 +54,9 @@ export default function Hero() {
           </div>
         </div>
 
+        <div className="w-full lg:w-96 shrink-0">
+          <ProgressMeter />
+        </div>
       </div>
     </section>
   );

@@ -8,6 +8,7 @@ import TabNavigation from "@/components/web/TabNavigation";
 import V3SubTabs from "@/components/web/V3SubTabs";
 import QuestionGrid from "@/components/web/QuestionGrid";
 import Footer from "@/components/web/Footer";
+import ProgressMeter from "@/components/shared/ProgressMeter";
 
 export default function WebMode() {
   const { activeSet, setActiveSet, activeV3Category, setActiveV3Category } =
@@ -31,6 +32,9 @@ export default function WebMode() {
               onCategoryChange={setActiveV3Category}
             />
           )}
+          <div className="mb-6">
+            <ProgressMeter questions={filteredQuestions} />
+          </div>
           <QuestionGrid questions={filteredQuestions} />
         </section>
       </main>

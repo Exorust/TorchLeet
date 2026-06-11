@@ -1,6 +1,7 @@
 "use client";
 
 import { type Question } from "@/data/questions";
+import { useProgress } from "@/context/ProgressContext";
 import DifficultyBadge from "@/components/shared/DifficultyBadge";
 import CompanyTag from "@/components/shared/CompanyTag";
 
@@ -10,6 +11,9 @@ interface Props {
 }
 
 export default function QuestionCard({ question, onClick }: Props) {
+  const { isDone } = useProgress();
+  const done = isDone(question.id);
+
   const setBadgeColor: Record<string, string> = {
     v1: "bg-gray-100 text-gray-600",
     v2: "bg-blue-50 text-blue-600",
@@ -19,15 +23,28 @@ export default function QuestionCard({ question, onClick }: Props) {
   return (
     <div
       onClick={onClick}
-      className={`bg-white rounded-xl shadow-sm border border-lavender-100 p-5 hover:shadow-md hover:border-lavender-300 transition-all cursor-pointer ${
-        !question.hasNotebook ? "opacity-60" : ""
-      }`}
+      className={`bg-white rounded-xl shadow-sm border p-5 hover:shadow-md transition-all cursor-pointer ${
+        done
+          ? "border-green-200 bg-green-50/40 hover:border-green-300"
+          : "border-lavender-100 hover:border-lavender-300"
+      } ${!question.hasNotebook ? "opacity-60" : ""}`}
     >
       {/* Top row */}
       <div className="flex items-center justify-between mb-2">
-        <span className="text-lavender-400 text-sm font-mono">
-          #{question.number}
-        </span>
+        <div className="flex items-center gap-2">
+          <span className="text-lavender-400 text-sm font-mono">
+            #{question.number}
+          </span>
+          {done && (
+            <span
+              className="text-green-600 text-sm"
+              title="Completed"
+              aria-label="Completed"
+            >
+              ✓
+            </span>
+          )}
+        </div>
         <div className="flex items-center gap-2">
           <span
             className={`text-[10px] font-bold px-2 py-0.5 rounded-full uppercase ${setBadgeColor[question.set]}`}
@@ -43,7 +60,11 @@ export default function QuestionCard({ question, onClick }: Props) {
       </div>
 
       {/* Title */}
-      <h3 className="text-gray-900 font-medium text-base mb-1 line-clamp-2">
+      <h3
+        className={`font-medium text-base mb-1 line-clamp-2 ${
+          done ? "text-gray-500 line-through" : "text-gray-900"
+        }`}
+      >
         {question.title}
       </h3>
 

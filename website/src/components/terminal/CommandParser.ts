@@ -8,6 +8,14 @@ import {
   type Difficulty,
 } from "@/data/questions";
 import {
+  isDone,
+  markDone,
+  markUndone,
+  loadProgress,
+  getAllQuestions,
+  formatProgressLines,
+} from "@/lib/progress";
+import {
   HELP_TEXT,
   ABOUT_ME,
   GHOST_QUESTION,
@@ -36,15 +44,16 @@ function formatQuestionTable(questions: Question[]): string[] {
   const lines: string[] = [];
   lines.push("");
   lines.push(
-    `  ${pad("#", 8)}${pad("Title", 52)}${pad("Difficulty", 12)}${questions[0].companies?.length ? "Companies" : ""}`,
+    `  ${pad("Done", 6)}${pad("#", 8)}${pad("Title", 46)}${pad("Difficulty", 12)}${questions[0].companies?.length ? "Companies" : ""}`,
   );
   lines.push(`  ${"-".repeat(80)}`);
 
   for (const q of questions) {
     const companies =
       q.companies.length > 0 ? q.companies.join(", ") : "";
+    const status = isDone(q.id) ? "[x]" : "[ ]";
     lines.push(
-      `  ${pad(q.id, 8)}${pad(q.title, 52)}${pad(q.difficulty, 12)}${companies}`,
+      `  ${pad(status, 6)}${pad(q.id, 8)}${pad(q.title, 46)}${pad(q.difficulty, 12)}${companies}`,
     );
   }
 
@@ -148,6 +157,96 @@ export function parseCommand(input: string): CommandResult {
           ...formatQuestionTable(matches),
         ],
       };
+    }
+
+    case "done": {
+      if (!arg) {
+        return { lines: ["  Usage: done <id>  (e.g. done v3-14)"] };
+      }
+      const question = getQuestionById(arg.toLowerCase());
+      if (!question) {
+        return {
+          lines: [
+            `  Question not found: ${arg}`,
+            "  Use 'list' to see available question IDs.",
+          ],
+        };
+      }
+      if (isDone(question.id)) {
+        return {
+          lines: [
+            `  ${question.id} is already marked complete.`,
+            `  Use 'undone ${question.id}' to reset.`,
+          ],
+        };
+      }
+      markDone(question.id);
+      return {
+        lines: [
+          `  Marked complete: ${question.id} — ${question.title}`,
+          "  Nice work! Type 'progress' to see your stats.",
+        ],
+      };
+    }
+
+    case "undone": {
+      if (!arg) {
+        return { lines: ["  Usage: undone <id>  (e.g. undone v3-14)"] };
+      }
+      const question = getQuestionById(arg.toLowerCase());
+      if (!question) {
+        return {
+          lines: [
+            `  Question not found: ${arg}`,
+            "  Use 'list' to see available question IDs.",
+          ],
+        };
+      }
+      if (!isDone(question.id)) {
+        return {
+          lines: [`  ${question.id} is not marked complete.`],
+        };
+      }
+      markUndone(question.id);
+      return {
+        lines: [`  Marked incomplete: ${question.id} — ${question.title}`],
+      };
+    }
+
+    case "status": {
+      if (!arg) {
+        return { lines: ["  Usage: status <id>  (e.g. status v3-14)"] };
+      }
+      const question = getQuestionById(arg.toLowerCase());
+      if (!question) {
+        return {
+          lines: [
+            `  Question not found: ${arg}`,
+            "  Use 'list' to see available question IDs.",
+          ],
+        };
+      }
+      const entry = loadProgress().completed[question.id];
+      if (!entry) {
+        return {
+          lines: [
+            `  ${question.id}: ${question.title}`,
+            "  Status: [ ] Incomplete",
+            `  Use 'done ${question.id}' when you've solved it.`,
+          ],
+        };
+      }
+      const date = new Date(entry.completedAt).toLocaleDateString();
+      return {
+        lines: [
+          `  ${question.id}: ${question.title}`,
+          `  Status: [x] Complete (completed ${date})`,
+        ],
+      };
+    }
+
+    case "progress": {
+      return { lines: formatProgressLines(getAllQuestions()) };
     }
 
     case "filter": {

@@ -1,6 +1,7 @@
 "use client";
 
 import { useApp } from "@/context/AppContext";
+import ProgressMeter from "@/components/shared/ProgressMeter";
 
 export default function Navbar() {
   const { setMode } = useApp();
@@ -34,8 +35,9 @@ export default function Navbar() {
           </button>
         </div>
 
-        {/* Right: GitHub + Return to Terminal */}
+        {/* Right: Progress + GitHub + Return to Terminal */}
         <div className="flex items-center gap-3">
+          <ProgressMeter variant="compact" />
           <a
             href="https://github.com/Exorust/TorchLeet"
             target="_blank"

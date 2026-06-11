@@ -2,7 +2,7 @@
 
 interface Props {
   line: string;
-  type?: "input" | "output" | "ascii" | "error" | "prompt";
+  type?: "input" | "output" | "ascii" | "error" | "prompt" | "success";
 }
 
 export default function TerminalOutput({ line, type = "output" }: Props) {
@@ -29,6 +29,12 @@ export default function TerminalOutput({ line, type = "output" }: Props) {
     case "prompt":
       return (
         <div className="whitespace-pre-wrap font-mono text-terminal-dim">
+          {line}
+        </div>
+      );
+    case "success":
+      return (
+        <div className="whitespace-pre-wrap font-mono text-terminal-success">
           {line}
         </div>
       );
