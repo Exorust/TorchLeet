@@ -23,7 +23,7 @@ interface AppState {
 const AppContext = createContext<AppState | null>(null);
 
 export function AppProvider({ children }: { children: ReactNode }) {
-  const [mode, setMode] = useState<"terminal" | "web">("terminal");
+  const [mode, setMode] = useState<"terminal" | "web">("web");
   const [activeSet, setActiveSet] = useState<QuestionSet>("v3");
   const [activeV3Category, setActiveV3Category] =
     useState<V3Category | null>(null);
