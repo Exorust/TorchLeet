@@ -2,6 +2,7 @@
 
 import { useEffect, useCallback } from "react";
 import { type Question, getColabUrl, getDownloadUrl } from "@/data/questions";
+import { useProgress } from "@/context/ProgressContext";
 import DifficultyBadge from "@/components/shared/DifficultyBadge";
 import CompanyTag from "@/components/shared/CompanyTag";
 
@@ -11,6 +12,8 @@ interface Props {
 }
 
 export default function QuestionModal({ question, onClose }: Props) {
+  const { isDone, markDone, markUndone } = useProgress();
+
   const handleEscape = useCallback(
     (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
@@ -24,6 +27,8 @@ export default function QuestionModal({ question, onClose }: Props) {
   }, [handleEscape]);
 
   if (!question) return null;
+
+  const done = isDone(question.id);
 
   const setBadgeColor: Record<string, string> = {
     v1: "bg-gray-100 text-gray-600",
@@ -62,6 +67,11 @@ export default function QuestionModal({ question, onClose }: Props) {
               {question.set}
             </span>
             <DifficultyBadge difficulty={question.difficulty} />
+            {done && (
+              <span className="text-xs font-medium px-2.5 py-0.5 rounded-full bg-green-100 text-green-700">
+                Completed
+              </span>
+            )}
           </div>
 
           {question.companies.length > 0 && (
@@ -157,6 +167,18 @@ export default function QuestionModal({ question, onClose }: Props) {
             Download Solution
           </a>
         </div>
+
+        <button
+          type="button"
+          onClick={() => (done ? markUndone(question.id) : markDone(question.id))}
+          className={`mt-4 w-full rounded-lg px-4 py-3 text-sm font-medium transition ${
+            done
+              ? "border border-gray-300 text-gray-700 hover:bg-gray-50"
+              : "bg-lavender-600 text-white hover:bg-lavender-700"
+          }`}
+        >
+          {done ? "Mark as Incomplete" : "Mark as Complete"}
+        </button>
       </div>
     </div>
   );

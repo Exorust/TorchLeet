@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { JetBrains_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { AppProvider } from "@/context/AppContext";
+import { ProgressProvider } from "@/context/ProgressContext";
 import "./globals.css";
 
 const jetbrainsMono = JetBrains_Mono({
@@ -24,7 +25,9 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${jetbrainsMono.variable} h-full`}>
       <body className="h-full font-mono">
-        <AppProvider>{children}</AppProvider>
+        <AppProvider>
+          <ProgressProvider>{children}</ProgressProvider>
+        </AppProvider>
         <Analytics />
       </body>
     </html>

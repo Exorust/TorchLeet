@@ -2,6 +2,7 @@
 
 import type { Question } from "@/data/questions";
 import { getColabUrl, getDownloadUrl } from "@/data/questions";
+import { useProgress } from "@/context/ProgressContext";
 import DifficultyBadge from "@/components/shared/DifficultyBadge";
 import CompanyTag from "@/components/shared/CompanyTag";
 
@@ -30,6 +31,7 @@ function ActionButton({
 }
 
 export default function SidePanel({ question, onClose }: Props) {
+  const { isDone, markDone, markUndone } = useProgress();
   const isOpen = question !== null;
 
   return (
@@ -81,6 +83,11 @@ export default function SidePanel({ question, onClose }: Props) {
             {/* Meta */}
             <div className="px-6 pb-4 flex flex-wrap items-center gap-2">
               <DifficultyBadge difficulty={question.difficulty} />
+              {isDone(question.id) && (
+                <span className="text-xs font-mono text-green-400">
+                  [x] Complete
+                </span>
+              )}
               {question.category && (
                 <span className="text-terminal-dim text-xs font-mono">
                   {question.category}
@@ -130,6 +137,23 @@ export default function SidePanel({ question, onClose }: Props) {
                   </p>
                 </div>
               )}
+              <button
+                type="button"
+                onClick={() =>
+                  isDone(question.id)
+                    ? markUndone(question.id)
+                    : markDone(question.id)
+                }
+                className={`w-full rounded border px-4 py-2.5 text-center text-sm font-mono transition-colors ${
+                  isDone(question.id)
+                    ? "border-lavender-700/40 text-terminal-dim hover:text-terminal-text"
+                    : "border-lavender-500/60 bg-lavender-900/30 text-lavender-200 hover:bg-lavender-800/40"
+                }`}
+              >
+                {isDone(question.id)
+                  ? "Mark as Incomplete"
+                  : "Mark as Complete"}
+              </button>
             </div>
           </>
         )}
