@@ -16,7 +16,7 @@ interface TerminalLine {
 }
 
 export default function Terminal() {
-  const { setMode } = useApp();
+  const { mode, setMode } = useApp();
   const [lines, setLines] = useState<TerminalLine[]>([]);
   const [sidePanelQuestion, setSidePanelQuestion] = useState<Question | null>(
     null,
@@ -81,6 +81,13 @@ export default function Terminal() {
     },
     [lines, setMode],
   );
+
+  useEffect(() => {
+    if (mode === "terminal") {
+      const input = containerRef.current?.querySelector("input");
+      if (input) input.focus();
+    }
+  }, [mode]);
 
   // Click anywhere to focus input
   const handleContainerClick = useCallback(() => {
