@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { JetBrains_Mono } from "next/font/google";
+import { JetBrains_Mono, Inter } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { AppProvider } from "@/context/AppContext";
 import { ProgressProvider } from "@/context/ProgressContext";
@@ -9,6 +9,12 @@ const jetbrainsMono = JetBrains_Mono({
   variable: "--font-jetbrains-mono",
   subsets: ["latin"],
   weight: ["400", "500", "700"],
+});
+
+const inter = Inter({
+  variable: "--font-inter",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
@@ -23,8 +29,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${jetbrainsMono.variable} h-full`}>
-      <body className="h-full font-mono">
+    <html lang="en" className={`${jetbrainsMono.variable} ${inter.variable} h-full`}>
+      <body className="h-full font-sans">
         <AppProvider>
           <ProgressProvider>{children}</ProgressProvider>
         </AppProvider>

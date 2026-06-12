@@ -40,7 +40,7 @@ export default function FeedbackPopup() {
           <a
             href="mailto:chandrahas.aroori@gmail.com?subject=TorchLeet%20Feedback"
             onClick={dismiss}
-            className="flex-1 px-4 py-2 text-sm font-medium text-white bg-purple-600 rounded-lg hover:bg-purple-700 transition text-center"
+            className="flex-1 px-4 py-2 text-sm font-medium text-white bg-lavender-600 rounded-lg hover:bg-lavender-700 transition text-center"
           >
             Send feedback
           </a>

@@ -5,3 +5,4 @@ website/node_modules/
 website/.next/
 website/out/
 .vercel
+.gstack/

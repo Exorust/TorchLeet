@@ -92,7 +92,7 @@ export default function Terminal() {
   return (
     <div
       ref={containerRef}
-      className="w-screen h-screen bg-terminal-bg overflow-hidden flex flex-col"
+      className="w-screen h-screen bg-terminal-bg overflow-hidden flex flex-col font-mono"
       onClick={handleContainerClick}
     >
       <style>{`

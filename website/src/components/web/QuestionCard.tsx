@@ -1,5 +1,6 @@
 "use client";
 
+import { motion } from "framer-motion";
 import { type Question } from "@/data/questions";
 import { useProgress } from "@/context/ProgressContext";
 import DifficultyBadge from "@/components/shared/DifficultyBadge";
@@ -8,25 +9,27 @@ import CompanyTag from "@/components/shared/CompanyTag";
 interface Props {
   question: Question;
   onClick: () => void;
+  layoutId?: string;
 }
 
-export default function QuestionCard({ question, onClick }: Props) {
+export default function QuestionCard({ question, onClick, layoutId }: Props) {
   const { isDone } = useProgress();
   const done = isDone(question.id);
 
   const setBadgeColor: Record<string, string> = {
     v1: "bg-gray-100 text-gray-600",
     v2: "bg-blue-50 text-blue-600",
-    v3: "bg-lavender-100 text-lavender-700",
+    v3: "bg-lavender-100 text-lavender-600",
   };
 
   return (
-    <div
+    <motion.div
+      layoutId={layoutId}
       onClick={onClick}
-      className={`bg-white rounded-xl shadow-sm border p-5 hover:shadow-md transition-all cursor-pointer ${
+      className={`bg-white/60 backdrop-blur-lg rounded-2xl shadow-sm border p-5 hover:shadow-md transition-shadow cursor-pointer ${
         done
-          ? "border-green-200 bg-green-50/40 hover:border-green-300"
-          : "border-lavender-100 hover:border-lavender-300"
+          ? "border-green-200/60 hover:border-green-300"
+          : "border-white/50 hover:border-lavender-300"
       } ${!question.hasNotebook ? "opacity-60" : ""}`}
     >
       {/* Top row */}
@@ -86,6 +89,6 @@ export default function QuestionCard({ question, onClick }: Props) {
           </div>
         )}
       </div>
-    </div>
+    </motion.div>
   );
 }

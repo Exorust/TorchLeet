@@ -2,18 +2,18 @@
 
 @theme inline {
   --color-background: #ffffff;
-  --color-foreground: #171717;
+  --color-foreground: #1a1625;
 
-  --color-lavender-50: #f5f3ff;
-  --color-lavender-100: #ede9fe;
-  --color-lavender-200: #ddd6fe;
-  --color-lavender-300: #c4b5fd;
-  --color-lavender-400: #a78bfa;
-  --color-lavender-500: #8b5cf6;
-  --color-lavender-600: #7c3aed;
-  --color-lavender-700: #6d28d9;
-  --color-lavender-800: #5b21b6;
-  --color-lavender-900: #4c1d95;
+  --color-lavender-50: #E9F2FF;
+  --color-lavender-100: #e8edff;
+  --color-lavender-200: #c7d1fe;
+  --color-lavender-300: #9ba8f5;
+  --color-lavender-400: #6e6feb;
+  --color-lavender-500: #4a3ae0;
+  --color-lavender-600: #2e21de;
+  --color-lavender-700: #2519b3;
+  --color-lavender-800: #1c1388;
+  --color-lavender-900: #140e5e;
 
   --color-terminal-bg: #0a0a0a;
   --color-terminal-text: #c4b5fd;
@@ -24,6 +24,8 @@
   --color-terminal-success: #4ade80;
   --color-terminal-panel: #111111;
 
+  --font-sans: var(--font-inter), "Inter", system-ui, -apple-system,
+    sans-serif;
   --font-mono: var(--font-jetbrains-mono), "JetBrains Mono", "Fira Code",
     ui-monospace, monospace;
 }

@@ -1,21 +1,42 @@
 "use client";
 
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import ProgressMeter from "@/components/shared/ProgressMeter";
 
-const stats = [
-  { value: "35", label: "PyTorch Questions" },
-  { value: "25", label: "LLM Questions" },
-  { value: "30", label: "Advanced ML Questions" },
-];
-
 export default function Hero() {
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start start", "end start"],
+  });
+
+  const y = useTransform(scrollYProgress, [0, 1], ["0%", "-12%"]);
+  const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
+
   return (
-    <section className="py-16 md:py-24">
-      <div className="flex flex-col lg:flex-row items-start gap-10">
-        <div className="flex-1 space-y-6">
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight">
-            Grind PyTorch for ML/AI Interviews
-          </h1>
+    <section ref={ref} className="py-10 md:py-16">
+      <motion.div
+        style={{ y, opacity }}
+        className="flex flex-col lg:flex-row items-start gap-8"
+      >
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          className="flex-1 space-y-4"
+        >
+          <div className="flex items-center gap-4">
+            <h1 className="text-4xl md:text-5xl font-medium text-lavender-600 leading-tight">
+              Grind PyTorch for ML/AI Interviews
+            </h1>
+          </div>
+
+          <p className="text-lg text-foreground/60 leading-relaxed max-w-xl">
+            Practice problems from basic PyTorch to advanced LLM systems. Tagged
+            with real interview companies. TorchLeet V3 is now out with 30 new
+            questions and company-wise filtering!
+          </p>
 
           <a
             href="https://github.com/Exorust/TorchLeet"
@@ -30,34 +51,17 @@ export default function Hero() {
               height="20"
             />
           </a>
+        </motion.div>
 
-          <p className="text-lg text-gray-600 leading-relaxed max-w-xl">
-            Practice problems from basic PyTorch to advanced LLM systems. Tagged
-            with real interview companies. TorchLeet V3 is now out with 30 new
-            questions and company-wise filtering!
-          </p>
-
-          <div className="flex flex-wrap gap-4 pt-4">
-            {stats.map((stat) => (
-              <div
-                key={stat.label}
-                className="bg-white rounded-xl shadow-sm border border-lavender-100 px-6 py-4 text-center"
-              >
-                <div className="text-3xl font-bold text-lavender-700">
-                  {stat.value}
-                </div>
-                <div className="text-xs text-gray-500 mt-1 font-medium">
-                  {stat.label}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div className="w-full lg:w-96 shrink-0">
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
+          className="w-full lg:w-[440px] shrink-0"
+        >
           <ProgressMeter />
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
     </section>
   );
 }

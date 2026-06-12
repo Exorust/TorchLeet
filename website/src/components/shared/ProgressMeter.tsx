@@ -107,12 +107,13 @@ export default function ProgressMeter({
   }
 
   return (
-    <div className="bg-white rounded-xl shadow-sm border border-lavender-100 p-6">
-      <div className="flex items-center gap-6">
+    <div className="bg-white/60 backdrop-blur-lg rounded-2xl shadow-sm border border-white/50 p-7">
+      <div className="flex items-center gap-8">
         <CircularProgress
           percent={stats.percent}
           completed={stats.completed}
           total={stats.total}
+          size={110}
         />
         <div className="flex-1 min-w-0">
           <h3 className="text-sm font-semibold text-gray-900 mb-1">

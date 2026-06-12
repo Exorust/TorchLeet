@@ -26,8 +26,8 @@ export default function V3SubTabs({ activeCategory, onCategoryChange }: Props) {
           onClick={() => onCategoryChange(cat.key)}
           className={`text-sm px-4 py-1.5 rounded-full transition font-medium ${
             activeCategory === cat.key
-              ? "text-lavender-600 bg-lavender-50 border-b-2 border-lavender-600"
-              : "text-gray-500 hover:text-gray-700 hover:bg-gray-100"
+              ? "bg-lavender-100 text-lavender-600"
+              : "text-foreground/50 hover:text-foreground/70 hover:bg-white/60"
           }`}
         >
           {cat.label}
