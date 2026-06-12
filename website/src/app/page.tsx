@@ -29,7 +29,7 @@ export default function Home() {
       >
         <WebMode />
       </div>
-      <GitHubCorner />
+      {mode === "terminal" && <GitHubCorner />}
       <FeedbackPopup />
     </main>
   );
