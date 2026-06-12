@@ -1,6 +1,7 @@
-data/
+/data/
 
 # Website build artifacts
 website/node_modules/
 website/.next/
 website/out/
+.vercel
