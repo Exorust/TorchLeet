@@ -6,3 +6,7 @@ website/.next/
 website/out/
 .vercel
 .gstack/
+
+# MCP server build artifacts
+mcp-server/node_modules/
+mcp-server/dist/

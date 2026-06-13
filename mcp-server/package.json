@@ -1,0 +1,40 @@
+{
+  "name": "torchleet-mcp",
+  "version": "0.1.0",
+  "description": "MCP server for TorchLeet — AI-guided PyTorch interview prep",
+  "type": "module",
+  "bin": {
+    "torchleet-mcp": "./dist/src/index.js"
+  },
+  "main": "./dist/src/index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/src/index.js",
+    "dev": "tsc --watch"
+  },
+  "keywords": [
+    "mcp",
+    "pytorch",
+    "interview",
+    "machine-learning",
+    "torchleet"
+  ],
+  "author": "Chandrahas Aroori <chandrahas.aroori@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Exorust/TorchLeet"
+  },
+  "files": [
+    "dist/",
+    "README.md"
+  ],
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.0",
+    "zod": "^3.23.0"
+  },
+  "devDependencies": {
+    "@types/node": "^25.9.3",
+    "typescript": "^5.5.0"
+  }
+}
