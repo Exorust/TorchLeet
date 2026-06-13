@@ -1,8 +1,8 @@
 export const WELCOME_MESSAGE = `Welcome to TorchLeet.
 The best collection of PyTorch practice problems for ML/AI interviews based off real engineer interviews.
 
-90 questions across 3 sets tagged with companies who ask them.
-(rumor has it there's more hidden in v3 if you know where to look)
+NEW: LLM Learning Path (build from scratch) + Basics + Advanced lists.
+Filter by company with the 'company' command or in the web UI.
 
 Type help to get started or exit for webview.
 Track your progress with 'done <id>' and 'progress'.`;
@@ -11,11 +11,14 @@ export const HELP_TEXT = `
 Available commands:
 
   help                Show this help message
-  list, ls            List all question sets
-  list <set>          List questions in a set (v1, v2, v3)
+  list, ls            List available collections
+  list basics         Show Basics list
+  list advanced       Show Advanced list
+  list llm            Show the LLM Learning Path (ordered)
+  list v1 | v2 | v3   Legacy sets (still supported)
   open <id>           Open a question (e.g. open v3-14)
   company <name>      Filter by company (e.g. company anthropic)
-  filter <difficulty>  Filter by difficulty (basic/easy/medium/hard/expert)
+  filter <difficulty> Filter by difficulty (basic/easy/medium/hard/expert)
   done <id>           Mark a question as complete (e.g. done v3-14)
   undone <id>         Mark a question as incomplete
   status <id>         Check completion status for a question

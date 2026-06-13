@@ -2,12 +2,18 @@
 
 import { motion, useScroll, useSpring } from "framer-motion";
 import { useApp } from "@/context/AppContext";
-import { getQuestionsBySet, getQuestionsByCategory } from "@/data/questions";
+import {
+  getBasicsQuestions,
+  getAdvancedQuestions,
+  getLLMPathQuestions,
+  filterQuestionsByCompanies,
+} from "@/data/questions";
 import Navbar from "@/components/web/Navbar";
 import Hero from "@/components/web/Hero";
-import TabNavigation from "@/components/web/TabNavigation";
-import V3SubTabs from "@/components/web/V3SubTabs";
+import PrimaryNavigation from "@/components/web/PrimaryNavigation";
 import QuestionGrid from "@/components/web/QuestionGrid";
+import LLMPathView from "@/components/web/LLMPathView";
+import AdvancedGroupedView from "@/components/web/AdvancedGroupedView";
 import Footer from "@/components/web/Footer";
 import ScrollReveal from "@/components/shared/ScrollReveal";
 
@@ -28,13 +34,21 @@ function ScrollProgress() {
 }
 
 export default function WebMode() {
-  const { activeSet, setActiveSet, activeV3Category, setActiveV3Category } =
-    useApp();
+  const { activeView, companyFilters } = useApp();
 
-  const filteredQuestions =
-    activeSet === "v3" && activeV3Category !== null
-      ? getQuestionsByCategory(activeV3Category)
-      : getQuestionsBySet(activeSet);
+  // Compute base list for the chosen view, then apply company filters
+  let baseQuestions: ReturnType<typeof getBasicsQuestions> = [];
+  let isPathView = false;
+
+  if (activeView === "llm-path") {
+    isPathView = true;
+  } else if (activeView === "basics") {
+    baseQuestions = getBasicsQuestions();
+  } else {
+    baseQuestions = getAdvancedQuestions();
+  }
+
+  const filteredForGrid = filterQuestionsByCompanies(baseQuestions, companyFilters);
 
   return (
     <div className="min-h-screen bg-lavender-50">
@@ -44,17 +58,16 @@ export default function WebMode() {
         <Hero />
         <section id="questions" className="py-8">
           <ScrollReveal>
-            <TabNavigation activeSet={activeSet} onSetChange={setActiveSet} />
+            <PrimaryNavigation />
           </ScrollReveal>
-          {activeSet === "v3" && (
-            <ScrollReveal delay={0.1}>
-              <V3SubTabs
-                activeCategory={activeV3Category}
-                onCategoryChange={setActiveV3Category}
-              />
-            </ScrollReveal>
+
+          {isPathView ? (
+            <LLMPathView />
+          ) : activeView === "advanced" ? (
+            <AdvancedGroupedView />
+          ) : (
+            <QuestionGrid questions={filteredForGrid} />
           )}
-          <QuestionGrid questions={filteredQuestions} />
         </section>
       </main>
       <Footer />

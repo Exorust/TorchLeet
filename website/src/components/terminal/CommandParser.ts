@@ -4,6 +4,10 @@ import {
   getQuestionsByDifficulty,
   getQuestionById,
   getAllCompanies,
+  getBasicsQuestions,
+  getAdvancedQuestions,
+  getLLMPathQuestions,
+  getLLMPathStages,
   type Question,
   type Difficulty,
 } from "@/data/questions";
@@ -77,30 +81,89 @@ export function parseCommand(input: string): CommandResult {
 
     case "list": {
       if (!arg) {
+        const basics = getBasicsQuestions().length;
+        const advanced = getAdvancedQuestions().length;
+        const llm = getLLMPathQuestions().length;
         const v1 = getQuestionsBySet("v1");
         const v2 = getQuestionsBySet("v2");
         const v3 = getQuestionsBySet("v3");
         return {
           lines: [
             "",
-            `  [v1] Question Set        - ${v1.length} questions`,
-            `  [v2] LLM Set             - ${v2.length} questions`,
-            `  [v3] Advanced ML Systems - ${v3.length} questions (NEW!)`,
+            `  LLM Learning Path   - ${llm} curated exercises (recommended order)`,
+            `  Basics              - ${basics} foundational exercises`,
+            `  Advanced            - ${advanced} systems & hard exercises`,
             "",
-            "  Type 'list v1', 'list v2', or 'list v3' to see questions.",
+            `  [legacy] v1 - ${v1.length}  |  v2 - ${v2.length}  |  v3 - ${v3.length}`,
+            "",
+            "  Type 'list llm', 'list basics', or 'list advanced'.",
+            "  Legacy: 'list v1' etc still work.",
           ],
         };
       }
 
-      const setArg = arg.toLowerCase();
+      const setArg = arg.toLowerCase().trim();
+
+      if (setArg === "basics") {
+        return { lines: formatQuestionTable(getBasicsQuestions()) };
+      }
+      if (setArg === "advanced") {
+        return { lines: formatQuestionTable(getAdvancedQuestions()) };
+      }
+      if (setArg === "llm" || setArg === "llm-path" || setArg === "path") {
+        const pathQs = getLLMPathQuestions();
+        if (pathQs.length === 0) {
+          return { lines: ["  LLM Path is being curated."] };
+        }
+        const lines: string[] = [""];
+        const stages = getLLMPathStages();
+        for (const st of stages) {
+          lines.push(`  ${st.title}`);
+          lines.push(`  ${"-".repeat(40)}`);
+          for (const q of st.questions) {
+            const status = isDone(q.id) ? "[x]" : "[ ]";
+            lines.push(`    ${status} ${q.id}  ${q.title}`);
+          }
+          lines.push("");
+        }
+        lines.push(`  ${pathQs.length} questions in recommended LLM path order.`);
+        return { lines };
+      }
+
       if (setArg === "v1" || setArg === "v2" || setArg === "v3") {
         const questions = getQuestionsBySet(setArg);
         return { lines: formatQuestionTable(questions) };
       }
 
       return {
-        lines: [`  Unknown set: ${arg}. Available sets: v1, v2, v3`],
+        lines: [
+          `  Unknown: ${arg}`,
+          "  Try: list llm | list basics | list advanced | list v1 | list v2 | list v3",
+        ],
       };
+    }
+
+    case "path": {
+      const pathQs = getLLMPathQuestions();
+      if (pathQs.length === 0) {
+        return { lines: ["  LLM Path is being curated."] };
+      }
+      const lines: string[] = [
+        "",
+        "  === LLM Learning Path (Implement from Scratch) ===",
+        "",
+      ];
+      const stages = getLLMPathStages();
+      for (const st of stages) {
+        lines.push(`  ${st.title}`);
+        for (const q of st.questions) {
+          const status = isDone(q.id) ? "[x]" : "[ ]";
+          lines.push(`    ${status} ${q.id}  ${q.title}`);
+        }
+        lines.push("");
+      }
+      lines.push(`  ${pathQs.length} exercises. Use 'list llm' for the same.`);
+      return { lines };
     }
 
     case "open": {
@@ -334,27 +397,36 @@ export function parseCommand(input: string): CommandResult {
         return { lines: LS_HOME.split("\n") };
       }
       if (!arg) {
-        const v1 = getQuestionsBySet("v1");
-        const v2 = getQuestionsBySet("v2");
-        const v3 = getQuestionsBySet("v3");
+        const basics = getBasicsQuestions().length;
+        const advanced = getAdvancedQuestions().length;
+        const llm = getLLMPathQuestions().length;
         return {
           lines: [
             "",
-            `  [v1] Question Set        - ${v1.length} questions`,
-            `  [v2] LLM Set             - ${v2.length} questions`,
-            `  [v3] Advanced ML Systems - ${v3.length} questions (NEW!)`,
+            `  LLM Learning Path   - ${llm} curated (use 'path' or 'list llm')`,
+            `  Basics              - ${basics}`,
+            `  Advanced            - ${advanced}`,
             "",
-            "  Type 'list v1', 'list v2', or 'list v3' to see questions.",
+            "  Type 'list basics', 'list advanced', or 'list llm'.",
           ],
         };
       }
       const setArg = arg.toLowerCase();
+      if (setArg === "basics") {
+        return { lines: formatQuestionTable(getBasicsQuestions()) };
+      }
+      if (setArg === "advanced") {
+        return { lines: formatQuestionTable(getAdvancedQuestions()) };
+      }
+      if (setArg === "llm" || setArg === "llm-path") {
+        return { lines: formatQuestionTable(getLLMPathQuestions()) };
+      }
       if (setArg === "v1" || setArg === "v2" || setArg === "v3") {
         const questions = getQuestionsBySet(setArg);
         return { lines: formatQuestionTable(questions) };
       }
       return {
-        lines: [`  Unknown set: ${arg}. Available sets: v1, v2, v3`],
+        lines: [`  Unknown: ${arg}. Try basics | advanced | llm`],
       };
     }
 

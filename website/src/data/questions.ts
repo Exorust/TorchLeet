@@ -20,6 +20,10 @@ export interface Question {
   questionPath: string | null;
   solutionPath: string | null;
   hasNotebook: boolean;
+  // New for revamped structure
+  tracks: ("basics" | "advanced" | "llm-path")[];
+  llmPathOrder?: number;
+  llmPathStage?: string;
 }
 
 // ---------------------------------------------------------------------------
@@ -1235,11 +1239,110 @@ const DESCRIPTIONS: Record<string, string> = {
 // Combined question list
 // ---------------------------------------------------------------------------
 
+// ---------------------------------------------------------------------------
+// Track & LLM Path assignment (new revamp structure)
+// ---------------------------------------------------------------------------
+
+// Curated LLM Path: "Implement LLM from Scratch" — recommended order + stages.
+// Only items with actual notebooks are included for the initial launch.
+const LLM_PATH_CONFIG: Record<string, { order: number; stage: string }> = {
+  // Foundations
+  "v2-3": { order: 1, stage: "foundations" }, // BPE
+  "v2-10": { order: 2, stage: "foundations" }, // Sinusoidal
+  "v2-11": { order: 3, stage: "foundations" }, // RoPE
+  "v2-6": { order: 4, stage: "foundations" }, // Attention from scratch
+  // Core Transformer
+  "v2-7": { order: 5, stage: "core-transformer" }, // Multi-Head Attention
+  "v2-8": { order: 6, stage: "core-transformer" }, // GQA
+  "v3-12": { order: 7, stage: "core-transformer" }, // KV Cache
+  "v3-13": { order: 8, stage: "core-transformer" }, // Sliding Window
+  // Full Model
+  "v2-12": { order: 9, stage: "full-model" }, // SmolLM from Scratch
+  // Alignment & PEFT
+  "v3-11": { order: 10, stage: "alignment" }, // LoRA
+  "v3-14": { order: 11, stage: "alignment" }, // DPO
+  "v3-15": { order: 12, stage: "alignment" }, // PPO
+  "v3-27": { order: 13, stage: "alignment" }, // GRPO
+  // Decoding & Inference
+  "v3-10": { order: 14, stage: "decoding-inference" }, // Temperature
+  "v3-8": { order: 15, stage: "decoding-inference" }, // Top-k
+  "v3-7": { order: 16, stage: "decoding-inference" }, // Top-p
+  "v3-18": { order: 17, stage: "decoding-inference" }, // Speculative Decoding
+  "v3-19": { order: 18, stage: "decoding-inference" }, // Continuous Batching
+  "v3-28": { order: 19, stage: "decoding-inference" }, // Full Inference Engine
+  // Systems (capstone for path)
+  "v3-17": { order: 20, stage: "systems" }, // MoE
+};
+
+function assignTracksAndPath(q: any): Partial<Question> {
+  const id = q.id as string;
+  const set = q.set as QuestionSet;
+  const difficulty = q.difficulty as Difficulty;
+  const category = q.category as string | undefined;
+
+  const tracks = new Set<"basics" | "advanced" | "llm-path">();
+
+  // === BASICS ===
+  if (set === "v1" && (difficulty === "basic" || difficulty === "easy")) {
+    tracks.add("basics");
+  }
+  // A few accessible medium v1 items that feel foundational
+  if (["v1-15", "v1-16", "v1-17"].includes(id)) {
+    tracks.add("basics");
+  }
+  if (set === "v3" && category === "classical-ml") {
+    tracks.add("basics");
+  }
+
+  // === ADVANCED (default for hard/expert + systems) ===
+  if (difficulty === "hard" || difficulty === "expert") {
+    tracks.add("advanced");
+  }
+  if (set === "v3" && ["gpu-systems", "llm-inference", "alignment-training"].includes(category || "")) {
+    tracks.add("advanced");
+  }
+  if (set === "v1" && ["v1-22", "v1-26", "v1-27", "v1-28", "v1-31"].includes(id)) {
+    tracks.add("advanced");
+  }
+  // Modern hard architectures that aren't core LLM path
+  if (set === "v3" && category === "modern-architectures" && !LLM_PATH_CONFIG[id]) {
+    tracks.add("advanced");
+  }
+
+  // === LLM LEARNING PATH (curated) ===
+  if (LLM_PATH_CONFIG[id]) {
+    tracks.add("llm-path");
+    // Many LLM path items are also advanced-level practice
+    if (difficulty === "hard" || difficulty === "expert" || ["v3-12", "v3-13", "v3-11"].includes(id)) {
+      tracks.add("advanced");
+    }
+  }
+
+  // Safety: if nothing assigned, put in advanced (most v2/v3 hard stuff)
+  if (tracks.size === 0) {
+    tracks.add("advanced");
+  }
+
+  const pathInfo = LLM_PATH_CONFIG[id];
+  return {
+    tracks: Array.from(tracks),
+    llmPathOrder: pathInfo?.order,
+    llmPathStage: pathInfo?.stage,
+  };
+}
+
 export const questions: Question[] = [
   ...v1Questions,
   ...v2Questions,
   ...v3Questions,
-].map((q) => ({ ...q, description: DESCRIPTIONS[q.id] ?? "" }));
+].map((q) => {
+  const extra = assignTracksAndPath(q);
+  return {
+    ...q,
+    ...extra,
+    description: DESCRIPTIONS[q.id] ?? "",
+  } as Question;
+});
 
 // ---------------------------------------------------------------------------
 // URL helpers
@@ -1270,13 +1373,6 @@ export function getQuestionsByCategory(category: string): Question[] {
   return questions.filter((q) => q.category === category);
 }
 
-export function getQuestionsByCompany(company: string): Question[] {
-  const lower = company.toLowerCase();
-  return questions.filter((q) =>
-    q.companies.some((c) => c.toLowerCase() === lower),
-  );
-}
-
 export function getQuestionsByDifficulty(difficulty: Difficulty): Question[] {
   return questions.filter((q) => q.difficulty === difficulty);
 }
@@ -1293,4 +1389,115 @@ export function getAllCompanies(): string[] {
     }
   }
   return Array.from(companySet).sort();
+}
+
+// ---------------------------------------------------------------------------
+// New revamp query helpers (Basics / Advanced / LLM Path + company filter)
+// ---------------------------------------------------------------------------
+
+export function getQuestionsByTracks(tracks: ("basics" | "advanced" | "llm-path")[]): Question[] {
+  return questions.filter((q) => tracks.some((t) => q.tracks.includes(t)));
+}
+
+export function getBasicsQuestions(): Question[] {
+  return questions.filter((q) => q.tracks.includes("basics"));
+}
+
+export function getAdvancedQuestions(): Question[] {
+  return questions.filter((q) => q.tracks.includes("advanced"));
+}
+
+export function getLLMPathQuestions(): Question[] {
+  return questions
+    .filter((q) => q.tracks.includes("llm-path") && typeof q.llmPathOrder === "number")
+    .sort((a, b) => (a.llmPathOrder ?? 999) - (b.llmPathOrder ?? 999));
+}
+
+export function getLLMPathStages(): { stage: string; title: string; questions: Question[] }[] {
+  const pathQs = getLLMPathQuestions();
+  const stageOrder = ["foundations", "core-transformer", "full-model", "alignment", "decoding-inference", "systems"];
+  const stageTitles: Record<string, string> = {
+    foundations: "1. Foundations (Tokenization & Position)",
+    "core-transformer": "2. Core Transformer Building Blocks",
+    "full-model": "3. Full Small Language Model",
+    alignment: "4. Alignment & Efficient Fine-Tuning",
+    "decoding-inference": "5. Decoding & Efficient Inference",
+    systems: "6. Systems & Scaling",
+  };
+
+  const grouped = new Map<string, Question[]>();
+  for (const q of pathQs) {
+    const st = q.llmPathStage || "other";
+    if (!grouped.has(st)) grouped.set(st, []);
+    grouped.get(st)!.push(q);
+  }
+
+  return stageOrder
+    .filter((s) => grouped.has(s))
+    .map((stage) => ({
+      stage,
+      title: stageTitles[stage] || stage,
+      questions: grouped.get(stage)!,
+    }));
+}
+
+/** Filter a list of questions by one or more companies (case-insensitive, OR) */
+export function filterQuestionsByCompanies(qs: Question[], companies: string[]): Question[] {
+  if (!companies || companies.length === 0) return qs;
+  const lowers = companies.map((c) => c.toLowerCase());
+  return qs.filter((q) =>
+    q.companies.some((c) => lowers.includes(c.toLowerCase()))
+  );
+}
+
+export function getQuestionsByCompany(company: string): Question[] {
+  const lower = company.toLowerCase();
+  return questions.filter((q) =>
+    q.companies.some((c) => c.toLowerCase() === lower),
+  );
+}
+
+// ---------------------------------------------------------------------------
+// Advanced list topic grouping (for sorted topic view, mirroring LLM Path)
+// ---------------------------------------------------------------------------
+
+export function getAdvancedGroupedByTopic(): { topic: string; title: string; questions: Question[] }[] {
+  const adv = getAdvancedQuestions();
+
+  const topicDefs: Array<{ topic: string; title: string; filter: (q: Question) => boolean }> = [
+    {
+      topic: "gpu-kernels",
+      title: "GPU Systems & Kernels",
+      filter: (q) => q.category === "gpu-systems" || /triton|flash.?attention|fsdp|ring.?attention/i.test(q.title),
+    },
+    {
+      topic: "modern-arch",
+      title: "Modern Architectures",
+      filter: (q) => q.category === "modern-architectures" || /mamba|mixture of experts|vit|mae|ddpm|ddim|diffusion|knowledge distillation/i.test(q.title),
+    },
+    {
+      topic: "inference-systems",
+      title: "Advanced Inference & Systems",
+      filter: (q) => q.category === "llm-inference" || /inference engine|continuous batching|speculative decoding/i.test(q.title),
+    },
+    {
+      topic: "alignment-systems",
+      title: "Alignment & Training Systems",
+      filter: (q) => q.category === "alignment-training" || /gradient checkpoint|grpo|ppo|dpo/i.test(q.title),
+    },
+    {
+      topic: "hard-foundations",
+      title: "Hard Foundations & XAI",
+      filter: (q) =>
+        (q.set === "v1" && q.difficulty === "hard") ||
+        /custom autograd|gan|seq-to-seq|explainable|xai|graph neural/i.test(q.title),
+    },
+  ];
+
+  return topicDefs
+    .map((def) => {
+      const qs = adv.filter(def.filter);
+      return qs.length > 0 ? { topic: def.topic, title: def.title, questions: qs } : null;
+    })
+    .filter((g): g is { topic: string; title: string; questions: Question[] } => g !== null);
 }

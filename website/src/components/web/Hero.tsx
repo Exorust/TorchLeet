@@ -33,9 +33,7 @@ export default function Hero() {
           </div>
 
           <p className="text-lg text-foreground/60 leading-relaxed max-w-xl">
-            Practice problems from basic PyTorch to advanced LLM systems. Tagged
-            with real interview companies. TorchLeet V3 is now out with 30 new
-            questions and company-wise filtering!
+            Two ways to learn: follow the guided <span className="font-medium text-foreground/70">LLM Learning Path</span> to implement a model from scratch, or browse curated <span className="font-medium text-foreground/70">Basics</span> and <span className="font-medium text-foreground/70">Advanced</span> lists. Many exercises are tagged with the real companies that ask them in interviews.
           </p>
 
           <a

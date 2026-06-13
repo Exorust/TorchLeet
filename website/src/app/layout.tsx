@@ -20,7 +20,7 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "TorchLeet - PyTorch Interview Prep",
   description:
-    "Practice PyTorch problems for ML/AI interviews. 79 questions from basic to expert, tagged with real interview companies.",
+    "LLM Learning Path + Basics & Advanced lists. Practice real PyTorch & ML systems interview questions. Filter by company. Build models from scratch.",
 };
 
 export default function RootLayout({

@@ -103,75 +103,86 @@ export default function QuestionModal({ question, onClose }: Props) {
           {/* Divider */}
           <hr className="border-gray-200 mb-5" />
 
-          {/* Action buttons 2x2 grid */}
-          <div className="grid grid-cols-2 gap-3">
-            <a
-              href={
-                question.questionPath
-                  ? getColabUrl(question.questionPath)
-                  : undefined
-              }
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`flex items-center justify-center gap-2 rounded-lg px-4 py-3 text-sm font-medium transition ${
-                question.questionPath
-                  ? "bg-lavender-600 text-white hover:bg-lavender-700"
-                  : "bg-gray-100 text-gray-400 cursor-not-allowed pointer-events-none"
-              }`}
-            >
-              Open Question in Colab
-            </a>
+          {/* Action area styled like the white cards */}
+          <div className="bg-white/60 backdrop-blur-lg rounded-2xl border border-white/50 p-4">
+            <div className="text-[10px] font-semibold uppercase tracking-wider text-gray-500 mb-2 px-1">
+              Primary actions
+            </div>
 
-            <a
-              href={
-                question.solutionPath
-                  ? getColabUrl(question.solutionPath)
-                  : undefined
-              }
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`flex items-center justify-center gap-2 rounded-lg px-4 py-3 text-sm font-medium transition ${
-                question.solutionPath
-                  ? "bg-lavender-600 text-white hover:bg-lavender-700"
-                  : "bg-gray-100 text-gray-400 cursor-not-allowed pointer-events-none"
-              }`}
-            >
-              Open Solution in Colab
-            </a>
+            {/* Colab primary — softer card-like treatment */}
+            <div className="grid grid-cols-2 gap-3 mb-3">
+              <a
+                href={
+                  question.questionPath
+                    ? getColabUrl(question.questionPath)
+                    : undefined
+                }
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`flex items-center justify-center gap-2 rounded-2xl px-4 py-3 text-sm font-medium transition shadow-sm ${
+                  question.questionPath
+                    ? "bg-lavender-600 text-white hover:bg-lavender-700 active:scale-[0.985]"
+                    : "bg-gray-100 text-gray-400 cursor-not-allowed pointer-events-none"
+                }`}
+              >
+                Open Question in Colab
+              </a>
 
-            <a
-              href={
-                question.questionPath
-                  ? getDownloadUrl(question.questionPath)
-                  : undefined
-              }
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`flex items-center justify-center gap-2 rounded-lg px-4 py-3 text-sm font-medium border transition ${
-                question.questionPath
-                  ? "border-gray-300 text-gray-700 hover:bg-gray-50"
-                  : "border-gray-200 text-gray-400 cursor-not-allowed pointer-events-none"
-              }`}
-            >
-              Download Question
-            </a>
+              <a
+                href={
+                  question.solutionPath
+                    ? getColabUrl(question.solutionPath)
+                    : undefined
+                }
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`flex items-center justify-center gap-2 rounded-2xl px-4 py-3 text-sm font-medium transition shadow-sm ${
+                  question.solutionPath
+                    ? "bg-lavender-600 text-white hover:bg-lavender-700 active:scale-[0.985]"
+                    : "bg-gray-100 text-gray-400 cursor-not-allowed pointer-events-none"
+                }`}
+              >
+                Open Solution in Colab
+              </a>
+            </div>
 
-            <a
-              href={
-                question.solutionPath
-                  ? getDownloadUrl(question.solutionPath)
-                  : undefined
-              }
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`flex items-center justify-center gap-2 rounded-lg px-4 py-3 text-sm font-medium border transition ${
-                question.solutionPath
-                  ? "border-gray-300 text-gray-700 hover:bg-gray-50"
-                  : "border-gray-200 text-gray-400 cursor-not-allowed pointer-events-none"
-              }`}
-            >
-              Download Solution
-            </a>
+            {/* Secondary actions — downloads, matching card subtlety */}
+            <div className="grid grid-cols-2 gap-3 mb-3">
+              <a
+                href={
+                  question.questionPath
+                    ? getDownloadUrl(question.questionPath)
+                    : undefined
+                }
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`flex items-center justify-center gap-2 rounded-2xl px-4 py-2 text-sm font-medium border transition ${
+                  question.questionPath
+                    ? "border-white/60 bg-white/40 text-gray-700 hover:bg-white hover:border-lavender-200"
+                    : "border-gray-200 text-gray-400 cursor-not-allowed pointer-events-none"
+                }`}
+              >
+                Download Question
+              </a>
+
+              <a
+                href={
+                  question.solutionPath
+                    ? getDownloadUrl(question.solutionPath)
+                    : undefined
+                }
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`flex items-center justify-center gap-2 rounded-2xl px-4 py-2 text-sm font-medium border transition ${
+                  question.solutionPath
+                    ? "border-white/60 bg-white/40 text-gray-700 hover:bg-white hover:border-lavender-200"
+                    : "border-gray-200 text-gray-400 cursor-not-allowed pointer-events-none"
+                }`}
+              >
+                Download Solution
+              </a>
+            </div>
+
           </div>
 
           <button
