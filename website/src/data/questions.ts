@@ -246,17 +246,6 @@ const v1Questions: Omit<Question, "description" | "tracks" | "llmPathOrder" | "l
     hasNotebook: false,
   },
   {
-    id: "v1-20",
-    set: "v1",
-    number: 20,
-    title: "Implement KNN from Scratch in PyTorch",
-    difficulty: "medium",
-    companies: [],
-    questionPath: null,
-    solutionPath: null,
-    hasNotebook: false,
-  },
-  {
     id: "v1-21",
     set: "v1",
     number: 21,
@@ -403,17 +392,6 @@ const v1Questions: Omit<Question, "description" | "tracks" | "llmPathOrder" | "l
     hasNotebook: false,
   },
   {
-    id: "v1-34",
-    set: "v1",
-    number: 34,
-    title: "Implement a Vision Transformer",
-    difficulty: "hard",
-    companies: [],
-    questionPath: null,
-    solutionPath: null,
-    hasNotebook: false,
-  },
-  {
     id: "v1-35",
     set: "v1",
     number: 35,
@@ -437,6 +415,7 @@ const v2Questions: Omit<Question, "description" | "tracks" | "llmPathOrder" | "l
     number: 1,
     title: "Implement KL Divergence Loss",
     difficulty: "easy",
+    category: "classical-ml",
     companies: [],
     questionPath: null,
     solutionPath: null,
@@ -448,6 +427,7 @@ const v2Questions: Omit<Question, "description" | "tracks" | "llmPathOrder" | "l
     number: 2,
     title: "Implement RMS Norm",
     difficulty: "easy",
+    category: "modern-architectures",
     companies: [],
     questionPath: null,
     solutionPath: null,
@@ -470,17 +450,7 @@ const v2Questions: Omit<Question, "description" | "tracks" | "llmPathOrder" | "l
     number: 4,
     title: "Create a RAG Search of Embeddings",
     difficulty: "medium",
-    companies: [],
-    questionPath: null,
-    solutionPath: null,
-    hasNotebook: false,
-  },
-  {
-    id: "v2-5",
-    set: "v2",
-    number: 5,
-    title: "Implement Speculative Decoding with Predictive Prefill",
-    difficulty: "hard",
+    category: "llm-inference",
     companies: [],
     questionPath: null,
     solutionPath: null,
@@ -492,6 +462,7 @@ const v2Questions: Omit<Question, "description" | "tracks" | "llmPathOrder" | "l
     number: 6,
     title: "Implement Attention from Scratch",
     difficulty: "medium",
+    category: "modern-architectures",
     companies: [],
     questionPath:
       "llm/Implement-Attention-from-Scratch/attention-q4-Question.ipynb",
@@ -504,6 +475,7 @@ const v2Questions: Omit<Question, "description" | "tracks" | "llmPathOrder" | "l
     number: 7,
     title: "Implement Multi-Head Attention from Scratch",
     difficulty: "medium",
+    category: "modern-architectures",
     companies: [],
     questionPath:
       "llm/Multi-Head-Attention/multi-head-attention-q5-Question.ipynb",
@@ -516,6 +488,7 @@ const v2Questions: Omit<Question, "description" | "tracks" | "llmPathOrder" | "l
     number: 8,
     title: "Implement Grouped Query Attention from Scratch",
     difficulty: "medium",
+    category: "modern-architectures",
     companies: [],
     questionPath:
       "llm/Grouped-Query-Attention/grouped-query-attention-Question.ipynb",
@@ -523,22 +496,12 @@ const v2Questions: Omit<Question, "description" | "tracks" | "llmPathOrder" | "l
     hasNotebook: true,
   },
   {
-    id: "v2-9",
-    set: "v2",
-    number: 9,
-    title: "Implement KV Cache in Multi-Head Attention",
-    difficulty: "medium",
-    companies: [],
-    questionPath: null,
-    solutionPath: null,
-    hasNotebook: false,
-  },
-  {
     id: "v2-10",
     set: "v2",
     number: 10,
     title: "Implement Sinusoidal Embeddings",
     difficulty: "medium",
+    category: "modern-architectures",
     companies: [],
     questionPath:
       "llm/Sinusoidal-Positional-Embedding/sinusoidal-q7-Question.ipynb",
@@ -551,6 +514,7 @@ const v2Questions: Omit<Question, "description" | "tracks" | "llmPathOrder" | "l
     number: 11,
     title: "Implement ROPE Embeddings",
     difficulty: "medium",
+    category: "modern-architectures",
     companies: [],
     questionPath:
       "llm/Rotary-Positional-Embedding/rope-q8-Question.ipynb",
@@ -563,6 +527,7 @@ const v2Questions: Omit<Question, "description" | "tracks" | "llmPathOrder" | "l
     number: 12,
     title: "Implement SmolLM from Scratch",
     difficulty: "hard",
+    category: "modern-architectures",
     companies: [],
     questionPath: "llm/SmolLM/smollm-q12-Question.ipynb",
     solutionPath: "llm/SmolLM/smollm-q12.ipynb",
@@ -574,72 +539,7 @@ const v2Questions: Omit<Question, "description" | "tracks" | "llmPathOrder" | "l
     number: 13,
     title: "Implement Quantization (GPTQ)",
     difficulty: "hard",
-    companies: [],
-    questionPath: null,
-    solutionPath: null,
-    hasNotebook: false,
-  },
-  {
-    id: "v2-14",
-    set: "v2",
-    number: 14,
-    title: "Implement Beam Search for LLM Decoding",
-    difficulty: "medium",
-    companies: [],
-    questionPath: null,
-    solutionPath: null,
-    hasNotebook: false,
-  },
-  {
-    id: "v2-15",
-    set: "v2",
-    number: 15,
-    title: "Implement Top-K Sampling for LLM Decoding",
-    difficulty: "medium",
-    companies: [],
-    questionPath: null,
-    solutionPath: null,
-    hasNotebook: false,
-  },
-  {
-    id: "v2-16",
-    set: "v2",
-    number: 16,
-    title: "Implement Top-p Sampling for LLM Decoding",
-    difficulty: "medium",
-    companies: [],
-    questionPath: null,
-    solutionPath: null,
-    hasNotebook: false,
-  },
-  {
-    id: "v2-17",
-    set: "v2",
-    number: 17,
-    title: "Implement Temperature Sampling for LLM Decoding",
-    difficulty: "easy",
-    companies: [],
-    questionPath: null,
-    solutionPath: null,
-    hasNotebook: false,
-  },
-  {
-    id: "v2-18",
-    set: "v2",
-    number: 18,
-    title: "Implement LoRA on an LLM Layer",
-    difficulty: "medium",
-    companies: [],
-    questionPath: null,
-    solutionPath: null,
-    hasNotebook: false,
-  },
-  {
-    id: "v2-19",
-    set: "v2",
-    number: 19,
-    title: "Mix Models to Create Mixture of Experts",
-    difficulty: "hard",
+    category: "llm-inference",
     companies: [],
     questionPath: null,
     solutionPath: null,
@@ -651,61 +551,7 @@ const v2Questions: Omit<Question, "description" | "tracks" | "llmPathOrder" | "l
     number: 20,
     title: "Apply SFT on SmolLM",
     difficulty: "hard",
-    companies: [],
-    questionPath: null,
-    solutionPath: null,
-    hasNotebook: false,
-  },
-  {
-    id: "v2-21",
-    set: "v2",
-    number: 21,
-    title: "Apply RLHF on SmolLM",
-    difficulty: "hard",
-    companies: [],
-    questionPath: null,
-    solutionPath: null,
-    hasNotebook: false,
-  },
-  {
-    id: "v2-22",
-    set: "v2",
-    number: 22,
-    title: "Implement DPO based RLHF",
-    difficulty: "hard",
-    companies: [],
-    questionPath: null,
-    solutionPath: null,
-    hasNotebook: false,
-  },
-  {
-    id: "v2-23",
-    set: "v2",
-    number: 23,
-    title: "Add Continuous Batching to LLM",
-    difficulty: "hard",
-    companies: [],
-    questionPath: null,
-    solutionPath: null,
-    hasNotebook: false,
-  },
-  {
-    id: "v2-24",
-    set: "v2",
-    number: 24,
-    title: "Chunk Textual Data for Dense Passage Retrieval",
-    difficulty: "medium",
-    companies: [],
-    questionPath: null,
-    solutionPath: null,
-    hasNotebook: false,
-  },
-  {
-    id: "v2-25",
-    set: "v2",
-    number: 25,
-    title: "Implement Large Scale Training (5D Parallelism)",
-    difficulty: "expert",
+    category: "alignment-training",
     companies: [],
     questionPath: null,
     solutionPath: null,
@@ -1158,7 +1004,6 @@ const DESCRIPTIONS: Record<string, string> = {
   "v1-17": "Code the LSTM cell equations from scratch: forget gate, input gate, cell state update, and output gate using raw tensors.",
   "v1-18": "Recreate the AlexNet architecture that started the deep learning revolution, with its 5 conv + 3 FC layer design.",
   "v1-19": "Encode documents and queries into dense vectors and retrieve relevant passages using cosine similarity search.",
-  "v1-20": "Build k-nearest neighbors using PyTorch tensor operations for efficient distance computation and majority voting.",
   "v1-21": "Extend 2D convolutions to 3D for volumetric medical image segmentation on CT scans.",
   "v1-22": "Implement SiLU activation with a custom autograd Function, defining both forward and backward passes manually.",
   "v1-23": "Blend the content of one image with the artistic style of another using feature matching in a pretrained CNN.",
@@ -1172,7 +1017,6 @@ const DESCRIPTIONS: Record<string, string> = {
   "v1-31": "Visualize which image regions drive CNN predictions using Grad-CAM heatmaps and SHAP feature attributions.",
   "v1-32": "Train a simple linear classifier on frozen CLIP embeddings to evaluate representation quality on downstream tasks.",
   "v1-33": "Project high-dimensional embeddings from different modalities into 2D/3D space for visual analysis using t-SNE or UMAP.",
-  "v1-34": "Build ViT from scratch — patch embedding, class token, positional encoding, and transformer encoder for image classification.",
   "v1-35": "Build a VAE with encoder, reparameterization trick, decoder, and combined reconstruction + KL divergence loss.",
 
   // V2
@@ -1180,27 +1024,14 @@ const DESCRIPTIONS: Record<string, string> = {
   "v2-2": "Build Root Mean Square Layer Normalization used in LLaMA and modern transformers — simpler and faster than LayerNorm.",
   "v2-3": "Build the BPE tokenizer algorithm that iteratively merges frequent character pairs to build a subword vocabulary.",
   "v2-4": "Build retrieval-augmented generation by encoding a corpus, performing similarity search, and conditioning generation on retrieved context.",
-  "v2-5": "Speed up LLM inference by drafting tokens with a small model and verifying them in parallel with the large model.",
   "v2-6": "Build scaled dot-product attention from raw matrix operations — queries, keys, values, scaling, and softmax.",
   "v2-7": "Split attention into multiple heads with independent projections, compute attention per head, and concatenate results.",
   "v2-8": "Build GQA where multiple query heads share key-value heads, reducing KV cache memory while preserving quality.",
-  "v2-9": "Add key-value caching to attention so previously computed keys and values are reused during autoregressive generation.",
   "v2-10": "Build the fixed sinusoidal positional encoding from 'Attention Is All You Need' using sin/cos at different frequencies.",
   "v2-11": "Build Rotary Position Embeddings that encode relative positions by rotating query and key vectors in complex space.",
   "v2-12": "Build a complete small language model end-to-end: tokenizer integration, transformer blocks, and autoregressive text generation.",
   "v2-13": "Implement the GPTQ algorithm for post-training quantization, compressing model weights using Hessian-guided rounding.",
-  "v2-14": "Build beam search that maintains top-k partial sequences at each step, producing higher-quality text than greedy decoding.",
-  "v2-15": "Restrict token sampling to the k most probable tokens, then renormalize and sample for diverse yet coherent text.",
-  "v2-16": "Sample from the smallest set of tokens whose cumulative probability exceeds p, adapting vocabulary size dynamically.",
-  "v2-17": "Scale logits by a temperature parameter before softmax to control the randomness of generated text.",
-  "v2-18": "Add low-rank adapter matrices to a pretrained layer, enabling efficient fine-tuning with a fraction of the parameters.",
-  "v2-19": "Build a gated MoE layer that routes tokens to specialized expert networks, scaling model capacity without proportional compute.",
   "v2-20": "Fine-tune a language model on instruction-following data using supervised fine-tuning with cross-entropy loss.",
-  "v2-21": "Align a language model with human preferences using a reward model and reinforcement learning with PPO.",
-  "v2-22": "Train a language model directly on preference pairs without a separate reward model using Direct Preference Optimization.",
-  "v2-23": "Implement dynamic batching that adds/removes sequences mid-batch to maximize GPU utilization during inference.",
-  "v2-24": "Split documents into overlapping chunks optimized for embedding and retrieval in a dense passage retrieval pipeline.",
-  "v2-25": "Combine data, tensor, pipeline, sequence, and expert parallelism to train models across thousands of GPUs.",
 
   // V3
   "v3-1": "Build numerically stable softmax using the log-sum-exp trick, handling overflow and underflow in raw tensor math.",
@@ -1250,28 +1081,31 @@ const LLM_PATH_CONFIG: Record<string, { order: number; stage: string }> = {
   "v2-3": { order: 1, stage: "foundations" }, // BPE
   "v2-10": { order: 2, stage: "foundations" }, // Sinusoidal
   "v2-11": { order: 3, stage: "foundations" }, // RoPE
-  "v2-6": { order: 4, stage: "foundations" }, // Attention from scratch
+  "v2-2": { order: 4, stage: "foundations" }, // RMS Norm
+  "v2-6": { order: 5, stage: "foundations" }, // Attention from scratch
   // Core Transformer
-  "v2-7": { order: 5, stage: "core-transformer" }, // Multi-Head Attention
-  "v2-8": { order: 6, stage: "core-transformer" }, // GQA
-  "v3-12": { order: 7, stage: "core-transformer" }, // KV Cache
-  "v3-13": { order: 8, stage: "core-transformer" }, // Sliding Window
+  "v2-7": { order: 6, stage: "core-transformer" }, // Multi-Head Attention
+  "v2-8": { order: 7, stage: "core-transformer" }, // GQA
+  "v3-12": { order: 8, stage: "core-transformer" }, // KV Cache
+  "v3-13": { order: 9, stage: "core-transformer" }, // Sliding Window
   // Full Model
-  "v2-12": { order: 9, stage: "full-model" }, // SmolLM from Scratch
+  "v2-12": { order: 10, stage: "full-model" }, // SmolLM from Scratch
   // Alignment & PEFT
-  "v3-11": { order: 10, stage: "alignment" }, // LoRA
-  "v3-14": { order: 11, stage: "alignment" }, // DPO
-  "v3-15": { order: 12, stage: "alignment" }, // PPO
-  "v3-27": { order: 13, stage: "alignment" }, // GRPO
+  "v2-1": { order: 11, stage: "alignment" }, // KL Divergence
+  "v3-11": { order: 12, stage: "alignment" }, // LoRA
+  "v2-20": { order: 13, stage: "alignment" }, // SFT
+  "v3-14": { order: 14, stage: "alignment" }, // DPO
+  "v3-15": { order: 15, stage: "alignment" }, // PPO
+  "v3-27": { order: 16, stage: "alignment" }, // GRPO
   // Decoding & Inference
-  "v3-10": { order: 14, stage: "decoding-inference" }, // Temperature
-  "v3-8": { order: 15, stage: "decoding-inference" }, // Top-k
-  "v3-7": { order: 16, stage: "decoding-inference" }, // Top-p
-  "v3-18": { order: 17, stage: "decoding-inference" }, // Speculative Decoding
-  "v3-19": { order: 18, stage: "decoding-inference" }, // Continuous Batching
-  "v3-28": { order: 19, stage: "decoding-inference" }, // Full Inference Engine
+  "v3-10": { order: 17, stage: "decoding-inference" }, // Temperature
+  "v3-8": { order: 18, stage: "decoding-inference" }, // Top-k
+  "v3-7": { order: 19, stage: "decoding-inference" }, // Top-p
+  "v3-18": { order: 20, stage: "decoding-inference" }, // Speculative Decoding
+  "v3-19": { order: 21, stage: "decoding-inference" }, // Continuous Batching
+  "v3-28": { order: 22, stage: "decoding-inference" }, // Full Inference Engine
   // Systems (capstone for path)
-  "v3-17": { order: 20, stage: "systems" }, // MoE
+  "v3-17": { order: 23, stage: "systems" }, // MoE
 };
 
 function assignTracksAndPath(q: any): Partial<Question> {
@@ -1290,7 +1124,11 @@ function assignTracksAndPath(q: any): Partial<Question> {
   if (["v1-15", "v1-16", "v1-17"].includes(id)) {
     tracks.add("basics");
   }
-  if (set === "v3" && category === "classical-ml") {
+  if (category === "classical-ml") {
+    tracks.add("basics");
+  }
+  // Easy v2 questions are foundational
+  if (set === "v2" && difficulty === "easy") {
     tracks.add("basics");
   }
 
@@ -1298,14 +1136,18 @@ function assignTracksAndPath(q: any): Partial<Question> {
   if (difficulty === "hard" || difficulty === "expert") {
     tracks.add("advanced");
   }
-  if (set === "v3" && ["gpu-systems", "llm-inference", "alignment-training"].includes(category || "")) {
+  if (["gpu-systems", "llm-inference", "alignment-training"].includes(category || "")) {
     tracks.add("advanced");
   }
   if (set === "v1" && ["v1-22", "v1-26", "v1-27", "v1-28", "v1-31"].includes(id)) {
     tracks.add("advanced");
   }
-  // Modern hard architectures that aren't core LLM path
-  if (set === "v3" && category === "modern-architectures" && !LLM_PATH_CONFIG[id]) {
+  // Modern architectures that aren't core LLM path
+  if (category === "modern-architectures" && !LLM_PATH_CONFIG[id]) {
+    tracks.add("advanced");
+  }
+  // Medium v2 questions go to advanced
+  if (set === "v2" && (difficulty === "medium" || difficulty === "hard")) {
     tracks.add("advanced");
   }
 

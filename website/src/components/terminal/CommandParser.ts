@@ -84,9 +84,6 @@ export function parseCommand(input: string): CommandResult {
         const basics = getBasicsQuestions().length;
         const advanced = getAdvancedQuestions().length;
         const llm = getLLMPathQuestions().length;
-        const v1 = getQuestionsBySet("v1");
-        const v2 = getQuestionsBySet("v2");
-        const v3 = getQuestionsBySet("v3");
         return {
           lines: [
             "",
@@ -94,10 +91,7 @@ export function parseCommand(input: string): CommandResult {
             `  Basics              - ${basics} foundational exercises`,
             `  Advanced            - ${advanced} systems & hard exercises`,
             "",
-            `  [legacy] v1 - ${v1.length}  |  v2 - ${v2.length}  |  v3 - ${v3.length}`,
-            "",
             "  Type 'list llm', 'list basics', or 'list advanced'.",
-            "  Legacy: 'list v1' etc still work.",
           ],
         };
       }

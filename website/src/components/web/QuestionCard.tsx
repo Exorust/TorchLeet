@@ -16,12 +16,6 @@ export default function QuestionCard({ question, onClick, layoutId }: Props) {
   const { isDone } = useProgress();
   const done = isDone(question.id);
 
-  const setBadgeColor: Record<string, string> = {
-    v1: "bg-gray-100 text-gray-600",
-    v2: "bg-blue-50 text-blue-600",
-    v3: "bg-lavender-100 text-lavender-600",
-  };
-
   return (
     <motion.div
       layoutId={layoutId}
@@ -48,18 +42,11 @@ export default function QuestionCard({ question, onClick, layoutId }: Props) {
             </span>
           )}
         </div>
-        <div className="flex items-center gap-2">
-          <span
-            className={`text-[10px] font-bold px-2 py-0.5 rounded-full uppercase ${setBadgeColor[question.set]}`}
-          >
-            {question.set}
+        {!question.hasNotebook && (
+          <span className="text-[10px] font-medium px-2 py-0.5 rounded-full bg-gray-100 text-gray-500">
+            Coming Soon
           </span>
-          {!question.hasNotebook && (
-            <span className="text-[10px] font-medium px-2 py-0.5 rounded-full bg-gray-100 text-gray-500">
-              Coming Soon
-            </span>
-          )}
-        </div>
+        )}
       </div>
 
       {/* Title */}

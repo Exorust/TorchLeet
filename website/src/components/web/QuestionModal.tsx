@@ -29,12 +29,6 @@ export default function QuestionModal({ question, onClose }: Props) {
 
   const done = isDone(question.id);
 
-  const setBadgeColor: Record<string, string> = {
-    v1: "bg-gray-100 text-gray-600",
-    v2: "bg-blue-50 text-blue-600",
-    v3: "bg-lavender-100 text-lavender-600",
-  };
-
   return (
     <motion.div
       className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center"
@@ -71,11 +65,6 @@ export default function QuestionModal({ question, onClose }: Props) {
             </h2>
 
             <div className="flex items-center gap-2 flex-wrap">
-              <span
-                className={`text-[10px] font-bold px-2 py-0.5 rounded-full uppercase ${setBadgeColor[question.set]}`}
-              >
-                {question.set}
-              </span>
               <DifficultyBadge difficulty={question.difficulty} />
               {done && (
                 <span className="text-xs font-medium px-2.5 py-0.5 rounded-full bg-green-100 text-green-700">
