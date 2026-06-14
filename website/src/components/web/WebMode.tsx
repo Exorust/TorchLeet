@@ -14,6 +14,7 @@ import PrimaryNavigation from "@/components/web/PrimaryNavigation";
 import QuestionGrid from "@/components/web/QuestionGrid";
 import LLMPathView from "@/components/web/LLMPathView";
 import AdvancedGroupedView from "@/components/web/AdvancedGroupedView";
+import AnnouncementBanner from "@/components/web/AnnouncementBanner";
 import Footer from "@/components/web/Footer";
 import ScrollReveal from "@/components/shared/ScrollReveal";
 
@@ -44,7 +45,7 @@ export default function WebMode() {
     isPathView = true;
   } else if (activeView === "basics") {
     baseQuestions = getBasicsQuestions();
-  } else {
+  } else if (activeView === "advanced") {
     baseQuestions = getAdvancedQuestions();
   }
 
@@ -57,6 +58,7 @@ export default function WebMode() {
       <main className="max-w-6xl mx-auto px-4 pt-24">
         <Hero />
         <section id="questions" className="py-8">
+          <AnnouncementBanner />
           <ScrollReveal>
             <PrimaryNavigation />
           </ScrollReveal>

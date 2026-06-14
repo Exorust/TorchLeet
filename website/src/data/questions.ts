@@ -30,7 +30,7 @@ export interface Question {
 // V1 Questions (torch/ directory)
 // ---------------------------------------------------------------------------
 
-const v1Questions: Omit<Question, "description">[] = [
+const v1Questions: Omit<Question, "description" | "tracks" | "llmPathOrder" | "llmPathStage">[] = [
   // Basic (1-7)
   {
     id: "v1-1",
@@ -430,7 +430,7 @@ const v1Questions: Omit<Question, "description">[] = [
 // V2 Questions (llm/ directory)
 // ---------------------------------------------------------------------------
 
-const v2Questions: Omit<Question, "description">[] = [
+const v2Questions: Omit<Question, "description" | "tracks" | "llmPathOrder" | "llmPathStage">[] = [
   {
     id: "v2-1",
     set: "v2",
@@ -717,7 +717,7 @@ const v2Questions: Omit<Question, "description">[] = [
 // V3 Questions (v3/ directory)
 // ---------------------------------------------------------------------------
 
-const v3Questions: Omit<Question, "description">[] = [
+const v3Questions: Omit<Question, "description" | "tracks" | "llmPathOrder" | "llmPathStage">[] = [
   // classical-ml (1-4)
   {
     id: "v3-1",

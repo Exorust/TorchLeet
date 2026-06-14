@@ -37,6 +37,12 @@ export default function Navbar() {
             About
           </button>
           <a
+            href="/ai-tutor"
+            className="hidden sm:block text-sm text-foreground/60 hover:text-foreground transition font-medium"
+          >
+            AI Tutor
+          </a>
+          <a
             href="https://github.com/Exorust/TorchLeet"
             target="_blank"
             rel="noopener noreferrer"
