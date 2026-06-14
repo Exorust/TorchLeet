@@ -202,12 +202,12 @@ export default function AITutorPage() {
               variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
               className="text-4xl md:text-5xl font-medium text-lavender-600 leading-tight"
             >
-              AI Tutor for{" "}
               <WordRoll
                 words={["Claude", "Codex", "Cursor", "Hermes"]}
                 intervalMs={2400}
                 gradient
-              />
+              />{" "}
+              teaches you PyTorch
             </motion.h1>
             <motion.p
               variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
