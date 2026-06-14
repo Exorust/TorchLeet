@@ -17,12 +17,12 @@ const installInstructions: Record<
   { steps: string[]; config: string; configLabel: string }
 > = {
   "claude-code": {
-    steps: ["Run this single command — no install needed:"],
+    steps: ["Run this single command:"],
     configLabel: "Terminal",
     config: `claude mcp add torchleet -- npx -y torchleet-mcp`,
   },
   codex: {
-    steps: ["Run this single command — no install needed:"],
+    steps: ["Run this single command:"],
     configLabel: "Terminal",
     config: `codex mcp add torchleet -- npx -y torchleet-mcp`,
   },
@@ -30,7 +30,7 @@ const installInstructions: Record<
     steps: [
       "Open Claude Desktop settings",
       "Go to Developer > Edit Config",
-      "Paste this into your config file — no install needed, npx handles it:",
+      "Paste this into your config file:",
     ],
     configLabel: "claude_desktop_config.json",
     config: `{
@@ -45,7 +45,7 @@ const installInstructions: Record<
   cursor: {
     steps: [
       "Open Settings > MCP Servers",
-      "Add a new server — no install needed, npx handles it:",
+      "Add a new server with this config:",
     ],
     configLabel: "MCP Server Config",
     config: `{
@@ -63,7 +63,7 @@ const prompts = [
   {
     name: "torchleet-tutor",
     label: "Tutor Mode",
-    desc: "Socratic questioning with progressive hints. Never gives full solutions — makes you earn it.",
+    desc: "Guides you through questions",
     color: "text-emerald-600",
     bg: "bg-emerald-50",
     border: "border-emerald-200",
@@ -101,7 +101,7 @@ const tools = [
   },
   {
     name: "get_hint",
-    desc: "Progressive hints (3 levels) — never reveals the full solution",
+    desc: "Progressive hints (3 levels), never reveals the full solution",
   },
   {
     name: "get_learning_path",
@@ -155,7 +155,7 @@ export default function AITutorView() {
         <p className="text-sm text-foreground/50 mt-2 max-w-2xl">
           One command. No install. Turn any AI assistant into an interactive
           PyTorch coach with access to all 90 problems, progressive hints,
-          company prep plans, and learning paths — while enforcing a
+          company prep plans, and learning paths, while enforcing a
           no-spoilers teaching style.
         </p>
       </div>
@@ -164,7 +164,7 @@ export default function AITutorView() {
       <div className="space-y-4">
         <div className="flex items-center gap-3">
           <div className="font-mono text-sm px-3 py-1 rounded-full bg-lavender-100 text-lavender-700 font-medium">
-            Step 1 — Install
+            Step 1: Install
           </div>
         </div>
 
@@ -211,7 +211,7 @@ export default function AITutorView() {
           </div>
 
           <p className="text-xs text-foreground/40 mt-3">
-            That&apos;s it — <code className="font-mono bg-lavender-50 px-1 rounded">npx</code> downloads
+            That&apos;s it. <code className="font-mono bg-lavender-50 px-1 rounded">npx</code> downloads
             and runs it automatically. For richer hints from the actual notebooks, optionally clone the repo and
             set <code className="font-mono bg-lavender-50 px-1 rounded">TORCHLEET_ROOT=/path/to/TorchLeet</code> in
             your env.
@@ -223,7 +223,7 @@ export default function AITutorView() {
       <div className="space-y-4">
         <div className="flex items-center gap-3">
           <div className="font-mono text-sm px-3 py-1 rounded-full bg-lavender-100 text-lavender-700 font-medium">
-            Step 2 — Choose a Prompt
+            Step 2: Choose a Prompt
           </div>
           <div className="text-xs text-foreground/40">
             Prompts control how the AI teaches you
@@ -257,7 +257,7 @@ export default function AITutorView() {
       <div className="space-y-4">
         <div className="flex items-center gap-3">
           <div className="font-mono text-sm px-3 py-1 rounded-full bg-lavender-100 text-lavender-700 font-medium">
-            Step 3 — Start Learning
+            Step 3: Start Learning
           </div>
           <div className="text-xs text-foreground/40">
             Try these prompts after setup

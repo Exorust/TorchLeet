@@ -13,7 +13,7 @@ const views: { key: ActiveView; label: string; desc: string }[] = [
   {
     key: "llm-path",
     label: "LLM Learning Path",
-    desc: "Implement LLM from scratch — curated journey",
+    desc: "Implement LLM from scratch, curated journey",
   },
   {
     key: "advanced",

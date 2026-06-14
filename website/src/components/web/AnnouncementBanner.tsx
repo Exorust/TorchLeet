@@ -29,7 +29,7 @@ export default function AnnouncementBanner() {
               AI Tutor is here
             </div>
             <div className="text-xs text-foreground/50 mt-0.5">
-              Turn any AI assistant into your PyTorch coach — one command, no install.
+              Turn any AI assistant into your PyTorch coach. One command, no install.
             </div>
           </div>
         </div>
