@@ -7,7 +7,7 @@
 [![GitHub stars](https://img.shields.io/github/stars/Exorust/TorchLeet?style=social)](https://github.com/Exorust/TorchLeet)
 [![Website](https://img.shields.io/badge/website-torch--leet.vercel.app-8b5cf6)](https://torch-leet.vercel.app)
 
-[Follow me on Twitter](https://twitter.com/charoori_ai) | [Try the Terminal](https://torch-leet.vercel.app) | [Send Feedback](mailto:chandrahas.aroori@gmail.com?subject=TorchLeet%20Feedback)
+[Follow me on Twitter](https://twitter.com/charoori_ai) | [Try the Terminal](https://torch-leet.vercel.app) | [AI Tutor](https://torch-leet.vercel.app/ai-tutor) | [Send Feedback](mailto:chandrahas.aroori@gmail.com?subject=TorchLeet%20Feedback)
 
 </div>
 
@@ -17,6 +17,54 @@ I struggled to grind for ML/AI interviews so I went back to the basics and creat
 
 > [!IMPORTANT]
 > **Don't use GPT.** The whole point is to struggle through these yourself. If you paste these into ChatGPT you're wasting your time. The goal is to deeply understand PyTorch, not to get an answer. I used GPT to help write some of the initial code, but I tested and solved every problem myself. That's where the learning happens.
+
+## AI Tutor (NEW)
+
+Turn any AI assistant into your PyTorch interview coach. The TorchLeet MCP server gives your AI access to all 90 problems, progressive hints, company prep plans, and learning paths, while enforcing a no-spoilers teaching style.
+
+```bash
+# Clone the repo first
+git clone https://github.com/Exorust/TorchLeet.git
+cd TorchLeet
+
+# Then connect the AI Tutor (pick your client)
+
+# Claude Code
+claude mcp add torchleet -- npx -y torchleet-mcp
+
+# Codex
+codex mcp add torchleet -- npx -y torchleet-mcp
+```
+
+<details>
+<summary>Claude Desktop / Cursor / VS Code</summary>
+
+Add this to your MCP config:
+
+```json
+{
+  "mcpServers": {
+    "torchleet": {
+      "command": "npx",
+      "args": ["-y", "torchleet-mcp"]
+    }
+  }
+}
+```
+</details>
+
+**Four learning guides:**
+
+| Guide | What it does |
+|-------|-------------|
+| `torchleet-tutor` | Guides you through problems with progressive hints |
+| `torchleet-interview-prep` | Timed mock interviews for specific companies |
+| `torchleet-review` | Senior ML engineer reviews your code |
+| `torchleet-explain` | Deep-dives from intuition to math to code |
+
+[Set up the AI Tutor](https://torch-leet.vercel.app/ai-tutor) | [torchleet-mcp on npm](https://www.npmjs.com/package/torchleet-mcp)
+
+---
 
 Three question sets, 90 problems total:
 
