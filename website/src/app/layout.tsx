@@ -3,6 +3,7 @@ import { JetBrains_Mono, Inter } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { AppProvider } from "@/context/AppContext";
 import { ProgressProvider } from "@/context/ProgressContext";
+import "performative-ui/styles.css";
 import "./globals.css";
 
 const jetbrainsMono = JetBrains_Mono({

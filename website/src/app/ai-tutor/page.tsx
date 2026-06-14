@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
+import { ChatBubble, GlassCard } from "performative-ui";
 import Navbar from "@/components/web/Navbar";
 import Footer from "@/components/web/Footer";
 
@@ -65,9 +66,9 @@ const workflows = [
     prompt: "torchleet-tutor",
     conversation: [
       { role: "user" as const, text: "I want to learn how attention works in transformers" },
-      { role: "assistant" as const, text: "Great choice! Let's start with the fundamentals. Before we dive into the code, tell me: what do you think \"attention\" means intuitively? What problem does it solve that simpler approaches can't?" },
+      { role: "ai" as const, text: "Great choice! Let's start with the fundamentals. Before we dive into the code, tell me: what do you think \"attention\" means intuitively? What problem does it solve that simpler approaches can't?" },
       { role: "user" as const, text: "It lets the model focus on relevant parts of the input?" },
-      { role: "assistant" as const, text: "Exactly! Now let's make that concrete. I've pulled up the Scaled Dot-Product Attention problem (#V3-8). Here's your Level 1 hint, just the problem statement and requirements. Try to sketch out the function signature before I show you more." },
+      { role: "ai" as const, text: "Exactly! Now let's make that concrete. I've pulled up the Scaled Dot-Product Attention problem (#V3-8). Here's your Level 1 hint, just the problem statement and requirements. Try to sketch out the function signature before I show you more." },
     ],
   },
   {
@@ -75,9 +76,9 @@ const workflows = [
     prompt: "torchleet-interview-prep",
     conversation: [
       { role: "user" as const, text: "I'm interviewing at Anthropic next week, help me prepare" },
-      { role: "assistant" as const, text: "Let's simulate a real interview. I've found 8 problems tagged with Anthropic, spanning DPO Loss, GRPO, KV Cache, and more. We'll start with a 20-minute timed problem. Ready?" },
+      { role: "ai" as const, text: "Let's simulate a real interview. I've found 8 problems tagged with Anthropic, spanning DPO Loss, GRPO, KV Cache, and more. We'll start with a 20-minute timed problem. Ready?" },
       { role: "user" as const, text: "Yes, let's go!" },
-      { role: "assistant" as const, text: "Your first problem: Implement DPO Loss from scratch. You need to compute the Direct Preference Optimization loss given policy and reference model log-probabilities. Timer starts now. What's your approach?" },
+      { role: "ai" as const, text: "Your first problem: Implement DPO Loss from scratch. You need to compute the Direct Preference Optimization loss given policy and reference model log-probabilities. Timer starts now. What's your approach?" },
     ],
   },
   {
@@ -85,7 +86,7 @@ const workflows = [
     prompt: "torchleet-review",
     conversation: [
       { role: "user" as const, text: "Can you review my FlashAttention implementation?" },
-      { role: "assistant" as const, text: "I'll review this as a senior ML engineer. Three things I notice right away:\n\n1. **Numerical stability**: your softmax isn't using the log-sum-exp trick\n2. **Memory**: you're materializing the full N×N attention matrix, which defeats the purpose of FlashAttention\n3. **Tiling**: the block size should be tuned to SRAM capacity\n\nLet's fix #2 first since it's the core idea..." },
+      { role: "ai" as const, text: "I'll review this as a senior ML engineer. Three things I notice right away:\n\n1. **Numerical stability**: your softmax isn't using the log-sum-exp trick\n2. **Memory**: you're materializing the full N×N attention matrix, which defeats the purpose of FlashAttention\n3. **Tiling**: the block size should be tuned to SRAM capacity\n\nLet's fix #2 first since it's the core idea..." },
     ],
   },
 ];
@@ -208,7 +209,7 @@ export default function AITutorPage() {
               className="text-lg text-foreground/60 leading-relaxed max-w-2xl mt-4"
             >
               Turn any AI assistant into your PyTorch interview coach.
-              90 problems, progressive hints, company prep, and learning paths.
+              75 problems, progressive hints, company prep, and learning paths.
               It won&apos;t spoil the answers either.
             </motion.p>
           </div>
@@ -261,11 +262,12 @@ export default function AITutorPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.15, duration: 0.4 }}
-                className="bg-white/60 backdrop-blur-lg rounded-2xl border border-white/50 p-6"
               >
-                <div className="font-mono text-2xl font-bold text-lavender-600/30 mb-2">{item.step}</div>
-                <div className="font-semibold text-sm text-foreground mb-1">{item.title}</div>
-                <div className="text-xs text-foreground/50">{item.desc}</div>
+                <GlassCard glowOnHover className="p-6 h-full">
+                  <div className="font-mono text-2xl font-bold text-lavender-600/30 mb-2">{item.step}</div>
+                  <div className="font-semibold text-sm text-foreground mb-1">{item.title}</div>
+                  <div className="text-xs text-foreground/50">{item.desc}</div>
+                </GlassCard>
               </motion.div>
             ))}
           </div>
@@ -358,11 +360,12 @@ cd TorchLeet`}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.05 }}
-                className={`rounded-2xl border ${prompt.border} ${prompt.bg}/30 p-6`}
               >
-                <div className={`font-semibold text-base ${prompt.color}`}>{prompt.label}</div>
-                <div className="text-sm text-foreground/60 mt-2 leading-relaxed">{prompt.desc}</div>
-                <div className="font-mono text-xs text-foreground/30 mt-3">{prompt.name}</div>
+                <GlassCard glowOnHover className={`p-6 border ${prompt.border} ${prompt.bg}/30`}>
+                  <div className={`font-semibold text-base ${prompt.color}`}>{prompt.label}</div>
+                  <div className="text-sm text-foreground/60 mt-2 leading-relaxed">{prompt.desc}</div>
+                  <div className="font-mono text-xs text-foreground/30 mt-3">{prompt.name}</div>
+                </GlassCard>
               </motion.div>
             ))}
           </div>
@@ -388,7 +391,7 @@ cd TorchLeet`}
                   </span>
                 </div>
                 <motion.div
-                  className="p-6 space-y-4"
+                  className="p-6 space-y-3"
                   initial="hidden"
                   whileInView="visible"
                   viewport={{ once: true }}
@@ -401,22 +404,16 @@ cd TorchLeet`}
                         hidden: { opacity: 0, x: msg.role === "user" ? -12 : 12 },
                         visible: { opacity: 1, x: 0 },
                       }}
-                      className="flex gap-3"
                     >
-                      <div className={`shrink-0 w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold ${
-                        msg.role === "user"
-                          ? "bg-lavender-100 text-lavender-600"
-                          : "bg-emerald-100 text-emerald-600"
-                      }`}>
-                        {msg.role === "user" ? "U" : "A"}
-                      </div>
-                      <div className={`text-sm leading-relaxed ${
-                        msg.role === "user" ? "text-foreground/80" : "text-foreground/60"
-                      }`}>
+                      <ChatBubble
+                        role={msg.role}
+                        agent={msg.role === "ai" ? "TorchLeet" : undefined}
+                        thinking={false}
+                      >
                         {msg.text.split("\n").map((line, li) => (
                           <p key={li} className={li > 0 ? "mt-2" : ""}>{line}</p>
                         ))}
-                      </div>
+                      </ChatBubble>
                     </motion.div>
                   ))}
                 </motion.div>
