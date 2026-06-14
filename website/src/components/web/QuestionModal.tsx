@@ -40,7 +40,7 @@ export default function QuestionModal({ question, onClose }: Props) {
     >
       <motion.div
         layoutId={`card-${question.id}`}
-        className="bg-white/70 backdrop-blur-xl rounded-3xl max-w-lg w-full mx-4 p-6 shadow-xl border border-white/50 relative"
+        className="bg-white rounded-3xl max-w-lg w-full mx-4 p-6 shadow-xl border border-gray-200 relative"
         onClick={(e) => e.stopPropagation()}
       >
         <motion.div
@@ -90,88 +90,80 @@ export default function QuestionModal({ question, onClose }: Props) {
           )}
 
           {/* Divider */}
-          <hr className="border-gray-200 mb-5" />
+          <hr className="border-gray-100 mb-4" />
 
-          {/* Action area styled like the white cards */}
-          <div className="bg-white/60 backdrop-blur-lg rounded-2xl border border-white/50 p-4">
-            <div className="text-[10px] font-semibold uppercase tracking-wider text-gray-500 mb-2 px-1">
-              Primary actions
-            </div>
+          {/* Colab actions */}
+          <div className="grid grid-cols-2 gap-3 mb-3">
+            <a
+              href={
+                question.questionPath
+                  ? getColabUrl(question.questionPath)
+                  : undefined
+              }
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`flex items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-sm font-medium transition ${
+                question.questionPath
+                  ? "bg-lavender-600 text-white hover:bg-lavender-700 active:scale-[0.985]"
+                  : "bg-gray-100 text-gray-400 cursor-not-allowed pointer-events-none"
+              }`}
+            >
+              Open Question in Colab
+            </a>
 
-            {/* Colab primary — softer card-like treatment */}
-            <div className="grid grid-cols-2 gap-3 mb-3">
-              <a
-                href={
-                  question.questionPath
-                    ? getColabUrl(question.questionPath)
-                    : undefined
-                }
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`flex items-center justify-center gap-2 rounded-2xl px-4 py-3 text-sm font-medium transition shadow-sm ${
-                  question.questionPath
-                    ? "bg-lavender-600 text-white hover:bg-lavender-700 active:scale-[0.985]"
-                    : "bg-gray-100 text-gray-400 cursor-not-allowed pointer-events-none"
-                }`}
-              >
-                Open Question in Colab
-              </a>
+            <a
+              href={
+                question.solutionPath
+                  ? getColabUrl(question.solutionPath)
+                  : undefined
+              }
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`flex items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-sm font-medium transition ${
+                question.solutionPath
+                  ? "bg-lavender-600 text-white hover:bg-lavender-700 active:scale-[0.985]"
+                  : "bg-gray-100 text-gray-400 cursor-not-allowed pointer-events-none"
+              }`}
+            >
+              Open Solution in Colab
+            </a>
+          </div>
 
-              <a
-                href={
-                  question.solutionPath
-                    ? getColabUrl(question.solutionPath)
-                    : undefined
-                }
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`flex items-center justify-center gap-2 rounded-2xl px-4 py-3 text-sm font-medium transition shadow-sm ${
-                  question.solutionPath
-                    ? "bg-lavender-600 text-white hover:bg-lavender-700 active:scale-[0.985]"
-                    : "bg-gray-100 text-gray-400 cursor-not-allowed pointer-events-none"
-                }`}
-              >
-                Open Solution in Colab
-              </a>
-            </div>
+          {/* Download actions */}
+          <div className="grid grid-cols-2 gap-3 mb-4">
+            <a
+              href={
+                question.questionPath
+                  ? getDownloadUrl(question.questionPath)
+                  : undefined
+              }
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`flex items-center justify-center gap-2 rounded-xl px-4 py-2 text-sm font-medium border transition ${
+                question.questionPath
+                  ? "border-gray-200 text-gray-700 hover:bg-gray-50 hover:border-gray-300"
+                  : "border-gray-100 text-gray-400 cursor-not-allowed pointer-events-none"
+              }`}
+            >
+              Download Question
+            </a>
 
-            {/* Secondary actions — downloads, matching card subtlety */}
-            <div className="grid grid-cols-2 gap-3 mb-3">
-              <a
-                href={
-                  question.questionPath
-                    ? getDownloadUrl(question.questionPath)
-                    : undefined
-                }
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`flex items-center justify-center gap-2 rounded-2xl px-4 py-2 text-sm font-medium border transition ${
-                  question.questionPath
-                    ? "border-white/60 bg-white/40 text-gray-700 hover:bg-white hover:border-lavender-200"
-                    : "border-gray-200 text-gray-400 cursor-not-allowed pointer-events-none"
-                }`}
-              >
-                Download Question
-              </a>
-
-              <a
-                href={
-                  question.solutionPath
-                    ? getDownloadUrl(question.solutionPath)
-                    : undefined
-                }
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`flex items-center justify-center gap-2 rounded-2xl px-4 py-2 text-sm font-medium border transition ${
-                  question.solutionPath
-                    ? "border-white/60 bg-white/40 text-gray-700 hover:bg-white hover:border-lavender-200"
-                    : "border-gray-200 text-gray-400 cursor-not-allowed pointer-events-none"
-                }`}
-              >
-                Download Solution
-              </a>
-            </div>
-
+            <a
+              href={
+                question.solutionPath
+                  ? getDownloadUrl(question.solutionPath)
+                  : undefined
+              }
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`flex items-center justify-center gap-2 rounded-xl px-4 py-2 text-sm font-medium border transition ${
+                question.solutionPath
+                  ? "border-gray-200 text-gray-700 hover:bg-gray-50 hover:border-gray-300"
+                  : "border-gray-100 text-gray-400 cursor-not-allowed pointer-events-none"
+              }`}
+            >
+              Download Solution
+            </a>
           </div>
 
           <button
@@ -179,10 +171,10 @@ export default function QuestionModal({ question, onClose }: Props) {
             onClick={() =>
               done ? markUndone(question.id) : markDone(question.id)
             }
-            className={`mt-4 w-full rounded-lg px-4 py-3 text-sm font-medium transition ${
+            className={`w-full rounded-xl px-4 py-2.5 text-sm font-medium transition ${
               done
-                ? "border border-gray-300 text-gray-700 hover:bg-gray-50"
-                : "bg-lavender-600 text-white hover:bg-lavender-700"
+                ? "border border-gray-200 text-gray-700 hover:bg-gray-50"
+                : "border border-lavender-600 text-lavender-600 hover:bg-lavender-50"
             }`}
           >
             {done ? "Mark as Incomplete" : "Mark as Complete"}

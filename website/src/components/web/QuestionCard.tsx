@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { GlassCard } from "performative-ui";
 import { type Question } from "@/data/questions";
 import { useProgress } from "@/context/ProgressContext";
 import DifficultyBadge from "@/components/shared/DifficultyBadge";
@@ -18,15 +17,15 @@ export default function QuestionCard({ question, onClick, layoutId }: Props) {
   const done = isDone(question.id);
 
   return (
-    <motion.div layoutId={layoutId} onClick={onClick} className="cursor-pointer">
-      <GlassCard
-        glowOnHover
-        className={`p-5 ${
-          done
-            ? "border-green-200/60 hover:border-green-300"
-            : ""
-        } ${!question.hasNotebook ? "opacity-60" : ""}`}
-      >
+    <motion.div
+      layoutId={layoutId}
+      onClick={onClick}
+      className={`cursor-pointer rounded-2xl border bg-white/60 backdrop-blur-lg shadow-sm p-5 transition-all hover:shadow-md hover:border-lavender-200 ${
+        done
+          ? "border-green-200/60 hover:border-green-300"
+          : "border-gray-200"
+      } ${!question.hasNotebook ? "opacity-60" : ""}`}
+    >
         {/* Top row */}
         <div className="flex items-center justify-between mb-2">
           <div className="flex items-center gap-2">
@@ -77,7 +76,6 @@ export default function QuestionCard({ question, onClick, layoutId }: Props) {
             </div>
           )}
         </div>
-      </GlassCard>
     </motion.div>
   );
 }
