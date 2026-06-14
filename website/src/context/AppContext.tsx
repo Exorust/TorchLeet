@@ -41,7 +41,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
   const [mode, setMode] = useState<"terminal" | "web">("web");
 
   // New revamp state
-  const [activeView, setActiveView] = useState<ActiveView>("basics");
+  const [activeView, setActiveView] = useState<ActiveView>("llm-path");
   const [companyFilters, setCompanyFilters] = useState<string[]>([]);
 
   const toggleCompanyFilter = useCallback((company: string) => {

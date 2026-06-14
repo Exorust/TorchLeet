@@ -1,10 +1,13 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { usePathname } from "next/navigation";
 import { useApp } from "@/context/AppContext";
 
 export default function Navbar() {
   const { setMode } = useApp();
+  const pathname = usePathname();
+  const isAiTutor = pathname === "/ai-tutor";
 
   const scrollTo = (id: string) => {
     const el = document.getElementById(id);
@@ -17,7 +20,7 @@ export default function Navbar() {
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.1, ease: "easeOut" }}
-        className="max-w-2xl w-full bg-[rgba(233,242,255,0.82)] backdrop-blur-md rounded-full px-6 h-14 flex items-center justify-between shadow-sm"
+        className="max-w-6xl w-full bg-[rgba(233,242,255,0.82)] backdrop-blur-md rounded-full px-10 h-16 flex items-center justify-between shadow-sm"
       >
         <span className="font-mono font-bold text-lavender-600 text-lg tracking-tight select-none">
           TORCHLEET
@@ -54,8 +57,13 @@ export default function Navbar() {
             </svg>
           </a>
           <button
-            onClick={() => setMode("terminal")}
-            className="bg-lavender-600 text-white rounded-full px-5 py-2 text-sm hover:bg-lavender-700 transition font-medium"
+            onClick={() => !isAiTutor && setMode("terminal")}
+            disabled={isAiTutor}
+            className={`rounded-full px-5 py-2 text-sm transition font-medium ${
+              isAiTutor
+                ? "bg-lavender-300 text-white/70 cursor-not-allowed"
+                : "bg-lavender-600 text-white hover:bg-lavender-700"
+            }`}
           >
             Try Terminal
           </button>

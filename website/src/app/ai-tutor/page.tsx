@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import Navbar from "@/components/web/Navbar";
 import Footer from "@/components/web/Footer";
@@ -165,35 +165,58 @@ export default function AITutorPage() {
       <Navbar />
       <main className="max-w-4xl mx-auto px-4 pt-28 pb-16 space-y-20">
         {/* Hero */}
-        <div className="space-y-6">
-          <Link
-            href="/"
-            className="inline-flex items-center gap-1.5 text-sm text-foreground/50 hover:text-foreground/80 transition-colors"
-          >
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M19 12H5M12 19l-7-7 7-7" />
-            </svg>
-            Back to TorchLeet
-          </Link>
+        <motion.div
+          className="space-y-6"
+          initial="hidden"
+          animate="visible"
+          variants={{ visible: { transition: { staggerChildren: 0.12 } } }}
+        >
+          <motion.div variants={{ hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0 } }}>
+            <Link
+              href="/"
+              className="inline-flex items-center gap-1.5 text-sm text-foreground/50 hover:text-foreground/80 transition-colors"
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M19 12H5M12 19l-7-7 7-7" />
+              </svg>
+              Back to TorchLeet
+            </Link>
+          </motion.div>
 
           <div>
-            <div className="flex items-center gap-3 mb-3">
-              <span className="text-xs font-bold uppercase tracking-wider bg-lavender-600 text-white px-2.5 py-1 rounded-full">
+            <motion.div
+              variants={{ hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0 } }}
+              className="flex items-center gap-3 mb-3"
+            >
+              <motion.span
+                animate={{ scale: [1, 1.08, 1] }}
+                transition={{ duration: 2, repeat: Infinity, repeatDelay: 3 }}
+                className="text-xs font-bold uppercase tracking-wider bg-lavender-600 text-white px-2.5 py-1 rounded-full"
+              >
                 New
-              </span>
+              </motion.span>
               <span className="text-xs text-foreground/40 font-mono">torchleet-mcp</span>
-            </div>
-            <h1 className="text-4xl md:text-5xl font-medium text-lavender-600 leading-tight">
+            </motion.div>
+            <motion.h1
+              variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
+              className="text-4xl md:text-5xl font-medium text-lavender-600 leading-tight"
+            >
               AI Tutor for PyTorch
-            </h1>
-            <p className="text-lg text-foreground/60 leading-relaxed max-w-2xl mt-4">
+            </motion.h1>
+            <motion.p
+              variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
+              className="text-lg text-foreground/60 leading-relaxed max-w-2xl mt-4"
+            >
               Turn any AI assistant into your PyTorch interview coach.
               90 problems, progressive hints, company prep, and learning paths.
               It won&apos;t spoil the answers either.
-            </p>
+            </motion.p>
           </div>
 
-          <div className="flex items-center gap-4 text-sm">
+          <motion.div
+            variants={{ hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0 } }}
+            className="flex items-center gap-4 text-sm"
+          >
             <a
               href="https://www.npmjs.com/package/torchleet-mcp"
               target="_blank"
@@ -220,32 +243,58 @@ export default function AITutorPage() {
             >
               What is MCP?
             </a>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
 
         {/* How it works */}
         <Section>
           <h2 className="text-2xl font-medium text-foreground mb-6">How It Works</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {[
-              { step: "1", title: "Add the server", desc: "One config line. npx handles the rest." },
-              { step: "2", title: "Pick a learning guide", desc: "Tutor, interview prep, code review, or deep-dive." },
-              { step: "3", title: "Start learning", desc: "Ask naturally. It finds problems, gives hints, and checks your work." },
-            ].map((item) => (
-              <div key={item.step} className="bg-white/60 backdrop-blur-lg rounded-2xl border border-white/50 p-6">
+              { step: "1", title: "Clone the repo", desc: "Get the notebooks so the tutor can read actual problems." },
+              { step: "2", title: "Connect the tutor", desc: "One command. npx handles the rest." },
+              { step: "3", title: "Start learning", desc: "Pick a guide and ask naturally. It finds problems, gives hints, and checks your work." },
+            ].map((item, i) => (
+              <motion.div
+                key={item.step}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.15, duration: 0.4 }}
+                className="bg-white/60 backdrop-blur-lg rounded-2xl border border-white/50 p-6"
+              >
                 <div className="font-mono text-2xl font-bold text-lavender-600/30 mb-2">{item.step}</div>
                 <div className="font-semibold text-sm text-foreground mb-1">{item.title}</div>
                 <div className="text-xs text-foreground/50">{item.desc}</div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </Section>
 
-        {/* Install */}
+        {/* Clone the repo */}
         <Section>
-          <h2 className="text-2xl font-medium text-foreground mb-2">Install</h2>
+          <h2 className="text-2xl font-medium text-foreground mb-2">Clone the Repo</h2>
           <p className="text-sm text-foreground/50 mb-6">
-            No install needed. <code className="font-mono bg-lavender-50 px-1.5 py-0.5 rounded text-lavender-700">npx</code> handles everything.
+            You&apos;ll work through problems as Jupyter notebooks. Clone first so the AI tutor can read the actual problem files.
+          </p>
+
+          <div className="bg-white/60 backdrop-blur-lg rounded-2xl border border-white/50 p-6 shadow-sm">
+            <div className="relative">
+              <div className="text-xs font-mono text-foreground/40 mb-1.5">Terminal</div>
+              <pre className="bg-[#1a1625] text-[#e2e0ea] rounded-xl p-4 pr-20 text-sm font-mono overflow-x-auto leading-relaxed">
+{`git clone https://github.com/Exorust/TorchLeet.git
+cd TorchLeet`}
+              </pre>
+              <CopyButton text="git clone https://github.com/Exorust/TorchLeet.git && cd TorchLeet" />
+            </div>
+          </div>
+        </Section>
+
+        {/* Connect the AI Tutor */}
+        <Section>
+          <h2 className="text-2xl font-medium text-foreground mb-2">Connect the AI Tutor</h2>
+          <p className="text-sm text-foreground/50 mb-6">
+            Run this from inside the TorchLeet folder. <code className="font-mono bg-lavender-50 px-1.5 py-0.5 rounded text-lavender-700">npx</code> handles the rest.
           </p>
 
           <div className="flex flex-wrap gap-2 mb-4">
@@ -271,25 +320,30 @@ export default function AITutorPage() {
             ))}
           </div>
 
-          <div className="bg-white/60 backdrop-blur-lg rounded-2xl border border-white/50 p-6 shadow-sm">
-            <ol className="list-decimal list-inside space-y-1.5 text-sm text-foreground/70 mb-4">
-              {instructions.steps.map((step, i) => (
-                <li key={i}>{step}</li>
-              ))}
-            </ol>
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={platform}
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -8 }}
+              transition={{ duration: 0.2 }}
+              className="bg-white/60 backdrop-blur-lg rounded-2xl border border-white/50 p-6 shadow-sm"
+            >
+              <ol className="list-decimal list-inside space-y-1.5 text-sm text-foreground/70 mb-4">
+                {instructions.steps.map((step, i) => (
+                  <li key={i}>{step}</li>
+                ))}
+              </ol>
 
-            <div className="relative">
-              <div className="text-xs font-mono text-foreground/40 mb-1.5">{instructions.configLabel}</div>
-              <pre className="bg-[#1a1625] text-[#e2e0ea] rounded-xl p-4 pr-20 text-sm font-mono overflow-x-auto leading-relaxed">
-                {instructions.config}
-              </pre>
-              <CopyButton text={instructions.config} />
-            </div>
-
-            <p className="text-xs text-foreground/40 mt-3">
-              Optional: clone the repo and set <code className="font-mono bg-lavender-50 px-1 rounded">TORCHLEET_ROOT</code> for richer notebook-based hints.
-            </p>
-          </div>
+              <div className="relative">
+                <div className="text-xs font-mono text-foreground/40 mb-1.5">{instructions.configLabel}</div>
+                <pre className="bg-[#1a1625] text-[#e2e0ea] rounded-xl p-4 pr-20 text-sm font-mono overflow-x-auto leading-relaxed">
+                  {instructions.config}
+                </pre>
+                <CopyButton text={instructions.config} />
+              </div>
+            </motion.div>
+          </AnimatePresence>
         </Section>
 
         {/* Prompts */}
@@ -333,11 +387,21 @@ export default function AITutorPage() {
                     {wf.prompt}
                   </span>
                 </div>
-                <div className="p-6 space-y-4">
+                <motion.div
+                  className="p-6 space-y-4"
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true }}
+                  variants={{ visible: { transition: { staggerChildren: 0.1, delayChildren: 0.2 } } }}
+                >
                   {wf.conversation.map((msg, mi) => (
-                    <div
+                    <motion.div
                       key={mi}
-                      className={`flex gap-3 ${msg.role === "user" ? "" : ""}`}
+                      variants={{
+                        hidden: { opacity: 0, x: msg.role === "user" ? -12 : 12 },
+                        visible: { opacity: 1, x: 0 },
+                      }}
+                      className="flex gap-3"
                     >
                       <div className={`shrink-0 w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold ${
                         msg.role === "user"
@@ -353,9 +417,9 @@ export default function AITutorPage() {
                           <p key={li} className={li > 0 ? "mt-2" : ""}>{line}</p>
                         ))}
                       </div>
-                    </div>
+                    </motion.div>
                   ))}
-                </div>
+                </motion.div>
               </motion.div>
             ))}
           </div>
