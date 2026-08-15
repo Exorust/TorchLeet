@@ -194,6 +194,7 @@ Company-tagged questions from real ML/AI interviews. Sorted by topic.
 | DDIM Sampling + Classifier-Free Guidance | Hard | Midjourney, Runway, Stability AI, Adobe | [Q](v3/modern-architectures/ddim-cfg/ddim-cfg.ipynb) / [S](v3/modern-architectures/ddim-cfg/ddim-cfg_SOLN.ipynb) |
 | Selective State Space Model (Mamba) | Hard | DeepMind, Google, Anthropic | [Q](v3/modern-architectures/mamba/mamba.ipynb) / [S](v3/modern-architectures/mamba/mamba_SOLN.ipynb) |
 | Vision Transformer + MAE Pretraining | Hard | Meta, Google, Apple, Tesla, Waymo | [Q](v3/modern-architectures/vit-mae/vit-mae.ipynb) / [S](v3/modern-architectures/vit-mae/vit-mae_SOLN.ipynb) |
+| Swin Transformer Block (Shifted Window Attention) | Hard | Microsoft, Meta, ByteDance, Google | [Q](v3/modern-architectures/swin-transformer/swin-transformer.ipynb) / [S](v3/modern-architectures/swin-transformer/swin-transformer_SOLN.ipynb) |
 
 ### Alignment & Training
 | Problem | Difficulty | Companies | Links |

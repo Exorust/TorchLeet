@@ -977,7 +977,24 @@ const v3Questions: Omit<Question, "description" | "tracks" | "llmPathOrder" | "l
     solutionPath: "v3/gpu-systems/ring-attention/ring-attention_SOLN.ipynb",
     hasNotebook: true,
   },
+
+  // modern-architectures (31)
+  {
+    id: "v3-31",
+    set: "v3",
+    number: 31,
+    title: "Implement a Swin Transformer Block (Shifted Window Attention)",
+    difficulty: "hard",
+    category: "modern-architectures",
+    companies: ["Microsoft", "Meta", "ByteDance", "Google"],
+    questionPath:
+      "v3/modern-architectures/swin-transformer/swin-transformer.ipynb",
+    solutionPath:
+      "v3/modern-architectures/swin-transformer/swin-transformer_SOLN.ipynb",
+    hasNotebook: true,
+  },
 ];
+
 
 // ---------------------------------------------------------------------------
 // Descriptions
@@ -1064,6 +1081,7 @@ const DESCRIPTIONS: Record<string, string> = {
   "v3-28": "Combine KV caching, continuous batching, and memory management into a production-grade inference server.",
   "v3-29": "Train a smaller student model to match a larger teacher's soft predictions using temperature-scaled KL divergence loss.",
   "v3-30": "Distribute attention computation across GPUs in a ring topology, enabling context lengths that exceed single-GPU memory.",
+  "v3-31": "Build a Swin Transformer block from scratch: window partition, shifted-window attention masks, and a learned relative position bias.",
 };
 
 // ---------------------------------------------------------------------------
