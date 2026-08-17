@@ -1,0 +1,39 @@
+id = "knn"
+legacy_ids = ["v3-3"]
+title = "Implement KNN in PyTorch"
+description = "Build k-nearest neighbors classification using vectorized distance computation and top-k selection on tensors."
+difficulty = "easy"
+frequency = "common"   # very-likely | common | emerging (derived from company reports)
+number = 3
+set = "v3"
+category = "classical-ml"
+tracks = ["basics"]
+
+# GENERATED from the grader spec — edit python/torchleet/problems/*.py, then run: generate.py hints
+hints = [
+  "torch.cdist gives every test-to-train distance in one call.",
+  "topk(..., largest=False) picks the nearest neighbours.",
+  "Predict the majority label among those neighbours (torch.mode helps).",
+]
+
+[notebooks]
+question = "knn.ipynb"
+solution = "knn_SOLN.ipynb"
+
+[grading]
+tier = "B"        # A=auto-graded B=partial C=not auto-graded (SEEDED, confirm)
+entries = ["knn_predict"]
+extras = []
+device = "cpu"
+
+[[companies]]
+name = "Uber"
+confidence = "inferred"   # inferred | reported
+
+[[companies]]
+name = "LinkedIn"
+confidence = "inferred"   # inferred | reported
+
+[[companies]]
+name = "Meta"
+confidence = "inferred"   # inferred | reported

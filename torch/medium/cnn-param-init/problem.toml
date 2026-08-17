@@ -1,0 +1,26 @@
+id = "cnn-param-init"
+legacy_ids = ["v1-15"]
+title = "CNN Parameter Initialization"
+description = "Explore how different weight initialization strategies (Xavier, Kaiming, etc.) affect CNN training convergence."
+difficulty = "medium"
+frequency = "emerging"   # very-likely | common | emerging (derived from company reports)
+number = 15
+set = "v1"
+tracks = ["basics"]
+
+# GENERATED from the grader spec — edit python/torchleet/problems/*.py, then run: generate.py hints
+hints = [
+  "config_init returns the initializer *function*, it does not run it — you use it as `model.apply(config_init('xavier'))`.",
+  "Each initializer takes one module and should only touch it when it is an nn.Conv2d or nn.Linear; apply() walks containers and activations too.",
+  "torch.nn.init has all four: zeros_, normal_, xavier_normal_ (variance 1/n) and kaiming_normal_ (variance 2/n). Do not forget the bias.",
+]
+
+[notebooks]
+question = "CNN_ParamInit.ipynb"
+solution = "CNN_ParamInit_SOLN.ipynb"
+
+[grading]
+tier = "C"        # A=auto-graded B=partial C=not auto-graded (SEEDED, confirm)
+entries = ["config_init"]
+extras = ["torchvision"]
+device = "cpu"

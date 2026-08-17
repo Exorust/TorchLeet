@@ -1,0 +1,51 @@
+id = "kv-cache"
+legacy_ids = ["v3-12"]
+title = "Implement KV Cache for Autoregressive Generation"
+description = "Cache key and value tensors from previous timesteps so each new token only computes attention over one new position."
+difficulty = "medium"
+frequency = "very-likely"   # very-likely | common | emerging (derived from company reports)
+number = 12
+set = "v3"
+category = "llm-inference"
+tracks = ["advanced", "llm-path"]
+
+# GENERATED from the grader spec — edit python/torchleet/problems/*.py, then run: generate.py hints
+hints = [
+  "The cache holds (batch, heads, seq_len, d_head). What changes as you decode?",
+  "update() appends the new K/V along the seq_len dimension (dim=2).",
+  "In cached mode you compute Q/K/V for the new token only, then attend over the full cached K/V. No causal mask is needed — the cache only holds the past.",
+]
+
+[notebooks]
+question = "kv-cache.ipynb"
+solution = "kv-cache_SOLN.ipynb"
+
+[grading]
+tier = "A"        # A=auto-graded B=partial C=not auto-graded (SEEDED, confirm)
+entries = ["KVCache", "CachedAttention"]
+extras = []
+device = "cpu"
+
+[llm_path]
+order = 8
+stage = "core-transformer"
+
+[[companies]]
+name = "Anthropic"
+confidence = "inferred"   # inferred | reported
+
+[[companies]]
+name = "OpenAI"
+confidence = "inferred"   # inferred | reported
+
+[[companies]]
+name = "Meta"
+confidence = "inferred"   # inferred | reported
+
+[[companies]]
+name = "Perplexity"
+confidence = "inferred"   # inferred | reported
+
+[[companies]]
+name = "Together AI"
+confidence = "inferred"   # inferred | reported

@@ -1,0 +1,26 @@
+id = "tensorboard"
+legacy_ids = ["v1-6"]
+title = "Visualize Training with TensorBoard"
+description = "Log training metrics, model graphs, and embeddings to TensorBoard for interactive visualization."
+difficulty = "basic"
+frequency = "emerging"   # very-likely | common | emerging (derived from company reports)
+number = 6
+set = "v1"
+tracks = ["basics"]
+
+# GENERATED from the grader spec — edit python/torchleet/problems/*.py, then run: generate.py hints
+hints = [
+  "The model itself is a plain nn.Linear(1, 1).",
+  "Log with writer.add_scalar('Loss/train', loss.item(), step).",
+  "Run `tensorboard --logdir=runs` to view it.",
+]
+
+[notebooks]
+question = "tensorboard.ipynb"
+solution = "tensorboard_SOLN.ipynb"
+
+[grading]
+tier = "C"        # A=auto-graded B=partial C=not auto-graded (SEEDED, confirm)
+entries = ["LinearRegressionModel"]
+extras = []
+device = "cpu"

@@ -1,0 +1,43 @@
+id = "softmax"
+legacy_ids = ["v3-1"]
+title = "Implement Softmax from Scratch"
+description = "Build numerically stable softmax using the log-sum-exp trick, handling overflow and underflow in raw tensor math."
+difficulty = "easy"
+frequency = "very-likely"   # very-likely | common | emerging (derived from company reports)
+number = 1
+set = "v3"
+category = "classical-ml"
+tracks = ["basics"]
+
+# GENERATED from the grader spec — edit python/torchleet/problems/*.py, then run: generate.py hints
+hints = [
+  "exp() of a large number overflows. What can you subtract without changing the result?",
+  "softmax(x) == softmax(x - c) for any constant c. Pick c = max(x) along `dim`.",
+  "Keep dims when you take the max and the sum so broadcasting lines up.",
+]
+
+[notebooks]
+question = "softmax.ipynb"
+solution = "softmax_SOLN.ipynb"
+
+[grading]
+tier = "A"        # A=auto-graded B=partial C=not auto-graded (SEEDED, confirm)
+entries = ["softmax"]
+extras = []
+device = "cpu"
+
+[[companies]]
+name = "Apple"
+confidence = "inferred"   # inferred | reported
+
+[[companies]]
+name = "Meta"
+confidence = "inferred"   # inferred | reported
+
+[[companies]]
+name = "Google"
+confidence = "inferred"   # inferred | reported
+
+[[companies]]
+name = "Amazon"
+confidence = "inferred"   # inferred | reported

@@ -1,0 +1,26 @@
+id = "cnn-scratch"
+legacy_ids = ["v1-16"]
+title = "Implement a CNN from Scratch"
+description = "Build convolutional layers from raw tensor operations — implementing forward passes with cross-correlation and learnable filters."
+difficulty = "medium"
+frequency = "emerging"   # very-likely | common | emerging (derived from company reports)
+number = 16
+set = "v1"
+tracks = ["basics"]
+
+# GENERATED from the grader spec — edit python/torchleet/problems/*.py, then run: generate.py hints
+hints = [
+  "Output size is (H + 2*padding - kernel) // stride + 1 per spatial dim.",
+  "F.unfold turns sliding windows into columns if you want to avoid Python loops.",
+  "Do not forget to add the bias, once per output channel.",
+]
+
+[notebooks]
+question = "CNN_scratch.ipynb"
+solution = "CNN_scratch_SOLN.ipynb"
+
+[grading]
+tier = "C"        # A=auto-graded B=partial C=not auto-graded (SEEDED, confirm)
+entries = ["Conv2dCustom", "MaxPool2dCustom"]
+extras = ["torchvision"]
+device = "cpu"

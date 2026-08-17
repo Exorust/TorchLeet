@@ -1,0 +1,31 @@
+id = "grouped-query-attention"
+legacy_ids = ["v2-8"]
+title = "Implement Grouped Query Attention from Scratch"
+description = "Build GQA where multiple query heads share key-value heads, reducing KV cache memory while preserving quality."
+difficulty = "medium"
+frequency = "emerging"   # very-likely | common | emerging (derived from company reports)
+number = 8
+set = "v2"
+category = "modern-architectures"
+tracks = ["advanced", "llm-path"]
+
+# GENERATED from the grader spec — edit python/torchleet/problems/*.py, then run: generate.py hints
+hints = [
+  "Queries keep all their heads; keys and values only have num_query_groups heads.",
+  "Project K/V to num_query_groups * d_head, not to d_model — that is where the saving comes from.",
+  "repeat_interleave each K/V head across the query heads that share it, then attend as usual.",
+]
+
+[notebooks]
+question = "grouped-query-attention-Question.ipynb"
+solution = "grouped-query-attention.ipynb"
+
+[grading]
+tier = "A"        # A=auto-graded B=partial C=not auto-graded (SEEDED, confirm)
+entries = ["grouped_query_attention"]
+extras = []
+device = "cpu"
+
+[llm_path]
+order = 7
+stage = "core-transformer"

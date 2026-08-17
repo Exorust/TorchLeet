@@ -1,0 +1,43 @@
+id = "grpo"
+legacy_ids = ["v3-27"]
+title = "Implement GRPO (DeepSeek-R1 Algorithm)"
+description = "Build Group Relative Policy Optimization that scores multiple completions per prompt and uses group-relative advantages."
+difficulty = "expert"
+frequency = "common"   # very-likely | common | emerging (derived from company reports)
+number = 27
+set = "v3"
+category = "alignment-training"
+tracks = ["advanced", "llm-path"]
+
+# GENERATED from the grader spec — edit python/torchleet/problems/*.py, then run: generate.py hints
+hints = [
+  "Generation: repeat_interleave each prompt group_size times so one prompt's completions sit in a contiguous block, then sample token by token.",
+  "Advantages are normalised INSIDE each group: reshape rewards to (num_prompts, group_size), subtract the row mean, divide by the row std + eps. No value model, no global mean.",
+  "grpo_loss = -mean(min(ratio*A, clip(ratio, 1-eps, 1+eps)*A)) + beta*KL, with ratio = exp(policy_logps - old_logps) and A broadcast over the tokens of its sequence.",
+]
+
+[notebooks]
+question = "grpo.ipynb"
+solution = "grpo_SOLN.ipynb"
+
+[grading]
+tier = "A"        # A=auto-graded B=partial C=not auto-graded (SEEDED, confirm)
+entries = ["generate_group_completions", "compute_group_advantages", "grpo_loss"]
+extras = []
+device = "cpu"
+
+[llm_path]
+order = 16
+stage = "alignment"
+
+[[companies]]
+name = "DeepMind"
+confidence = "inferred"   # inferred | reported
+
+[[companies]]
+name = "Anthropic"
+confidence = "inferred"   # inferred | reported
+
+[[companies]]
+name = "OpenAI"
+confidence = "inferred"   # inferred | reported

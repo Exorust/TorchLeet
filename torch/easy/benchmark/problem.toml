@@ -1,0 +1,26 @@
+id = "benchmark"
+legacy_ids = ["v1-11"]
+title = "Add Benchmarking to PyTorch Code"
+description = "Profile PyTorch operations using torch.utils.benchmark, measuring GPU/CPU time and comparing implementations."
+difficulty = "easy"
+frequency = "emerging"   # very-likely | common | emerging (derived from company reports)
+number = 11
+set = "v1"
+tracks = ["basics"]
+
+# GENERATED from the grader spec — edit python/torchleet/problems/*.py, then run: generate.py hints
+hints = [
+  "Flatten the 28x28 image before the first Linear layer.",
+  "Use time.perf_counter() around the epoch, not time.time().",
+  "On CUDA you must torch.cuda.synchronize() before stopping the clock.",
+]
+
+[notebooks]
+question = "bench.ipynb"
+solution = "bench_SOLN.ipynb"
+
+[grading]
+tier = "C"        # A=auto-graded B=partial C=not auto-graded (SEEDED, confirm)
+entries = ["SimpleNN"]
+extras = ["torchvision"]
+device = "cpu"

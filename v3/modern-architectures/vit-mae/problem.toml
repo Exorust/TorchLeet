@@ -1,0 +1,47 @@
+id = "vit-mae"
+legacy_ids = ["v3-23"]
+title = "Implement Vision Transformer + MAE Pretraining"
+description = "Build ViT with masked autoencoder pretraining — randomly mask patches, encode visible ones, decode to reconstruct."
+difficulty = "hard"
+frequency = "very-likely"   # very-likely | common | emerging (derived from company reports)
+number = 23
+set = "v3"
+category = "modern-architectures"
+tracks = ["advanced"]
+
+# GENERATED from the grader spec — edit python/torchleet/problems/*.py, then run: generate.py hints
+hints = [
+  "PatchEmbedding is a Conv2d with kernel_size = stride = patch_size, then flatten(2).transpose(1, 2) to get (B, n_patches, embed_dim).",
+  "ViT: prepend a learned [CLS] token, add a positional embedding of length n_patches + 1, run the encoder, and return either the CLS row or every token.",
+  "MAE: shuffle patch indices with argsort(rand), keep the first int(N*(1-mask_ratio)), encode only those, re-insert mask tokens, unshuffle with ids_restore, and average the squared error over MASKED patches only -- (per_patch_mse * mask).sum() / mask.sum().",
+]
+
+[notebooks]
+question = "vit-mae.ipynb"
+solution = "vit-mae_SOLN.ipynb"
+
+[grading]
+tier = "B"        # A=auto-graded B=partial C=not auto-graded (SEEDED, confirm)
+entries = ["PatchEmbedding", "ViT", "MAE"]
+extras = ["matplotlib", "numpy"]
+device = "cpu"
+
+[[companies]]
+name = "Meta"
+confidence = "inferred"   # inferred | reported
+
+[[companies]]
+name = "Google"
+confidence = "inferred"   # inferred | reported
+
+[[companies]]
+name = "Apple"
+confidence = "inferred"   # inferred | reported
+
+[[companies]]
+name = "Tesla"
+confidence = "inferred"   # inferred | reported
+
+[[companies]]
+name = "Waymo"
+confidence = "inferred"   # inferred | reported

@@ -1,0 +1,26 @@
+id = "lstm"
+legacy_ids = ["v1-17"]
+title = "Implement an LSTM from Scratch"
+description = "Code the LSTM cell equations from scratch: forget gate, input gate, cell state update, and output gate using raw tensors."
+difficulty = "medium"
+frequency = "emerging"   # very-likely | common | emerging (derived from company reports)
+number = 17
+set = "v1"
+tracks = ["basics"]
+
+# GENERATED from the grader spec — edit python/torchleet/problems/*.py, then run: generate.py hints
+hints = [
+  "CustomLSTMModel(input_dim, hidden_units).forward(inputs, H_C=None) returns (predictions, (H, C)) with predictions shaped (batch, seq_len, 1).",
+  "Per timestep: i, f, o = sigmoid(...), C~ = tanh(...), C = f*C + i*C~, H = o*tanh(C). Stack every H and push the stack through the Linear.",
+  "When H_C is given, start from it instead of a fresh state — that is what makes the model resumable, and zeros (not randn) are the right default.",
+]
+
+[notebooks]
+question = "LSTM.ipynb"
+solution = "LSTM_SOLN.ipynb"
+
+[grading]
+tier = "C"        # A=auto-graded B=partial C=not auto-graded (SEEDED, confirm)
+entries = ["CustomLSTMModel", "LSTMModel"]
+extras = ["matplotlib"]
+device = "cpu"

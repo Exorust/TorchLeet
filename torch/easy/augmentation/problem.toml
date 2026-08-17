@@ -1,0 +1,19 @@
+id = "augmentation"
+legacy_ids = ["v1-10"]
+title = "Data Augmentation with torchvision.transforms"
+description = "Apply random flips, crops, color jitter, and other augmentations to training images using torchvision's transform pipeline."
+difficulty = "easy"
+frequency = "emerging"   # very-likely | common | emerging (derived from company reports)
+number = 10
+set = "v1"
+tracks = ["basics"]
+
+[notebooks]
+question = "augmentation.ipynb"
+solution = "augmentation_SOLN.ipynb"
+
+[grading]
+tier = "C"        # A=auto-graded B=partial C=not auto-graded (SEEDED, confirm)
+entries = []
+extras = ["matplotlib", "numpy", "torchvision"]
+device = "cpu"

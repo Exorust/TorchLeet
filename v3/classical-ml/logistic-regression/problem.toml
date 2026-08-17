@@ -1,0 +1,39 @@
+id = "logistic-regression"
+legacy_ids = ["v3-4"]
+title = "Implement Logistic Regression with Gradient Descent"
+description = "Build binary logistic regression from scratch with sigmoid, binary cross-entropy, and manual gradient descent updates."
+difficulty = "easy"
+frequency = "common"   # very-likely | common | emerging (derived from company reports)
+number = 4
+set = "v3"
+category = "classical-ml"
+tracks = ["basics"]
+
+# GENERATED from the grader spec — edit python/torchleet/problems/*.py, then run: generate.py hints
+hints = [
+  "sigmoid(z) = 1 / (1 + exp(-z)).",
+  "BCE = -mean(y*log(p) + (1-y)*log(1-p)); clamp p away from 0 and 1 first.",
+  "Train with gradient descent on the BCE of sigmoid(Xw + b).",
+]
+
+[notebooks]
+question = "logistic-regression.ipynb"
+solution = "logistic-regression_SOLN.ipynb"
+
+[grading]
+tier = "A"        # A=auto-graded B=partial C=not auto-graded (SEEDED, confirm)
+entries = ["sigmoid", "bce_loss", "train_logistic_regression"]
+extras = []
+device = "cpu"
+
+[[companies]]
+name = "Google"
+confidence = "inferred"   # inferred | reported
+
+[[companies]]
+name = "Meta"
+confidence = "inferred"   # inferred | reported
+
+[[companies]]
+name = "Amazon"
+confidence = "inferred"   # inferred | reported

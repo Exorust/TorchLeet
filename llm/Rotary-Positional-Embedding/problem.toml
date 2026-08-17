@@ -1,0 +1,31 @@
+id = "rotary-positional-embedding"
+legacy_ids = ["v2-11"]
+title = "Implement ROPE Embeddings"
+description = "Build Rotary Position Embeddings that encode relative positions by rotating query and key vectors in complex space."
+difficulty = "medium"
+frequency = "emerging"   # very-likely | common | emerging (derived from company reports)
+number = 11
+set = "v2"
+category = "modern-architectures"
+tracks = ["advanced", "llm-path"]
+
+# GENERATED from the grader spec — edit python/torchleet/problems/*.py, then run: generate.py hints
+hints = [
+  "rotate_half splits the last dim in two and returns (-x2, x1) concatenated.",
+  "Rotated q = q*cos + rotate_half(q)*sin — the 2D rotation written elementwise.",
+  "cos and sin must broadcast against (batch, heads, seq, dim).",
+]
+
+[notebooks]
+question = "rope-q8-Question.ipynb"
+solution = "rope-q8.ipynb"
+
+[grading]
+tier = "C"        # A=auto-graded B=partial C=not auto-graded (SEEDED, confirm)
+entries = ["rotate_half", "apply_rotary_pos_emb"]
+extras = []
+device = "cpu"
+
+[llm_path]
+order = 3
+stage = "foundations"

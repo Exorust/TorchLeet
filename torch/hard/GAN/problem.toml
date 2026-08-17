@@ -1,0 +1,26 @@
+id = "gan"
+legacy_ids = ["v1-27"]
+title = "Write a GAN"
+description = "Implement a generative adversarial network with competing generator and discriminator networks trained via minimax loss."
+difficulty = "hard"
+frequency = "emerging"   # very-likely | common | emerging (derived from company reports)
+number = 27
+set = "v1"
+tracks = ["advanced"]
+
+# GENERATED from the grader spec — edit python/torchleet/problems/*.py, then run: generate.py hints
+hints = [
+  "Generator(input_dim, output_dim) maps a latent vector to one fake sample; Discriminator(input_dim) maps a sample to a single number.",
+  "End the generator with Tanh so samples live in [-1, 1], and the discriminator with Sigmoid so its output is a probability BCELoss can take.",
+  "When you train the generator do NOT detach the fake batch — the gradient has to flow back through the discriminator into the generator.",
+]
+
+[notebooks]
+question = "GAN.ipynb"
+solution = "GAN_SOLN.ipynb"
+
+[grading]
+tier = "C"        # A=auto-graded B=partial C=not auto-graded (SEEDED, confirm)
+entries = ["Generator", "Discriminator"]
+extras = []
+device = "cpu"

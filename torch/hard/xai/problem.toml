@@ -1,0 +1,19 @@
+id = "xai"
+legacy_ids = ["v1-31"]
+title = "Explainable AI (GradCAM/SHAP)"
+description = "Visualize which image regions drive CNN predictions using Grad-CAM heatmaps and SHAP feature attributions."
+difficulty = "hard"
+frequency = "emerging"   # very-likely | common | emerging (derived from company reports)
+number = 31
+set = "v1"
+tracks = ["advanced"]
+
+[notebooks]
+question = "xai.ipynb"
+solution = "xai_SOLN.ipynb"
+
+[grading]
+tier = "C"        # A=auto-graded B=partial C=not auto-graded (SEEDED, confirm)
+entries = []
+extras = ["PIL", "matplotlib", "torchvision"]
+device = "cpu"

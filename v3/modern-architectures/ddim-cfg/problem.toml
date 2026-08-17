@@ -1,0 +1,43 @@
+id = "ddim-cfg"
+legacy_ids = ["v3-21"]
+title = "Implement DDIM Sampling + Classifier-Free Guidance"
+description = "Build deterministic DDIM sampling with classifier-free guidance to control image generation quality and conditioning adherence."
+difficulty = "hard"
+frequency = "very-likely"   # very-likely | common | emerging (derived from company reports)
+number = 21
+set = "v3"
+category = "modern-architectures"
+tracks = ["advanced"]
+
+# GENERATED from the grader spec — edit python/torchleet/problems/*.py, then run: generate.py hints
+hints = [
+  "The null/unconditional label is the extra embedding row at index num_classes, so the class embedding table needs num_classes + 1 entries.",
+  "CFG: eps = eps_uncond + guidance_scale * (eps_cond - eps_uncond). At guidance_scale = 1 that is exactly eps_cond.",
+  "DDIM (eta=0): x0_pred = (x_t - sqrt(1-abar_t)*eps) / sqrt(abar_t), then x_prev = sqrt(abar_prev)*x0_pred + sqrt(1-abar_prev)*eps. No randn anywhere in the step — the only randomness is the initial x_T.",
+]
+
+[notebooks]
+question = "ddim-cfg.ipynb"
+solution = "ddim-cfg_SOLN.ipynb"
+
+[grading]
+tier = "A"        # A=auto-graded B=partial C=not auto-graded (SEEDED, confirm)
+entries = ["ConditionalDenoiser", "ddim_sample_step", "guided_predict", "ddim_sample_loop"]
+extras = ["matplotlib", "numpy"]
+device = "cpu"
+
+[[companies]]
+name = "Midjourney"
+confidence = "inferred"   # inferred | reported
+
+[[companies]]
+name = "Runway"
+confidence = "inferred"   # inferred | reported
+
+[[companies]]
+name = "Stability AI"
+confidence = "inferred"   # inferred | reported
+
+[[companies]]
+name = "Adobe"
+confidence = "inferred"   # inferred | reported

@@ -1,0 +1,47 @@
+id = "dpo"
+legacy_ids = ["v3-14"]
+title = "Implement DPO Loss from Scratch"
+description = "Compute the Direct Preference Optimization loss that trains a policy directly from preference pairs without a reward model."
+difficulty = "hard"
+frequency = "very-likely"   # very-likely | common | emerging (derived from company reports)
+number = 14
+set = "v3"
+category = "alignment-training"
+tracks = ["advanced", "llm-path"]
+
+# GENERATED from the grader spec — edit python/torchleet/problems/*.py, then run: generate.py hints
+hints = [
+  "get_batch_logps sums the log-probability of each actual next token in the sequence.",
+  "Shift by one: logits at position t predict the token at position t+1.",
+  "DPO = -logsigmoid(beta * ((pi_chosen - ref_chosen) - (pi_rejected - ref_rejected))).",
+]
+
+[notebooks]
+question = "dpo.ipynb"
+solution = "dpo_SOLN.ipynb"
+
+[grading]
+tier = "A"        # A=auto-graded B=partial C=not auto-graded (SEEDED, confirm)
+entries = ["get_batch_logps", "dpo_loss"]
+extras = []
+device = "cpu"
+
+[llm_path]
+order = 14
+stage = "alignment"
+
+[[companies]]
+name = "Anthropic"
+confidence = "inferred"   # inferred | reported
+
+[[companies]]
+name = "OpenAI"
+confidence = "inferred"   # inferred | reported
+
+[[companies]]
+name = "DeepMind"
+confidence = "inferred"   # inferred | reported
+
+[[companies]]
+name = "Meta"
+confidence = "inferred"   # inferred | reported

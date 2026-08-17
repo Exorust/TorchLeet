@@ -1,0 +1,31 @@
+id = "implement-attention-from-scratch"
+legacy_ids = ["v2-6"]
+title = "Implement Attention from Scratch"
+description = "Build scaled dot-product attention from raw matrix operations — queries, keys, values, scaling, and softmax."
+difficulty = "medium"
+frequency = "emerging"   # very-likely | common | emerging (derived from company reports)
+number = 6
+set = "v2"
+category = "modern-architectures"
+tracks = ["advanced", "llm-path"]
+
+# GENERATED from the grader spec — edit python/torchleet/problems/*.py, then run: generate.py hints
+hints = [
+  "scores = q @ k.transpose(-2,-1) / sqrt(d_k), then softmax, then @ v.",
+  "Divide by sqrt(d_k) or the softmax saturates as dimension grows.",
+  "Masked positions become -inf BEFORE the softmax, not zero after it.",
+]
+
+[notebooks]
+question = "attention-q4-Question.ipynb"
+solution = "attention-q4.ipynb"
+
+[grading]
+tier = "A"        # A=auto-graded B=partial C=not auto-graded (SEEDED, confirm)
+entries = ["scaled_dot_product_attention"]
+extras = []
+device = "cpu"
+
+[llm_path]
+order = 5
+stage = "foundations"

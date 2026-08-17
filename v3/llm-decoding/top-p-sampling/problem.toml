@@ -1,0 +1,51 @@
+id = "top-p-sampling"
+legacy_ids = ["v3-7"]
+title = "Implement Top-p (Nucleus) Sampling"
+description = "Sort logits, compute cumulative probabilities, mask tokens below the nucleus threshold, and sample from the filtered distribution."
+difficulty = "medium"
+frequency = "very-likely"   # very-likely | common | emerging (derived from company reports)
+number = 7
+set = "v3"
+category = "llm-decoding"
+tracks = ["llm-path"]
+
+# GENERATED from the grader spec — edit python/torchleet/problems/*.py, then run: generate.py hints
+hints = [
+  "Sort probabilities descending, then take the smallest prefix whose cumulative mass >= p.",
+  "Always keep at least one token, or a peaked distribution can select nothing.",
+  "Renormalize the surviving probabilities before sampling from them.",
+]
+
+[notebooks]
+question = "top-p-sampling.ipynb"
+solution = "top-p-sampling_SOLN.ipynb"
+
+[grading]
+tier = "A"        # A=auto-graded B=partial C=not auto-graded (SEEDED, confirm)
+entries = ["top_p_sample"]
+extras = []
+device = "cpu"
+
+[llm_path]
+order = 19
+stage = "decoding-inference"
+
+[[companies]]
+name = "Anthropic"
+confidence = "inferred"   # inferred | reported
+
+[[companies]]
+name = "OpenAI"
+confidence = "inferred"   # inferred | reported
+
+[[companies]]
+name = "DeepMind"
+confidence = "inferred"   # inferred | reported
+
+[[companies]]
+name = "Perplexity"
+confidence = "inferred"   # inferred | reported
+
+[[companies]]
+name = "Cohere"
+confidence = "inferred"   # inferred | reported

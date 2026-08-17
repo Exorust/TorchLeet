@@ -1,0 +1,47 @@
+id = "speculative-decoding"
+legacy_ids = ["v3-18"]
+title = "Implement Speculative Decoding"
+description = "Draft tokens with a fast model, verify in parallel with the target model, and accept/reject to guarantee identical output distribution."
+difficulty = "hard"
+frequency = "very-likely"   # very-likely | common | emerging (derived from company reports)
+number = 18
+set = "v3"
+category = "llm-inference"
+tracks = ["advanced", "llm-path"]
+
+# GENERATED from the grader spec — edit python/torchleet/problems/*.py, then run: generate.py hints
+hints = [
+  "Draft phase: sample K tokens from the draft one at a time, keeping the draft probability q(x_i) of each. Verification: ONE target forward over prompt + all K drafts gives every p(x_i) at once.",
+  "Accept token i with probability min(1, p(x_i)/q(x_i)). On rejection, stop and sample the replacement from the normalised residual max(0, p - q) — that correction is what keeps the output distribution exactly the target's.",
+  "The target logits that score draft token i live at position prompt_len - 1 + i. If all K are accepted you get a free bonus token from position prompt_len + K - 1.",
+]
+
+[notebooks]
+question = "speculative-decoding.ipynb"
+solution = "speculative-decoding_SOLN.ipynb"
+
+[grading]
+tier = "C"        # A=auto-graded B=partial C=not auto-graded (SEEDED, confirm)
+entries = ["DraftModel", "TargetModel", "standard_decode", "speculative_decode"]
+extras = []
+device = "cpu"
+
+[llm_path]
+order = 20
+stage = "decoding-inference"
+
+[[companies]]
+name = "Google"
+confidence = "inferred"   # inferred | reported
+
+[[companies]]
+name = "DeepMind"
+confidence = "inferred"   # inferred | reported
+
+[[companies]]
+name = "Anthropic"
+confidence = "inferred"   # inferred | reported
+
+[[companies]]
+name = "Apple"
+confidence = "inferred"   # inferred | reported

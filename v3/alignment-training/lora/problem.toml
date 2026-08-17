@@ -1,0 +1,51 @@
+id = "lora"
+legacy_ids = ["v3-11"]
+title = "Implement LoRA on a Linear Layer"
+description = "Inject trainable low-rank decomposition matrices (A, B) into a frozen linear layer for parameter-efficient fine-tuning."
+difficulty = "medium"
+frequency = "very-likely"   # very-likely | common | emerging (derived from company reports)
+number = 11
+set = "v3"
+category = "alignment-training"
+tracks = ["advanced", "llm-path"]
+
+# GENERATED from the grader spec — edit python/torchleet/problems/*.py, then run: generate.py hints
+hints = [
+  "LoRA adds a low-rank detour: output = W@x + (alpha/r) * (x@A)@B.",
+  "A is (d_in, rank) and B is (rank, d_out); the base layer's weights are frozen.",
+  "Merging means W_new = W_old + scaling * (A@B).T — same maths, one matrix.",
+]
+
+[notebooks]
+question = "lora.ipynb"
+solution = "lora_SOLN.ipynb"
+
+[grading]
+tier = "A"        # A=auto-graded B=partial C=not auto-graded (SEEDED, confirm)
+entries = ["LoRALinear", "apply_lora", "merge_lora"]
+extras = []
+device = "cpu"
+
+[llm_path]
+order = 12
+stage = "alignment"
+
+[[companies]]
+name = "Meta"
+confidence = "inferred"   # inferred | reported
+
+[[companies]]
+name = "Google"
+confidence = "inferred"   # inferred | reported
+
+[[companies]]
+name = "Anthropic"
+confidence = "inferred"   # inferred | reported
+
+[[companies]]
+name = "OpenAI"
+confidence = "inferred"   # inferred | reported
+
+[[companies]]
+name = "Databricks"
+confidence = "inferred"   # inferred | reported

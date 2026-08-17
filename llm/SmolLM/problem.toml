@@ -1,0 +1,31 @@
+id = "smollm"
+legacy_ids = ["v2-12"]
+title = "Implement SmolLM from Scratch"
+description = "Build a complete small language model end-to-end: tokenizer integration, transformer blocks, and autoregressive text generation."
+difficulty = "hard"
+frequency = "emerging"   # very-likely | common | emerging (derived from company reports)
+number = 12
+set = "v2"
+category = "modern-architectures"
+tracks = ["advanced", "llm-path"]
+
+# GENERATED from the grader spec — edit python/torchleet/problems/*.py, then run: generate.py hints
+hints = [
+  "rotate_half splits the last dim in half and returns (-x2, x1) concatenated.",
+  "repeat_kv expands each KV head n_rep times *in place* so head i of Q pairs with KV head i // n_rep — expand + reshape, not a plain repeat/tile.",
+  "RopeAttention: project, split into num_heads (Q) and kv_heads (K/V), rotate Q and K, repeat_kv the K/V, then scaled dot-product attention plus the additive mask.",
+]
+
+[notebooks]
+question = "smollm-q12-Question.ipynb"
+solution = "smollm-q12.ipynb"
+
+[grading]
+tier = "C"        # A=auto-graded B=partial C=not auto-graded (SEEDED, confirm)
+entries = ["rotate_half", "apply_rotary_pos_emb", "repeat_kv", "RotaryEmbedder", "RopeAttention"]
+extras = ["transformers"]
+device = "cpu"
+
+[llm_path]
+order = 10
+stage = "full-model"

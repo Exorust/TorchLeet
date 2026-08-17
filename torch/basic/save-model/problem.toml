@@ -1,0 +1,19 @@
+id = "save-model"
+legacy_ids = ["v1-7"]
+title = "Save and Load PyTorch Model"
+description = "Serialize model weights with state_dict and reload them, handling device mapping and architecture changes."
+difficulty = "basic"
+frequency = "emerging"   # very-likely | common | emerging (derived from company reports)
+number = 7
+set = "v1"
+tracks = ["basics"]
+
+[notebooks]
+question = "save_model.ipynb"
+solution = "save_model_SOLN.ipynb"
+
+[grading]
+tier = "C"        # A=auto-graded B=partial C=not auto-graded (SEEDED, confirm)
+entries = []
+extras = []
+device = "cpu"

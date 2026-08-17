@@ -1,0 +1,26 @@
+id = "quantize-lm"
+legacy_ids = ["v1-13"]
+title = "Quantize Your Language Model"
+description = "Apply post-training quantization to reduce model size and inference latency while maintaining accuracy."
+difficulty = "easy"
+frequency = "emerging"   # very-likely | common | emerging (derived from company reports)
+number = 13
+set = "v1"
+tracks = ["basics"]
+
+# GENERATED from the grader spec — edit python/torchleet/problems/*.py, then run: generate.py hints
+hints = [
+  "LanguageModel(vocab_size, embed_size, hidden_size, num_layers): Embedding -> LSTM(batch_first=True) -> Linear -> Softmax.",
+  "Predict the *next* token, so take the last timestep of the LSTM output (lstm_out[:, -1, :]) before the Linear — the result is (batch, vocab_size).",
+  "torch.ao.quantization.quantize_dynamic(model, {nn.Linear, nn.LSTM}, dtype=torch.qint8) only rewrites modules it recognises, so build the model out of nn.Linear / nn.LSTM rather than raw matmuls.",
+]
+
+[notebooks]
+question = "quantize-language-model.ipynb"
+solution = "quantize-language-model_SOLN.ipynb"
+
+[grading]
+tier = "C"        # A=auto-graded B=partial C=not auto-graded (SEEDED, confirm)
+entries = ["LanguageModel"]
+extras = []
+device = "cpu"

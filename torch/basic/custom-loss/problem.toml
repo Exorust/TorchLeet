@@ -1,0 +1,26 @@
+id = "custom-loss"
+legacy_ids = ["v1-4"]
+title = "Implement Custom Loss Function (Huber Loss)"
+description = "Build Huber loss from scratch — a robust loss function that's quadratic for small errors and linear for large ones."
+difficulty = "basic"
+frequency = "emerging"   # very-likely | common | emerging (derived from company reports)
+number = 4
+set = "v1"
+tracks = ["basics"]
+
+# GENERATED from the grader spec — edit python/torchleet/problems/*.py, then run: generate.py hints
+hints = [
+  "Huber is quadratic for small errors and linear for large ones.",
+  "The switch happens at |error| == delta.",
+  "0.5*e^2 below the threshold; delta*(|e| - 0.5*delta) above it.",
+]
+
+[notebooks]
+question = "custom-loss.ipynb"
+solution = "custom-loss_SOLN.ipynb"
+
+[grading]
+tier = "C"        # A=auto-graded B=partial C=not auto-graded (SEEDED, confirm)
+entries = ["HuberLoss"]
+extras = []
+device = "cpu"

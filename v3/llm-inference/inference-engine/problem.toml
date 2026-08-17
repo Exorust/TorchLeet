@@ -1,0 +1,47 @@
+id = "inference-engine"
+legacy_ids = ["v3-28"]
+title = "Build a Complete LLM Inference Engine"
+description = "Combine KV caching, continuous batching, and memory management into a production-grade inference server."
+difficulty = "expert"
+frequency = "very-likely"   # very-likely | common | emerging (derived from company reports)
+number = 28
+set = "v3"
+category = "llm-inference"
+tracks = ["advanced", "llm-path"]
+
+# GENERATED from the grader spec — edit python/torchleet/problems/*.py, then run: generate.py hints
+hints = [
+  "The cache stores K and V as (B, heads, seq_len, d_head) and update() concatenates the new step along dim=2. In cached mode you only project the NEW token into q/k/v and attend over the whole cached K/V.",
+  "MiniTransformer has to know where it is: when a cache is passed, the positional embedding index for the incoming token is the cache's current seq_len, not 0.",
+  "top_p keeps the smallest set of tokens whose cumulative probability reaches top_p: sort descending, cumsum, zero out the tail, RENORMALISE, sample, then map the sampled index back through sorted_indices.",
+]
+
+[notebooks]
+question = "inference-engine.ipynb"
+solution = "inference-engine_SOLN.ipynb"
+
+[grading]
+tier = "B"        # A=auto-graded B=partial C=not auto-graded (SEEDED, confirm)
+entries = ["SimpleTokenizer", "KVCache", "MultiHeadAttention", "FeedForward", "TransformerBlock", "MiniTransformer", "top_p_sample", "InferenceEngine"]
+extras = []
+device = "cpu"
+
+[llm_path]
+order = 22
+stage = "decoding-inference"
+
+[[companies]]
+name = "Perplexity"
+confidence = "inferred"   # inferred | reported
+
+[[companies]]
+name = "Together AI"
+confidence = "inferred"   # inferred | reported
+
+[[companies]]
+name = "Anyscale"
+confidence = "inferred"   # inferred | reported
+
+[[companies]]
+name = "Fireworks AI"
+confidence = "inferred"   # inferred | reported

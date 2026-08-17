@@ -1,0 +1,26 @@
+id = "transformer"
+legacy_ids = ["v1-26"]
+title = "Write a Transformer from Scratch"
+description = "Build the full transformer architecture — multi-head attention, positional encoding, encoder-decoder stacks — from raw tensors."
+difficulty = "hard"
+frequency = "emerging"   # very-likely | common | emerging (derived from company reports)
+number = 26
+set = "v1"
+tracks = ["advanced"]
+
+# GENERATED from the grader spec — edit python/torchleet/problems/*.py, then run: generate.py hints
+hints = [
+  "Shapes: everything below the model works on (batch, seq_len, embed_dim) and returns the same shape.",
+  "In attention, split the last dim into (num_heads, head_dim) and move heads next to the batch: (B, H, T, head_dim). Scale the scores by 1/sqrt(head_dim) before the softmax over the *last* axis.",
+  "PositionalEncoding builds a (max_len, d_model) table once with sin(pos/10000^(2i/d)) and cos(...), registers it as a buffer, and forward just adds the first seq_len rows to x.",
+]
+
+[notebooks]
+question = "transformer.ipynb"
+solution = "transformer_SOLN.ipynb"
+
+[grading]
+tier = "C"        # A=auto-graded B=partial C=not auto-graded (SEEDED, confirm)
+entries = ["PositionalEncoding", "MultiHeadSelfAttention", "FeedForward", "TransformerEncoderLayer", "TransformerModel"]
+extras = ["datasets", "transformers"]
+device = "cpu"

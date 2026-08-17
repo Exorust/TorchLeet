@@ -1,0 +1,43 @@
+id = "flash-attention-triton"
+legacy_ids = ["v3-25"]
+title = "Implement FlashAttention-2 in Triton"
+description = "Write the tiled, fused attention kernel that computes exact attention in O(n) memory using online softmax in Triton."
+difficulty = "expert"
+frequency = "very-likely"   # very-likely | common | emerging (derived from company reports)
+number = 25
+set = "v3"
+category = "gpu-systems"
+tracks = ["advanced"]
+
+# GENERATED from the grader spec — edit python/torchleet/problems/*.py, then run: generate.py hints
+hints = [
+  "Outer loop over Q blocks, inner loop over K,V blocks; the only matrix you ever materialize is the (block_q, block_kv) tile of scores.",
+  "Carry running_max, running_sum and running_output per Q block. When a tile raises the max, rescale BOTH the running sum and the running output by exp(old_max - new_max) before adding the tile's contribution.",
+  "Normalize once, after the inner loop: output = running_output / running_sum. The last block may be short, so slice with min(start + block, N).",
+]
+
+[notebooks]
+question = "flash-attention-triton.ipynb"
+solution = "flash-attention-triton_SOLN.ipynb"
+
+[grading]
+tier = "A"        # A=auto-graded B=partial C=not auto-graded (SEEDED, confirm)
+entries = ["flash_attention_pytorch"]
+extras = ["triton"]
+device = "cuda"
+
+[[companies]]
+name = "NVIDIA"
+confidence = "inferred"   # inferred | reported
+
+[[companies]]
+name = "Meta"
+confidence = "inferred"   # inferred | reported
+
+[[companies]]
+name = "Together AI"
+confidence = "inferred"   # inferred | reported
+
+[[companies]]
+name = "xAI"
+confidence = "inferred"   # inferred | reported

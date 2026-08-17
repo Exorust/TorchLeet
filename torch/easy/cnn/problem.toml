@@ -1,0 +1,26 @@
+id = "cnn"
+legacy_ids = ["v1-8"]
+title = "Implement a CNN on CIFAR-10"
+description = "Build and train a convolutional neural network to classify CIFAR-10 images using conv layers, pooling, and batch norm."
+difficulty = "easy"
+frequency = "emerging"   # very-likely | common | emerging (derived from company reports)
+number = 8
+set = "v1"
+tracks = ["basics"]
+
+# GENERATED from the grader spec — edit python/torchleet/problems/*.py, then run: generate.py hints
+hints = [
+  "CIFAR-10 images are 3x32x32 and there are 10 classes.",
+  "Track the spatial size through each pool: 32 -> 16 after one 2x2 pool.",
+  "The first Linear needs in_features = channels * height * width after flattening.",
+]
+
+[notebooks]
+question = "CNN.ipynb"
+solution = "CNN_SOLN.ipynb"
+
+[grading]
+tier = "C"        # A=auto-graded B=partial C=not auto-graded (SEEDED, confirm)
+entries = ["CNNModel"]
+extras = ["torchvision"]
+device = "cpu"

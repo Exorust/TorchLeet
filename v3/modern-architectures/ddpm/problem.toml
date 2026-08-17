@@ -1,0 +1,47 @@
+id = "ddpm"
+legacy_ids = ["v3-20"]
+title = "Implement DDPM from Scratch"
+description = "Build the full denoising diffusion pipeline: forward noise schedule, U-Net denoiser, and reverse sampling to generate images."
+difficulty = "hard"
+frequency = "very-likely"   # very-likely | common | emerging (derived from company reports)
+number = 20
+set = "v3"
+category = "modern-architectures"
+tracks = ["advanced"]
+
+# GENERATED from the grader spec — edit python/torchleet/problems/*.py, then run: generate.py hints
+hints = [
+  "linear_beta_schedule is torch.linspace(beta_start, beta_end, timesteps) — small betas first, so early steps corrupt slowly.",
+  "q_sample is the closed form of the forward process: x_t = sqrt(abar_t)*x_0 + sqrt(1-abar_t)*noise, with abar gathered per sample from t (each row of the batch has its own timestep).",
+  "p_sample: mu = (1/sqrt(alpha_t)) * (x_t - beta_t/sqrt(1-abar_t) * eps_pred), then add sqrt(beta_t)*z for t > 0 and nothing at t = 0. p_sample_loop starts at x_T ~ N(0, I) and calls p_sample for t = T-1 ... 0.",
+]
+
+[notebooks]
+question = "ddpm.ipynb"
+solution = "ddpm_SOLN.ipynb"
+
+[grading]
+tier = "A"        # A=auto-graded B=partial C=not auto-graded (SEEDED, confirm)
+entries = ["linear_beta_schedule", "q_sample", "SimpleDenoiser", "p_sample", "p_sample_loop"]
+extras = ["matplotlib", "numpy", "sklearn"]
+device = "cpu"
+
+[[companies]]
+name = "Midjourney"
+confidence = "inferred"   # inferred | reported
+
+[[companies]]
+name = "Runway"
+confidence = "inferred"   # inferred | reported
+
+[[companies]]
+name = "Stability AI"
+confidence = "inferred"   # inferred | reported
+
+[[companies]]
+name = "Adobe"
+confidence = "inferred"   # inferred | reported
+
+[[companies]]
+name = "Google"
+confidence = "inferred"   # inferred | reported

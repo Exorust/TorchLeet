@@ -1,0 +1,43 @@
+id = "swin-transformer"
+legacy_ids = ["v3-31"]
+title = "Implement a Swin Transformer Block (Shifted Window Attention)"
+description = "Build a Swin Transformer block from scratch: window partition, shifted-window attention masks, and a learned relative position bias."
+difficulty = "hard"
+frequency = "very-likely"   # very-likely | common | emerging (derived from company reports)
+number = 31
+set = "v3"
+category = "modern-architectures"
+tracks = ["advanced"]
+
+# GENERATED from the grader spec — edit python/torchleet/problems/*.py, then run: generate.py hints
+hints = [
+  "window_partition: reshape (B, H, W, C) to (B, H/ws, ws, W/ws, ws, C), permute the two window axes next to each other, then flatten. window_reverse undoes exactly that permutation.",
+  "The shifted mask compares region labels: label each pre-shift position by which of the (up-to) 4 wrapped regions it belongs to, roll the label map the same way you roll the features, partition it, and allow a pair only when the two labels match.",
+  "The relative position bias is one learned scalar per relative offset: build a (w*w, w*w) index map from (row_i - row_j, col_i - col_j) shifted to be non-negative, gather the table with it, and ADD the result to the attention scores before the softmax.",
+]
+
+[notebooks]
+question = "swin-transformer.ipynb"
+solution = "swin-transformer_SOLN.ipynb"
+
+[grading]
+tier = "A"        # A=auto-graded B=partial C=not auto-graded (SEEDED, confirm)
+entries = ["window_partition", "window_reverse", "window_attention", "create_shifted_window_mask", "SwinBlock", "relative_position_index", "SwinBlockRelPosBias"]
+extras = []
+device = "cpu"
+
+[[companies]]
+name = "Microsoft"
+confidence = "inferred"   # inferred | reported
+
+[[companies]]
+name = "Meta"
+confidence = "inferred"   # inferred | reported
+
+[[companies]]
+name = "ByteDance"
+confidence = "inferred"   # inferred | reported
+
+[[companies]]
+name = "Google"
+confidence = "inferred"   # inferred | reported

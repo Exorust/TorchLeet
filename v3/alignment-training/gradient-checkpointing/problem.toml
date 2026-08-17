@@ -1,0 +1,43 @@
+id = "gradient-checkpointing"
+legacy_ids = ["v3-16"]
+title = "Implement Gradient Checkpointing"
+description = "Trade compute for memory by recomputing intermediate activations during backward instead of storing them all."
+difficulty = "hard"
+frequency = "very-likely"   # very-likely | common | emerging (derived from company reports)
+number = 16
+set = "v3"
+category = "alignment-training"
+tracks = ["advanced"]
+
+# GENERATED from the grader spec — edit python/torchleet/problems/*.py, then run: generate.py hints
+hints = [
+  "In forward: stash fn on ctx, ctx.save_for_backward(*args), and run fn(*args) inside torch.no_grad() so no intermediate activation is kept.",
+  "In backward: detach the saved inputs, requires_grad_ them, re-run fn inside torch.enable_grad(), then torch.autograd.grad(output, inputs, grad_outputs).",
+  "backward must return one gradient per forward argument — None for fn itself, then a gradient (or None) for each tensor input.",
+]
+
+[notebooks]
+question = "gradient-checkpointing.ipynb"
+solution = "gradient-checkpointing_SOLN.ipynb"
+
+[grading]
+tier = "A"        # A=auto-graded B=partial C=not auto-graded (SEEDED, confirm)
+entries = ["CheckpointFunction", "checkpoint"]
+extras = []
+device = "cpu"
+
+[[companies]]
+name = "Meta"
+confidence = "inferred"   # inferred | reported
+
+[[companies]]
+name = "Google"
+confidence = "inferred"   # inferred | reported
+
+[[companies]]
+name = "NVIDIA"
+confidence = "inferred"   # inferred | reported
+
+[[companies]]
+name = "Tesla"
+confidence = "inferred"   # inferred | reported

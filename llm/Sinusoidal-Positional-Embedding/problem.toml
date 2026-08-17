@@ -1,0 +1,31 @@
+id = "sinusoidal-positional-embedding"
+legacy_ids = ["v2-10"]
+title = "Implement Sinusoidal Embeddings"
+description = "Build the fixed sinusoidal positional encoding from 'Attention Is All You Need' using sin/cos at different frequencies."
+difficulty = "medium"
+frequency = "emerging"   # very-likely | common | emerging (derived from company reports)
+number = 10
+set = "v2"
+category = "modern-architectures"
+tracks = ["advanced", "llm-path"]
+
+# GENERATED from the grader spec — edit python/torchleet/problems/*.py, then run: generate.py hints
+hints = [
+  "Even dimensions get sin, odd dimensions get cos.",
+  "The frequency for dimension i is 1 / 10000**(2i/d_model).",
+  "It is a fixed function of position — register it as a buffer, not a parameter.",
+]
+
+[notebooks]
+question = "sinusoidal-q7-Question.ipynb"
+solution = "sinusoidal-q7.ipynb"
+
+[grading]
+tier = "C"        # A=auto-graded B=partial C=not auto-graded (SEEDED, confirm)
+entries = ["SinusoidalPositionalEmbedding"]
+extras = []
+device = "cpu"
+
+[llm_path]
+order = 2
+stage = "foundations"

@@ -1,0 +1,51 @@
+id = "mixture-of-experts"
+legacy_ids = ["v3-17"]
+title = "Implement Mixture of Experts Layer"
+description = "Build a gated MoE with top-k routing, load balancing loss, and expert capacity constraints for sparse computation."
+difficulty = "hard"
+frequency = "very-likely"   # very-likely | common | emerging (derived from company reports)
+number = 17
+set = "v3"
+category = "modern-architectures"
+tracks = ["advanced", "llm-path"]
+
+# GENERATED from the grader spec — edit python/torchleet/problems/*.py, then run: generate.py hints
+hints = [
+  "Route each token to its top-k experts and weight their outputs by the gate probabilities.",
+  "Renormalize the top-k gate values so each token's weights sum to 1.",
+  "The aux loss penalizes imbalance: experts should receive roughly equal token shares.",
+]
+
+[notebooks]
+question = "mixture-of-experts.ipynb"
+solution = "mixture-of-experts_SOLN.ipynb"
+
+[grading]
+tier = "A"        # A=auto-graded B=partial C=not auto-graded (SEEDED, confirm)
+entries = ["Expert", "MoELayer"]
+extras = []
+device = "cpu"
+
+[llm_path]
+order = 23
+stage = "systems"
+
+[[companies]]
+name = "Google"
+confidence = "inferred"   # inferred | reported
+
+[[companies]]
+name = "DeepMind"
+confidence = "inferred"   # inferred | reported
+
+[[companies]]
+name = "Mistral"
+confidence = "inferred"   # inferred | reported
+
+[[companies]]
+name = "Databricks"
+confidence = "inferred"   # inferred | reported
+
+[[companies]]
+name = "xAI"
+confidence = "inferred"   # inferred | reported

@@ -1,0 +1,20 @@
+id = "rms-norm"
+legacy_ids = ["v2-2"]
+title = "Implement RMS Norm"
+description = "Build Root Mean Square Layer Normalization used in LLaMA and modern transformers — simpler and faster than LayerNorm."
+difficulty = "easy"
+frequency = "emerging"   # very-likely | common | emerging (derived from company reports)
+number = 2
+set = "v2"
+category = "modern-architectures"
+tracks = ["basics", "llm-path"]
+
+[notebooks]
+question = "rms-norm.ipynb"
+solution = ""   # no separate solution file
+
+[grading]
+tier = "B"        # A=auto-graded B=partial C=not auto-graded (SEEDED, confirm)
+entries = []
+extras = []
+device = "cpu"

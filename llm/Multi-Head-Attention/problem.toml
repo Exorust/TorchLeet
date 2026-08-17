@@ -1,0 +1,31 @@
+id = "multi-head-attention"
+legacy_ids = ["v2-7"]
+title = "Implement Multi-Head Attention from Scratch"
+description = "Split attention into multiple heads with independent projections, compute attention per head, and concatenate results."
+difficulty = "medium"
+frequency = "emerging"   # very-likely | common | emerging (derived from company reports)
+number = 7
+set = "v2"
+category = "modern-architectures"
+tracks = ["advanced", "llm-path"]
+
+# GENERATED from the grader spec — edit python/torchleet/problems/*.py, then run: generate.py hints
+hints = [
+  "Project Q/K/V, split d_model into num_heads chunks of d_head, attend, then concatenate.",
+  "Reshape to (batch, heads, seq, d_head) with view + transpose(1, 2).",
+  "After attention, transpose back and merge the heads before the output projection.",
+]
+
+[notebooks]
+question = "multi-head-attention-q5-Question.ipynb"
+solution = "multi-head-attention-q5.ipynb"
+
+[grading]
+tier = "A"        # A=auto-graded B=partial C=not auto-graded (SEEDED, confirm)
+entries = ["multi_head_attention"]
+extras = []
+device = "cpu"
+
+[llm_path]
+order = 6
+stage = "core-transformer"

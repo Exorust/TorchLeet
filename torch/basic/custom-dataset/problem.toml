@@ -1,0 +1,26 @@
+id = "custom-dataset"
+legacy_ids = ["v1-2"]
+title = "Write a Custom Dataset and DataLoader"
+description = "Create a custom Dataset class and use DataLoader to batch, shuffle, and iterate over your data for training."
+difficulty = "basic"
+frequency = "emerging"   # very-likely | common | emerging (derived from company reports)
+number = 2
+set = "v1"
+tracks = ["basics"]
+
+# GENERATED from the grader spec — edit python/torchleet/problems/*.py, then run: generate.py hints
+hints = [
+  "Subclass torch.utils.data.Dataset and implement __len__ and __getitem__.",
+  "Read the file once in __init__ and keep X and y as float32 tensors; __getitem__ should just index them.",
+  "__getitem__(i) returns the pair (X[i], y[i]) — DataLoader stacks those into batches for you, so do not batch inside the Dataset.",
+]
+
+[notebooks]
+question = "custom-dataset.ipynb"
+solution = "custom-dataset_SOLN.ipynb"
+
+[grading]
+tier = "C"        # A=auto-graded B=partial C=not auto-graded (SEEDED, confirm)
+entries = ["LinearRegressionDataset"]
+extras = ["pandas"]
+device = "cpu"

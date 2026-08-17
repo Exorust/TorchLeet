@@ -1,0 +1,30 @@
+id = "byte-pair-encoder"
+legacy_ids = ["v2-3"]
+title = "Implement Byte Pair Encoding from Scratch"
+description = "Build the BPE tokenizer algorithm that iteratively merges frequent character pairs to build a subword vocabulary."
+difficulty = "easy"
+frequency = "emerging"   # very-likely | common | emerging (derived from company reports)
+number = 3
+set = "v2"
+tracks = ["basics", "llm-path"]
+
+# GENERATED from the grader spec — edit python/torchleet/problems/*.py, then run: generate.py hints
+hints = [
+  "get_vocab splits each word into characters plus an end-of-word marker, and counts it.",
+  "get_stats counts adjacent symbol pairs weighted by each word's frequency.",
+  "A merge replaces every adjacent (a, b) with the single symbol 'ab' — the spelling of each word must not change, only how it is chopped up.",
+]
+
+[notebooks]
+question = "BPE-q3.ipynb"
+solution = "BPE-q3-SOLN.ipynb"
+
+[grading]
+tier = "A"        # A=auto-graded B=partial C=not auto-graded (SEEDED, confirm)
+entries = ["get_vocab", "get_stats", "merge_vocab", "byte_pair_encoding"]
+extras = []
+device = "cpu"
+
+[llm_path]
+order = 1
+stage = "foundations"
