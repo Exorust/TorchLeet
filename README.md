@@ -2,7 +2,7 @@
 
 <img src="torchleet-header.png" alt="TorchLeet" width="700">
 
-**75 PyTorch problems from real ML/AI interviews at Google, Meta, Anthropic, and more.**
+**65 PyTorch problems from real ML/AI interviews at Google, Meta, Anthropic, and more.**
 
 [![GitHub stars](https://img.shields.io/github/stars/Exorust/TorchLeet?style=social)](https://github.com/Exorust/TorchLeet)
 [![Website](https://img.shields.io/badge/website-torch--leet.vercel.app-8b5cf6)](https://torch-leet.vercel.app)
@@ -20,7 +20,7 @@ I struggled to grind for ML/AI interviews so I went back to the basics and creat
 
 ## AI Tutor (NEW)
 
-Turn any AI assistant into your PyTorch interview coach. The TorchLeet MCP server gives your AI access to all 90 problems, progressive hints, company prep plans, and learning paths, while enforcing a no-spoilers teaching style.
+Turn any AI assistant into your PyTorch interview coach. The TorchLeet MCP server gives your AI access to all 65 problems, progressive hints, company prep plans, and learning paths, while enforcing a no-spoilers teaching style.
 
 ```bash
 # Clone the repo first
@@ -66,7 +66,7 @@ Add this to your MCP config:
 
 ---
 
-75 problems across three tracks:
+65 problems across three tracks:
 
 | Track | Focus | Questions |
 |-------|-------|-----------|
@@ -263,6 +263,30 @@ Found a bug? Have a question from your own interview? PRs are welcome. Follow th
 If you found this helpful, [follow me on Twitter](https://twitter.com/charoori_ai). I post about ML interviews, PyTorch tips, and what I'm building next. Or just [send me feedback](mailto:chandrahas.aroori@gmail.com?subject=TorchLeet%20Feedback), I read everything.
 
 ---
+
+<!-- BEGIN:contributors -->
+## Contributors
+
+Thanks to everyone who has added problems, fixes and solutions (11 so far):
+
+<table>
+    <tr>
+      <td align="center"><a href="https://github.com/Exorust"><img src="https://avatars.githubusercontent.com/u/20578676?v=4" width="72px" alt="Exorust"/><br /><sub><b>Exorust</b></sub></a></td>
+      <td align="center"><a href="https://github.com/samhubs"><img src="https://avatars.githubusercontent.com/u/52785438?v=4" width="72px" alt="samhubs"/><br /><sub><b>samhubs</b></sub></a></td>
+      <td align="center"><a href="https://github.com/AtulAravindDas"><img src="https://avatars.githubusercontent.com/u/161445393?v=4" width="72px" alt="AtulAravindDas"/><br /><sub><b>AtulAravindDas</b></sub></a></td>
+      <td align="center"><a href="https://github.com/CaslowChien"><img src="https://avatars.githubusercontent.com/u/99608452?v=4" width="72px" alt="CaslowChien"/><br /><sub><b>CaslowChien</b></sub></a></td>
+      <td align="center"><a href="https://github.com/emmanuel-ferdman"><img src="https://avatars.githubusercontent.com/u/35470921?v=4" width="72px" alt="emmanuel-ferdman"/><br /><sub><b>emmanuel-ferdman</b></sub></a></td>
+      <td align="center"><a href="https://github.com/PadLex"><img src="https://avatars.githubusercontent.com/u/23060820?v=4" width="72px" alt="PadLex"/><br /><sub><b>PadLex</b></sub></a></td>
+    </tr>
+    <tr>
+      <td align="center"><a href="https://github.com/bargav25"><img src="https://avatars.githubusercontent.com/u/52544154?v=4" width="72px" alt="bargav25"/><br /><sub><b>bargav25</b></sub></a></td>
+      <td align="center"><a href="https://github.com/ezhoureal"><img src="https://avatars.githubusercontent.com/u/30425920?v=4" width="72px" alt="ezhoureal"/><br /><sub><b>ezhoureal</b></sub></a></td>
+      <td align="center"><a href="https://github.com/Hylthek"><img src="https://avatars.githubusercontent.com/u/76478554?v=4" width="72px" alt="Hylthek"/><br /><sub><b>Hylthek</b></sub></a></td>
+      <td align="center"><a href="https://github.com/gulbaki"><img src="https://avatars.githubusercontent.com/u/76937950?v=4" width="72px" alt="gulbaki"/><br /><sub><b>gulbaki</b></sub></a></td>
+      <td align="center"><a href="https://github.com/jg-eno"><img src="https://avatars.githubusercontent.com/u/147611384?v=4" width="72px" alt="jg-eno"/><br /><sub><b>jg-eno</b></sub></a></td>
+    </tr>
+</table>
+<!-- END:contributors -->
 
 ## Authors
 

@@ -1,0 +1,25 @@
+name: publish
+
+on:
+  push:
+    tags: ["py-v*"]
+  workflow_dispatch:
+
+jobs:
+  pypi:
+    runs-on: ubuntu-latest
+    environment: pypi
+    permissions:
+      id-token: write        # trusted publishing: no API token stored in the repo
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.12"}
+      - name: Build
+        run: |
+          pip install build
+          python -m build python/
+      - name: Publish to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          packages-dir: python/dist/

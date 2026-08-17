@@ -15,6 +15,7 @@ import QuestionGrid from "@/components/web/QuestionGrid";
 import LLMPathView from "@/components/web/LLMPathView";
 import AdvancedGroupedView from "@/components/web/AdvancedGroupedView";
 import AnnouncementBanner from "@/components/web/AnnouncementBanner";
+import SourcesSection from "@/components/web/SourcesSection";
 import Footer from "@/components/web/Footer";
 import ScrollReveal from "@/components/shared/ScrollReveal";
 
@@ -71,6 +72,9 @@ export default function WebMode() {
             <QuestionGrid questions={filteredForGrid} />
           )}
         </section>
+        <ScrollReveal>
+          <SourcesSection />
+        </ScrollReveal>
       </main>
       <Footer />
     </div>

@@ -1,0 +1,2247 @@
+{
+ "count": 65,
+ "problems": [
+  {
+   "id": "lin-regression",
+   "legacy_ids": [
+    "v1-1"
+   ],
+   "title": "Implement Linear Regression",
+   "description": "Build a linear regression model from scratch using PyTorch tensors and autograd, fitting a line to synthetic data with gradient descent.",
+   "difficulty": "basic",
+   "category": "",
+   "tracks": [
+    "basics"
+   ],
+   "companies": [],
+   "question": "torch/basic/lin-regression/lin-regression.ipynb",
+   "solution": "torch/basic/lin-regression/lin-regression_SOLN.ipynb",
+   "colab": "https://colab.research.google.com/github/Exorust/TorchLeet/blob/main/torch/basic/lin-regression/lin-regression.ipynb",
+   "frequency": "emerging",
+   "company_confidence": {},
+   "llm_path_order": null,
+   "graded": true,
+   "entries": [
+    "LinearRegressionModel"
+   ],
+   "hints": [
+    "A single nn.Linear(1, 1) is the whole model.",
+    "forward() just applies that layer to the input.",
+    "Train with MSELoss and an SGD/Adam optimizer."
+   ]
+  },
+  {
+   "id": "custom-dataset",
+   "legacy_ids": [
+    "v1-2"
+   ],
+   "title": "Write a Custom Dataset and DataLoader",
+   "description": "Create a custom Dataset class and use DataLoader to batch, shuffle, and iterate over your data for training.",
+   "difficulty": "basic",
+   "category": "",
+   "tracks": [
+    "basics"
+   ],
+   "companies": [],
+   "question": "torch/basic/custom-dataset/custom-dataset.ipynb",
+   "solution": "torch/basic/custom-dataset/custom-dataset_SOLN.ipynb",
+   "colab": "https://colab.research.google.com/github/Exorust/TorchLeet/blob/main/torch/basic/custom-dataset/custom-dataset.ipynb",
+   "frequency": "emerging",
+   "company_confidence": {},
+   "llm_path_order": null,
+   "graded": true,
+   "entries": [
+    "LinearRegressionDataset"
+   ],
+   "hints": [
+    "Subclass torch.utils.data.Dataset and implement __len__ and __getitem__.",
+    "Read the file once in __init__ and keep X and y as float32 tensors; __getitem__ should just index them.",
+    "__getitem__(i) returns the pair (X[i], y[i]) \u2014 DataLoader stacks those into batches for you, so do not batch inside the Dataset."
+   ]
+  },
+  {
+   "id": "custom-activation",
+   "legacy_ids": [
+    "v1-3"
+   ],
+   "title": "Write a Custom Activation Function",
+   "description": "Implement a custom activation function as a PyTorch module and use it inside a neural network.",
+   "difficulty": "basic",
+   "category": "",
+   "tracks": [
+    "basics"
+   ],
+   "companies": [],
+   "question": "torch/basic/custom-activation/custom-activation.ipynb",
+   "solution": "torch/basic/custom-activation/custom-activation_SOLN.ipynb",
+   "colab": "https://colab.research.google.com/github/Exorust/TorchLeet/blob/main/torch/basic/custom-activation/custom-activation.ipynb",
+   "frequency": "emerging",
+   "company_confidence": {},
+   "llm_path_order": null,
+   "graded": true,
+   "entries": [
+    "CustomActivationModel"
+   ],
+   "hints": [
+    "An activation is just a function of the tensor; you can write it inline or as an nn.Module.",
+    "Make sure it is differentiable \u2014 use torch ops, not Python branching on tensor values.",
+    "Apply it between the linear layers in forward()."
+   ]
+  },
+  {
+   "id": "custom-loss",
+   "legacy_ids": [
+    "v1-4"
+   ],
+   "title": "Implement Custom Loss Function (Huber Loss)",
+   "description": "Build Huber loss from scratch \u2014 a robust loss function that's quadratic for small errors and linear for large ones.",
+   "difficulty": "basic",
+   "category": "",
+   "tracks": [
+    "basics"
+   ],
+   "companies": [],
+   "question": "torch/basic/custom-loss/custom-loss.ipynb",
+   "solution": "torch/basic/custom-loss/custom-loss_SOLN.ipynb",
+   "colab": "https://colab.research.google.com/github/Exorust/TorchLeet/blob/main/torch/basic/custom-loss/custom-loss.ipynb",
+   "frequency": "emerging",
+   "company_confidence": {},
+   "llm_path_order": null,
+   "graded": true,
+   "entries": [
+    "HuberLoss"
+   ],
+   "hints": [
+    "Huber is quadratic for small errors and linear for large ones.",
+    "The switch happens at |error| == delta.",
+    "0.5*e^2 below the threshold; delta*(|e| - 0.5*delta) above it."
+   ]
+  },
+  {
+   "id": "custom-dnn",
+   "legacy_ids": [
+    "v1-5"
+   ],
+   "title": "Implement a Deep Neural Network",
+   "description": "Construct a multi-layer feedforward neural network with nonlinear activations, training it on a classification task.",
+   "difficulty": "basic",
+   "category": "",
+   "tracks": [
+    "basics"
+   ],
+   "companies": [],
+   "question": "torch/basic/custom-DNN/custon-DNN.ipynb",
+   "solution": "torch/basic/custom-DNN/custon-DNN_SOLN.ipynb",
+   "colab": "https://colab.research.google.com/github/Exorust/TorchLeet/blob/main/torch/basic/custom-DNN/custon-DNN.ipynb",
+   "frequency": "emerging",
+   "company_confidence": {},
+   "llm_path_order": null,
+   "graded": true,
+   "entries": [
+    "DNNModel"
+   ],
+   "hints": [
+    "Stack Linear layers with a nonlinearity between them.",
+    "Without an activation between layers the whole stack collapses to one linear map.",
+    "The last layer's out_features is your output dimension."
+   ]
+  },
+  {
+   "id": "tensorboard",
+   "legacy_ids": [
+    "v1-6"
+   ],
+   "title": "Visualize Training with TensorBoard",
+   "description": "Log training metrics, model graphs, and embeddings to TensorBoard for interactive visualization.",
+   "difficulty": "basic",
+   "category": "",
+   "tracks": [
+    "basics"
+   ],
+   "companies": [],
+   "question": "torch/basic/tensorboard/tensorboard.ipynb",
+   "solution": "torch/basic/tensorboard/tensorboard_SOLN.ipynb",
+   "colab": "https://colab.research.google.com/github/Exorust/TorchLeet/blob/main/torch/basic/tensorboard/tensorboard.ipynb",
+   "frequency": "emerging",
+   "company_confidence": {},
+   "llm_path_order": null,
+   "graded": true,
+   "entries": [
+    "LinearRegressionModel"
+   ],
+   "hints": [
+    "The model itself is a plain nn.Linear(1, 1).",
+    "Log with writer.add_scalar('Loss/train', loss.item(), step).",
+    "Run `tensorboard --logdir=runs` to view it."
+   ]
+  },
+  {
+   "id": "save-model",
+   "legacy_ids": [
+    "v1-7"
+   ],
+   "title": "Save and Load PyTorch Model",
+   "description": "Serialize model weights with state_dict and reload them, handling device mapping and architecture changes.",
+   "difficulty": "basic",
+   "category": "",
+   "tracks": [
+    "basics"
+   ],
+   "companies": [],
+   "question": "torch/basic/save-model/save_model.ipynb",
+   "solution": "torch/basic/save-model/save_model_SOLN.ipynb",
+   "colab": "https://colab.research.google.com/github/Exorust/TorchLeet/blob/main/torch/basic/save-model/save_model.ipynb",
+   "frequency": "emerging",
+   "company_confidence": {},
+   "llm_path_order": null,
+   "graded": false,
+   "entries": [],
+   "hints": null
+  },
+  {
+   "id": "cnn",
+   "legacy_ids": [
+    "v1-8"
+   ],
+   "title": "Implement a CNN on CIFAR-10",
+   "description": "Build and train a convolutional neural network to classify CIFAR-10 images using conv layers, pooling, and batch norm.",
+   "difficulty": "easy",
+   "category": "",
+   "tracks": [
+    "basics"
+   ],
+   "companies": [],
+   "question": "torch/easy/cnn/CNN.ipynb",
+   "solution": "torch/easy/cnn/CNN_SOLN.ipynb",
+   "colab": "https://colab.research.google.com/github/Exorust/TorchLeet/blob/main/torch/easy/cnn/CNN.ipynb",
+   "frequency": "emerging",
+   "company_confidence": {},
+   "llm_path_order": null,
+   "graded": true,
+   "entries": [
+    "CNNModel"
+   ],
+   "hints": [
+    "CIFAR-10 images are 3x32x32 and there are 10 classes.",
+    "Track the spatial size through each pool: 32 -> 16 after one 2x2 pool.",
+    "The first Linear needs in_features = channels * height * width after flattening."
+   ]
+  },
+  {
+   "id": "rnn",
+   "legacy_ids": [
+    "v1-9"
+   ],
+   "title": "Implement an RNN from Scratch",
+   "description": "Write a recurrent neural network cell from scratch using raw tensor operations, implementing the hidden state update manually.",
+   "difficulty": "easy",
+   "category": "",
+   "tracks": [
+    "basics"
+   ],
+   "companies": [],
+   "question": "torch/easy/rnn/RNN.ipynb",
+   "solution": "torch/easy/rnn/RNN_SOLN.ipynb",
+   "colab": "https://colab.research.google.com/github/Exorust/TorchLeet/blob/main/torch/easy/rnn/RNN.ipynb",
+   "frequency": "emerging",
+   "company_confidence": {},
+   "llm_path_order": null,
+   "graded": true,
+   "entries": [
+    "RNNModel"
+   ],
+   "hints": [
+    "The input is (batch, seq_len, input_size) \u2014 nn.RNN needs batch_first=True to read it that way.",
+    "Feed only the final hidden state into the fully connected layer; that is the summary of the whole sequence.",
+    "The output should be (batch, 1): one predicted next value per sequence, not one per timestep."
+   ]
+  },
+  {
+   "id": "augmentation",
+   "legacy_ids": [
+    "v1-10"
+   ],
+   "title": "Data Augmentation with torchvision.transforms",
+   "description": "Apply random flips, crops, color jitter, and other augmentations to training images using torchvision's transform pipeline.",
+   "difficulty": "easy",
+   "category": "",
+   "tracks": [
+    "basics"
+   ],
+   "companies": [],
+   "question": "torch/easy/augmentation/augmentation.ipynb",
+   "solution": "torch/easy/augmentation/augmentation_SOLN.ipynb",
+   "colab": "https://colab.research.google.com/github/Exorust/TorchLeet/blob/main/torch/easy/augmentation/augmentation.ipynb",
+   "frequency": "emerging",
+   "company_confidence": {},
+   "llm_path_order": null,
+   "graded": false,
+   "entries": [],
+   "hints": null
+  },
+  {
+   "id": "benchmark",
+   "legacy_ids": [
+    "v1-11"
+   ],
+   "title": "Add Benchmarking to PyTorch Code",
+   "description": "Profile PyTorch operations using torch.utils.benchmark, measuring GPU/CPU time and comparing implementations.",
+   "difficulty": "easy",
+   "category": "",
+   "tracks": [
+    "basics"
+   ],
+   "companies": [],
+   "question": "torch/easy/benchmark/bench.ipynb",
+   "solution": "torch/easy/benchmark/bench_SOLN.ipynb",
+   "colab": "https://colab.research.google.com/github/Exorust/TorchLeet/blob/main/torch/easy/benchmark/bench.ipynb",
+   "frequency": "emerging",
+   "company_confidence": {},
+   "llm_path_order": null,
+   "graded": true,
+   "entries": [
+    "SimpleNN"
+   ],
+   "hints": [
+    "Flatten the 28x28 image before the first Linear layer.",
+    "Use time.perf_counter() around the epoch, not time.time().",
+    "On CUDA you must torch.cuda.synchronize() before stopping the clock."
+   ]
+  },
+  {
+   "id": "autoencoder",
+   "legacy_ids": [
+    "v1-12"
+   ],
+   "title": "Train an Autoencoder for Anomaly Detection",
+   "description": "Build an autoencoder that learns normal data patterns, then detect anomalies by measuring reconstruction error.",
+   "difficulty": "easy",
+   "category": "",
+   "tracks": [
+    "basics"
+   ],
+   "companies": [],
+   "question": "torch/easy/autoencoder/autoencoder.ipynb",
+   "solution": "torch/easy/autoencoder/autoencoder_SOLN.ipynb",
+   "colab": "https://colab.research.google.com/github/Exorust/TorchLeet/blob/main/torch/easy/autoencoder/autoencoder.ipynb",
+   "frequency": "emerging",
+   "company_confidence": {},
+   "llm_path_order": null,
+   "graded": true,
+   "entries": [
+    "Autoencoder"
+   ],
+   "hints": [
+    "The decoder must undo the encoder's downsampling, so the output matches the input shape.",
+    "ConvTranspose2d with stride=2 doubles the spatial size; output_padding fixes off-by-ones.",
+    "Train it to reconstruct its own input with MSELoss."
+   ]
+  },
+  {
+   "id": "quantize-lm",
+   "legacy_ids": [
+    "v1-13"
+   ],
+   "title": "Quantize Your Language Model",
+   "description": "Apply post-training quantization to reduce model size and inference latency while maintaining accuracy.",
+   "difficulty": "easy",
+   "category": "",
+   "tracks": [
+    "basics"
+   ],
+   "companies": [],
+   "question": "torch/easy/quantize-lm/quantize-language-model.ipynb",
+   "solution": "torch/easy/quantize-lm/quantize-language-model_SOLN.ipynb",
+   "colab": "https://colab.research.google.com/github/Exorust/TorchLeet/blob/main/torch/easy/quantize-lm/quantize-language-model.ipynb",
+   "frequency": "emerging",
+   "company_confidence": {},
+   "llm_path_order": null,
+   "graded": true,
+   "entries": [
+    "LanguageModel"
+   ],
+   "hints": [
+    "LanguageModel(vocab_size, embed_size, hidden_size, num_layers): Embedding -> LSTM(batch_first=True) -> Linear -> Softmax.",
+    "Predict the *next* token, so take the last timestep of the LSTM output (lstm_out[:, -1, :]) before the Linear \u2014 the result is (batch, vocab_size).",
+    "torch.ao.quantization.quantize_dynamic(model, {nn.Linear, nn.LSTM}, dtype=torch.qint8) only rewrites modules it recognises, so build the model out of nn.Linear / nn.LSTM rather than raw matmuls."
+   ]
+  },
+  {
+   "id": "cuda-amp",
+   "legacy_ids": [
+    "v1-14"
+   ],
+   "title": "Mixed Precision Training with torch.cuda.amp",
+   "description": "Use automatic mixed precision to train models faster with float16, managing loss scaling and gradient overflow.",
+   "difficulty": "easy",
+   "category": "",
+   "tracks": [
+    "basics"
+   ],
+   "companies": [],
+   "question": "torch/easy/cuda-amp/cuda-amp.ipynb",
+   "solution": "torch/easy/cuda-amp/cuda-amp_SOLN.ipynb",
+   "colab": "https://colab.research.google.com/github/Exorust/TorchLeet/blob/main/torch/easy/cuda-amp/cuda-amp.ipynb",
+   "frequency": "emerging",
+   "company_confidence": {},
+   "llm_path_order": null,
+   "graded": false,
+   "entries": [],
+   "hints": null
+  },
+  {
+   "id": "cnn-param-init",
+   "legacy_ids": [
+    "v1-15"
+   ],
+   "title": "CNN Parameter Initialization",
+   "description": "Explore how different weight initialization strategies (Xavier, Kaiming, etc.) affect CNN training convergence.",
+   "difficulty": "medium",
+   "category": "",
+   "tracks": [
+    "basics"
+   ],
+   "companies": [],
+   "question": "torch/medium/cnn-param-init/CNN_ParamInit.ipynb",
+   "solution": "torch/medium/cnn-param-init/CNN_ParamInit_SOLN.ipynb",
+   "colab": "https://colab.research.google.com/github/Exorust/TorchLeet/blob/main/torch/medium/cnn-param-init/CNN_ParamInit.ipynb",
+   "frequency": "emerging",
+   "company_confidence": {},
+   "llm_path_order": null,
+   "graded": true,
+   "entries": [
+    "config_init"
+   ],
+   "hints": [
+    "config_init returns the initializer *function*, it does not run it \u2014 you use it as `model.apply(config_init('xavier'))`.",
+    "Each initializer takes one module and should only touch it when it is an nn.Conv2d or nn.Linear; apply() walks containers and activations too.",
+    "torch.nn.init has all four: zeros_, normal_, xavier_normal_ (variance 1/n) and kaiming_normal_ (variance 2/n). Do not forget the bias."
+   ]
+  },
+  {
+   "id": "cnn-scratch",
+   "legacy_ids": [
+    "v1-16"
+   ],
+   "title": "Implement a CNN from Scratch",
+   "description": "Build convolutional layers from raw tensor operations \u2014 implementing forward passes with cross-correlation and learnable filters.",
+   "difficulty": "medium",
+   "category": "",
+   "tracks": [
+    "basics"
+   ],
+   "companies": [],
+   "question": "torch/medium/cnn-scratch/CNN_scratch.ipynb",
+   "solution": "torch/medium/cnn-scratch/CNN_scratch_SOLN.ipynb",
+   "colab": "https://colab.research.google.com/github/Exorust/TorchLeet/blob/main/torch/medium/cnn-scratch/CNN_scratch.ipynb",
+   "frequency": "emerging",
+   "company_confidence": {},
+   "llm_path_order": null,
+   "graded": true,
+   "entries": [
+    "Conv2dCustom",
+    "MaxPool2dCustom"
+   ],
+   "hints": [
+    "Output size is (H + 2*padding - kernel) // stride + 1 per spatial dim.",
+    "F.unfold turns sliding windows into columns if you want to avoid Python loops.",
+    "Do not forget to add the bias, once per output channel."
+   ]
+  },
+  {
+   "id": "lstm",
+   "legacy_ids": [
+    "v1-17"
+   ],
+   "title": "Implement an LSTM from Scratch",
+   "description": "Code the LSTM cell equations from scratch: forget gate, input gate, cell state update, and output gate using raw tensors.",
+   "difficulty": "medium",
+   "category": "",
+   "tracks": [
+    "basics"
+   ],
+   "companies": [],
+   "question": "torch/medium/lstm/LSTM.ipynb",
+   "solution": "torch/medium/lstm/LSTM_SOLN.ipynb",
+   "colab": "https://colab.research.google.com/github/Exorust/TorchLeet/blob/main/torch/medium/lstm/LSTM.ipynb",
+   "frequency": "emerging",
+   "company_confidence": {},
+   "llm_path_order": null,
+   "graded": true,
+   "entries": [
+    "CustomLSTMModel",
+    "LSTMModel"
+   ],
+   "hints": [
+    "CustomLSTMModel(input_dim, hidden_units).forward(inputs, H_C=None) returns (predictions, (H, C)) with predictions shaped (batch, seq_len, 1).",
+    "Per timestep: i, f, o = sigmoid(...), C~ = tanh(...), C = f*C + i*C~, H = o*tanh(C). Stack every H and push the stack through the Linear.",
+    "When H_C is given, start from it instead of a fresh state \u2014 that is what makes the model resumable, and zeros (not randn) are the right default."
+   ]
+  },
+  {
+   "id": "alexnet",
+   "legacy_ids": [
+    "v1-18"
+   ],
+   "title": "Implement AlexNet from Scratch",
+   "description": "Recreate the AlexNet architecture that started the deep learning revolution, with its 5 conv + 3 FC layer design.",
+   "difficulty": "medium",
+   "category": "",
+   "tracks": [
+    "advanced"
+   ],
+   "companies": [],
+   "question": "torch/medium/alexnet/alexnet.ipynb",
+   "solution": "torch/medium/alexnet/alexnet_SOLN.ipynb",
+   "colab": "https://colab.research.google.com/github/Exorust/TorchLeet/blob/main/torch/medium/alexnet/alexnet.ipynb",
+   "frequency": "emerging",
+   "company_confidence": {},
+   "llm_path_order": null,
+   "graded": true,
+   "entries": [
+    "AlexNet"
+   ],
+   "hints": [
+    "AlexNet expects 3x224x224 input and ends in a classifier over num_classes.",
+    "Five conv layers with max-pooling, then three fully connected layers.",
+    "Track the spatial size through each stride and pool to size the first Linear."
+   ]
+  },
+  {
+   "id": "3dcnn",
+   "legacy_ids": [
+    "v1-21"
+   ],
+   "title": "Train a 3D CNN for CT Image Segmentation",
+   "description": "Extend 2D convolutions to 3D for volumetric medical image segmentation on CT scans.",
+   "difficulty": "medium",
+   "category": "",
+   "tracks": [
+    "advanced"
+   ],
+   "companies": [],
+   "question": "torch/medium/3dcnn/3DCNN.ipynb",
+   "solution": "torch/medium/3dcnn/3DCNN_SOLN.ipynb",
+   "colab": "https://colab.research.google.com/github/Exorust/TorchLeet/blob/main/torch/medium/3dcnn/3DCNN.ipynb",
+   "frequency": "emerging",
+   "company_confidence": {},
+   "llm_path_order": null,
+   "graded": true,
+   "entries": [
+    "MedCNN",
+    "compute_dice_loss"
+   ],
+   "hints": [
+    "The input is [B, D, C, W, H]. Fold depth into the batch (view(B*D, C, W, H)) for the 2D backbone, then unfold and permute to [B, C, D, W, H] for Conv3d.",
+    "ResNet-18 with its last two children stripped divides W and H by 32, so the ConvTranspose3d stack has to multiply them back by 32 \u2014 use kernel/stride (1, k, k) so the depth axis is left alone.",
+    "Dice over binary masks is 2*|pred \u2229 label| / (|pred| + |label|); finish the network with sigmoid so pred is a probability the overlap can be computed on."
+   ]
+  },
+  {
+   "id": "custom-autograd",
+   "legacy_ids": [
+    "v1-22"
+   ],
+   "title": "Write a Custom Autograd Function (SILU)",
+   "description": "Implement SiLU activation with a custom autograd Function, defining both forward and backward passes manually.",
+   "difficulty": "hard",
+   "category": "",
+   "tracks": [
+    "advanced"
+   ],
+   "companies": [],
+   "question": "torch/hard/custom-autograd/custom-autgrad-function.ipynb",
+   "solution": "torch/hard/custom-autograd/custom-autgrad-function_SOLN.ipynb",
+   "colab": "https://colab.research.google.com/github/Exorust/TorchLeet/blob/main/torch/hard/custom-autograd/custom-autgrad-function.ipynb",
+   "frequency": "emerging",
+   "company_confidence": {},
+   "llm_path_order": null,
+   "graded": true,
+   "entries": [
+    "LearnedSiLUFunction",
+    "LinearRegressionModel"
+   ],
+   "hints": [
+    "forward(ctx, x, slope) returns slope * x * sigmoid(x); ctx.save_for_backward whatever the backward pass needs.",
+    "d/dx [x*sigmoid(x)] = sigmoid(x) + x*sigmoid(x)*(1 - sigmoid(x)); multiply by slope and by grad_output.",
+    "backward must return one gradient per forward input: d/dslope is grad_output * x * sigmoid(x). Keep the slope an nn.Parameter in the model so the optimizer updates it."
+   ]
+  },
+  {
+   "id": "transformer",
+   "legacy_ids": [
+    "v1-26"
+   ],
+   "title": "Write a Transformer from Scratch",
+   "description": "Build the full transformer architecture \u2014 multi-head attention, positional encoding, encoder-decoder stacks \u2014 from raw tensors.",
+   "difficulty": "hard",
+   "category": "",
+   "tracks": [
+    "advanced"
+   ],
+   "companies": [],
+   "question": "torch/hard/transformer/transformer.ipynb",
+   "solution": "torch/hard/transformer/transformer_SOLN.ipynb",
+   "colab": "https://colab.research.google.com/github/Exorust/TorchLeet/blob/main/torch/hard/transformer/transformer.ipynb",
+   "frequency": "emerging",
+   "company_confidence": {},
+   "llm_path_order": null,
+   "graded": true,
+   "entries": [
+    "PositionalEncoding",
+    "MultiHeadSelfAttention",
+    "FeedForward",
+    "TransformerEncoderLayer",
+    "TransformerModel"
+   ],
+   "hints": [
+    "Shapes: everything below the model works on (batch, seq_len, embed_dim) and returns the same shape.",
+    "In attention, split the last dim into (num_heads, head_dim) and move heads next to the batch: (B, H, T, head_dim). Scale the scores by 1/sqrt(head_dim) before the softmax over the *last* axis.",
+    "PositionalEncoding builds a (max_len, d_model) table once with sin(pos/10000^(2i/d)) and cos(...), registers it as a buffer, and forward just adds the first seq_len rows to x."
+   ]
+  },
+  {
+   "id": "gan",
+   "legacy_ids": [
+    "v1-27"
+   ],
+   "title": "Write a GAN",
+   "description": "Implement a generative adversarial network with competing generator and discriminator networks trained via minimax loss.",
+   "difficulty": "hard",
+   "category": "",
+   "tracks": [
+    "advanced"
+   ],
+   "companies": [],
+   "question": "torch/hard/GAN/GAN.ipynb",
+   "solution": "torch/hard/GAN/GAN_SOLN.ipynb",
+   "colab": "https://colab.research.google.com/github/Exorust/TorchLeet/blob/main/torch/hard/GAN/GAN.ipynb",
+   "frequency": "emerging",
+   "company_confidence": {},
+   "llm_path_order": null,
+   "graded": true,
+   "entries": [
+    "Generator",
+    "Discriminator"
+   ],
+   "hints": [
+    "Generator(input_dim, output_dim) maps a latent vector to one fake sample; Discriminator(input_dim) maps a sample to a single number.",
+    "End the generator with Tanh so samples live in [-1, 1], and the discriminator with Sigmoid so its output is a probability BCELoss can take.",
+    "When you train the generator do NOT detach the fake batch \u2014 the gradient has to flow back through the discriminator into the generator."
+   ]
+  },
+  {
+   "id": "seq-seq",
+   "legacy_ids": [
+    "v1-28"
+   ],
+   "title": "Sequence-to-Sequence with Attention",
+   "description": "Build an encoder-decoder model with Bahdanau attention for sequence transduction tasks like translation.",
+   "difficulty": "hard",
+   "category": "",
+   "tracks": [
+    "advanced"
+   ],
+   "companies": [],
+   "question": "torch/hard/seq-seq/seq-to-seq-with-Attention.ipynb",
+   "solution": "torch/hard/seq-seq/seq-to-seq-with-Attention_SOLN.ipynb",
+   "colab": "https://colab.research.google.com/github/Exorust/TorchLeet/blob/main/torch/hard/seq-seq/seq-to-seq-with-Attention.ipynb",
+   "frequency": "emerging",
+   "company_confidence": {},
+   "llm_path_order": null,
+   "graded": true,
+   "entries": [
+    "Encoder"
+   ],
+   "hints": [
+    "Encoder(input_dim, embed_dim, hidden_dim, num_layers): nn.Embedding over the source vocabulary, then nn.LSTM(embed_dim, hidden_dim, num_layers, batch_first=True).",
+    "forward returns (outputs, (hidden, cell)) \u2014 the attention needs every timestep, the decoder needs the final states to start from.",
+    "With batch_first=True outputs is (batch, src_len, hidden_dim) while hidden and cell stay (num_layers, batch, hidden_dim)."
+   ]
+  },
+  {
+   "id": "xai",
+   "legacy_ids": [
+    "v1-31"
+   ],
+   "title": "Explainable AI (GradCAM/SHAP)",
+   "description": "Visualize which image regions drive CNN predictions using Grad-CAM heatmaps and SHAP feature attributions.",
+   "difficulty": "hard",
+   "category": "",
+   "tracks": [
+    "advanced"
+   ],
+   "companies": [],
+   "question": "torch/hard/xai/xai.ipynb",
+   "solution": "torch/hard/xai/xai_SOLN.ipynb",
+   "colab": "https://colab.research.google.com/github/Exorust/TorchLeet/blob/main/torch/hard/xai/xai.ipynb",
+   "frequency": "emerging",
+   "company_confidence": {},
+   "llm_path_order": null,
+   "graded": false,
+   "entries": [],
+   "hints": null
+  },
+  {
+   "id": "create-embeddings-out-of-an-llm",
+   "legacy_ids": [],
+   "title": "Create Embeddings Out Of An Llm",
+   "description": "",
+   "difficulty": "medium",
+   "category": "",
+   "tracks": [],
+   "companies": [],
+   "question": "llm/Create-Embeddings-out-of-an-LLM/embeddings-q2.ipynb",
+   "solution": null,
+   "colab": "https://colab.research.google.com/github/Exorust/TorchLeet/blob/main/llm/Create-Embeddings-out-of-an-LLM/embeddings-q2.ipynb",
+   "frequency": "emerging",
+   "company_confidence": {},
+   "llm_path_order": null,
+   "graded": false,
+   "entries": [],
+   "hints": null
+  },
+  {
+   "id": "flash-attention",
+   "legacy_ids": [],
+   "title": "Flash Attention",
+   "description": "",
+   "difficulty": "medium",
+   "category": "",
+   "tracks": [],
+   "companies": [],
+   "question": "llm/Flash-Attention/flash-attention.ipynb",
+   "solution": null,
+   "colab": "https://colab.research.google.com/github/Exorust/TorchLeet/blob/main/llm/Flash-Attention/flash-attention.ipynb",
+   "frequency": "emerging",
+   "company_confidence": {},
+   "llm_path_order": null,
+   "graded": true,
+   "entries": [
+    "flash_attention_pytorch"
+   ],
+   "hints": [
+    "Keep a running max, a running denominator l, and a running output accumulator; on each K/V tile rescale all three by alpha = exp(prev_max - new_max).",
+    "Divide the accumulator by l only once, after the loop \u2014 not inside it.",
+    "L is the logsumexp of the scaled scores: running_max + log(l) at the end."
+   ]
+  },
+  {
+   "id": "rms-norm",
+   "legacy_ids": [
+    "v2-2"
+   ],
+   "title": "Implement RMS Norm",
+   "description": "Build Root Mean Square Layer Normalization used in LLaMA and modern transformers \u2014 simpler and faster than LayerNorm.",
+   "difficulty": "easy",
+   "category": "modern-architectures",
+   "tracks": [
+    "basics",
+    "llm-path"
+   ],
+   "companies": [],
+   "question": "llm/RMS-Norm/rms-norm.ipynb",
+   "solution": null,
+   "colab": "https://colab.research.google.com/github/Exorust/TorchLeet/blob/main/llm/RMS-Norm/rms-norm.ipynb",
+   "frequency": "emerging",
+   "company_confidence": {},
+   "llm_path_order": null,
+   "graded": false,
+   "entries": [],
+   "hints": null
+  },
+  {
+   "id": "byte-pair-encoder",
+   "legacy_ids": [
+    "v2-3"
+   ],
+   "title": "Implement Byte Pair Encoding from Scratch",
+   "description": "Build the BPE tokenizer algorithm that iteratively merges frequent character pairs to build a subword vocabulary.",
+   "difficulty": "easy",
+   "category": "",
+   "tracks": [
+    "basics",
+    "llm-path"
+   ],
+   "companies": [],
+   "question": "llm/Byte-Pair-Encoder/BPE-q3.ipynb",
+   "solution": "llm/Byte-Pair-Encoder/BPE-q3-SOLN.ipynb",
+   "colab": "https://colab.research.google.com/github/Exorust/TorchLeet/blob/main/llm/Byte-Pair-Encoder/BPE-q3.ipynb",
+   "frequency": "emerging",
+   "company_confidence": {},
+   "llm_path_order": 1,
+   "graded": true,
+   "entries": [
+    "get_vocab",
+    "get_stats",
+    "merge_vocab",
+    "byte_pair_encoding"
+   ],
+   "hints": [
+    "get_vocab splits each word into characters plus an end-of-word marker, and counts it.",
+    "get_stats counts adjacent symbol pairs weighted by each word's frequency.",
+    "A merge replaces every adjacent (a, b) with the single symbol 'ab' \u2014 the spelling of each word must not change, only how it is chopped up."
+   ]
+  },
+  {
+   "id": "implement-attention-from-scratch",
+   "legacy_ids": [
+    "v2-6"
+   ],
+   "title": "Implement Attention from Scratch",
+   "description": "Build scaled dot-product attention from raw matrix operations \u2014 queries, keys, values, scaling, and softmax.",
+   "difficulty": "medium",
+   "category": "modern-architectures",
+   "tracks": [
+    "advanced",
+    "llm-path"
+   ],
+   "companies": [],
+   "question": "llm/Implement-Attention-from-Scratch/attention-q4-Question.ipynb",
+   "solution": "llm/Implement-Attention-from-Scratch/attention-q4.ipynb",
+   "colab": "https://colab.research.google.com/github/Exorust/TorchLeet/blob/main/llm/Implement-Attention-from-Scratch/attention-q4-Question.ipynb",
+   "frequency": "emerging",
+   "company_confidence": {},
+   "llm_path_order": 5,
+   "graded": true,
+   "entries": [
+    "scaled_dot_product_attention"
+   ],
+   "hints": [
+    "scores = q @ k.transpose(-2,-1) / sqrt(d_k), then softmax, then @ v.",
+    "Divide by sqrt(d_k) or the softmax saturates as dimension grows.",
+    "Masked positions become -inf BEFORE the softmax, not zero after it."
+   ]
+  },
+  {
+   "id": "multi-head-attention",
+   "legacy_ids": [
+    "v2-7"
+   ],
+   "title": "Implement Multi-Head Attention from Scratch",
+   "description": "Split attention into multiple heads with independent projections, compute attention per head, and concatenate results.",
+   "difficulty": "medium",
+   "category": "modern-architectures",
+   "tracks": [
+    "advanced",
+    "llm-path"
+   ],
+   "companies": [],
+   "question": "llm/Multi-Head-Attention/multi-head-attention-q5-Question.ipynb",
+   "solution": "llm/Multi-Head-Attention/multi-head-attention-q5.ipynb",
+   "colab": "https://colab.research.google.com/github/Exorust/TorchLeet/blob/main/llm/Multi-Head-Attention/multi-head-attention-q5-Question.ipynb",
+   "frequency": "emerging",
+   "company_confidence": {},
+   "llm_path_order": 6,
+   "graded": true,
+   "entries": [
+    "multi_head_attention"
+   ],
+   "hints": [
+    "Project Q/K/V, split d_model into num_heads chunks of d_head, attend, then concatenate.",
+    "Reshape to (batch, heads, seq, d_head) with view + transpose(1, 2).",
+    "After attention, transpose back and merge the heads before the output projection."
+   ]
+  },
+  {
+   "id": "grouped-query-attention",
+   "legacy_ids": [
+    "v2-8"
+   ],
+   "title": "Implement Grouped Query Attention from Scratch",
+   "description": "Build GQA where multiple query heads share key-value heads, reducing KV cache memory while preserving quality.",
+   "difficulty": "medium",
+   "category": "modern-architectures",
+   "tracks": [
+    "advanced",
+    "llm-path"
+   ],
+   "companies": [],
+   "question": "llm/Grouped-Query-Attention/grouped-query-attention-Question.ipynb",
+   "solution": "llm/Grouped-Query-Attention/grouped-query-attention.ipynb",
+   "colab": "https://colab.research.google.com/github/Exorust/TorchLeet/blob/main/llm/Grouped-Query-Attention/grouped-query-attention-Question.ipynb",
+   "frequency": "emerging",
+   "company_confidence": {},
+   "llm_path_order": 7,
+   "graded": true,
+   "entries": [
+    "grouped_query_attention"
+   ],
+   "hints": [
+    "Queries keep all their heads; keys and values only have num_query_groups heads.",
+    "Project K/V to num_query_groups * d_head, not to d_model \u2014 that is where the saving comes from.",
+    "repeat_interleave each K/V head across the query heads that share it, then attend as usual."
+   ]
+  },
+  {
+   "id": "sinusoidal-positional-embedding",
+   "legacy_ids": [
+    "v2-10"
+   ],
+   "title": "Implement Sinusoidal Embeddings",
+   "description": "Build the fixed sinusoidal positional encoding from 'Attention Is All You Need' using sin/cos at different frequencies.",
+   "difficulty": "medium",
+   "category": "modern-architectures",
+   "tracks": [
+    "advanced",
+    "llm-path"
+   ],
+   "companies": [],
+   "question": "llm/Sinusoidal-Positional-Embedding/sinusoidal-q7-Question.ipynb",
+   "solution": "llm/Sinusoidal-Positional-Embedding/sinusoidal-q7.ipynb",
+   "colab": "https://colab.research.google.com/github/Exorust/TorchLeet/blob/main/llm/Sinusoidal-Positional-Embedding/sinusoidal-q7-Question.ipynb",
+   "frequency": "emerging",
+   "company_confidence": {},
+   "llm_path_order": 2,
+   "graded": true,
+   "entries": [
+    "SinusoidalPositionalEmbedding"
+   ],
+   "hints": [
+    "Even dimensions get sin, odd dimensions get cos.",
+    "The frequency for dimension i is 1 / 10000**(2i/d_model).",
+    "It is a fixed function of position \u2014 register it as a buffer, not a parameter."
+   ]
+  },
+  {
+   "id": "rotary-positional-embedding",
+   "legacy_ids": [
+    "v2-11"
+   ],
+   "title": "Implement ROPE Embeddings",
+   "description": "Build Rotary Position Embeddings that encode relative positions by rotating query and key vectors in complex space.",
+   "difficulty": "medium",
+   "category": "modern-architectures",
+   "tracks": [
+    "advanced",
+    "llm-path"
+   ],
+   "companies": [],
+   "question": "llm/Rotary-Positional-Embedding/rope-q8-Question.ipynb",
+   "solution": "llm/Rotary-Positional-Embedding/rope-q8.ipynb",
+   "colab": "https://colab.research.google.com/github/Exorust/TorchLeet/blob/main/llm/Rotary-Positional-Embedding/rope-q8-Question.ipynb",
+   "frequency": "emerging",
+   "company_confidence": {},
+   "llm_path_order": 3,
+   "graded": true,
+   "entries": [
+    "rotate_half",
+    "apply_rotary_pos_emb"
+   ],
+   "hints": [
+    "rotate_half splits the last dim in two and returns (-x2, x1) concatenated.",
+    "Rotated q = q*cos + rotate_half(q)*sin \u2014 the 2D rotation written elementwise.",
+    "cos and sin must broadcast against (batch, heads, seq, dim)."
+   ]
+  },
+  {
+   "id": "smollm",
+   "legacy_ids": [
+    "v2-12"
+   ],
+   "title": "Implement SmolLM from Scratch",
+   "description": "Build a complete small language model end-to-end: tokenizer integration, transformer blocks, and autoregressive text generation.",
+   "difficulty": "hard",
+   "category": "modern-architectures",
+   "tracks": [
+    "advanced",
+    "llm-path"
+   ],
+   "companies": [],
+   "question": "llm/SmolLM/smollm-q12-Question.ipynb",
+   "solution": "llm/SmolLM/smollm-q12.ipynb",
+   "colab": "https://colab.research.google.com/github/Exorust/TorchLeet/blob/main/llm/SmolLM/smollm-q12-Question.ipynb",
+   "frequency": "emerging",
+   "company_confidence": {},
+   "llm_path_order": 10,
+   "graded": true,
+   "entries": [
+    "rotate_half",
+    "apply_rotary_pos_emb",
+    "repeat_kv",
+    "RotaryEmbedder",
+    "RopeAttention"
+   ],
+   "hints": [
+    "rotate_half splits the last dim in half and returns (-x2, x1) concatenated.",
+    "repeat_kv expands each KV head n_rep times *in place* so head i of Q pairs with KV head i // n_rep \u2014 expand + reshape, not a plain repeat/tile.",
+    "RopeAttention: project, split into num_heads (Q) and kv_heads (K/V), rotate Q and K, repeat_kv the K/V, then scaled dot-product attention plus the additive mask."
+   ]
+  },
+  {
+   "id": "softmax",
+   "legacy_ids": [
+    "v3-1"
+   ],
+   "title": "Implement Softmax from Scratch",
+   "description": "Build numerically stable softmax using the log-sum-exp trick, handling overflow and underflow in raw tensor math.",
+   "difficulty": "easy",
+   "category": "classical-ml",
+   "tracks": [
+    "basics"
+   ],
+   "companies": [
+    "Apple",
+    "Meta",
+    "Google",
+    "Amazon"
+   ],
+   "question": "v3/classical-ml/softmax/softmax.ipynb",
+   "solution": "v3/classical-ml/softmax/softmax_SOLN.ipynb",
+   "colab": "https://colab.research.google.com/github/Exorust/TorchLeet/blob/main/v3/classical-ml/softmax/softmax.ipynb",
+   "frequency": "very-likely",
+   "company_confidence": {
+    "Apple": "inferred",
+    "Meta": "inferred",
+    "Google": "inferred",
+    "Amazon": "inferred"
+   },
+   "llm_path_order": null,
+   "graded": true,
+   "entries": [
+    "softmax"
+   ],
+   "hints": [
+    "exp() of a large number overflows. What can you subtract without changing the result?",
+    "softmax(x) == softmax(x - c) for any constant c. Pick c = max(x) along `dim`.",
+    "Keep dims when you take the max and the sum so broadcasting lines up."
+   ]
+  },
+  {
+   "id": "kmeans",
+   "legacy_ids": [
+    "v3-2"
+   ],
+   "title": "Implement K-Means Clustering in PyTorch",
+   "description": "Code Lloyd's algorithm with PyTorch tensors: random init, distance computation, centroid updates, and convergence check.",
+   "difficulty": "easy",
+   "category": "classical-ml",
+   "tracks": [
+    "basics"
+   ],
+   "companies": [
+    "Uber",
+    "LinkedIn",
+    "Google",
+    "Amazon"
+   ],
+   "question": "v3/classical-ml/kmeans/kmeans.ipynb",
+   "solution": "v3/classical-ml/kmeans/kmeans_SOLN.ipynb",
+   "colab": "https://colab.research.google.com/github/Exorust/TorchLeet/blob/main/v3/classical-ml/kmeans/kmeans.ipynb",
+   "frequency": "very-likely",
+   "company_confidence": {
+    "Uber": "inferred",
+    "LinkedIn": "inferred",
+    "Google": "inferred",
+    "Amazon": "inferred"
+   },
+   "llm_path_order": null,
+   "graded": true,
+   "entries": [
+    "kmeans"
+   ],
+   "hints": [
+    "Alternate two steps: assign each point to its nearest centroid, then move each centroid to the mean of its points.",
+    "torch.cdist(data, centroids) gives you all the distances at once.",
+    "Stop when the centroids stop moving by more than `tol`."
+   ]
+  },
+  {
+   "id": "knn",
+   "legacy_ids": [
+    "v3-3"
+   ],
+   "title": "Implement KNN in PyTorch",
+   "description": "Build k-nearest neighbors classification using vectorized distance computation and top-k selection on tensors.",
+   "difficulty": "easy",
+   "category": "classical-ml",
+   "tracks": [
+    "basics"
+   ],
+   "companies": [
+    "Uber",
+    "LinkedIn",
+    "Meta"
+   ],
+   "question": "v3/classical-ml/knn/knn.ipynb",
+   "solution": "v3/classical-ml/knn/knn_SOLN.ipynb",
+   "colab": "https://colab.research.google.com/github/Exorust/TorchLeet/blob/main/v3/classical-ml/knn/knn.ipynb",
+   "frequency": "common",
+   "company_confidence": {
+    "Uber": "inferred",
+    "LinkedIn": "inferred",
+    "Meta": "inferred"
+   },
+   "llm_path_order": null,
+   "graded": true,
+   "entries": [
+    "knn_predict"
+   ],
+   "hints": [
+    "torch.cdist gives every test-to-train distance in one call.",
+    "topk(..., largest=False) picks the nearest neighbours.",
+    "Predict the majority label among those neighbours (torch.mode helps)."
+   ]
+  },
+  {
+   "id": "logistic-regression",
+   "legacy_ids": [
+    "v3-4"
+   ],
+   "title": "Implement Logistic Regression with Gradient Descent",
+   "description": "Build binary logistic regression from scratch with sigmoid, binary cross-entropy, and manual gradient descent updates.",
+   "difficulty": "easy",
+   "category": "classical-ml",
+   "tracks": [
+    "basics"
+   ],
+   "companies": [
+    "Google",
+    "Meta",
+    "Amazon"
+   ],
+   "question": "v3/classical-ml/logistic-regression/logistic-regression.ipynb",
+   "solution": "v3/classical-ml/logistic-regression/logistic-regression_SOLN.ipynb",
+   "colab": "https://colab.research.google.com/github/Exorust/TorchLeet/blob/main/v3/classical-ml/logistic-regression/logistic-regression.ipynb",
+   "frequency": "common",
+   "company_confidence": {
+    "Google": "inferred",
+    "Meta": "inferred",
+    "Amazon": "inferred"
+   },
+   "llm_path_order": null,
+   "graded": true,
+   "entries": [
+    "sigmoid",
+    "bce_loss",
+    "train_logistic_regression"
+   ],
+   "hints": [
+    "sigmoid(z) = 1 / (1 + exp(-z)).",
+    "BCE = -mean(y*log(p) + (1-y)*log(1-p)); clamp p away from 0 and 1 first.",
+    "Train with gradient descent on the BCE of sigmoid(Xw + b)."
+   ]
+  },
+  {
+   "id": "contrastive-loss-clip",
+   "legacy_ids": [
+    "v3-5"
+   ],
+   "title": "Implement Contrastive Loss (InfoNCE) + CLIP Training Loop",
+   "description": "Build the InfoNCE contrastive loss and a CLIP-style training loop that aligns image and text embeddings.",
+   "difficulty": "medium",
+   "category": "modern-architectures",
+   "tracks": [
+    "advanced"
+   ],
+   "companies": [
+    "OpenAI",
+    "Anthropic",
+    "DeepMind",
+    "Midjourney",
+    "Apple"
+   ],
+   "question": "v3/modern-architectures/contrastive-loss-clip/contrastive-loss-clip.ipynb",
+   "solution": "v3/modern-architectures/contrastive-loss-clip/contrastive-loss-clip_SOLN.ipynb",
+   "colab": "https://colab.research.google.com/github/Exorust/TorchLeet/blob/main/v3/modern-architectures/contrastive-loss-clip/contrastive-loss-clip.ipynb",
+   "frequency": "very-likely",
+   "company_confidence": {
+    "OpenAI": "inferred",
+    "Anthropic": "inferred",
+    "DeepMind": "inferred",
+    "Midjourney": "inferred",
+    "Apple": "inferred"
+   },
+   "llm_path_order": null,
+   "graded": true,
+   "entries": [
+    "info_nce_loss",
+    "SimpleCLIP"
+   ],
+   "hints": [
+    "L2-normalize both feature sets first (F.normalize(x, dim=-1)); the cosine similarity matrix is then just image_features @ text_features.T.",
+    "The positives sit on the diagonal, so the cross-entropy targets are torch.arange(batch_size) \u2014 image i must match text i.",
+    "Symmetric means both directions: (cross_entropy(logits, labels) + cross_entropy(logits.T, labels)) / 2. Scale the logits by the temperature before the softmax, and keep temperature learnable as a log-temperature."
+   ]
+  },
+  {
+   "id": "2d-positional-embeddings",
+   "legacy_ids": [
+    "v3-6"
+   ],
+   "title": "Implement 2D Positional Embeddings",
+   "description": "Build 2D sinusoidal position encodings for vision transformers, encoding both row and column positions in patch grids.",
+   "difficulty": "medium",
+   "category": "modern-architectures",
+   "tracks": [
+    "advanced"
+   ],
+   "companies": [
+    "Anthropic",
+    "DeepMind",
+    "Midjourney",
+    "Runway"
+   ],
+   "question": "v3/modern-architectures/2d-positional-embeddings/2d-positional-embeddings.ipynb",
+   "solution": "v3/modern-architectures/2d-positional-embeddings/2d-positional-embeddings_SOLN.ipynb",
+   "colab": "https://colab.research.google.com/github/Exorust/TorchLeet/blob/main/v3/modern-architectures/2d-positional-embeddings/2d-positional-embeddings.ipynb",
+   "frequency": "very-likely",
+   "company_confidence": {
+    "Anthropic": "inferred",
+    "DeepMind": "inferred",
+    "Midjourney": "inferred",
+    "Runway": "inferred"
+   },
+   "llm_path_order": null,
+   "graded": true,
+   "entries": [
+    "create_2d_sinusoidal_embeddings"
+   ],
+   "hints": [
+    "Encode the row and the column separately, then concatenate the two halves.",
+    "Each half is a standard 1D sinusoidal embedding of size d_model // 2.",
+    "Flatten the grid in row-major order so index r*width + c is position (r, c)."
+   ]
+  },
+  {
+   "id": "top-p-sampling",
+   "legacy_ids": [
+    "v3-7"
+   ],
+   "title": "Implement Top-p (Nucleus) Sampling",
+   "description": "Sort logits, compute cumulative probabilities, mask tokens below the nucleus threshold, and sample from the filtered distribution.",
+   "difficulty": "medium",
+   "category": "llm-decoding",
+   "tracks": [
+    "llm-path"
+   ],
+   "companies": [
+    "Anthropic",
+    "OpenAI",
+    "DeepMind",
+    "Perplexity",
+    "Cohere"
+   ],
+   "question": "v3/llm-decoding/top-p-sampling/top-p-sampling.ipynb",
+   "solution": "v3/llm-decoding/top-p-sampling/top-p-sampling_SOLN.ipynb",
+   "colab": "https://colab.research.google.com/github/Exorust/TorchLeet/blob/main/v3/llm-decoding/top-p-sampling/top-p-sampling.ipynb",
+   "frequency": "very-likely",
+   "company_confidence": {
+    "Anthropic": "inferred",
+    "OpenAI": "inferred",
+    "DeepMind": "inferred",
+    "Perplexity": "inferred",
+    "Cohere": "inferred"
+   },
+   "llm_path_order": 19,
+   "graded": true,
+   "entries": [
+    "top_p_sample"
+   ],
+   "hints": [
+    "Sort probabilities descending, then take the smallest prefix whose cumulative mass >= p.",
+    "Always keep at least one token, or a peaked distribution can select nothing.",
+    "Renormalize the surviving probabilities before sampling from them."
+   ]
+  },
+  {
+   "id": "top-k-sampling",
+   "legacy_ids": [
+    "v3-8"
+   ],
+   "title": "Implement Top-k Sampling",
+   "description": "Select the k highest-probability tokens, zero out the rest, renormalize, and sample for controlled text generation.",
+   "difficulty": "medium",
+   "category": "llm-decoding",
+   "tracks": [
+    "llm-path"
+   ],
+   "companies": [
+    "Anthropic",
+    "OpenAI",
+    "DeepMind",
+    "Cohere"
+   ],
+   "question": "v3/llm-decoding/top-k-sampling/top-k-sampling.ipynb",
+   "solution": "v3/llm-decoding/top-k-sampling/top-k-sampling_SOLN.ipynb",
+   "colab": "https://colab.research.google.com/github/Exorust/TorchLeet/blob/main/v3/llm-decoding/top-k-sampling/top-k-sampling.ipynb",
+   "frequency": "very-likely",
+   "company_confidence": {
+    "Anthropic": "inferred",
+    "OpenAI": "inferred",
+    "DeepMind": "inferred",
+    "Cohere": "inferred"
+   },
+   "llm_path_order": 18,
+   "graded": true,
+   "entries": [
+    "top_k_sample"
+   ],
+   "hints": [
+    "Keep the k largest logits and make the rest impossible to select.",
+    "Setting the discarded logits to -inf before the softmax does that cleanly.",
+    "torch.topk gives you both the values and their indices."
+   ]
+  },
+  {
+   "id": "beam-search",
+   "legacy_ids": [
+    "v3-9"
+   ],
+   "title": "Implement Beam Search for LLM Decoding",
+   "description": "Maintain and expand top-scoring partial sequences at each decoding step with length normalization and early stopping.",
+   "difficulty": "medium",
+   "category": "llm-decoding",
+   "tracks": [
+    "advanced"
+   ],
+   "companies": [
+    "Google",
+    "DeepMind",
+    "Meta",
+    "Apple"
+   ],
+   "question": "v3/llm-decoding/beam-search/beam-search.ipynb",
+   "solution": "v3/llm-decoding/beam-search/beam-search_SOLN.ipynb",
+   "colab": "https://colab.research.google.com/github/Exorust/TorchLeet/blob/main/v3/llm-decoding/beam-search/beam-search.ipynb",
+   "frequency": "very-likely",
+   "company_confidence": {
+    "Google": "inferred",
+    "DeepMind": "inferred",
+    "Meta": "inferred",
+    "Apple": "inferred"
+   },
+   "llm_path_order": null,
+   "graded": true,
+   "entries": [
+    "beam_search"
+   ],
+   "hints": [
+    "Keep each beam as (sequence, cumulative_log_prob) and start from ([start_token], 0.0) \u2014 the start token counts towards max_len.",
+    "Score a candidate with the RUNNING total: score + log_softmax(logits)[token]. Comparing only the current step's log-prob turns beam search into greedy.",
+    "Pool the candidates from every beam into one list, sort by score, keep the top beam_width. At the end return the sequence of the highest-scoring beam."
+   ]
+  },
+  {
+   "id": "temperature-sampling",
+   "legacy_ids": [
+    "v3-10"
+   ],
+   "title": "Implement Temperature Sampling",
+   "description": "Divide logits by a temperature scalar before softmax to sharpen or flatten the token probability distribution.",
+   "difficulty": "easy",
+   "category": "llm-decoding",
+   "tracks": [
+    "llm-path"
+   ],
+   "companies": [
+    "OpenAI",
+    "Anthropic",
+    "Cohere",
+    "Perplexity"
+   ],
+   "question": "v3/llm-decoding/temperature-sampling/temperature-sampling.ipynb",
+   "solution": "v3/llm-decoding/temperature-sampling/temperature-sampling_SOLN.ipynb",
+   "colab": "https://colab.research.google.com/github/Exorust/TorchLeet/blob/main/v3/llm-decoding/temperature-sampling/temperature-sampling.ipynb",
+   "frequency": "very-likely",
+   "company_confidence": {
+    "OpenAI": "inferred",
+    "Anthropic": "inferred",
+    "Cohere": "inferred",
+    "Perplexity": "inferred"
+   },
+   "llm_path_order": 17,
+   "graded": true,
+   "entries": [
+    "temperature_sample"
+   ],
+   "hints": [
+    "Divide the logits by the temperature before the softmax.",
+    "Low temperature sharpens the distribution toward the argmax; high flattens it.",
+    "Sample with torch.multinomial on the resulting probabilities."
+   ]
+  },
+  {
+   "id": "lora",
+   "legacy_ids": [
+    "v3-11"
+   ],
+   "title": "Implement LoRA on a Linear Layer",
+   "description": "Inject trainable low-rank decomposition matrices (A, B) into a frozen linear layer for parameter-efficient fine-tuning.",
+   "difficulty": "medium",
+   "category": "alignment-training",
+   "tracks": [
+    "advanced",
+    "llm-path"
+   ],
+   "companies": [
+    "Meta",
+    "Google",
+    "Anthropic",
+    "OpenAI",
+    "Databricks"
+   ],
+   "question": "v3/alignment-training/lora/lora.ipynb",
+   "solution": "v3/alignment-training/lora/lora_SOLN.ipynb",
+   "colab": "https://colab.research.google.com/github/Exorust/TorchLeet/blob/main/v3/alignment-training/lora/lora.ipynb",
+   "frequency": "very-likely",
+   "company_confidence": {
+    "Meta": "inferred",
+    "Google": "inferred",
+    "Anthropic": "inferred",
+    "OpenAI": "inferred",
+    "Databricks": "inferred"
+   },
+   "llm_path_order": 12,
+   "graded": true,
+   "entries": [
+    "LoRALinear",
+    "apply_lora",
+    "merge_lora"
+   ],
+   "hints": [
+    "LoRA adds a low-rank detour: output = W@x + (alpha/r) * (x@A)@B.",
+    "A is (d_in, rank) and B is (rank, d_out); the base layer's weights are frozen.",
+    "Merging means W_new = W_old + scaling * (A@B).T \u2014 same maths, one matrix."
+   ]
+  },
+  {
+   "id": "kv-cache",
+   "legacy_ids": [
+    "v3-12"
+   ],
+   "title": "Implement KV Cache for Autoregressive Generation",
+   "description": "Cache key and value tensors from previous timesteps so each new token only computes attention over one new position.",
+   "difficulty": "medium",
+   "category": "llm-inference",
+   "tracks": [
+    "advanced",
+    "llm-path"
+   ],
+   "companies": [
+    "Anthropic",
+    "OpenAI",
+    "Meta",
+    "Perplexity",
+    "Together AI"
+   ],
+   "question": "v3/llm-inference/kv-cache/kv-cache.ipynb",
+   "solution": "v3/llm-inference/kv-cache/kv-cache_SOLN.ipynb",
+   "colab": "https://colab.research.google.com/github/Exorust/TorchLeet/blob/main/v3/llm-inference/kv-cache/kv-cache.ipynb",
+   "frequency": "very-likely",
+   "company_confidence": {
+    "Anthropic": "inferred",
+    "OpenAI": "inferred",
+    "Meta": "inferred",
+    "Perplexity": "inferred",
+    "Together AI": "inferred"
+   },
+   "llm_path_order": 8,
+   "graded": true,
+   "entries": [
+    "KVCache",
+    "CachedAttention"
+   ],
+   "hints": [
+    "The cache holds (batch, heads, seq_len, d_head). What changes as you decode?",
+    "update() appends the new K/V along the seq_len dimension (dim=2).",
+    "In cached mode you compute Q/K/V for the new token only, then attend over the full cached K/V. No causal mask is needed \u2014 the cache only holds the past."
+   ]
+  },
+  {
+   "id": "sliding-window-attention",
+   "legacy_ids": [
+    "v3-13"
+   ],
+   "title": "Implement Sliding Window Attention",
+   "description": "Restrict attention to a fixed local window around each token, reducing memory from O(n\u00b2) to O(n\u00b7w) for long sequences.",
+   "difficulty": "medium",
+   "category": "modern-architectures",
+   "tracks": [
+    "llm-path",
+    "advanced"
+   ],
+   "companies": [
+    "Mistral",
+    "Anthropic",
+    "Google",
+    "DeepMind"
+   ],
+   "question": "v3/modern-architectures/sliding-window-attention/sliding-window-attention.ipynb",
+   "solution": "v3/modern-architectures/sliding-window-attention/sliding-window-attention_SOLN.ipynb",
+   "colab": "https://colab.research.google.com/github/Exorust/TorchLeet/blob/main/v3/modern-architectures/sliding-window-attention/sliding-window-attention.ipynb",
+   "frequency": "very-likely",
+   "company_confidence": {
+    "Mistral": "inferred",
+    "Anthropic": "inferred",
+    "Google": "inferred",
+    "DeepMind": "inferred"
+   },
+   "llm_path_order": 9,
+   "graded": true,
+   "entries": [
+    "create_sliding_window_mask",
+    "full_attention",
+    "sliding_window_attention"
+   ],
+   "hints": [
+    "Position i may attend to j when |i - j| <= window_size.",
+    "Build the mask from pairwise distances: (arange - arange.T).abs() <= window_size.",
+    "Masked positions get -inf BEFORE the softmax, not zero after it."
+   ]
+  },
+  {
+   "id": "dpo",
+   "legacy_ids": [
+    "v3-14"
+   ],
+   "title": "Implement DPO Loss from Scratch",
+   "description": "Compute the Direct Preference Optimization loss that trains a policy directly from preference pairs without a reward model.",
+   "difficulty": "hard",
+   "category": "alignment-training",
+   "tracks": [
+    "advanced",
+    "llm-path"
+   ],
+   "companies": [
+    "Anthropic",
+    "OpenAI",
+    "DeepMind",
+    "Meta"
+   ],
+   "question": "v3/alignment-training/dpo/dpo.ipynb",
+   "solution": "v3/alignment-training/dpo/dpo_SOLN.ipynb",
+   "colab": "https://colab.research.google.com/github/Exorust/TorchLeet/blob/main/v3/alignment-training/dpo/dpo.ipynb",
+   "frequency": "very-likely",
+   "company_confidence": {
+    "Anthropic": "inferred",
+    "OpenAI": "inferred",
+    "DeepMind": "inferred",
+    "Meta": "inferred"
+   },
+   "llm_path_order": 14,
+   "graded": true,
+   "entries": [
+    "get_batch_logps",
+    "dpo_loss"
+   ],
+   "hints": [
+    "get_batch_logps sums the log-probability of each actual next token in the sequence.",
+    "Shift by one: logits at position t predict the token at position t+1.",
+    "DPO = -logsigmoid(beta * ((pi_chosen - ref_chosen) - (pi_rejected - ref_rejected)))."
+   ]
+  },
+  {
+   "id": "ppo-rlhf",
+   "legacy_ids": [
+    "v3-15"
+   ],
+   "title": "Implement PPO for RLHF",
+   "description": "Build Proximal Policy Optimization with clipped surrogate objective, value function baseline, and KL penalty for RLHF.",
+   "difficulty": "hard",
+   "category": "alignment-training",
+   "tracks": [
+    "advanced",
+    "llm-path"
+   ],
+   "companies": [
+    "Anthropic",
+    "OpenAI",
+    "DeepMind",
+    "Meta"
+   ],
+   "question": "v3/alignment-training/ppo-rlhf/ppo-rlhf.ipynb",
+   "solution": "v3/alignment-training/ppo-rlhf/ppo-rlhf_SOLN.ipynb",
+   "colab": "https://colab.research.google.com/github/Exorust/TorchLeet/blob/main/v3/alignment-training/ppo-rlhf/ppo-rlhf.ipynb",
+   "frequency": "very-likely",
+   "company_confidence": {
+    "Anthropic": "inferred",
+    "OpenAI": "inferred",
+    "DeepMind": "inferred",
+    "Meta": "inferred"
+   },
+   "llm_path_order": 15,
+   "graded": true,
+   "entries": [
+    "generate_sequences",
+    "compute_gae",
+    "ppo_step"
+   ],
+   "hints": [
+    "generate_sequences starts from a BOS token (id = vocab_size), samples one token at a time from Categorical(logits=logits[:, -1, :]), and returns the running input ids so the value model can be scored on the same prefixes.",
+    "GAE runs backwards: delta_t = r_t + gamma*V(s_{t+1}) - V(s_t) with V(s_T)=0, then A_t = delta_t + gamma*lam*A_{t+1}.",
+    "ppo_step recomputes log-probs for `actions` under the current policy, forms ratio = exp(new - old), and takes min(ratio*A, clamp(ratio, 1-eps, 1+eps)*A). total_loss = -policy_objective + 0.5*value_loss + kl_beta*kl_div."
+   ]
+  },
+  {
+   "id": "gradient-checkpointing",
+   "legacy_ids": [
+    "v3-16"
+   ],
+   "title": "Implement Gradient Checkpointing",
+   "description": "Trade compute for memory by recomputing intermediate activations during backward instead of storing them all.",
+   "difficulty": "hard",
+   "category": "alignment-training",
+   "tracks": [
+    "advanced"
+   ],
+   "companies": [
+    "Meta",
+    "Google",
+    "NVIDIA",
+    "Tesla"
+   ],
+   "question": "v3/alignment-training/gradient-checkpointing/gradient-checkpointing.ipynb",
+   "solution": "v3/alignment-training/gradient-checkpointing/gradient-checkpointing_SOLN.ipynb",
+   "colab": "https://colab.research.google.com/github/Exorust/TorchLeet/blob/main/v3/alignment-training/gradient-checkpointing/gradient-checkpointing.ipynb",
+   "frequency": "very-likely",
+   "company_confidence": {
+    "Meta": "inferred",
+    "Google": "inferred",
+    "NVIDIA": "inferred",
+    "Tesla": "inferred"
+   },
+   "llm_path_order": null,
+   "graded": true,
+   "entries": [
+    "CheckpointFunction",
+    "checkpoint"
+   ],
+   "hints": [
+    "In forward: stash fn on ctx, ctx.save_for_backward(*args), and run fn(*args) inside torch.no_grad() so no intermediate activation is kept.",
+    "In backward: detach the saved inputs, requires_grad_ them, re-run fn inside torch.enable_grad(), then torch.autograd.grad(output, inputs, grad_outputs).",
+    "backward must return one gradient per forward argument \u2014 None for fn itself, then a gradient (or None) for each tensor input."
+   ]
+  },
+  {
+   "id": "mixture-of-experts",
+   "legacy_ids": [
+    "v3-17"
+   ],
+   "title": "Implement Mixture of Experts Layer",
+   "description": "Build a gated MoE with top-k routing, load balancing loss, and expert capacity constraints for sparse computation.",
+   "difficulty": "hard",
+   "category": "modern-architectures",
+   "tracks": [
+    "advanced",
+    "llm-path"
+   ],
+   "companies": [
+    "Google",
+    "DeepMind",
+    "Mistral",
+    "Databricks",
+    "xAI"
+   ],
+   "question": "v3/modern-architectures/mixture-of-experts/mixture-of-experts.ipynb",
+   "solution": "v3/modern-architectures/mixture-of-experts/mixture-of-experts_SOLN.ipynb",
+   "colab": "https://colab.research.google.com/github/Exorust/TorchLeet/blob/main/v3/modern-architectures/mixture-of-experts/mixture-of-experts.ipynb",
+   "frequency": "very-likely",
+   "company_confidence": {
+    "Google": "inferred",
+    "DeepMind": "inferred",
+    "Mistral": "inferred",
+    "Databricks": "inferred",
+    "xAI": "inferred"
+   },
+   "llm_path_order": 23,
+   "graded": true,
+   "entries": [
+    "Expert",
+    "MoELayer"
+   ],
+   "hints": [
+    "Route each token to its top-k experts and weight their outputs by the gate probabilities.",
+    "Renormalize the top-k gate values so each token's weights sum to 1.",
+    "The aux loss penalizes imbalance: experts should receive roughly equal token shares."
+   ]
+  },
+  {
+   "id": "speculative-decoding",
+   "legacy_ids": [
+    "v3-18"
+   ],
+   "title": "Implement Speculative Decoding",
+   "description": "Draft tokens with a fast model, verify in parallel with the target model, and accept/reject to guarantee identical output distribution.",
+   "difficulty": "hard",
+   "category": "llm-inference",
+   "tracks": [
+    "advanced",
+    "llm-path"
+   ],
+   "companies": [
+    "Google",
+    "DeepMind",
+    "Anthropic",
+    "Apple"
+   ],
+   "question": "v3/llm-inference/speculative-decoding/speculative-decoding.ipynb",
+   "solution": "v3/llm-inference/speculative-decoding/speculative-decoding_SOLN.ipynb",
+   "colab": "https://colab.research.google.com/github/Exorust/TorchLeet/blob/main/v3/llm-inference/speculative-decoding/speculative-decoding.ipynb",
+   "frequency": "very-likely",
+   "company_confidence": {
+    "Google": "inferred",
+    "DeepMind": "inferred",
+    "Anthropic": "inferred",
+    "Apple": "inferred"
+   },
+   "llm_path_order": 20,
+   "graded": true,
+   "entries": [
+    "DraftModel",
+    "TargetModel",
+    "standard_decode",
+    "speculative_decode"
+   ],
+   "hints": [
+    "Draft phase: sample K tokens from the draft one at a time, keeping the draft probability q(x_i) of each. Verification: ONE target forward over prompt + all K drafts gives every p(x_i) at once.",
+    "Accept token i with probability min(1, p(x_i)/q(x_i)). On rejection, stop and sample the replacement from the normalised residual max(0, p - q) \u2014 that correction is what keeps the output distribution exactly the target's.",
+    "The target logits that score draft token i live at position prompt_len - 1 + i. If all K are accepted you get a free bonus token from position prompt_len + K - 1."
+   ]
+  },
+  {
+   "id": "continuous-batching",
+   "legacy_ids": [
+    "v3-19"
+   ],
+   "title": "Implement Continuous Batching for LLM Inference",
+   "description": "Dynamically slot sequences in and out of a running batch as they finish, maximizing throughput without padding waste.",
+   "difficulty": "hard",
+   "category": "llm-inference",
+   "tracks": [
+    "advanced",
+    "llm-path"
+   ],
+   "companies": [
+    "Perplexity",
+    "Together AI",
+    "Anyscale",
+    "Meta"
+   ],
+   "question": "v3/llm-inference/continuous-batching/continuous-batching.ipynb",
+   "solution": "v3/llm-inference/continuous-batching/continuous-batching_SOLN.ipynb",
+   "colab": "https://colab.research.google.com/github/Exorust/TorchLeet/blob/main/v3/llm-inference/continuous-batching/continuous-batching.ipynb",
+   "frequency": "very-likely",
+   "company_confidence": {
+    "Perplexity": "inferred",
+    "Together AI": "inferred",
+    "Anyscale": "inferred",
+    "Meta": "inferred"
+   },
+   "llm_path_order": 21,
+   "graded": true,
+   "entries": [
+    "Request",
+    "ContinuousBatchScheduler"
+   ],
+   "hints": [
+    "Keep two lists: waiting_queue and active_batch. Each step() fills free slots from the queue first, then runs the model, then evicts whatever finished.",
+    "A request is done when it emits eos_token_id OR len(generated_ids) reaches max_gen_len \u2014 check both after appending the token.",
+    "step() should report whether work remains (active or waiting), so run() can simply loop `while self.step(model): pass`."
+   ]
+  },
+  {
+   "id": "ddpm",
+   "legacy_ids": [
+    "v3-20"
+   ],
+   "title": "Implement DDPM from Scratch",
+   "description": "Build the full denoising diffusion pipeline: forward noise schedule, U-Net denoiser, and reverse sampling to generate images.",
+   "difficulty": "hard",
+   "category": "modern-architectures",
+   "tracks": [
+    "advanced"
+   ],
+   "companies": [
+    "Midjourney",
+    "Runway",
+    "Stability AI",
+    "Adobe",
+    "Google"
+   ],
+   "question": "v3/modern-architectures/ddpm/ddpm.ipynb",
+   "solution": "v3/modern-architectures/ddpm/ddpm_SOLN.ipynb",
+   "colab": "https://colab.research.google.com/github/Exorust/TorchLeet/blob/main/v3/modern-architectures/ddpm/ddpm.ipynb",
+   "frequency": "very-likely",
+   "company_confidence": {
+    "Midjourney": "inferred",
+    "Runway": "inferred",
+    "Stability AI": "inferred",
+    "Adobe": "inferred",
+    "Google": "inferred"
+   },
+   "llm_path_order": null,
+   "graded": true,
+   "entries": [
+    "linear_beta_schedule",
+    "q_sample",
+    "SimpleDenoiser",
+    "p_sample",
+    "p_sample_loop"
+   ],
+   "hints": [
+    "linear_beta_schedule is torch.linspace(beta_start, beta_end, timesteps) \u2014 small betas first, so early steps corrupt slowly.",
+    "q_sample is the closed form of the forward process: x_t = sqrt(abar_t)*x_0 + sqrt(1-abar_t)*noise, with abar gathered per sample from t (each row of the batch has its own timestep).",
+    "p_sample: mu = (1/sqrt(alpha_t)) * (x_t - beta_t/sqrt(1-abar_t) * eps_pred), then add sqrt(beta_t)*z for t > 0 and nothing at t = 0. p_sample_loop starts at x_T ~ N(0, I) and calls p_sample for t = T-1 ... 0."
+   ]
+  },
+  {
+   "id": "ddim-cfg",
+   "legacy_ids": [
+    "v3-21"
+   ],
+   "title": "Implement DDIM Sampling + Classifier-Free Guidance",
+   "description": "Build deterministic DDIM sampling with classifier-free guidance to control image generation quality and conditioning adherence.",
+   "difficulty": "hard",
+   "category": "modern-architectures",
+   "tracks": [
+    "advanced"
+   ],
+   "companies": [
+    "Midjourney",
+    "Runway",
+    "Stability AI",
+    "Adobe"
+   ],
+   "question": "v3/modern-architectures/ddim-cfg/ddim-cfg.ipynb",
+   "solution": "v3/modern-architectures/ddim-cfg/ddim-cfg_SOLN.ipynb",
+   "colab": "https://colab.research.google.com/github/Exorust/TorchLeet/blob/main/v3/modern-architectures/ddim-cfg/ddim-cfg.ipynb",
+   "frequency": "very-likely",
+   "company_confidence": {
+    "Midjourney": "inferred",
+    "Runway": "inferred",
+    "Stability AI": "inferred",
+    "Adobe": "inferred"
+   },
+   "llm_path_order": null,
+   "graded": true,
+   "entries": [
+    "ConditionalDenoiser",
+    "ddim_sample_step",
+    "guided_predict",
+    "ddim_sample_loop"
+   ],
+   "hints": [
+    "The null/unconditional label is the extra embedding row at index num_classes, so the class embedding table needs num_classes + 1 entries.",
+    "CFG: eps = eps_uncond + guidance_scale * (eps_cond - eps_uncond). At guidance_scale = 1 that is exactly eps_cond.",
+    "DDIM (eta=0): x0_pred = (x_t - sqrt(1-abar_t)*eps) / sqrt(abar_t), then x_prev = sqrt(abar_prev)*x0_pred + sqrt(1-abar_prev)*eps. No randn anywhere in the step \u2014 the only randomness is the initial x_T."
+   ]
+  },
+  {
+   "id": "mamba",
+   "legacy_ids": [
+    "v3-22"
+   ],
+   "title": "Implement Selective State Space Model (Mamba)",
+   "description": "Build Mamba's selective scan mechanism with input-dependent parameters, achieving linear-time sequence modeling without attention.",
+   "difficulty": "hard",
+   "category": "modern-architectures",
+   "tracks": [
+    "advanced"
+   ],
+   "companies": [
+    "DeepMind",
+    "Google",
+    "Anthropic"
+   ],
+   "question": "v3/modern-architectures/mamba/mamba.ipynb",
+   "solution": "v3/modern-architectures/mamba/mamba_SOLN.ipynb",
+   "colab": "https://colab.research.google.com/github/Exorust/TorchLeet/blob/main/v3/modern-architectures/mamba/mamba.ipynb",
+   "frequency": "common",
+   "company_confidence": {
+    "DeepMind": "inferred",
+    "Google": "inferred",
+    "Anthropic": "inferred"
+   },
+   "llm_path_order": null,
+   "graded": true,
+   "entries": [
+    "selective_scan",
+    "MambaBlock"
+   ],
+   "hints": [
+    "Discretize first: A_bar = exp(delta[..., None] * A) and B_bar = delta[..., None] * B[:, :, None, :], both (B, L, D, N).",
+    "Then run the recurrence over time with h of shape (B, D, N): h = A_bar[:, t] * h + B_bar[:, t] * x[:, t, :, None], y_t = (h * C[:, t, None, :]).sum(-1).",
+    "Two things are easy to lose: the skip connection y = y + D * x, and causality in MambaBlock \u2014 Conv1d(padding=d_conv-1) must be truncated back to L so no position sees the future."
+   ]
+  },
+  {
+   "id": "vit-mae",
+   "legacy_ids": [
+    "v3-23"
+   ],
+   "title": "Implement Vision Transformer + MAE Pretraining",
+   "description": "Build ViT with masked autoencoder pretraining \u2014 randomly mask patches, encode visible ones, decode to reconstruct.",
+   "difficulty": "hard",
+   "category": "modern-architectures",
+   "tracks": [
+    "advanced"
+   ],
+   "companies": [
+    "Meta",
+    "Google",
+    "Apple",
+    "Tesla",
+    "Waymo"
+   ],
+   "question": "v3/modern-architectures/vit-mae/vit-mae.ipynb",
+   "solution": "v3/modern-architectures/vit-mae/vit-mae_SOLN.ipynb",
+   "colab": "https://colab.research.google.com/github/Exorust/TorchLeet/blob/main/v3/modern-architectures/vit-mae/vit-mae.ipynb",
+   "frequency": "very-likely",
+   "company_confidence": {
+    "Meta": "inferred",
+    "Google": "inferred",
+    "Apple": "inferred",
+    "Tesla": "inferred",
+    "Waymo": "inferred"
+   },
+   "llm_path_order": null,
+   "graded": true,
+   "entries": [
+    "PatchEmbedding",
+    "ViT",
+    "MAE"
+   ],
+   "hints": [
+    "PatchEmbedding is a Conv2d with kernel_size = stride = patch_size, then flatten(2).transpose(1, 2) to get (B, n_patches, embed_dim).",
+    "ViT: prepend a learned [CLS] token, add a positional embedding of length n_patches + 1, run the encoder, and return either the CLS row or every token.",
+    "MAE: shuffle patch indices with argsort(rand), keep the first int(N*(1-mask_ratio)), encode only those, re-insert mask tokens, unshuffle with ids_restore, and average the squared error over MASKED patches only -- (per_patch_mse * mask).sum() / mask.sum()."
+   ]
+  },
+  {
+   "id": "triton-fused-softmax",
+   "legacy_ids": [
+    "v3-24"
+   ],
+   "title": "Write a Fused Softmax Kernel in Triton",
+   "description": "Write a GPU kernel in Triton that fuses the softmax computation into a single pass, eliminating intermediate memory reads.",
+   "difficulty": "expert",
+   "category": "gpu-systems",
+   "tracks": [
+    "advanced"
+   ],
+   "companies": [
+    "NVIDIA",
+    "Meta",
+    "Google",
+    "xAI",
+    "Tesla"
+   ],
+   "question": "v3/gpu-systems/triton-fused-softmax/triton-fused-softmax.ipynb",
+   "solution": "v3/gpu-systems/triton-fused-softmax/triton-fused-softmax_SOLN.ipynb",
+   "colab": "https://colab.research.google.com/github/Exorust/TorchLeet/blob/main/v3/gpu-systems/triton-fused-softmax/triton-fused-softmax.ipynb",
+   "frequency": "very-likely",
+   "company_confidence": {
+    "NVIDIA": "inferred",
+    "Meta": "inferred",
+    "Google": "inferred",
+    "xAI": "inferred",
+    "Tesla": "inferred"
+   },
+   "llm_path_order": null,
+   "graded": true,
+   "entries": [
+    "online_softmax_pytorch"
+   ],
+   "hints": [
+    "Online softmax keeps a running max and running sum in one pass.",
+    "When a new max arrives, rescale the accumulated sum by exp(old_max - new_max).",
+    "Subtracting the running max before exp() is what keeps it stable on large inputs."
+   ]
+  },
+  {
+   "id": "flash-attention-triton",
+   "legacy_ids": [
+    "v3-25"
+   ],
+   "title": "Implement FlashAttention-2 in Triton",
+   "description": "Write the tiled, fused attention kernel that computes exact attention in O(n) memory using online softmax in Triton.",
+   "difficulty": "expert",
+   "category": "gpu-systems",
+   "tracks": [
+    "advanced"
+   ],
+   "companies": [
+    "NVIDIA",
+    "Meta",
+    "Together AI",
+    "xAI"
+   ],
+   "question": "v3/gpu-systems/flash-attention-triton/flash-attention-triton.ipynb",
+   "solution": "v3/gpu-systems/flash-attention-triton/flash-attention-triton_SOLN.ipynb",
+   "colab": "https://colab.research.google.com/github/Exorust/TorchLeet/blob/main/v3/gpu-systems/flash-attention-triton/flash-attention-triton.ipynb",
+   "frequency": "very-likely",
+   "company_confidence": {
+    "NVIDIA": "inferred",
+    "Meta": "inferred",
+    "Together AI": "inferred",
+    "xAI": "inferred"
+   },
+   "llm_path_order": null,
+   "graded": true,
+   "entries": [
+    "flash_attention_pytorch"
+   ],
+   "hints": [
+    "Outer loop over Q blocks, inner loop over K,V blocks; the only matrix you ever materialize is the (block_q, block_kv) tile of scores.",
+    "Carry running_max, running_sum and running_output per Q block. When a tile raises the max, rescale BOTH the running sum and the running output by exp(old_max - new_max) before adding the tile's contribution.",
+    "Normalize once, after the inner loop: output = running_output / running_sum. The last block may be short, so slice with min(start + block, N)."
+   ]
+  },
+  {
+   "id": "fsdp",
+   "legacy_ids": [
+    "v3-26"
+   ],
+   "title": "Implement FSDP from Scratch",
+   "description": "Build Fully Sharded Data Parallel: shard parameters across GPUs, all-gather before forward, reduce-scatter gradients after backward.",
+   "difficulty": "expert",
+   "category": "gpu-systems",
+   "tracks": [
+    "advanced"
+   ],
+   "companies": [
+    "Meta",
+    "Google",
+    "NVIDIA",
+    "Anthropic",
+    "xAI"
+   ],
+   "question": "v3/gpu-systems/fsdp/fsdp.ipynb",
+   "solution": "v3/gpu-systems/fsdp/fsdp_SOLN.ipynb",
+   "colab": "https://colab.research.google.com/github/Exorust/TorchLeet/blob/main/v3/gpu-systems/fsdp/fsdp.ipynb",
+   "frequency": "very-likely",
+   "company_confidence": {
+    "Meta": "inferred",
+    "Google": "inferred",
+    "NVIDIA": "inferred",
+    "Anthropic": "inferred",
+    "xAI": "inferred"
+   },
+   "llm_path_order": null,
+   "graded": true,
+   "entries": [
+    "FakeDistributed",
+    "FSDPLinear"
+   ],
+   "hints": [
+    "shard() is torch.chunk into world_size pieces (detached clones, since each rank owns its own memory); all_gather() is torch.cat of those pieces.",
+    "reduce_scatter is reduce THEN scatter: sum the per-rank full gradients elementwise first, then chunk the sum so rank i keeps chunk i.",
+    "forward_on_rank should all-gather the weight and bias shards, run F.linear(x, full_weight, full_bias), and drop the gathered copy afterwards \u2014 that release is what makes the memory saving real."
+   ]
+  },
+  {
+   "id": "grpo",
+   "legacy_ids": [
+    "v3-27"
+   ],
+   "title": "Implement GRPO (DeepSeek-R1 Algorithm)",
+   "description": "Build Group Relative Policy Optimization that scores multiple completions per prompt and uses group-relative advantages.",
+   "difficulty": "expert",
+   "category": "alignment-training",
+   "tracks": [
+    "advanced",
+    "llm-path"
+   ],
+   "companies": [
+    "DeepMind",
+    "Anthropic",
+    "OpenAI"
+   ],
+   "question": "v3/alignment-training/grpo/grpo.ipynb",
+   "solution": "v3/alignment-training/grpo/grpo_SOLN.ipynb",
+   "colab": "https://colab.research.google.com/github/Exorust/TorchLeet/blob/main/v3/alignment-training/grpo/grpo.ipynb",
+   "frequency": "common",
+   "company_confidence": {
+    "DeepMind": "inferred",
+    "Anthropic": "inferred",
+    "OpenAI": "inferred"
+   },
+   "llm_path_order": 16,
+   "graded": true,
+   "entries": [
+    "generate_group_completions",
+    "compute_group_advantages",
+    "grpo_loss"
+   ],
+   "hints": [
+    "Generation: repeat_interleave each prompt group_size times so one prompt's completions sit in a contiguous block, then sample token by token.",
+    "Advantages are normalised INSIDE each group: reshape rewards to (num_prompts, group_size), subtract the row mean, divide by the row std + eps. No value model, no global mean.",
+    "grpo_loss = -mean(min(ratio*A, clip(ratio, 1-eps, 1+eps)*A)) + beta*KL, with ratio = exp(policy_logps - old_logps) and A broadcast over the tokens of its sequence."
+   ]
+  },
+  {
+   "id": "inference-engine",
+   "legacy_ids": [
+    "v3-28"
+   ],
+   "title": "Build a Complete LLM Inference Engine",
+   "description": "Combine KV caching, continuous batching, and memory management into a production-grade inference server.",
+   "difficulty": "expert",
+   "category": "llm-inference",
+   "tracks": [
+    "advanced",
+    "llm-path"
+   ],
+   "companies": [
+    "Perplexity",
+    "Together AI",
+    "Anyscale",
+    "Fireworks AI"
+   ],
+   "question": "v3/llm-inference/inference-engine/inference-engine.ipynb",
+   "solution": "v3/llm-inference/inference-engine/inference-engine_SOLN.ipynb",
+   "colab": "https://colab.research.google.com/github/Exorust/TorchLeet/blob/main/v3/llm-inference/inference-engine/inference-engine.ipynb",
+   "frequency": "very-likely",
+   "company_confidence": {
+    "Perplexity": "inferred",
+    "Together AI": "inferred",
+    "Anyscale": "inferred",
+    "Fireworks AI": "inferred"
+   },
+   "llm_path_order": 22,
+   "graded": true,
+   "entries": [
+    "SimpleTokenizer",
+    "KVCache",
+    "MultiHeadAttention",
+    "FeedForward",
+    "TransformerBlock",
+    "MiniTransformer",
+    "top_p_sample",
+    "InferenceEngine"
+   ],
+   "hints": [
+    "The cache stores K and V as (B, heads, seq_len, d_head) and update() concatenates the new step along dim=2. In cached mode you only project the NEW token into q/k/v and attend over the whole cached K/V.",
+    "MiniTransformer has to know where it is: when a cache is passed, the positional embedding index for the incoming token is the cache's current seq_len, not 0.",
+    "top_p keeps the smallest set of tokens whose cumulative probability reaches top_p: sort descending, cumsum, zero out the tail, RENORMALISE, sample, then map the sampled index back through sorted_indices."
+   ]
+  },
+  {
+   "id": "knowledge-distillation",
+   "legacy_ids": [
+    "v3-29"
+   ],
+   "title": "Implement Knowledge Distillation",
+   "description": "Train a smaller student model to match a larger teacher's soft predictions using temperature-scaled KL divergence loss.",
+   "difficulty": "medium",
+   "category": "modern-architectures",
+   "tracks": [
+    "advanced"
+   ],
+   "companies": [
+    "Google",
+    "Apple",
+    "Meta",
+    "Qualcomm",
+    "Tesla"
+   ],
+   "question": "v3/modern-architectures/knowledge-distillation/knowledge-distillation.ipynb",
+   "solution": "v3/modern-architectures/knowledge-distillation/knowledge-distillation_SOLN.ipynb",
+   "colab": "https://colab.research.google.com/github/Exorust/TorchLeet/blob/main/v3/modern-architectures/knowledge-distillation/knowledge-distillation.ipynb",
+   "frequency": "very-likely",
+   "company_confidence": {
+    "Google": "inferred",
+    "Apple": "inferred",
+    "Meta": "inferred",
+    "Qualcomm": "inferred",
+    "Tesla": "inferred"
+   },
+   "llm_path_order": null,
+   "graded": true,
+   "entries": [
+    "distillation_loss"
+   ],
+   "hints": [
+    "Two terms: KL against the temperature-softened teacher, and cross-entropy against the hard labels.",
+    "alpha blends them: alpha * soft + (1 - alpha) * hard.",
+    "Scale the soft term by temperature**2 so its gradients stay comparable as T changes."
+   ]
+  },
+  {
+   "id": "ring-attention",
+   "legacy_ids": [
+    "v3-30"
+   ],
+   "title": "Implement Ring Attention for Long Contexts",
+   "description": "Distribute attention computation across GPUs in a ring topology, enabling context lengths that exceed single-GPU memory.",
+   "difficulty": "expert",
+   "category": "gpu-systems",
+   "tracks": [
+    "advanced"
+   ],
+   "companies": [
+    "Anthropic",
+    "Google",
+    "Meta",
+    "xAI"
+   ],
+   "question": "v3/gpu-systems/ring-attention/ring-attention.ipynb",
+   "solution": "v3/gpu-systems/ring-attention/ring-attention_SOLN.ipynb",
+   "colab": "https://colab.research.google.com/github/Exorust/TorchLeet/blob/main/v3/gpu-systems/ring-attention/ring-attention.ipynb",
+   "frequency": "very-likely",
+   "company_confidence": {
+    "Anthropic": "inferred",
+    "Google": "inferred",
+    "Meta": "inferred",
+    "xAI": "inferred"
+   },
+   "llm_path_order": null,
+   "graded": true,
+   "entries": [
+    "ring_step",
+    "RingAttention"
+   ],
+   "hints": [
+    "ring_step is FlashAttention's inner loop: new_max = max(running_max, S.max(-1)), correction = exp(running_max - new_max), then rescale BOTH the running sum and the running output by that correction before adding the block.",
+    "Divide by running_sum only once, at the very end \u2014 never inside the loop.",
+    "Causal masking is per chunk pair: skip a K,V chunk whose index is greater than the Q chunk's (all future), apply a triangular mask when the indices are equal, and mask nothing when the K,V chunk is in the past."
+   ]
+  },
+  {
+   "id": "swin-transformer",
+   "legacy_ids": [
+    "v3-31"
+   ],
+   "title": "Implement a Swin Transformer Block (Shifted Window Attention)",
+   "description": "Build a Swin Transformer block from scratch: window partition, shifted-window attention masks, and a learned relative position bias.",
+   "difficulty": "hard",
+   "category": "modern-architectures",
+   "tracks": [
+    "advanced"
+   ],
+   "companies": [
+    "Microsoft",
+    "Meta",
+    "ByteDance",
+    "Google"
+   ],
+   "question": "v3/modern-architectures/swin-transformer/swin-transformer.ipynb",
+   "solution": "v3/modern-architectures/swin-transformer/swin-transformer_SOLN.ipynb",
+   "colab": "https://colab.research.google.com/github/Exorust/TorchLeet/blob/main/v3/modern-architectures/swin-transformer/swin-transformer.ipynb",
+   "frequency": "very-likely",
+   "company_confidence": {
+    "Microsoft": "inferred",
+    "Meta": "inferred",
+    "ByteDance": "inferred",
+    "Google": "inferred"
+   },
+   "llm_path_order": null,
+   "graded": true,
+   "entries": [
+    "window_partition",
+    "window_reverse",
+    "window_attention",
+    "create_shifted_window_mask",
+    "SwinBlock",
+    "relative_position_index",
+    "SwinBlockRelPosBias"
+   ],
+   "hints": [
+    "window_partition: reshape (B, H, W, C) to (B, H/ws, ws, W/ws, ws, C), permute the two window axes next to each other, then flatten. window_reverse undoes exactly that permutation.",
+    "The shifted mask compares region labels: label each pre-shift position by which of the (up-to) 4 wrapped regions it belongs to, roll the label map the same way you roll the features, partition it, and allow a pair only when the two labels match.",
+    "The relative position bias is one learned scalar per relative offset: build a (w*w, w*w) index map from (row_i - row_j, col_i - col_j) shifted to be non-negative, gather the table with it, and ADD the result to the attention scores before the softmax."
+   ]
+  }
+ ]
+}

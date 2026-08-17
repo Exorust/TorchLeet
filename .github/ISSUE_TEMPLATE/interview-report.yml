@@ -1,0 +1,51 @@
+name: Report an interview question
+description: You were asked something in a real ML/AI interview. Tell us what.
+title: "[interview] "
+labels: ["interview-report"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        This is how TorchLeet's company tags become **reported** instead of **inferred**.
+        Share only what you are comfortable sharing. Do not paste proprietary prompts,
+        internal material, or anything an NDA covers - a description in your own words
+        is what we want, and it is enough.
+  - type: input
+    id: company
+    attributes:
+      label: Company
+      placeholder: e.g. Anthropic
+    validations:
+      required: true
+  - type: dropdown
+    id: round
+    attributes:
+      label: Which round?
+      options: [phone-screen, coding-screen, onsite, take-home, other]
+    validations:
+      required: true
+  - type: input
+    id: period
+    attributes:
+      label: Roughly when? (year and quarter is enough)
+      placeholder: e.g. 2026-Q2
+    validations:
+      required: true
+  - type: textarea
+    id: question
+    attributes:
+      label: What were you asked to implement, in your own words?
+      placeholder: "Implement a KV cache and show that cached decoding matches full recomputation."
+    validations:
+      required: true
+  - type: input
+    id: existing
+    attributes:
+      label: Does this match a problem we already have? (id or link, optional)
+  - type: checkboxes
+    id: ok
+    attributes:
+      label: Confirm
+      options:
+        - label: This is my own first-hand experience, and I am fine with it being listed anonymously.
+          required: true

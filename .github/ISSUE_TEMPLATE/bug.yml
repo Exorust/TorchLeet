@@ -1,0 +1,19 @@
+name: Bug
+description: A notebook, the grader, or the site is broken.
+labels: ["bug"]
+body:
+  - type: input
+    id: problem
+    attributes:
+      label: Problem id (if it is about one)
+      placeholder: kv-cache
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened, and what did you expect?
+    validations:
+      required: true
+  - type: textarea
+    id: env
+    attributes:
+      label: Where? (Colab / local, torch version)
