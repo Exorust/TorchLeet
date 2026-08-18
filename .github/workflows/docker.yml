@@ -14,13 +14,20 @@ jobs:
       packages: write
     steps:
       - uses: actions/checkout@v4
+
+      # Registry names must be lowercase, but the GitHub owner is "Exorust".
+      - name: Compute lowercase image name
+        id: img
+        run: echo "name=ghcr.io/${GITHUB_REPOSITORY_OWNER,,}/torchleet" >> "$GITHUB_OUTPUT"
+
       - uses: docker/login-action@v3
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
+
       - uses: docker/build-push-action@v6
         with:
           context: .
           push: true
-          tags: ghcr.io/${{ github.repository_owner }}/torchleet:latest
+          tags: ${{ steps.img.outputs.name }}:latest
