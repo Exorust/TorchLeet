@@ -1,0 +1,26 @@
+id = "alexnet"
+legacy_ids = ["v1-18"]
+title = "Implement AlexNet from Scratch"
+description = "Recreate the AlexNet architecture that started the deep learning revolution, with its 5 conv + 3 FC layer design."
+difficulty = "medium"
+frequency = "emerging"   # very-likely | common | emerging (derived from company reports)
+number = 18
+set = "v1"
+tracks = ["advanced"]
+
+# GENERATED from the grader spec — edit python/torchleet/problems/*.py, then run: generate.py hints
+hints = [
+  "AlexNet expects 3x224x224 input and ends in a classifier over num_classes.",
+  "Five conv layers with max-pooling, then three fully connected layers.",
+  "Track the spatial size through each stride and pool to size the first Linear.",
+]
+
+[notebooks]
+question = "alexnet.ipynb"
+solution = "alexnet_SOLN.ipynb"
+
+[grading]
+tier = "C"        # A=auto-graded B=partial C=not auto-graded (SEEDED, confirm)
+entries = ["AlexNet"]
+extras = ["torchvision"]
+device = "cpu"

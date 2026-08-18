@@ -1,0 +1,43 @@
+id = "2d-positional-embeddings"
+legacy_ids = ["v3-6"]
+title = "Implement 2D Positional Embeddings"
+description = "Build 2D sinusoidal position encodings for vision transformers, encoding both row and column positions in patch grids."
+difficulty = "medium"
+frequency = "very-likely"   # very-likely | common | emerging (derived from company reports)
+number = 6
+set = "v3"
+category = "modern-architectures"
+tracks = ["advanced"]
+
+# GENERATED from the grader spec — edit python/torchleet/problems/*.py, then run: generate.py hints
+hints = [
+  "Encode the row and the column separately, then concatenate the two halves.",
+  "Each half is a standard 1D sinusoidal embedding of size d_model // 2.",
+  "Flatten the grid in row-major order so index r*width + c is position (r, c).",
+]
+
+[notebooks]
+question = "2d-positional-embeddings.ipynb"
+solution = "2d-positional-embeddings_SOLN.ipynb"
+
+[grading]
+tier = "A"        # A=auto-graded B=partial C=not auto-graded (SEEDED, confirm)
+entries = ["create_2d_sinusoidal_embeddings"]
+extras = []
+device = "cpu"
+
+[[companies]]
+name = "Anthropic"
+confidence = "inferred"   # inferred | reported
+
+[[companies]]
+name = "DeepMind"
+confidence = "inferred"   # inferred | reported
+
+[[companies]]
+name = "Midjourney"
+confidence = "inferred"   # inferred | reported
+
+[[companies]]
+name = "Runway"
+confidence = "inferred"   # inferred | reported

@@ -1,0 +1,47 @@
+id = "knowledge-distillation"
+legacy_ids = ["v3-29"]
+title = "Implement Knowledge Distillation"
+description = "Train a smaller student model to match a larger teacher's soft predictions using temperature-scaled KL divergence loss."
+difficulty = "medium"
+frequency = "very-likely"   # very-likely | common | emerging (derived from company reports)
+number = 29
+set = "v3"
+category = "modern-architectures"
+tracks = ["advanced"]
+
+# GENERATED from the grader spec — edit python/torchleet/problems/*.py, then run: generate.py hints
+hints = [
+  "Two terms: KL against the temperature-softened teacher, and cross-entropy against the hard labels.",
+  "alpha blends them: alpha * soft + (1 - alpha) * hard.",
+  "Scale the soft term by temperature**2 so its gradients stay comparable as T changes.",
+]
+
+[notebooks]
+question = "knowledge-distillation.ipynb"
+solution = "knowledge-distillation_SOLN.ipynb"
+
+[grading]
+tier = "A"        # A=auto-graded B=partial C=not auto-graded (SEEDED, confirm)
+entries = ["distillation_loss"]
+extras = ["matplotlib", "numpy", "sklearn"]
+device = "cpu"
+
+[[companies]]
+name = "Google"
+confidence = "inferred"   # inferred | reported
+
+[[companies]]
+name = "Apple"
+confidence = "inferred"   # inferred | reported
+
+[[companies]]
+name = "Meta"
+confidence = "inferred"   # inferred | reported
+
+[[companies]]
+name = "Qualcomm"
+confidence = "inferred"   # inferred | reported
+
+[[companies]]
+name = "Tesla"
+confidence = "inferred"   # inferred | reported

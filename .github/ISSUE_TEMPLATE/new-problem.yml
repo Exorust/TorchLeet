@@ -1,0 +1,21 @@
+name: Propose a problem
+description: Suggest a problem TorchLeet should cover.
+labels: ["new-problem"]
+body:
+  - type: input
+    id: title
+    attributes:
+      label: Problem title
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: Why is this worth practising? Who asks it?
+    validations:
+      required: true
+  - type: dropdown
+    id: difficulty
+    attributes:
+      label: Difficulty
+      options: [basic, easy, medium, hard, expert]

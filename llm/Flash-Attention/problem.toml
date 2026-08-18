@@ -1,0 +1,22 @@
+id = "flash-attention"
+title = "Flash Attention"
+difficulty = "medium"
+frequency = "emerging"   # very-likely | common | emerging (derived from company reports)
+set = "v2"
+
+# GENERATED from the grader spec — edit python/torchleet/problems/*.py, then run: generate.py hints
+hints = [
+  "Keep a running max, a running denominator l, and a running output accumulator; on each K/V tile rescale all three by alpha = exp(prev_max - new_max).",
+  "Divide the accumulator by l only once, after the loop — not inside it.",
+  "L is the logsumexp of the scaled scores: running_max + log(l) at the end.",
+]
+
+[notebooks]
+question = "flash-attention.ipynb"
+solution = ""   # no separate solution file
+
+[grading]
+tier = "A"        # A=auto-graded B=partial C=not auto-graded (SEEDED, confirm)
+entries = ["flash_attention_pytorch"]
+extras = ["triton"]
+device = "cuda"

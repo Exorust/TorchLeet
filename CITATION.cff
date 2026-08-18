@@ -1,0 +1,9 @@
+cff-version: 1.2.0
+title: "TorchLeet: PyTorch and LLM interview problems"
+message: "If you use TorchLeet in teaching or research, please cite it."
+type: software
+authors:
+  - family-names: Aroori
+    given-names: Chandrahas
+repository-code: "https://github.com/Exorust/TorchLeet"
+license: MIT

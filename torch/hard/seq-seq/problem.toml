@@ -1,0 +1,26 @@
+id = "seq-seq"
+legacy_ids = ["v1-28"]
+title = "Sequence-to-Sequence with Attention"
+description = "Build an encoder-decoder model with Bahdanau attention for sequence transduction tasks like translation."
+difficulty = "hard"
+frequency = "emerging"   # very-likely | common | emerging (derived from company reports)
+number = 28
+set = "v1"
+tracks = ["advanced"]
+
+# GENERATED from the grader spec — edit python/torchleet/problems/*.py, then run: generate.py hints
+hints = [
+  "Encoder(input_dim, embed_dim, hidden_dim, num_layers): nn.Embedding over the source vocabulary, then nn.LSTM(embed_dim, hidden_dim, num_layers, batch_first=True).",
+  "forward returns (outputs, (hidden, cell)) — the attention needs every timestep, the decoder needs the final states to start from.",
+  "With batch_first=True outputs is (batch, src_len, hidden_dim) while hidden and cell stay (num_layers, batch, hidden_dim).",
+]
+
+[notebooks]
+question = "seq-to-seq-with-Attention.ipynb"
+solution = "seq-to-seq-with-Attention_SOLN.ipynb"
+
+[grading]
+tier = "C"        # A=auto-graded B=partial C=not auto-graded (SEEDED, confirm)
+entries = ["Encoder"]
+extras = []
+device = "cpu"

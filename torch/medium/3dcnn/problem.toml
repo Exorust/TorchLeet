@@ -1,0 +1,26 @@
+id = "3dcnn"
+legacy_ids = ["v1-21"]
+title = "Train a 3D CNN for CT Image Segmentation"
+description = "Extend 2D convolutions to 3D for volumetric medical image segmentation on CT scans."
+difficulty = "medium"
+frequency = "emerging"   # very-likely | common | emerging (derived from company reports)
+number = 21
+set = "v1"
+tracks = ["advanced"]
+
+# GENERATED from the grader spec — edit python/torchleet/problems/*.py, then run: generate.py hints
+hints = [
+  "The input is [B, D, C, W, H]. Fold depth into the batch (view(B*D, C, W, H)) for the 2D backbone, then unfold and permute to [B, C, D, W, H] for Conv3d.",
+  "ResNet-18 with its last two children stripped divides W and H by 32, so the ConvTranspose3d stack has to multiply them back by 32 — use kernel/stride (1, k, k) so the depth axis is left alone.",
+  "Dice over binary masks is 2*|pred ∩ label| / (|pred| + |label|); finish the network with sigmoid so pred is a probability the overlap can be computed on.",
+]
+
+[notebooks]
+question = "3DCNN.ipynb"
+solution = "3DCNN_SOLN.ipynb"
+
+[grading]
+tier = "C"        # A=auto-graded B=partial C=not auto-graded (SEEDED, confirm)
+entries = ["MedCNN", "compute_dice_loss"]
+extras = ["torchvision"]
+device = "cpu"

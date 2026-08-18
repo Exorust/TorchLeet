@@ -1,0 +1,17 @@
+[project]
+name = "torchleet"
+version = "0.1.0"
+description = "Check your solutions to the TorchLeet PyTorch interview problems"
+readme = "README.md"
+requires-python = ">=3.9"
+license = "MIT"
+# ponytail: torch intentionally UNPINNED — Colab ships its own CUDA build and
+# pinning makes pip replace it, which is the classic Colab breakage.
+dependencies = ["torch"]
+
+[project.urls]
+Homepage = "https://github.com/Exorust/TorchLeet"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"

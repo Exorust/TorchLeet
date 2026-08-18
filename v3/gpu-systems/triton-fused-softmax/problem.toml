@@ -1,0 +1,47 @@
+id = "triton-fused-softmax"
+legacy_ids = ["v3-24"]
+title = "Write a Fused Softmax Kernel in Triton"
+description = "Write a GPU kernel in Triton that fuses the softmax computation into a single pass, eliminating intermediate memory reads."
+difficulty = "expert"
+frequency = "very-likely"   # very-likely | common | emerging (derived from company reports)
+number = 24
+set = "v3"
+category = "gpu-systems"
+tracks = ["advanced"]
+
+# GENERATED from the grader spec — edit python/torchleet/problems/*.py, then run: generate.py hints
+hints = [
+  "Online softmax keeps a running max and running sum in one pass.",
+  "When a new max arrives, rescale the accumulated sum by exp(old_max - new_max).",
+  "Subtracting the running max before exp() is what keeps it stable on large inputs.",
+]
+
+[notebooks]
+question = "triton-fused-softmax.ipynb"
+solution = "triton-fused-softmax_SOLN.ipynb"
+
+[grading]
+tier = "A"        # A=auto-graded B=partial C=not auto-graded (SEEDED, confirm)
+entries = ["online_softmax_pytorch"]
+extras = ["triton"]
+device = "cuda"
+
+[[companies]]
+name = "NVIDIA"
+confidence = "inferred"   # inferred | reported
+
+[[companies]]
+name = "Meta"
+confidence = "inferred"   # inferred | reported
+
+[[companies]]
+name = "Google"
+confidence = "inferred"   # inferred | reported
+
+[[companies]]
+name = "xAI"
+confidence = "inferred"   # inferred | reported
+
+[[companies]]
+name = "Tesla"
+confidence = "inferred"   # inferred | reported

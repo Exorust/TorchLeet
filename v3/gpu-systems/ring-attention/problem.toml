@@ -1,0 +1,43 @@
+id = "ring-attention"
+legacy_ids = ["v3-30"]
+title = "Implement Ring Attention for Long Contexts"
+description = "Distribute attention computation across GPUs in a ring topology, enabling context lengths that exceed single-GPU memory."
+difficulty = "expert"
+frequency = "very-likely"   # very-likely | common | emerging (derived from company reports)
+number = 30
+set = "v3"
+category = "gpu-systems"
+tracks = ["advanced"]
+
+# GENERATED from the grader spec — edit python/torchleet/problems/*.py, then run: generate.py hints
+hints = [
+  "ring_step is FlashAttention's inner loop: new_max = max(running_max, S.max(-1)), correction = exp(running_max - new_max), then rescale BOTH the running sum and the running output by that correction before adding the block.",
+  "Divide by running_sum only once, at the very end — never inside the loop.",
+  "Causal masking is per chunk pair: skip a K,V chunk whose index is greater than the Q chunk's (all future), apply a triangular mask when the indices are equal, and mask nothing when the K,V chunk is in the past.",
+]
+
+[notebooks]
+question = "ring-attention.ipynb"
+solution = "ring-attention_SOLN.ipynb"
+
+[grading]
+tier = "A"        # A=auto-graded B=partial C=not auto-graded (SEEDED, confirm)
+entries = ["ring_step", "RingAttention"]
+extras = []
+device = "cpu"
+
+[[companies]]
+name = "Anthropic"
+confidence = "inferred"   # inferred | reported
+
+[[companies]]
+name = "Google"
+confidence = "inferred"   # inferred | reported
+
+[[companies]]
+name = "Meta"
+confidence = "inferred"   # inferred | reported
+
+[[companies]]
+name = "xAI"
+confidence = "inferred"   # inferred | reported

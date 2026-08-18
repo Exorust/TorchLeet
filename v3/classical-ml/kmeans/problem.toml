@@ -1,0 +1,43 @@
+id = "kmeans"
+legacy_ids = ["v3-2"]
+title = "Implement K-Means Clustering in PyTorch"
+description = "Code Lloyd's algorithm with PyTorch tensors: random init, distance computation, centroid updates, and convergence check."
+difficulty = "easy"
+frequency = "very-likely"   # very-likely | common | emerging (derived from company reports)
+number = 2
+set = "v3"
+category = "classical-ml"
+tracks = ["basics"]
+
+# GENERATED from the grader spec — edit python/torchleet/problems/*.py, then run: generate.py hints
+hints = [
+  "Alternate two steps: assign each point to its nearest centroid, then move each centroid to the mean of its points.",
+  "torch.cdist(data, centroids) gives you all the distances at once.",
+  "Stop when the centroids stop moving by more than `tol`.",
+]
+
+[notebooks]
+question = "kmeans.ipynb"
+solution = "kmeans_SOLN.ipynb"
+
+[grading]
+tier = "A"        # A=auto-graded B=partial C=not auto-graded (SEEDED, confirm)
+entries = ["kmeans"]
+extras = []
+device = "cpu"
+
+[[companies]]
+name = "Uber"
+confidence = "inferred"   # inferred | reported
+
+[[companies]]
+name = "LinkedIn"
+confidence = "inferred"   # inferred | reported
+
+[[companies]]
+name = "Google"
+confidence = "inferred"   # inferred | reported
+
+[[companies]]
+name = "Amazon"
+confidence = "inferred"   # inferred | reported

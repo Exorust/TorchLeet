@@ -1,0 +1,6 @@
+gradio>=6
+fastapi
+uvicorn[standard]
+httpx
+websockets
+jupyterlab

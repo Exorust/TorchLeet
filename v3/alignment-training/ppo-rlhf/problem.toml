@@ -1,0 +1,47 @@
+id = "ppo-rlhf"
+legacy_ids = ["v3-15"]
+title = "Implement PPO for RLHF"
+description = "Build Proximal Policy Optimization with clipped surrogate objective, value function baseline, and KL penalty for RLHF."
+difficulty = "hard"
+frequency = "very-likely"   # very-likely | common | emerging (derived from company reports)
+number = 15
+set = "v3"
+category = "alignment-training"
+tracks = ["advanced", "llm-path"]
+
+# GENERATED from the grader spec — edit python/torchleet/problems/*.py, then run: generate.py hints
+hints = [
+  "generate_sequences starts from a BOS token (id = vocab_size), samples one token at a time from Categorical(logits=logits[:, -1, :]), and returns the running input ids so the value model can be scored on the same prefixes.",
+  "GAE runs backwards: delta_t = r_t + gamma*V(s_{t+1}) - V(s_t) with V(s_T)=0, then A_t = delta_t + gamma*lam*A_{t+1}.",
+  "ppo_step recomputes log-probs for `actions` under the current policy, forms ratio = exp(new - old), and takes min(ratio*A, clamp(ratio, 1-eps, 1+eps)*A). total_loss = -policy_objective + 0.5*value_loss + kl_beta*kl_div.",
+]
+
+[notebooks]
+question = "ppo-rlhf.ipynb"
+solution = "ppo-rlhf_SOLN.ipynb"
+
+[grading]
+tier = "A"        # A=auto-graded B=partial C=not auto-graded (SEEDED, confirm)
+entries = ["generate_sequences", "compute_gae", "ppo_step"]
+extras = []
+device = "cpu"
+
+[llm_path]
+order = 15
+stage = "alignment"
+
+[[companies]]
+name = "Anthropic"
+confidence = "inferred"   # inferred | reported
+
+[[companies]]
+name = "OpenAI"
+confidence = "inferred"   # inferred | reported
+
+[[companies]]
+name = "DeepMind"
+confidence = "inferred"   # inferred | reported
+
+[[companies]]
+name = "Meta"
+confidence = "inferred"   # inferred | reported

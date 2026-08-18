@@ -60,7 +60,7 @@ export function createServer(): McpServer {
   );
 
   server.tool(
-    "check_solution",
+    "review_solution",
     "Review submitted code against a question's requirements — returns a verification checklist, does NOT execute code",
     checkSolutionSchema,
     async (params) => checkSolution(params),

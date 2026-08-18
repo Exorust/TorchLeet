@@ -1,6 +1,7 @@
 import { z } from "zod";
 import { getQuestionById } from "../data/questions.js";
 import { parseNotebook, getDocstrings } from "../lib/notebook-parser.js";
+import { getAuthoredHints } from "../data/hints.generated.js";
 
 export const getHintSchema = {
   id: z.string().describe("Question ID (e.g. 'v3-1')"),
@@ -22,6 +23,22 @@ export async function getHint(params: { id: string; level: number }) {
   }
 
   const level = params.level ?? 1;
+
+  // Prefer hints written alongside the grader checks: they are authored for this
+  // problem, and using them keeps the tutor consistent with torchleet.hint().
+  // Fall back to deriving hints from the notebook when a problem has none.
+  const authored = getAuthoredHints(params.id);
+  if (authored && authored.length) {
+    const shown = authored.slice(0, Math.min(level, authored.length));
+    return {
+      content: [{
+        type: "text" as const,
+        text: `## Hint for: ${q.title} (Level ${level}/${authored.length})\n\n`
+          + shown.map((h, i) => `${i + 1}. ${h}`).join("\n")
+          + `\n\nCheck your work: \`from torchleet import check\``,
+      }],
+    };
+  }
 
   if (q.hasNotebook && q.questionPath) {
     const nb = parseNotebook(q.questionPath);

@@ -18,10 +18,29 @@ const inter = Inter({
   weight: ["400", "500", "600", "700"],
 });
 
+const SITE = "https://torch-leet.vercel.app";
+const TITLE = "TorchLeet - PyTorch Interview Prep";
+const DESCRIPTION =
+  "LLM Learning Path + Basics & Advanced lists. Practice real PyTorch & ML systems interview questions. Filter by company. Build models from scratch.";
+
 export const metadata: Metadata = {
-  title: "TorchLeet - PyTorch Interview Prep",
-  description:
-    "LLM Learning Path + Basics & Advanced lists. Practice real PyTorch & ML systems interview questions. Filter by company. Build models from scratch.",
+  metadataBase: new URL(SITE),
+  title: { default: TITLE, template: "%s | TorchLeet" },
+  description: DESCRIPTION,
+  alternates: { canonical: "/" },
+  openGraph: {
+    title: TITLE,
+    description: DESCRIPTION,
+    url: SITE,
+    siteName: "TorchLeet",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: TITLE,
+    description: DESCRIPTION,
+    creator: "@charoori_ai",
+  },
 };
 
 export default function RootLayout({

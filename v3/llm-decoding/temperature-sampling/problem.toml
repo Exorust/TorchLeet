@@ -1,0 +1,47 @@
+id = "temperature-sampling"
+legacy_ids = ["v3-10"]
+title = "Implement Temperature Sampling"
+description = "Divide logits by a temperature scalar before softmax to sharpen or flatten the token probability distribution."
+difficulty = "easy"
+frequency = "very-likely"   # very-likely | common | emerging (derived from company reports)
+number = 10
+set = "v3"
+category = "llm-decoding"
+tracks = ["llm-path"]
+
+# GENERATED from the grader spec — edit python/torchleet/problems/*.py, then run: generate.py hints
+hints = [
+  "Divide the logits by the temperature before the softmax.",
+  "Low temperature sharpens the distribution toward the argmax; high flattens it.",
+  "Sample with torch.multinomial on the resulting probabilities.",
+]
+
+[notebooks]
+question = "temperature-sampling.ipynb"
+solution = "temperature-sampling_SOLN.ipynb"
+
+[grading]
+tier = "A"        # A=auto-graded B=partial C=not auto-graded (SEEDED, confirm)
+entries = ["temperature_sample"]
+extras = []
+device = "cpu"
+
+[llm_path]
+order = 17
+stage = "decoding-inference"
+
+[[companies]]
+name = "OpenAI"
+confidence = "inferred"   # inferred | reported
+
+[[companies]]
+name = "Anthropic"
+confidence = "inferred"   # inferred | reported
+
+[[companies]]
+name = "Cohere"
+confidence = "inferred"   # inferred | reported
+
+[[companies]]
+name = "Perplexity"
+confidence = "inferred"   # inferred | reported

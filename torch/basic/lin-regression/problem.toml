@@ -1,0 +1,26 @@
+id = "lin-regression"
+legacy_ids = ["v1-1"]
+title = "Implement Linear Regression"
+description = "Build a linear regression model from scratch using PyTorch tensors and autograd, fitting a line to synthetic data with gradient descent."
+difficulty = "basic"
+frequency = "emerging"   # very-likely | common | emerging (derived from company reports)
+number = 1
+set = "v1"
+tracks = ["basics"]
+
+# GENERATED from the grader spec — edit python/torchleet/problems/*.py, then run: generate.py hints
+hints = [
+  "A single nn.Linear(1, 1) is the whole model.",
+  "forward() just applies that layer to the input.",
+  "Train with MSELoss and an SGD/Adam optimizer.",
+]
+
+[notebooks]
+question = "lin-regression.ipynb"
+solution = "lin-regression_SOLN.ipynb"
+
+[grading]
+tier = "C"        # A=auto-graded B=partial C=not auto-graded (SEEDED, confirm)
+entries = ["LinearRegressionModel"]
+extras = []
+device = "cpu"

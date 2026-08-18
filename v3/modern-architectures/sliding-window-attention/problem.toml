@@ -1,0 +1,47 @@
+id = "sliding-window-attention"
+legacy_ids = ["v3-13"]
+title = "Implement Sliding Window Attention"
+description = "Restrict attention to a fixed local window around each token, reducing memory from O(n²) to O(n·w) for long sequences."
+difficulty = "medium"
+frequency = "very-likely"   # very-likely | common | emerging (derived from company reports)
+number = 13
+set = "v3"
+category = "modern-architectures"
+tracks = ["llm-path", "advanced"]
+
+# GENERATED from the grader spec — edit python/torchleet/problems/*.py, then run: generate.py hints
+hints = [
+  "Position i may attend to j when |i - j| <= window_size.",
+  "Build the mask from pairwise distances: (arange - arange.T).abs() <= window_size.",
+  "Masked positions get -inf BEFORE the softmax, not zero after it.",
+]
+
+[notebooks]
+question = "sliding-window-attention.ipynb"
+solution = "sliding-window-attention_SOLN.ipynb"
+
+[grading]
+tier = "A"        # A=auto-graded B=partial C=not auto-graded (SEEDED, confirm)
+entries = ["create_sliding_window_mask", "full_attention", "sliding_window_attention"]
+extras = []
+device = "cpu"
+
+[llm_path]
+order = 9
+stage = "core-transformer"
+
+[[companies]]
+name = "Mistral"
+confidence = "inferred"   # inferred | reported
+
+[[companies]]
+name = "Anthropic"
+confidence = "inferred"   # inferred | reported
+
+[[companies]]
+name = "Google"
+confidence = "inferred"   # inferred | reported
+
+[[companies]]
+name = "DeepMind"
+confidence = "inferred"   # inferred | reported

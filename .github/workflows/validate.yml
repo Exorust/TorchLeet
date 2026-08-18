@@ -1,0 +1,35 @@
+name: validate
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  manifests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.12"}
+      # No dependencies: manifests are TOML and read with stdlib tomllib.
+      - name: Validate problem manifests
+        run: python3 scripts/generate.py check
+      - name: Report grading coverage
+        run: python3 scripts/generate.py coverage
+
+  grader:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.12"}
+      - name: Install torch (CPU)
+        run: pip install torch --index-url https://download.pytorch.org/whl/cpu
+      # Correct-but-different solutions must pass; broken ones must fail.
+      - name: Grader regression tests
+        run: python3 python/test_grader.py
+      # Every graded problem's own _SOLN must pass its checks. A check that the
+      # canonical solution fails is a broken check.
+      - name: Solutions pass their own checks
+        run: python3 scripts/validate_specs.py

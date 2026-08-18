@@ -1,0 +1,26 @@
+id = "custom-autograd"
+legacy_ids = ["v1-22"]
+title = "Write a Custom Autograd Function (SILU)"
+description = "Implement SiLU activation with a custom autograd Function, defining both forward and backward passes manually."
+difficulty = "hard"
+frequency = "emerging"   # very-likely | common | emerging (derived from company reports)
+number = 22
+set = "v1"
+tracks = ["advanced"]
+
+# GENERATED from the grader spec — edit python/torchleet/problems/*.py, then run: generate.py hints
+hints = [
+  "forward(ctx, x, slope) returns slope * x * sigmoid(x); ctx.save_for_backward whatever the backward pass needs.",
+  "d/dx [x*sigmoid(x)] = sigmoid(x) + x*sigmoid(x)*(1 - sigmoid(x)); multiply by slope and by grad_output.",
+  "backward must return one gradient per forward input: d/dslope is grad_output * x * sigmoid(x). Keep the slope an nn.Parameter in the model so the optimizer updates it.",
+]
+
+[notebooks]
+question = "custom-autgrad-function.ipynb"
+solution = "custom-autgrad-function_SOLN.ipynb"
+
+[grading]
+tier = "C"        # A=auto-graded B=partial C=not auto-graded (SEEDED, confirm)
+entries = ["LearnedSiLUFunction", "LinearRegressionModel"]
+extras = []
+device = "cpu"

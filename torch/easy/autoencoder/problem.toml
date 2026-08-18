@@ -1,0 +1,26 @@
+id = "autoencoder"
+legacy_ids = ["v1-12"]
+title = "Train an Autoencoder for Anomaly Detection"
+description = "Build an autoencoder that learns normal data patterns, then detect anomalies by measuring reconstruction error."
+difficulty = "easy"
+frequency = "emerging"   # very-likely | common | emerging (derived from company reports)
+number = 12
+set = "v1"
+tracks = ["basics"]
+
+# GENERATED from the grader spec — edit python/torchleet/problems/*.py, then run: generate.py hints
+hints = [
+  "The decoder must undo the encoder's downsampling, so the output matches the input shape.",
+  "ConvTranspose2d with stride=2 doubles the spatial size; output_padding fixes off-by-ones.",
+  "Train it to reconstruct its own input with MSELoss.",
+]
+
+[notebooks]
+question = "autoencoder.ipynb"
+solution = "autoencoder_SOLN.ipynb"
+
+[grading]
+tier = "C"        # A=auto-graded B=partial C=not auto-graded (SEEDED, confirm)
+entries = ["Autoencoder"]
+extras = ["matplotlib", "numpy", "torchvision"]
+device = "cpu"

@@ -1,0 +1,26 @@
+id = "custom-dnn"
+legacy_ids = ["v1-5"]
+title = "Implement a Deep Neural Network"
+description = "Construct a multi-layer feedforward neural network with nonlinear activations, training it on a classification task."
+difficulty = "basic"
+frequency = "emerging"   # very-likely | common | emerging (derived from company reports)
+number = 5
+set = "v1"
+tracks = ["basics"]
+
+# GENERATED from the grader spec — edit python/torchleet/problems/*.py, then run: generate.py hints
+hints = [
+  "Stack Linear layers with a nonlinearity between them.",
+  "Without an activation between layers the whole stack collapses to one linear map.",
+  "The last layer's out_features is your output dimension.",
+]
+
+[notebooks]
+question = "custon-DNN.ipynb"
+solution = "custon-DNN_SOLN.ipynb"
+
+[grading]
+tier = "C"        # A=auto-graded B=partial C=not auto-graded (SEEDED, confirm)
+entries = ["DNNModel"]
+extras = []
+device = "cpu"

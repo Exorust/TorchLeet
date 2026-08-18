@@ -1,0 +1,47 @@
+id = "continuous-batching"
+legacy_ids = ["v3-19"]
+title = "Implement Continuous Batching for LLM Inference"
+description = "Dynamically slot sequences in and out of a running batch as they finish, maximizing throughput without padding waste."
+difficulty = "hard"
+frequency = "very-likely"   # very-likely | common | emerging (derived from company reports)
+number = 19
+set = "v3"
+category = "llm-inference"
+tracks = ["advanced", "llm-path"]
+
+# GENERATED from the grader spec — edit python/torchleet/problems/*.py, then run: generate.py hints
+hints = [
+  "Keep two lists: waiting_queue and active_batch. Each step() fills free slots from the queue first, then runs the model, then evicts whatever finished.",
+  "A request is done when it emits eos_token_id OR len(generated_ids) reaches max_gen_len — check both after appending the token.",
+  "step() should report whether work remains (active or waiting), so run() can simply loop `while self.step(model): pass`.",
+]
+
+[notebooks]
+question = "continuous-batching.ipynb"
+solution = "continuous-batching_SOLN.ipynb"
+
+[grading]
+tier = "C"        # A=auto-graded B=partial C=not auto-graded (SEEDED, confirm)
+entries = ["Request", "ContinuousBatchScheduler"]
+extras = []
+device = "cpu"
+
+[llm_path]
+order = 21
+stage = "decoding-inference"
+
+[[companies]]
+name = "Perplexity"
+confidence = "inferred"   # inferred | reported
+
+[[companies]]
+name = "Together AI"
+confidence = "inferred"   # inferred | reported
+
+[[companies]]
+name = "Anyscale"
+confidence = "inferred"   # inferred | reported
+
+[[companies]]
+name = "Meta"
+confidence = "inferred"   # inferred | reported

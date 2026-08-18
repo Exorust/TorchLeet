@@ -1,0 +1,19 @@
+id = "cuda-amp"
+legacy_ids = ["v1-14"]
+title = "Mixed Precision Training with torch.cuda.amp"
+description = "Use automatic mixed precision to train models faster with float16, managing loss scaling and gradient overflow."
+difficulty = "easy"
+frequency = "emerging"   # very-likely | common | emerging (derived from company reports)
+number = 14
+set = "v1"
+tracks = ["basics"]
+
+[notebooks]
+question = "cuda-amp.ipynb"
+solution = "cuda-amp_SOLN.ipynb"
+
+[grading]
+tier = "C"        # A=auto-graded B=partial C=not auto-graded (SEEDED, confirm)
+entries = []
+extras = []
+device = "cpu"

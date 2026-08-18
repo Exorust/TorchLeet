@@ -1,0 +1,15 @@
+id = "create-embeddings-out-of-an-llm"
+title = "Create Embeddings Out Of An Llm"
+difficulty = "medium"
+frequency = "emerging"   # very-likely | common | emerging (derived from company reports)
+set = "v2"
+
+[notebooks]
+question = "embeddings-q2.ipynb"
+solution = ""   # no separate solution file
+
+[grading]
+tier = "C"        # A=auto-graded B=partial C=not auto-graded (SEEDED, confirm)
+entries = []
+extras = ["datasets", "transformers"]
+device = "cpu"

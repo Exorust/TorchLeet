@@ -1,0 +1,47 @@
+id = "contrastive-loss-clip"
+legacy_ids = ["v3-5"]
+title = "Implement Contrastive Loss (InfoNCE) + CLIP Training Loop"
+description = "Build the InfoNCE contrastive loss and a CLIP-style training loop that aligns image and text embeddings."
+difficulty = "medium"
+frequency = "very-likely"   # very-likely | common | emerging (derived from company reports)
+number = 5
+set = "v3"
+category = "modern-architectures"
+tracks = ["advanced"]
+
+# GENERATED from the grader spec — edit python/torchleet/problems/*.py, then run: generate.py hints
+hints = [
+  "L2-normalize both feature sets first (F.normalize(x, dim=-1)); the cosine similarity matrix is then just image_features @ text_features.T.",
+  "The positives sit on the diagonal, so the cross-entropy targets are torch.arange(batch_size) — image i must match text i.",
+  "Symmetric means both directions: (cross_entropy(logits, labels) + cross_entropy(logits.T, labels)) / 2. Scale the logits by the temperature before the softmax, and keep temperature learnable as a log-temperature.",
+]
+
+[notebooks]
+question = "contrastive-loss-clip.ipynb"
+solution = "contrastive-loss-clip_SOLN.ipynb"
+
+[grading]
+tier = "A"        # A=auto-graded B=partial C=not auto-graded (SEEDED, confirm)
+entries = ["info_nce_loss", "SimpleCLIP"]
+extras = []
+device = "cpu"
+
+[[companies]]
+name = "OpenAI"
+confidence = "inferred"   # inferred | reported
+
+[[companies]]
+name = "Anthropic"
+confidence = "inferred"   # inferred | reported
+
+[[companies]]
+name = "DeepMind"
+confidence = "inferred"   # inferred | reported
+
+[[companies]]
+name = "Midjourney"
+confidence = "inferred"   # inferred | reported
+
+[[companies]]
+name = "Apple"
+confidence = "inferred"   # inferred | reported

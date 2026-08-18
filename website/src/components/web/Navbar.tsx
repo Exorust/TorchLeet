@@ -1,17 +1,26 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { usePathname } from "next/navigation";
+import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
 import { useApp } from "@/context/AppContext";
 
 export default function Navbar() {
   const { setMode } = useApp();
   const pathname = usePathname();
+  const router = useRouter();
   const isAiTutor = pathname === "/ai-tutor";
+  const isHome = pathname === "/";
 
   const scrollTo = (id: string) => {
     const el = document.getElementById(id);
     if (el) el.scrollIntoView({ behavior: "smooth" });
+  };
+
+  const goTerminal = () => {
+    if (isAiTutor) return;
+    setMode("terminal");
+    if (!isHome) router.push("/");
   };
 
   return (
@@ -27,18 +36,43 @@ export default function Navbar() {
         </span>
 
         <div className="flex items-center gap-6">
-          <button
-            onClick={() => scrollTo("questions")}
+          {isHome ? (
+            <>
+              <button
+                onClick={() => scrollTo("questions")}
+                className="hidden sm:block text-sm text-foreground/60 hover:text-foreground transition font-medium"
+              >
+                Questions
+              </button>
+              <button
+                onClick={() => scrollTo("about")}
+                className="hidden sm:block text-sm text-foreground/60 hover:text-foreground transition font-medium"
+              >
+                About
+              </button>
+            </>
+          ) : (
+            <>
+              <Link
+                href="/#questions"
+                className="hidden sm:block text-sm text-foreground/60 hover:text-foreground transition font-medium"
+              >
+                Questions
+              </Link>
+              <Link
+                href="/#about"
+                className="hidden sm:block text-sm text-foreground/60 hover:text-foreground transition font-medium"
+              >
+                About
+              </Link>
+            </>
+          )}
+          <Link
+            href="/company"
             className="hidden sm:block text-sm text-foreground/60 hover:text-foreground transition font-medium"
           >
-            Questions
-          </button>
-          <button
-            onClick={() => scrollTo("about")}
-            className="hidden sm:block text-sm text-foreground/60 hover:text-foreground transition font-medium"
-          >
-            About
-          </button>
+            Companies
+          </Link>
           <a
             href="/ai-tutor"
             className="hidden sm:block text-sm text-foreground/60 hover:text-foreground transition font-medium"
@@ -57,7 +91,7 @@ export default function Navbar() {
             </svg>
           </a>
           <button
-            onClick={() => !isAiTutor && setMode("terminal")}
+            onClick={goTerminal}
             disabled={isAiTutor}
             className={`rounded-full px-5 py-2 text-sm transition font-medium ${
               isAiTutor

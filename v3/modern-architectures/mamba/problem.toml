@@ -1,0 +1,39 @@
+id = "mamba"
+legacy_ids = ["v3-22"]
+title = "Implement Selective State Space Model (Mamba)"
+description = "Build Mamba's selective scan mechanism with input-dependent parameters, achieving linear-time sequence modeling without attention."
+difficulty = "hard"
+frequency = "common"   # very-likely | common | emerging (derived from company reports)
+number = 22
+set = "v3"
+category = "modern-architectures"
+tracks = ["advanced"]
+
+# GENERATED from the grader spec — edit python/torchleet/problems/*.py, then run: generate.py hints
+hints = [
+  "Discretize first: A_bar = exp(delta[..., None] * A) and B_bar = delta[..., None] * B[:, :, None, :], both (B, L, D, N).",
+  "Then run the recurrence over time with h of shape (B, D, N): h = A_bar[:, t] * h + B_bar[:, t] * x[:, t, :, None], y_t = (h * C[:, t, None, :]).sum(-1).",
+  "Two things are easy to lose: the skip connection y = y + D * x, and causality in MambaBlock — Conv1d(padding=d_conv-1) must be truncated back to L so no position sees the future.",
+]
+
+[notebooks]
+question = "mamba.ipynb"
+solution = "mamba_SOLN.ipynb"
+
+[grading]
+tier = "A"        # A=auto-graded B=partial C=not auto-graded (SEEDED, confirm)
+entries = ["selective_scan", "MambaBlock"]
+extras = ["matplotlib", "numpy"]
+device = "cpu"
+
+[[companies]]
+name = "DeepMind"
+confidence = "inferred"   # inferred | reported
+
+[[companies]]
+name = "Google"
+confidence = "inferred"   # inferred | reported
+
+[[companies]]
+name = "Anthropic"
+confidence = "inferred"   # inferred | reported

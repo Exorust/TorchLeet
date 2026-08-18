@@ -1,0 +1,47 @@
+id = "fsdp"
+legacy_ids = ["v3-26"]
+title = "Implement FSDP from Scratch"
+description = "Build Fully Sharded Data Parallel: shard parameters across GPUs, all-gather before forward, reduce-scatter gradients after backward."
+difficulty = "expert"
+frequency = "very-likely"   # very-likely | common | emerging (derived from company reports)
+number = 26
+set = "v3"
+category = "gpu-systems"
+tracks = ["advanced"]
+
+# GENERATED from the grader spec — edit python/torchleet/problems/*.py, then run: generate.py hints
+hints = [
+  "shard() is torch.chunk into world_size pieces (detached clones, since each rank owns its own memory); all_gather() is torch.cat of those pieces.",
+  "reduce_scatter is reduce THEN scatter: sum the per-rank full gradients elementwise first, then chunk the sum so rank i keeps chunk i.",
+  "forward_on_rank should all-gather the weight and bias shards, run F.linear(x, full_weight, full_bias), and drop the gathered copy afterwards — that release is what makes the memory saving real.",
+]
+
+[notebooks]
+question = "fsdp.ipynb"
+solution = "fsdp_SOLN.ipynb"
+
+[grading]
+tier = "A"        # A=auto-graded B=partial C=not auto-graded (SEEDED, confirm)
+entries = ["FakeDistributed", "FSDPLinear"]
+extras = ["enum"]
+device = "cuda"
+
+[[companies]]
+name = "Meta"
+confidence = "inferred"   # inferred | reported
+
+[[companies]]
+name = "Google"
+confidence = "inferred"   # inferred | reported
+
+[[companies]]
+name = "NVIDIA"
+confidence = "inferred"   # inferred | reported
+
+[[companies]]
+name = "Anthropic"
+confidence = "inferred"   # inferred | reported
+
+[[companies]]
+name = "xAI"
+confidence = "inferred"   # inferred | reported

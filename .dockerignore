@@ -1,0 +1,6 @@
+.git
+website/node_modules
+website/.next
+mcp-server/node_modules
+**/__pycache__
+**/.ipynb_checkpoints

@@ -1,0 +1,26 @@
+id = "rnn"
+legacy_ids = ["v1-9"]
+title = "Implement an RNN from Scratch"
+description = "Write a recurrent neural network cell from scratch using raw tensor operations, implementing the hidden state update manually."
+difficulty = "easy"
+frequency = "emerging"   # very-likely | common | emerging (derived from company reports)
+number = 9
+set = "v1"
+tracks = ["basics"]
+
+# GENERATED from the grader spec — edit python/torchleet/problems/*.py, then run: generate.py hints
+hints = [
+  "The input is (batch, seq_len, input_size) — nn.RNN needs batch_first=True to read it that way.",
+  "Feed only the final hidden state into the fully connected layer; that is the summary of the whole sequence.",
+  "The output should be (batch, 1): one predicted next value per sequence, not one per timestep.",
+]
+
+[notebooks]
+question = "RNN.ipynb"
+solution = "RNN_SOLN.ipynb"
+
+[grading]
+tier = "C"        # A=auto-graded B=partial C=not auto-graded (SEEDED, confirm)
+entries = ["RNNModel"]
+extras = []
+device = "cpu"

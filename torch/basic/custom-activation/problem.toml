@@ -1,0 +1,26 @@
+id = "custom-activation"
+legacy_ids = ["v1-3"]
+title = "Write a Custom Activation Function"
+description = "Implement a custom activation function as a PyTorch module and use it inside a neural network."
+difficulty = "basic"
+frequency = "emerging"   # very-likely | common | emerging (derived from company reports)
+number = 3
+set = "v1"
+tracks = ["basics"]
+
+# GENERATED from the grader spec — edit python/torchleet/problems/*.py, then run: generate.py hints
+hints = [
+  "An activation is just a function of the tensor; you can write it inline or as an nn.Module.",
+  "Make sure it is differentiable — use torch ops, not Python branching on tensor values.",
+  "Apply it between the linear layers in forward().",
+]
+
+[notebooks]
+question = "custom-activation.ipynb"
+solution = "custom-activation_SOLN.ipynb"
+
+[grading]
+tier = "C"        # A=auto-graded B=partial C=not auto-graded (SEEDED, confirm)
+entries = ["CustomActivationModel"]
+extras = ["matplotlib"]
+device = "cpu"

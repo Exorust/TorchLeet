@@ -1,0 +1,43 @@
+id = "beam-search"
+legacy_ids = ["v3-9"]
+title = "Implement Beam Search for LLM Decoding"
+description = "Maintain and expand top-scoring partial sequences at each decoding step with length normalization and early stopping."
+difficulty = "medium"
+frequency = "very-likely"   # very-likely | common | emerging (derived from company reports)
+number = 9
+set = "v3"
+category = "llm-decoding"
+tracks = ["advanced"]
+
+# GENERATED from the grader spec — edit python/torchleet/problems/*.py, then run: generate.py hints
+hints = [
+  "Keep each beam as (sequence, cumulative_log_prob) and start from ([start_token], 0.0) — the start token counts towards max_len.",
+  "Score a candidate with the RUNNING total: score + log_softmax(logits)[token]. Comparing only the current step's log-prob turns beam search into greedy.",
+  "Pool the candidates from every beam into one list, sort by score, keep the top beam_width. At the end return the sequence of the highest-scoring beam.",
+]
+
+[notebooks]
+question = "beam-search.ipynb"
+solution = "beam-search_SOLN.ipynb"
+
+[grading]
+tier = "A"        # A=auto-graded B=partial C=not auto-graded (SEEDED, confirm)
+entries = ["beam_search"]
+extras = []
+device = "cpu"
+
+[[companies]]
+name = "Google"
+confidence = "inferred"   # inferred | reported
+
+[[companies]]
+name = "DeepMind"
+confidence = "inferred"   # inferred | reported
+
+[[companies]]
+name = "Meta"
+confidence = "inferred"   # inferred | reported
+
+[[companies]]
+name = "Apple"
+confidence = "inferred"   # inferred | reported
