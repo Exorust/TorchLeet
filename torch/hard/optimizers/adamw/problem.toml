@@ -1,0 +1,33 @@
+id = "adamw"
+legacy_ids = ["v1-37"]
+title = "Implement AdamW from Scratch"
+description = "Implement the AdamW optimizer from scratch on top of torch.optim.Optimizer: Adam's update with weight decay decoupled from the gradient, applied directly to the parameters."
+difficulty = "hard"
+frequency = "common"   # very-likely | common | emerging (derived from company reports)
+number = 37
+set = "v1"
+tracks = ["advanced"]
+
+# GENERATED from the grader spec — edit python/torchleet/problems/*.py, then run: generate.py hints
+hints = [
+  "Subclass torch.optim.Optimizer and keep per-parameter state in self.state[p] — it starts as an empty dict, so initialize it on the first step. Do the whole update under @torch.no_grad() with in-place ops (mul_, add_, addcmul_, addcdiv_).",
+  "AdamW: m = b1*m + (1-b1)*g and v = b2*v + (1-b2)*g^2, then correct both by (1 - beta**step) and update p -= lr * m_hat / (sqrt(v_hat) + eps). Weight decay is p.mul_(1 - lr * weight_decay) applied directly to the parameter — do NOT add weight_decay * p to the gradient, that is L2 regularization and the adaptive denominator rescales it.",
+]
+
+[notebooks]
+question = "adamw.ipynb"
+solution = "adamw_SOLN.ipynb"
+
+[grading]
+tier = "A"        # A=auto-graded B=partial C=not auto-graded (SEEDED, confirm)
+entries = ["MyAdamW"]
+extras = []
+device = "cpu"
+
+[[companies]]
+name = "Meta"
+confidence = "inferred"   # inferred | reported
+
+[[companies]]
+name = "Google"
+confidence = "inferred"   # inferred | reported

@@ -1,5 +1,5 @@
 {
- "count": 66,
+ "count": 68,
  "problems": [
   {
    "id": "lin-regression",
@@ -683,12 +683,12 @@
    "hints": null
   },
   {
-   "id": "optimizers",
+   "id": "adam",
    "legacy_ids": [
     "v1-36"
    ],
-   "title": "Implement Optimizers from Scratch (Adam / AdamW / Muon)",
-   "description": "Implement the Adam, AdamW, and Muon optimizers from scratch on top of torch.optim.Optimizer, including bias correction, decoupled weight decay, and Newton\u2013Schulz orthogonalization.",
+   "title": "Implement Adam from Scratch",
+   "description": "Implement the Adam optimizer from scratch on top of torch.optim.Optimizer: exponential moving averages of the gradient and its square, with bias correction.",
    "difficulty": "hard",
    "category": "",
    "tracks": [
@@ -698,9 +698,77 @@
     "Meta",
     "Google"
    ],
-   "question": "torch/hard/optimizers/optimizers.ipynb",
-   "solution": "torch/hard/optimizers/optimizers_SOLN.ipynb",
-   "colab": "https://colab.research.google.com/github/Exorust/TorchLeet/blob/main/torch/hard/optimizers/optimizers.ipynb",
+   "question": "torch/hard/optimizers/adam/adam.ipynb",
+   "solution": "torch/hard/optimizers/adam/adam_SOLN.ipynb",
+   "colab": "https://colab.research.google.com/github/Exorust/TorchLeet/blob/main/torch/hard/optimizers/adam/adam.ipynb",
+   "frequency": "common",
+   "company_confidence": {
+    "Meta": "inferred",
+    "Google": "inferred"
+   },
+   "llm_path_order": null,
+   "graded": true,
+   "entries": [
+    "MyAdam"
+   ],
+   "hints": [
+    "Subclass torch.optim.Optimizer and keep per-parameter state in self.state[p] \u2014 it starts as an empty dict, so initialize it on the first step. Do the whole update under @torch.no_grad() with in-place ops (mul_, add_, addcmul_, addcdiv_).",
+    "Adam: m = b1*m + (1-b1)*g and v = b2*v + (1-b2)*g^2, then correct both by (1 - beta**step) and update p -= lr * m_hat / (sqrt(v_hat) + eps)."
+   ]
+  },
+  {
+   "id": "adamw",
+   "legacy_ids": [
+    "v1-37"
+   ],
+   "title": "Implement AdamW from Scratch",
+   "description": "Implement the AdamW optimizer from scratch on top of torch.optim.Optimizer: Adam's update with weight decay decoupled from the gradient, applied directly to the parameters.",
+   "difficulty": "hard",
+   "category": "",
+   "tracks": [
+    "advanced"
+   ],
+   "companies": [
+    "Meta",
+    "Google"
+   ],
+   "question": "torch/hard/optimizers/adamw/adamw.ipynb",
+   "solution": "torch/hard/optimizers/adamw/adamw_SOLN.ipynb",
+   "colab": "https://colab.research.google.com/github/Exorust/TorchLeet/blob/main/torch/hard/optimizers/adamw/adamw.ipynb",
+   "frequency": "common",
+   "company_confidence": {
+    "Meta": "inferred",
+    "Google": "inferred"
+   },
+   "llm_path_order": null,
+   "graded": true,
+   "entries": [
+    "MyAdamW"
+   ],
+   "hints": [
+    "Subclass torch.optim.Optimizer and keep per-parameter state in self.state[p] \u2014 it starts as an empty dict, so initialize it on the first step. Do the whole update under @torch.no_grad() with in-place ops (mul_, add_, addcmul_, addcdiv_).",
+    "AdamW: m = b1*m + (1-b1)*g and v = b2*v + (1-b2)*g^2, then correct both by (1 - beta**step) and update p -= lr * m_hat / (sqrt(v_hat) + eps). Weight decay is p.mul_(1 - lr * weight_decay) applied directly to the parameter \u2014 do NOT add weight_decay * p to the gradient, that is L2 regularization and the adaptive denominator rescales it."
+   ]
+  },
+  {
+   "id": "muon",
+   "legacy_ids": [
+    "v1-38"
+   ],
+   "title": "Implement Muon from Scratch",
+   "description": "Implement the Muon optimizer from scratch on top of torch.optim.Optimizer: momentum orthogonalized by Newton\u2013Schulz for matrix parameters, with an AdamW fallback for 1D parameters.",
+   "difficulty": "hard",
+   "category": "",
+   "tracks": [
+    "advanced"
+   ],
+   "companies": [
+    "Meta",
+    "Google"
+   ],
+   "question": "torch/hard/optimizers/muon/muon.ipynb",
+   "solution": "torch/hard/optimizers/muon/muon_SOLN.ipynb",
+   "colab": "https://colab.research.google.com/github/Exorust/TorchLeet/blob/main/torch/hard/optimizers/muon/muon.ipynb",
    "frequency": "common",
    "company_confidence": {
     "Meta": "inferred",
@@ -710,13 +778,10 @@
    "graded": true,
    "entries": [
     "newton_schulz",
-    "MyAdam",
-    "MyAdamW",
     "MyMuon"
    ],
    "hints": [
     "Subclass torch.optim.Optimizer and keep per-parameter state in self.state[p] \u2014 it starts as an empty dict, so initialize it on the first step. Do the whole update under @torch.no_grad() with in-place ops (mul_, add_, addcmul_, addcdiv_).",
-    "Adam: m = b1*m + (1-b1)*g and v = b2*v + (1-b2)*g^2, then correct both by (1 - beta**step) and update p -= lr * m_hat / (sqrt(v_hat) + eps). AdamW adds p.mul_(1 - lr * weight_decay) applied directly to the parameter \u2014 do NOT add weight_decay * p to the gradient, that is L2 regularization and the adaptive denominator rescales it.",
     "Muon: buf = momentum*buf + grad (Nesterov uses grad + momentum*buf as the update), orthogonalize with your newton_schulz, scale by sqrt(max(m,n)/min(m,n)), and only for ndim >= 2 \u2014 1D params get the AdamW fallback. newton_schulz: divide X by its Frobenius norm, then iterate X = a*X + b*(X@X.T)@X + c*(X@X.T)^2@X with a=15/8, b=-5/4, c=3/8."
    ]
   },
