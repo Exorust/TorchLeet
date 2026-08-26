@@ -1,5 +1,5 @@
 {
- "count": 65,
+ "count": 66,
  "problems": [
   {
    "id": "lin-regression",
@@ -681,6 +681,44 @@
    "graded": false,
    "entries": [],
    "hints": null
+  },
+  {
+   "id": "optimizers",
+   "legacy_ids": [
+    "v1-36"
+   ],
+   "title": "Implement Optimizers from Scratch (Adam / AdamW / Muon)",
+   "description": "Implement the Adam, AdamW, and Muon optimizers from scratch on top of torch.optim.Optimizer, including bias correction, decoupled weight decay, and Newton\u2013Schulz orthogonalization.",
+   "difficulty": "hard",
+   "category": "",
+   "tracks": [
+    "advanced"
+   ],
+   "companies": [
+    "Meta",
+    "Google"
+   ],
+   "question": "torch/hard/optimizers/optimizers.ipynb",
+   "solution": "torch/hard/optimizers/optimizers_SOLN.ipynb",
+   "colab": "https://colab.research.google.com/github/Exorust/TorchLeet/blob/main/torch/hard/optimizers/optimizers.ipynb",
+   "frequency": "common",
+   "company_confidence": {
+    "Meta": "inferred",
+    "Google": "inferred"
+   },
+   "llm_path_order": null,
+   "graded": true,
+   "entries": [
+    "newton_schulz",
+    "MyAdam",
+    "MyAdamW",
+    "MyMuon"
+   ],
+   "hints": [
+    "Subclass torch.optim.Optimizer and keep per-parameter state in self.state[p] \u2014 it starts as an empty dict, so initialize it on the first step. Do the whole update under @torch.no_grad() with in-place ops (mul_, add_, addcmul_, addcdiv_).",
+    "Adam: m = b1*m + (1-b1)*g and v = b2*v + (1-b2)*g^2, then correct both by (1 - beta**step) and update p -= lr * m_hat / (sqrt(v_hat) + eps). AdamW adds p.mul_(1 - lr * weight_decay) applied directly to the parameter \u2014 do NOT add weight_decay * p to the gradient, that is L2 regularization and the adaptive denominator rescales it.",
+    "Muon: buf = momentum*buf + grad (Nesterov uses grad + momentum*buf as the update), orthogonalize with your newton_schulz, scale by sqrt(max(m,n)/min(m,n)), and only for ndim >= 2 \u2014 1D params get the AdamW fallback. newton_schulz: divide X by its Frobenius norm, then iterate X = a*X + b*(X@X.T)@X + c*(X@X.T)^2@X with a=15/8, b=-5/4, c=3/8."
+   ]
   },
   {
    "id": "create-embeddings-out-of-an-llm",

@@ -2,7 +2,7 @@
 
 <img src="torchleet-header.png" alt="TorchLeet" width="700">
 
-**65 PyTorch problems from real ML/AI interviews at Google, Meta, Anthropic, and more.**
+**66 PyTorch problems from real ML/AI interviews at Google, Meta, Anthropic, and more.**
 
 [![GitHub stars](https://img.shields.io/github/stars/Exorust/TorchLeet?style=social)](https://github.com/Exorust/TorchLeet)
 [![Website](https://img.shields.io/badge/website-torch--leet.vercel.app-8b5cf6)](https://torch-leet.vercel.app)
@@ -20,7 +20,7 @@ I struggled to grind for ML/AI interviews so I went back to the basics and creat
 
 ## AI Tutor (NEW)
 
-Turn any AI assistant into your PyTorch interview coach. The TorchLeet MCP server gives your AI access to all 65 problems, progressive hints, company prep plans, and learning paths, while enforcing a no-spoilers teaching style.
+Turn any AI assistant into your PyTorch interview coach. The TorchLeet MCP server gives your AI access to all 66 problems, progressive hints, company prep plans, and learning paths, while enforcing a no-spoilers teaching style.
 
 ```bash
 # Clone the repo first
@@ -66,7 +66,7 @@ Add this to your MCP config:
 
 ---
 
-65 problems across three tracks:
+66 problems across three tracks:
 
 | Track | Focus | Questions |
 |-------|-------|-----------|

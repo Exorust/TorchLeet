@@ -203,6 +203,16 @@ export const authoredHints: Record<string, string[]> = {
   "forward returns (outputs, (hidden, cell)) — the attention needs every timestep, the decoder needs the final states to start from.",
   "With batch_first=True outputs is (batch, src_len, hidden_dim) while hidden and cell stay (num_layers, batch, hidden_dim)."
  ],
+ "optimizers": [
+  "Subclass torch.optim.Optimizer and keep per-parameter state in self.state[p] — it starts as an empty dict, so initialize it on the first step. Do the whole update under @torch.no_grad() with in-place ops (mul_, add_, addcmul_, addcdiv_).",
+  "Adam: m = b1*m + (1-b1)*g and v = b2*v + (1-b2)*g^2, then correct both by (1 - beta**step) and update p -= lr * m_hat / (sqrt(v_hat) + eps). AdamW adds p.mul_(1 - lr * weight_decay) applied directly to the parameter — do NOT add weight_decay * p to the gradient, that is L2 regularization and the adaptive denominator rescales it.",
+  "Muon: buf = momentum*buf + grad (Nesterov uses grad + momentum*buf as the update), orthogonalize with your newton_schulz, scale by sqrt(max(m,n)/min(m,n)), and only for ndim >= 2 — 1D params get the AdamW fallback. newton_schulz: divide X by its Frobenius norm, then iterate X = a*X + b*(X@X.T)@X + c*(X@X.T)^2@X with a=15/8, b=-5/4, c=3/8."
+ ],
+ "v1-36": [
+  "Subclass torch.optim.Optimizer and keep per-parameter state in self.state[p] — it starts as an empty dict, so initialize it on the first step. Do the whole update under @torch.no_grad() with in-place ops (mul_, add_, addcmul_, addcdiv_).",
+  "Adam: m = b1*m + (1-b1)*g and v = b2*v + (1-b2)*g^2, then correct both by (1 - beta**step) and update p -= lr * m_hat / (sqrt(v_hat) + eps). AdamW adds p.mul_(1 - lr * weight_decay) applied directly to the parameter — do NOT add weight_decay * p to the gradient, that is L2 regularization and the adaptive denominator rescales it.",
+  "Muon: buf = momentum*buf + grad (Nesterov uses grad + momentum*buf as the update), orthogonalize with your newton_schulz, scale by sqrt(max(m,n)/min(m,n)), and only for ndim >= 2 — 1D params get the AdamW fallback. newton_schulz: divide X by its Frobenius norm, then iterate X = a*X + b*(X@X.T)@X + c*(X@X.T)^2@X with a=15/8, b=-5/4, c=3/8."
+ ],
  "flash-attention": [
   "Keep a running max, a running denominator l, and a running output accumulator; on each K/V tile rescale all three by alpha = exp(prev_max - new_max).",
   "Divide the accumulator by l only once, after the loop — not inside it.",
