@@ -23,8 +23,8 @@ measurements. Treat them as relative effort, not a promise.
 
 ## Advanced
 
-**39 problems · ~49 hours · about 10 weeks at 5 h/week**
+**42 problems · ~54 hours · about 11 weeks at 5 h/week**
 
 - 16 medium (~12h)
-- 17 hard (~25h)
+- 20 hard (~30h)
 - 6 expert (~12h)
