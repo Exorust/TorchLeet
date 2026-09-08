@@ -1,9 +1,9 @@
-# All 65 problems
+# All 68 problems
 
 Generated from the per-problem `problem.toml` manifests — do not edit by hand.
 Run `python3 scripts/generate.py readme` to refresh.
 
-**59 of 65 are auto-graded** (`pip install torchleet`). A ✅ in the
+**62 of 68 are auto-graded** (`pip install torchleet`). A ✅ in the
 Graded column means `check()` will verify your solution.
 
 ### Basics (23)
@@ -60,7 +60,7 @@ Graded column means `check()` will verify your solution.
 | ⭐ Implement GRPO (DeepSeek-R1 Algorithm) | expert | DeepMind, Anthropic, OpenAI | ✅ | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Exorust/TorchLeet/blob/main/v3/alignment-training/grpo/grpo.ipynb) | [Q](v3/alignment-training/grpo/grpo.ipynb) / [S](v3/alignment-training/grpo/grpo_SOLN.ipynb) |
 | 🔥 Build a Complete LLM Inference Engine | expert | Perplexity, Together AI, Anyscale, Fireworks AI | ✅ | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Exorust/TorchLeet/blob/main/v3/llm-inference/inference-engine/inference-engine.ipynb) | [Q](v3/llm-inference/inference-engine/inference-engine.ipynb) / [S](v3/llm-inference/inference-engine/inference-engine_SOLN.ipynb) |
 
-### Advanced (39)
+### Advanced (42)
 
 | Problem | Difficulty | Companies | Graded | Run | Links |
 |---|---|---|---|---|---|
@@ -71,6 +71,9 @@ Graded column means `check()` will verify your solution.
 | 💡 Write a GAN | hard |  | ✅ | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Exorust/TorchLeet/blob/main/torch/hard/GAN/GAN.ipynb) | [Q](torch/hard/GAN/GAN.ipynb) / [S](torch/hard/GAN/GAN_SOLN.ipynb) |
 | 💡 Sequence-to-Sequence with Attention | hard |  | ✅ | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Exorust/TorchLeet/blob/main/torch/hard/seq-seq/seq-to-seq-with-Attention.ipynb) | [Q](torch/hard/seq-seq/seq-to-seq-with-Attention.ipynb) / [S](torch/hard/seq-seq/seq-to-seq-with-Attention_SOLN.ipynb) |
 | 💡 Explainable AI (GradCAM/SHAP) | hard |  |  | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Exorust/TorchLeet/blob/main/torch/hard/xai/xai.ipynb) | [Q](torch/hard/xai/xai.ipynb) / [S](torch/hard/xai/xai_SOLN.ipynb) |
+| ⭐ Implement Adam from Scratch | hard | Meta, Google | ✅ | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Exorust/TorchLeet/blob/main/torch/hard/optimizers/adam/adam.ipynb) | [Q](torch/hard/optimizers/adam/adam.ipynb) / [S](torch/hard/optimizers/adam/adam_SOLN.ipynb) |
+| ⭐ Implement AdamW from Scratch | hard | Meta, Google | ✅ | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Exorust/TorchLeet/blob/main/torch/hard/optimizers/adamw/adamw.ipynb) | [Q](torch/hard/optimizers/adamw/adamw.ipynb) / [S](torch/hard/optimizers/adamw/adamw_SOLN.ipynb) |
+| ⭐ Implement Muon from Scratch | hard | Meta, Google | ✅ | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Exorust/TorchLeet/blob/main/torch/hard/optimizers/muon/muon.ipynb) | [Q](torch/hard/optimizers/muon/muon.ipynb) / [S](torch/hard/optimizers/muon/muon_SOLN.ipynb) |
 | 💡 Create Embeddings Out Of An Llm | medium |  |  | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Exorust/TorchLeet/blob/main/llm/Create-Embeddings-out-of-an-LLM/embeddings-q2.ipynb) | [Q](llm/Create-Embeddings-out-of-an-LLM/embeddings-q2.ipynb) |
 | 💡 Flash Attention | medium |  | ✅ | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Exorust/TorchLeet/blob/main/llm/Flash-Attention/flash-attention.ipynb) | [Q](llm/Flash-Attention/flash-attention.ipynb) |
 | 💡 Implement Attention from Scratch | medium |  | ✅ | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Exorust/TorchLeet/blob/main/llm/Implement-Attention-from-Scratch/attention-q4-Question.ipynb) | [Q](llm/Implement-Attention-from-Scratch/attention-q4-Question.ipynb) / [S](llm/Implement-Attention-from-Scratch/attention-q4.ipynb) |

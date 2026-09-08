@@ -13,7 +13,7 @@ honestly than invent a precision we do not have.
 
 If you were asked one of these, [tell us](https://github.com/Exorust/TorchLeet/issues/new?template=interview-report.yml) and it becomes a **reported** tag with a real date.
 
-**0 reported, 130 inferred across 27 companies.**
+**0 reported, 136 inferred across 27 companies.**
 
 ### Adobe
 - Implement DDIM Sampling + Classifier-Free Guidance — _inferred_
@@ -83,6 +83,8 @@ If you were asked one of these, [tell us](https://github.com/Exorust/TorchLeet/i
 - Build a Complete LLM Inference Engine — _inferred_
 
 ### Google
+- Implement Adam from Scratch — _inferred_
+- Implement AdamW from Scratch — _inferred_
 - Implement Beam Search for LLM Decoding — _inferred_
 - Implement DDPM from Scratch — _inferred_
 - Implement FSDP from Scratch — _inferred_
@@ -92,6 +94,7 @@ If you were asked one of these, [tell us](https://github.com/Exorust/TorchLeet/i
 - Implement LoRA on a Linear Layer — _inferred_
 - Implement Logistic Regression with Gradient Descent — _inferred_
 - Implement Mixture of Experts Layer — _inferred_
+- Implement Muon from Scratch — _inferred_
 - Implement Ring Attention for Long Contexts — _inferred_
 - Implement Selective State Space Model (Mamba) — _inferred_
 - Implement Sliding Window Attention — _inferred_
@@ -106,6 +109,8 @@ If you were asked one of these, [tell us](https://github.com/Exorust/TorchLeet/i
 - Implement KNN in PyTorch — _inferred_
 
 ### Meta
+- Implement Adam from Scratch — _inferred_
+- Implement AdamW from Scratch — _inferred_
 - Implement Beam Search for LLM Decoding — _inferred_
 - Implement Continuous Batching for LLM Inference — _inferred_
 - Implement DPO Loss from Scratch — _inferred_
@@ -117,6 +122,7 @@ If you were asked one of these, [tell us](https://github.com/Exorust/TorchLeet/i
 - Implement Knowledge Distillation — _inferred_
 - Implement LoRA on a Linear Layer — _inferred_
 - Implement Logistic Regression with Gradient Descent — _inferred_
+- Implement Muon from Scratch — _inferred_
 - Implement PPO for RLHF — _inferred_
 - Implement Ring Attention for Long Contexts — _inferred_
 - Implement Softmax from Scratch — _inferred_

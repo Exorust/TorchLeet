@@ -1,0 +1,33 @@
+id = "muon"
+legacy_ids = ["v1-38"]
+title = "Implement Muon from Scratch"
+description = "Implement the Muon optimizer from scratch on top of torch.optim.Optimizer: momentum orthogonalized by Newton–Schulz for matrix parameters, with an AdamW fallback for 1D parameters."
+difficulty = "hard"
+frequency = "common"   # very-likely | common | emerging (derived from company reports)
+number = 38
+set = "v1"
+tracks = ["advanced"]
+
+# GENERATED from the grader spec — edit python/torchleet/problems/*.py, then run: generate.py hints
+hints = [
+  "Subclass torch.optim.Optimizer and keep per-parameter state in self.state[p] — it starts as an empty dict, so initialize it on the first step. Do the whole update under @torch.no_grad() with in-place ops (mul_, add_, addcmul_, addcdiv_).",
+  "Muon: buf = momentum*buf + grad (Nesterov uses grad + momentum*buf as the update), orthogonalize with your newton_schulz, scale by sqrt(max(m,n)/min(m,n)), and only for ndim >= 2 — 1D params get the AdamW fallback. newton_schulz: divide X by its Frobenius norm, then iterate X = a*X + b*(X@X.T)@X + c*(X@X.T)^2@X with a=15/8, b=-5/4, c=3/8.",
+]
+
+[notebooks]
+question = "muon.ipynb"
+solution = "muon_SOLN.ipynb"
+
+[grading]
+tier = "A"        # A=auto-graded B=partial C=not auto-graded (SEEDED, confirm)
+entries = ["newton_schulz", "MyMuon"]
+extras = []
+device = "cpu"
+
+[[companies]]
+name = "Meta"
+confidence = "inferred"   # inferred | reported
+
+[[companies]]
+name = "Google"
+confidence = "inferred"   # inferred | reported

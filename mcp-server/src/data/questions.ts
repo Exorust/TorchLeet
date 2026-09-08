@@ -402,6 +402,39 @@ const v1Questions: Omit<Question, "description" | "tracks" | "llmPathOrder" | "l
     solutionPath: null,
     hasNotebook: false,
   },
+  {
+    id: "v1-36",
+    set: "v1",
+    number: 36,
+    title: "Implement Adam from Scratch",
+    difficulty: "hard",
+    companies: ["Meta", "Google"],
+    questionPath: "torch/hard/optimizers/adam/adam.ipynb",
+    solutionPath: "torch/hard/optimizers/adam/adam_SOLN.ipynb",
+    hasNotebook: true,
+  },
+  {
+    id: "v1-37",
+    set: "v1",
+    number: 37,
+    title: "Implement AdamW from Scratch",
+    difficulty: "hard",
+    companies: ["Meta", "Google"],
+    questionPath: "torch/hard/optimizers/adamw/adamw.ipynb",
+    solutionPath: "torch/hard/optimizers/adamw/adamw_SOLN.ipynb",
+    hasNotebook: true,
+  },
+  {
+    id: "v1-38",
+    set: "v1",
+    number: 38,
+    title: "Implement Muon from Scratch",
+    difficulty: "hard",
+    companies: ["Meta", "Google"],
+    questionPath: "torch/hard/optimizers/muon/muon.ipynb",
+    solutionPath: "torch/hard/optimizers/muon/muon_SOLN.ipynb",
+    hasNotebook: true,
+  },
 ];
 
 // ---------------------------------------------------------------------------
@@ -1026,6 +1059,9 @@ const DESCRIPTIONS: Record<string, string> = {
   "v1-33": "Project high-dimensional embeddings from different modalities into 2D/3D space for visual analysis using t-SNE or UMAP.",
   "v1-34": "Build ViT from scratch — patch embedding, class token, positional encoding, and transformer encoder for image classification.",
   "v1-35": "Build a VAE with encoder, reparameterization trick, decoder, and combined reconstruction + KL divergence loss.",
+  "v1-36": "Implement the Adam optimizer from scratch on top of torch.optim.Optimizer: exponential moving averages of the gradient and its square, with bias correction.",
+  "v1-37": "Implement the AdamW optimizer from scratch on top of torch.optim.Optimizer: Adam's update with weight decay decoupled from the gradient, applied directly to the parameters.",
+  "v1-38": "Implement the Muon optimizer from scratch on top of torch.optim.Optimizer: momentum orthogonalized by Newton–Schulz for matrix parameters, with an AdamW fallback for 1D parameters.",
 
   // V2
   "v2-1": "Compute KL divergence between two probability distributions from scratch, essential for VAEs and knowledge distillation.",
