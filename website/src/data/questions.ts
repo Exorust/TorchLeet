@@ -441,7 +441,7 @@ const v2Questions: Omit<Question, "description" | "tracks" | "llmPathOrder" | "l
     difficulty: "easy",
     companies: [],
     questionPath: "llm/Byte-Pair-Encoder/BPE-q3.ipynb",
-    solutionPath: "llm/Byte-Pair-Encoder/BPE-q3.ipynb",
+    solutionPath: "llm/Byte-Pair-Encoder/BPE-q3-SOLN.ipynb",
     hasNotebook: true,
   },
   {
