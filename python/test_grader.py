@@ -156,6 +156,76 @@ class WrongClassCount(Cnn):
         self.f2 = nn.Linear(128, 100)
 
 
+# ---------------------------------------------------------------------- rope
+def rotate_half(x):
+    x1, x2 = x.chunk(2, dim=-1)
+    return torch.cat((-x2, x1), dim=-1)
+
+
+def rope_apply(q, k, cos, sin):
+    return q * cos + rotate_half(q) * sin, k * cos + rotate_half(k) * sin
+
+
+def rope_noop(q, k, cos, sin):
+    """Broken: ignores cos/sin and returns the inputs untouched."""
+    return q, k
+
+
+def rope_query_only(q, k, cos, sin):
+    """Broken: rotates the query but forgets the key."""
+    return q * cos + rotate_half(q) * sin, k
+
+
+# --------------------------------------------------------- gradient checkpointing
+class CkptFn(torch.autograd.Function):
+    @staticmethod
+    def forward(ctx, fn, *args):
+        ctx.fn = fn
+        ctx.save_for_backward(*args)
+        with torch.no_grad():
+            return fn(*args)
+
+    @staticmethod
+    def backward(ctx, *grad_outputs):
+        inputs = [t.detach().requires_grad_(t.requires_grad) for t in ctx.saved_tensors]
+        with torch.enable_grad():
+            out = ctx.fn(*inputs)
+        outs = out if isinstance(out, tuple) else (out,)
+        pairs = [(o, g) for o, g in zip(outs, grad_outputs) if o.requires_grad]
+        if pairs:
+            torch.autograd.backward([o for o, _ in pairs], [g for _, g in pairs])
+        return (None, *(t.grad if t.requires_grad else None for t in inputs))
+
+
+def ckpt(fn, *args):
+    if torch.is_grad_enabled() and not any(
+            isinstance(a, torch.Tensor) and a.requires_grad for a in args):
+        dummy = torch.empty(0, requires_grad=True)
+        return CkptFn.apply(lambda _d, *a: fn(*a), dummy, *args)
+    return CkptFn.apply(fn, *args)
+
+
+def ckpt_no_dummy(fn, *args):
+    """Broken: with a plain (no-grad) input backward never runs, so fn never trains."""
+    return CkptFn.apply(fn, *args)
+
+
+class CkptFnInputsOnly(CkptFn):
+    """Broken: autograd.grad w.r.t. the inputs, so fn's parameters get nothing."""
+
+    @staticmethod
+    def backward(ctx, *grad_outputs):
+        inputs = [t.detach().requires_grad_(True) for t in ctx.saved_tensors]
+        with torch.enable_grad():
+            out = ctx.fn(*inputs)
+        grads = torch.autograd.grad(out, inputs, grad_outputs, allow_unused=True)
+        return (None, *grads)
+
+
+def ckpt_inputs_only(fn, *args):
+    return CkptFnInputsOnly.apply(fn, *args)
+
+
 CASES = [
     # (label, expected, problem_id, args, kwargs)
     ("kv-cache canonical", True, "kv-cache", (), dict(KVCache=KVCache, CachedAttention=Attn)),
@@ -166,6 +236,12 @@ CASES = [
     ("cnn canonical", True, "cnn", (Cnn,), {}),
     ("cnn divergent", True, "cnn", (DivergentCnn,), {}),
     ("cnn wrong classes", False, "cnn", (WrongClassCount,), {}),
+    ("rope correct", True, "rotary-positional-embedding", (rotate_half, rope_apply), {}),
+    ("rope no-op", False, "rotary-positional-embedding", (rotate_half, rope_noop), {}),
+    ("rope query only", False, "rotary-positional-embedding", (rotate_half, rope_query_only), {}),
+    ("ckpt correct", True, "gradient-checkpointing", (CkptFn, ckpt), {}),
+    ("ckpt no dummy input", False, "gradient-checkpointing", (CkptFn, ckpt_no_dummy), {}),
+    ("ckpt inputs-only grads", False, "gradient-checkpointing", (CkptFnInputsOnly, ckpt_inputs_only), {}),
 ]
 
 
