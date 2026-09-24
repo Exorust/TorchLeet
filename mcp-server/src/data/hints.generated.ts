@@ -455,13 +455,15 @@ export const authoredHints: Record<string, string[]> = {
  ],
  "gradient-checkpointing": [
   "In forward: stash fn on ctx, ctx.save_for_backward(*args), and run fn(*args) inside torch.no_grad() so no intermediate activation is kept.",
-  "In backward: detach the saved inputs, requires_grad_ them, re-run fn inside torch.enable_grad(), then torch.autograd.grad(output, inputs, grad_outputs).",
-  "backward must return one gradient per forward argument — None for fn itself, then a gradient (or None) for each tensor input."
+  "In backward: detach the saved inputs, requires_grad_ them, re-run fn inside torch.enable_grad(), then torch.autograd.backward(outputs, grad_outputs) — unlike autograd.grad on the inputs, that also reaches fn's own parameters.",
+  "backward must return one gradient per forward argument — None for fn itself, then a gradient (or None) for each tensor input (read them off the detached copies).",
+  "Autograd only calls backward if some tensor argument requires grad. When none does (plain input data), have checkpoint() pass an extra dummy tensor with requires_grad=True, or the wrapped layer's weights never train."
  ],
  "v3-16": [
   "In forward: stash fn on ctx, ctx.save_for_backward(*args), and run fn(*args) inside torch.no_grad() so no intermediate activation is kept.",
-  "In backward: detach the saved inputs, requires_grad_ them, re-run fn inside torch.enable_grad(), then torch.autograd.grad(output, inputs, grad_outputs).",
-  "backward must return one gradient per forward argument — None for fn itself, then a gradient (or None) for each tensor input."
+  "In backward: detach the saved inputs, requires_grad_ them, re-run fn inside torch.enable_grad(), then torch.autograd.backward(outputs, grad_outputs) — unlike autograd.grad on the inputs, that also reaches fn's own parameters.",
+  "backward must return one gradient per forward argument — None for fn itself, then a gradient (or None) for each tensor input (read them off the detached copies).",
+  "Autograd only calls backward if some tensor argument requires grad. When none does (plain input data), have checkpoint() pass an extra dummy tensor with requires_grad=True, or the wrapped layer's weights never train."
  ],
  "mixture-of-experts": [
   "Route each token to its top-k experts and weight their outputs by the gate probabilities.",
