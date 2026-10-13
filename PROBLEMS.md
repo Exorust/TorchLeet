@@ -3,7 +3,7 @@
 Generated from the per-problem `problem.toml` manifests — do not edit by hand.
 Run `python3 scripts/generate.py readme` to refresh.
 
-**62 of 68 are auto-graded** (`pip install torchleet`). A ✅ in the
+**63 of 68 are auto-graded** (`pip install torchleet`). A ✅ in the
 Graded column means `check()` will verify your solution.
 
 ### Basics (23)
@@ -27,7 +27,7 @@ Graded column means `check()` will verify your solution.
 | 💡 CNN Parameter Initialization | medium |  | ✅ | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Exorust/TorchLeet/blob/main/torch/medium/cnn-param-init/CNN_ParamInit.ipynb) | [Q](torch/medium/cnn-param-init/CNN_ParamInit.ipynb) / [S](torch/medium/cnn-param-init/CNN_ParamInit_SOLN.ipynb) |
 | 💡 Implement a CNN from Scratch | medium |  | ✅ | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Exorust/TorchLeet/blob/main/torch/medium/cnn-scratch/CNN_scratch.ipynb) | [Q](torch/medium/cnn-scratch/CNN_scratch.ipynb) / [S](torch/medium/cnn-scratch/CNN_scratch_SOLN.ipynb) |
 | 💡 Implement an LSTM from Scratch | medium |  | ✅ | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Exorust/TorchLeet/blob/main/torch/medium/lstm/LSTM.ipynb) | [Q](torch/medium/lstm/LSTM.ipynb) / [S](torch/medium/lstm/LSTM_SOLN.ipynb) |
-| 💡 Implement RMS Norm | easy |  |  | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Exorust/TorchLeet/blob/main/llm/RMS-Norm/rms-norm.ipynb) | [Q](llm/RMS-Norm/rms-norm.ipynb) |
+| 💡 Implement RMS Norm | easy |  | ✅ | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Exorust/TorchLeet/blob/main/llm/RMS-Norm/rms-norm.ipynb) | [Q](llm/RMS-Norm/rms-norm.ipynb) / [S](llm/RMS-Norm/rms-norm_SOLN.ipynb) |
 | 💡 Implement Byte Pair Encoding from Scratch | easy |  | ✅ | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Exorust/TorchLeet/blob/main/llm/Byte-Pair-Encoder/BPE-q3.ipynb) | [Q](llm/Byte-Pair-Encoder/BPE-q3.ipynb) / [S](llm/Byte-Pair-Encoder/BPE-q3-SOLN.ipynb) |
 | 🔥 Implement Softmax from Scratch | easy | Apple, Meta, Google, Amazon | ✅ | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Exorust/TorchLeet/blob/main/v3/classical-ml/softmax/softmax.ipynb) | [Q](v3/classical-ml/softmax/softmax.ipynb) / [S](v3/classical-ml/softmax/softmax_SOLN.ipynb) |
 | 🔥 Implement K-Means Clustering in PyTorch | easy | Uber, LinkedIn, Google, Amazon | ✅ | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Exorust/TorchLeet/blob/main/v3/classical-ml/kmeans/kmeans.ipynb) | [Q](v3/classical-ml/kmeans/kmeans.ipynb) / [S](v3/classical-ml/kmeans/kmeans_SOLN.ipynb) |
@@ -38,7 +38,7 @@ Graded column means `check()` will verify your solution.
 
 | Problem | Difficulty | Companies | Graded | Run | Links |
 |---|---|---|---|---|---|
-| 💡 Implement RMS Norm | easy |  |  | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Exorust/TorchLeet/blob/main/llm/RMS-Norm/rms-norm.ipynb) | [Q](llm/RMS-Norm/rms-norm.ipynb) |
+| 💡 Implement RMS Norm | easy |  | ✅ | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Exorust/TorchLeet/blob/main/llm/RMS-Norm/rms-norm.ipynb) | [Q](llm/RMS-Norm/rms-norm.ipynb) / [S](llm/RMS-Norm/rms-norm_SOLN.ipynb) |
 | 💡 Implement Byte Pair Encoding from Scratch | easy |  | ✅ | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Exorust/TorchLeet/blob/main/llm/Byte-Pair-Encoder/BPE-q3.ipynb) | [Q](llm/Byte-Pair-Encoder/BPE-q3.ipynb) / [S](llm/Byte-Pair-Encoder/BPE-q3-SOLN.ipynb) |
 | 💡 Implement Attention from Scratch | medium |  | ✅ | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Exorust/TorchLeet/blob/main/llm/Implement-Attention-from-Scratch/attention-q4-Question.ipynb) | [Q](llm/Implement-Attention-from-Scratch/attention-q4-Question.ipynb) / [S](llm/Implement-Attention-from-Scratch/attention-q4.ipynb) |
 | 💡 Implement Multi-Head Attention from Scratch | medium |  | ✅ | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Exorust/TorchLeet/blob/main/llm/Multi-Head-Attention/multi-head-attention-q5-Question.ipynb) | [Q](llm/Multi-Head-Attention/multi-head-attention-q5-Question.ipynb) / [S](llm/Multi-Head-Attention/multi-head-attention-q5.ipynb) |

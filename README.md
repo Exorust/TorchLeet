@@ -99,10 +99,10 @@ Build an LLM from scratch, one question at a time. Recommended order:
 ### 1. Foundations
 | Problem | Links |
 |---------|-------|
-| Implement Byte Pair Encoding from Scratch | [Q](llm/Byte-Pair-Encoder/BPE-q3.ipynb) |
+| Implement Byte Pair Encoding from Scratch | [Q](llm/Byte-Pair-Encoder/BPE-q3.ipynb) / [S](llm/Byte-Pair-Encoder/BPE-q3-SOLN.ipynb) |
 | Implement Sinusoidal Embeddings | [Q](llm/Sinusoidal-Positional-Embedding/sinusoidal-q7-Question.ipynb) / [S](llm/Sinusoidal-Positional-Embedding/sinusoidal-q7.ipynb) |
 | Implement ROPE Embeddings | [Q](llm/Rotary-Positional-Embedding/rope-q8-Question.ipynb) / [S](llm/Rotary-Positional-Embedding/rope-q8.ipynb) |
-| Implement RMS Norm | |
+| Implement RMS Norm | [Q](llm/RMS-Norm/rms-norm.ipynb) / [S](llm/RMS-Norm/rms-norm_SOLN.ipynb) |
 | Implement Attention from Scratch | [Q](llm/Implement-Attention-from-Scratch/attention-q4-Question.ipynb) / [S](llm/Implement-Attention-from-Scratch/attention-q4.ipynb) |
 
 ### 2. Core Transformer
@@ -170,8 +170,8 @@ Core PyTorch and classical ML fundamentals.
 | Implement KNN in PyTorch | Easy | [Q](v3/classical-ml/knn/knn.ipynb) / [S](v3/classical-ml/knn/knn_SOLN.ipynb) |
 | Implement Logistic Regression | Easy | [Q](v3/classical-ml/logistic-regression/logistic-regression.ipynb) / [S](v3/classical-ml/logistic-regression/logistic-regression_SOLN.ipynb) |
 | KL Divergence Loss | Easy | |
-| RMS Norm | Easy | |
-| Byte Pair Encoding | Easy | [Q](llm/Byte-Pair-Encoder/BPE-q3.ipynb) |
+| RMS Norm | Easy | [Q](llm/RMS-Norm/rms-norm.ipynb) / [S](llm/RMS-Norm/rms-norm_SOLN.ipynb) |
+| Byte Pair Encoding | Easy | [Q](llm/Byte-Pair-Encoder/BPE-q3.ipynb) / [S](llm/Byte-Pair-Encoder/BPE-q3-SOLN.ipynb) |
 | CNN Parameter Initialization | Medium | [Q](torch/medium/cnn-param-init/CNN_ParamInit.ipynb) / [S](torch/medium/cnn-param-init/CNN_ParamInit_SOLN.ipynb) |
 | Implement a CNN from Scratch | Medium | [Q](torch/medium/cnn-scratch/CNN_scratch.ipynb) / [S](torch/medium/cnn-scratch/CNN_scratch_SOLN.ipynb) |
 | Implement an LSTM from Scratch | Medium | [Q](torch/medium/lstm/LSTM.ipynb) / [S](torch/medium/lstm/LSTM_SOLN.ipynb) |
