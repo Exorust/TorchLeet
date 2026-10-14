@@ -1,0 +1,17 @@
+id = "buffered-loading"
+title = "Implement a Shuffle Buffer for Streaming Data"
+description = "Build a shuffle buffer that wraps an IterableDataset, providing approximate shuffling with O(buffer_size) memory."
+difficulty = "medium"
+frequency = "emerging"
+category = "data-loading"
+tracks = ["basics"]
+
+[notebooks]
+question = "buffered-loading.ipynb"
+solution = "buffered-loading_SOLN.ipynb"
+
+[grading]
+tier = "C"
+entries = []
+extras = []
+device = "cpu"

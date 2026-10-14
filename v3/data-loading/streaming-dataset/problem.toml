@@ -1,0 +1,17 @@
+id = "streaming-dataset"
+title = "Implement a Streaming IterableDataset with Yield"
+description = "Build an IterableDataset that streams data line by line from a file using a generator, with multi-worker sharding support."
+difficulty = "medium"
+frequency = "common"
+category = "data-loading"
+tracks = ["basics"]
+
+[notebooks]
+question = "streaming-dataset.ipynb"
+solution = "streaming-dataset_SOLN.ipynb"
+
+[grading]
+tier = "C"
+entries = []
+extras = []
+device = "cpu"

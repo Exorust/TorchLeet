@@ -1,0 +1,18 @@
+id = "data-parallel-loading"
+title = "Simulate DistributedSampler for Data Parallel Training"
+description = "Implement a distributed sampler from scratch that shards a dataset across ranks with deterministic shuffling and padding."
+difficulty = "medium"
+frequency = "common"
+category = "data-loading"
+tracks = ["basics"]
+companies = ["Meta", "Google", "NVIDIA", "Anthropic"]
+
+[notebooks]
+question = "data-parallel-loading.ipynb"
+solution = "data-parallel-loading_SOLN.ipynb"
+
+[grading]
+tier = "C"
+entries = []
+extras = []
+device = "cpu"

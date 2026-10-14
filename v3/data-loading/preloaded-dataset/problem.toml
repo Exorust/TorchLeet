@@ -1,0 +1,17 @@
+id = "preloaded-dataset"
+title = "Implement a Preloaded Map-Style Dataset"
+description = "Build a map-style Dataset that loads all data into memory and integrates with DataLoader for batching and shuffling."
+difficulty = "easy"
+frequency = "common"
+category = "data-loading"
+tracks = ["basics"]
+
+[notebooks]
+question = "preloaded-dataset.ipynb"
+solution = "preloaded-dataset_SOLN.ipynb"
+
+[grading]
+tier = "C"
+entries = []
+extras = []
+device = "cpu"
