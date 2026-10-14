@@ -176,6 +176,14 @@ Core PyTorch and classical ML fundamentals.
 | Implement a CNN from Scratch | Medium | [Q](torch/medium/cnn-scratch/CNN_scratch.ipynb) / [S](torch/medium/cnn-scratch/CNN_scratch_SOLN.ipynb) |
 | Implement an LSTM from Scratch | Medium | [Q](torch/medium/lstm/LSTM.ipynb) / [S](torch/medium/lstm/LSTM_SOLN.ipynb) |
 
+### Data Loading
+| Problem | Difficulty | Links |
+|---------|------------|-------|
+| Preloaded Map-Style Dataset | Easy | [Q](v3/data-loading/preloaded-dataset/preloaded-dataset.ipynb) / [S](v3/data-loading/preloaded-dataset/preloaded-dataset_SOLN.ipynb) |
+| Streaming IterableDataset with Yield | Medium | [Q](v3/data-loading/streaming-dataset/streaming-dataset.ipynb) / [S](v3/data-loading/streaming-dataset/streaming-dataset_SOLN.ipynb) |
+| Shuffle Buffer for Streaming Data | Medium | [Q](v3/data-loading/buffered-loading/buffered-loading.ipynb) / [S](v3/data-loading/buffered-loading/buffered-loading_SOLN.ipynb) |
+| Simulate DistributedSampler for Data Parallel | Medium | [Q](v3/data-loading/data-parallel-loading/data-parallel-loading.ipynb) / [S](v3/data-loading/data-parallel-loading/data-parallel-loading_SOLN.ipynb) |
+
 ---
 
 ## Advanced
