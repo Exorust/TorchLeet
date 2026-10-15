@@ -10,6 +10,11 @@ The check with teeth is check_intermediates_are_not_kept: it holds a weakref to
 an activation created inside the checkpointed function and asserts it has been
 freed by the time forward returns. An implementation that quietly calls fn(*args)
 passes every gradient check and fails that one, which is the whole exercise.
+
+The other classic bug is a checkpoint that silently freezes the layer it wraps:
+the parameters fn closes over must receive gradients (autograd.grad on the inputs
+alone never reaches them), including when the input is plain data that does not
+require grad, as the first layer of any real network is.
 """
 import gc
 import weakref
@@ -17,8 +22,6 @@ import weakref
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-
-from torchleet.runner import Skip
 
 ENTRIES = ["CheckpointFunction", "checkpoint"]
 DEVICE = "cpu"
@@ -28,9 +31,13 @@ HINTS = [
     "In forward: stash fn on ctx, ctx.save_for_backward(*args), and run "
     "fn(*args) inside torch.no_grad() so no intermediate activation is kept.",
     "In backward: detach the saved inputs, requires_grad_ them, re-run fn inside "
-    "torch.enable_grad(), then torch.autograd.grad(output, inputs, grad_outputs).",
+    "torch.enable_grad(), then torch.autograd.backward(outputs, grad_outputs) — "
+    "unlike autograd.grad on the inputs, that also reaches fn's own parameters.",
     "backward must return one gradient per forward argument — None for fn itself, "
-    "then a gradient (or None) for each tensor input.",
+    "then a gradient (or None) for each tensor input (read them off the detached copies).",
+    "Autograd only calls backward if some tensor argument requires grad. When none "
+    "does (plain input data), have checkpoint() pass an extra dummy tensor with "
+    "requires_grad=True, or the wrapped layer's weights never train.",
 ]
 
 BATCH, DIM, HIDDEN = 6, 8, 16
@@ -153,10 +160,9 @@ def check_intermediates_are_not_kept(ns):
 def check_module_parameter_gradients(ns):
     """Parameters captured inside fn rather than passed as arguments.
 
-    torch.utils.checkpoint reaches them; the recomputation-plus-autograd.grad
-    formulation in this problem's solution only reaches its tensor arguments. If
-    an implementation does populate them they must be right, otherwise this is
-    reported as not verified rather than silently passed.
+    This is how checkpointing is used in practice (checkpoint(block, x)), and
+    torch.utils.checkpoint reaches them. A backward that calls autograd.grad on
+    the saved inputs alone never does, so the wrapped layer silently never trains.
     """
     torch.manual_seed(13)
     layer = nn.Linear(DIM, DIM)
@@ -167,11 +173,11 @@ def check_module_parameter_gradients(ns):
     plain(x).pow(2).sum().backward()
     ns.checkpoint(layer, x.detach().requires_grad_(True)).pow(2).sum().backward()
 
-    if layer.weight.grad is None and layer.bias.grad is None:
-        raise Skip(
-            "checkpoint() propagates gradients only to the tensors passed as "
-            "arguments, not to parameters captured inside fn (this problem's own "
-            "solution behaves the same way) — not verified")
+    assert layer.weight.grad is not None or layer.bias.grad is not None, (
+        "no gradient reached the parameters of the checkpointed module, so it "
+        "would never train — autograd.grad(outputs, inputs) only covers the tensor "
+        "arguments; use torch.autograd.backward(outputs, grad_outputs) in backward "
+        "so the parameters fn closes over are reached too")
     for name, p, q in (("weight", plain.weight, layer.weight),
                        ("bias", plain.bias, layer.bias)):
         assert q.grad is not None, \
@@ -182,6 +188,36 @@ def check_module_parameter_gradients(ns):
             f"(max diff {diff:.2e})")
 
 
+def check_plain_input_still_trains_parameters(ns):
+    """The first layer of a network is fed data that does not require grad.
+
+    If no argument of the autograd.Function requires grad, autograd never records
+    it and backward never runs, so a checkpointed first layer would stay frozen.
+    """
+    torch.manual_seed(14)
+    layer = nn.Linear(DIM, DIM)
+    plain = nn.Linear(DIM, DIM)
+    plain.load_state_dict(layer.state_dict())
+    x = torch.randn(BATCH, DIM)  # plain data, requires_grad=False
+
+    plain(x).pow(2).sum().backward()
+    out = ns.checkpoint(layer, x)
+    assert out.requires_grad, (
+        "checkpoint(layer, x) with an input that does not require grad returned a "
+        "tensor with no grad_fn, so backward never runs and the layer never trains "
+        "— when no argument requires grad, pass an extra dummy tensor with "
+        "requires_grad=True to CheckpointFunction.apply")
+    out.pow(2).sum().backward()
+    for name, p, q in (("weight", plain.weight, layer.weight),
+                       ("bias", plain.bias, layer.bias)):
+        assert q.grad is not None, (
+            f"with a plain (no-grad) input the module's {name} received no gradient")
+        diff = (p.grad - q.grad).abs().max().item()
+        assert torch.allclose(p.grad, q.grad, atol=1e-6), (
+            f"with a plain (no-grad) input the gradient on the module's {name} "
+            f"differs from the uncheckpointed run (max diff {diff:.2e})")
+
+
 CHECKS = [
     check_forward_output_matches,
     check_output_is_differentiable,
@@ -189,4 +225,5 @@ CHECKS = [
     check_chained_checkpoints_match,
     check_intermediates_are_not_kept,
     check_module_parameter_gradients,
+    check_plain_input_still_trains_parameters,
 ]
