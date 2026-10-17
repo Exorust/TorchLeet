@@ -274,13 +274,13 @@ export const authoredHints: Record<string, string[]> = {
   "With num_query_groups == num_heads GQA is ordinary multi-head attention."
  ],
  "sinusoidal-positional-embedding": [
-  "Even dimensions get sin, odd dimensions get cos.",
-  "The frequency for dimension i is 1 / 10000**(2i/d_model).",
+  "Even dimensions 2i get sin and odd dimensions 2i+1 get cos. The pair shares one frequency.",
+  "i is 0, 1, ..., d_model/2 - 1, not the raw dimension. The frequency is 1 / 10000**(2i/d_model).",
   "It is a fixed function of position — register it as a buffer, not a parameter."
  ],
  "v2-10": [
-  "Even dimensions get sin, odd dimensions get cos.",
-  "The frequency for dimension i is 1 / 10000**(2i/d_model).",
+  "Even dimensions 2i get sin and odd dimensions 2i+1 get cos. The pair shares one frequency.",
+  "i is 0, 1, ..., d_model/2 - 1, not the raw dimension. The frequency is 1 / 10000**(2i/d_model).",
   "It is a fixed function of position — register it as a buffer, not a parameter."
  ],
  "rotary-positional-embedding": [
