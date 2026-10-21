@@ -9,12 +9,19 @@ set = "v2"
 category = "modern-architectures"
 tracks = ["basics", "llm-path"]
 
+# GENERATED from the grader spec — edit python/torchleet/problems/*.py, then run: generate.py hints
+hints = [
+  "Square the input, take the mean along the last dimension, add epsilon, then take the square root.",
+  "Use keepdim=True in the mean so broadcasting works when you divide.",
+  "The scale parameter gamma should have shape (dim,) and be created with nn.Parameter(torch.ones(dim)).",
+]
+
 [notebooks]
 question = "rms-norm.ipynb"
-solution = ""   # no separate solution file
+solution = "rms-norm_SOLN.ipynb"
 
 [grading]
-tier = "B"        # A=auto-graded B=partial C=not auto-graded (SEEDED, confirm)
-entries = []
+tier = "A"        # A=auto-graded B=partial C=not auto-graded
+entries = ["RMSNorm"]
 extras = []
 device = "cpu"
