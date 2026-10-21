@@ -10,3 +10,5 @@ website/out/
 # MCP server build artifacts
 mcp-server/node_modules/
 mcp-server/dist/
+
+__pycache__

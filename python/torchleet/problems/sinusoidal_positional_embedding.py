@@ -1,12 +1,13 @@
 """sinusoidal-positional-embedding."""
+import math
 import torch
 
 ENTRIES = ["SinusoidalPositionalEmbedding"]
 DEVICE = "cpu"
 EXTRAS = []
 HINTS = [
-    "Even dimensions get sin, odd dimensions get cos.",
-    "The frequency for dimension i is 1 / 10000**(2i/d_model).",
+    "Even dimensions 2i get sin and odd dimensions 2i+1 get cos. The pair shares one frequency.",
+    "i is 0, 1, ..., d_model/2 - 1, not the raw dimension. The frequency is 1 / 10000**(2i/d_model).",
     "It is a fixed function of position — register it as a buffer, not a parameter.",
 ]
 
@@ -56,5 +57,36 @@ def check_positions_distinct(ns):
     assert float(d.min()) > 1e-6, "two positions have identical embeddings"
 
 
+def check_sinusoidal_values(ns):
+    """Even dims are sin(pos * ω_i), odd dims are cos(pos * ω_i), with the
+    paper's ω_i = 1/10000**(2i/d_model) shared by dimension pair (2i, 2i+1)."""
+    t = _table(_pe(ns))
+    assert t.dim() == 2 and t.shape[0] >= MAX_LEN and t.shape[-1] == D_MODEL, \
+        f"expected a table of shape (position, {D_MODEL}), got {tuple(t.shape)}"
+    t = t[:MAX_LEN, :D_MODEL].float()
+    omega = torch.exp(
+        torch.arange(0, D_MODEL, 2).float() * (-math.log(10000.0) / D_MODEL))
+    pos = torch.arange(MAX_LEN, dtype=torch.float).unsqueeze(1)
+    assert torch.allclose(t[:, 0::2], torch.sin(pos * omega), atol=1e-5), \
+        "even dimensions 2i should be sin(pos / 10000**(2i/d_model)); " \
+        "i is the pair index 0, 1, ..., d_model/2 - 1"
+    assert torch.allclose(t[:, 1::2], torch.cos(pos * omega), atol=1e-5), \
+        "odd dimensions 2i+1 should be cos of that same angle, not a new frequency"
+
+
+def check_forward_slices_seq_len(ns):
+    m = _pe(ns)
+    seq, batch = 7, 4
+    out = m(torch.zeros(batch, seq, D_MODEL))
+    assert tuple(out.shape) == (1, seq, D_MODEL), \
+        "forward(x) should return shape (1, seq_len, d_model) so it broadcasts " \
+        f"over the batch; got {tuple(out.shape)}"
+    table = _table(m)[:seq, :D_MODEL].float()
+    assert torch.allclose(out[0].float(), table, atol=1e-5), \
+        "forward should return the first seq_len rows of the positional table " \
+        "and ignore the values in x"
+
+
 CHECKS = [check_table_shape, check_values_bounded, check_deterministic,
-          check_positions_distinct]
+          check_positions_distinct, check_sinusoidal_values,
+          check_forward_slices_seq_len]

@@ -11,8 +11,8 @@ tracks = ["advanced", "llm-path"]
 
 # GENERATED from the grader spec — edit python/torchleet/problems/*.py, then run: generate.py hints
 hints = [
-  "Even dimensions get sin, odd dimensions get cos.",
-  "The frequency for dimension i is 1 / 10000**(2i/d_model).",
+  "Even dimensions 2i get sin and odd dimensions 2i+1 get cos. The pair shares one frequency.",
+  "i is 0, 1, ..., d_model/2 - 1, not the raw dimension. The frequency is 1 / 10000**(2i/d_model).",
   "It is a fixed function of position — register it as a buffer, not a parameter.",
 ]
 
@@ -21,7 +21,7 @@ question = "sinusoidal-q7-Question.ipynb"
 solution = "sinusoidal-q7.ipynb"
 
 [grading]
-tier = "C"        # A=auto-graded B=partial C=not auto-graded (SEEDED, confirm)
+tier = "A"        # A=auto-graded B=partial C=not auto-graded (SEEDED, confirm)
 entries = ["SinusoidalPositionalEmbedding"]
 extras = []
 device = "cpu"
