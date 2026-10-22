@@ -2,7 +2,7 @@
 
 <img src="torchleet-header.png" alt="TorchLeet" width="700">
 
-**68 PyTorch problems from real ML/AI interviews at Google, Meta, Anthropic, and more.**
+**74 PyTorch problems from real ML/AI interviews at Google, Meta, Anthropic, and more.**
 
 [![GitHub stars](https://img.shields.io/github/stars/Exorust/TorchLeet?style=social)](https://github.com/Exorust/TorchLeet)
 [![Website](https://img.shields.io/badge/website-torch--leet.vercel.app-8b5cf6)](https://torch-leet.vercel.app)
@@ -20,7 +20,7 @@ I struggled to grind for ML/AI interviews so I went back to the basics and creat
 
 ## AI Tutor (NEW)
 
-Turn any AI assistant into your PyTorch interview coach. The TorchLeet MCP server gives your AI access to all 68 problems, progressive hints, company prep plans, and learning paths, while enforcing a no-spoilers teaching style.
+Turn any AI assistant into your PyTorch interview coach. The TorchLeet MCP server gives your AI access to all 74 problems, progressive hints, company prep plans, and learning paths, while enforcing a no-spoilers teaching style.
 
 ```bash
 # Clone the repo first
@@ -66,7 +66,7 @@ Add this to your MCP config:
 
 ---
 
-68 problems across three tracks:
+74 problems across three tracks:
 
 | Track | Focus | Questions |
 |-------|-------|-----------|
@@ -121,9 +121,9 @@ Build an LLM from scratch, one question at a time. Recommended order:
 ### 4. Alignment & Fine-Tuning
 | Problem | Companies | Links |
 |---------|-----------|-------|
-| Implement KL Divergence Loss | | |
+| Implement KL Divergence Loss | | [Q](v3/alignment-training/kl-divergence/kl-divergence.ipynb) / [S](v3/alignment-training/kl-divergence/kl-divergence_SOLN.ipynb) |
 | Implement LoRA | Meta, Google, Anthropic, OpenAI | [Q](v3/alignment-training/lora/lora.ipynb) / [S](v3/alignment-training/lora/lora_SOLN.ipynb) |
-| Apply SFT on SmolLM | | |
+| Apply SFT on SmolLM | | [Q](v3/alignment-training/sft-smollm/sft-smollm.ipynb) / [S](v3/alignment-training/sft-smollm/sft-smollm_SOLN.ipynb) |
 | Implement DPO Loss | Anthropic, OpenAI, DeepMind, Meta | [Q](v3/alignment-training/dpo/dpo.ipynb) / [S](v3/alignment-training/dpo/dpo_SOLN.ipynb) |
 | Implement PPO for RLHF | Anthropic, OpenAI, DeepMind, Meta | [Q](v3/alignment-training/ppo-rlhf/ppo-rlhf.ipynb) / [S](v3/alignment-training/ppo-rlhf/ppo-rlhf_SOLN.ipynb) |
 | Implement GRPO (DeepSeek-R1) | DeepMind, Anthropic, OpenAI | [Q](v3/alignment-training/grpo/grpo.ipynb) / [S](v3/alignment-training/grpo/grpo_SOLN.ipynb) |
@@ -207,12 +207,13 @@ Company-tagged questions from real ML/AI interviews. Sorted by topic.
 ### Alignment & Training
 | Problem | Difficulty | Companies | Links |
 |---------|------------|-----------|-------|
+| Implement KL Divergence Loss | Medium | | [Q](v3/alignment-training/kl-divergence/kl-divergence.ipynb) / [S](v3/alignment-training/kl-divergence/kl-divergence_SOLN.ipynb) |
 | Implement LoRA | Medium | Meta, Google, Anthropic, OpenAI, Databricks | [Q](v3/alignment-training/lora/lora.ipynb) / [S](v3/alignment-training/lora/lora_SOLN.ipynb) |
 | Implement DPO Loss | Hard | Anthropic, OpenAI, DeepMind, Meta | [Q](v3/alignment-training/dpo/dpo.ipynb) / [S](v3/alignment-training/dpo/dpo_SOLN.ipynb) |
 | Implement PPO for RLHF | Hard | Anthropic, OpenAI, DeepMind, Meta | [Q](v3/alignment-training/ppo-rlhf/ppo-rlhf.ipynb) / [S](v3/alignment-training/ppo-rlhf/ppo-rlhf_SOLN.ipynb) |
 | Gradient Checkpointing | Hard | Meta, Google, NVIDIA, Tesla | [Q](v3/alignment-training/gradient-checkpointing/gradient-checkpointing.ipynb) / [S](v3/alignment-training/gradient-checkpointing/gradient-checkpointing_SOLN.ipynb) |
 | Implement GRPO (DeepSeek-R1) | Expert | DeepMind, Anthropic, OpenAI | [Q](v3/alignment-training/grpo/grpo.ipynb) / [S](v3/alignment-training/grpo/grpo_SOLN.ipynb) |
-| Apply SFT on SmolLM | Hard | | |
+| Apply SFT on SmolLM | Hard | | [Q](v3/alignment-training/sft-smollm/sft-smollm.ipynb) / [S](v3/alignment-training/sft-smollm/sft-smollm_SOLN.ipynb) |
 
 ### LLM Inference & Systems
 | Problem | Difficulty | Companies | Links |

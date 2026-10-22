@@ -1,6 +1,100 @@
 {
- "count": 68,
+ "count": 74,
  "problems": [
+  {
+   "id": "buffered-loading",
+   "legacy_ids": [],
+   "title": "Implement a Shuffle Buffer for Streaming Data",
+   "description": "Build a shuffle buffer that wraps an IterableDataset, providing approximate shuffling with O(buffer_size) memory.",
+   "difficulty": "medium",
+   "category": "data-loading",
+   "tracks": [
+    "basics"
+   ],
+   "companies": [],
+   "question": "v3/data-loading/buffered-loading/buffered-loading.ipynb",
+   "solution": "v3/data-loading/buffered-loading/buffered-loading_SOLN.ipynb",
+   "colab": "https://colab.research.google.com/github/Exorust/TorchLeet/blob/main/v3/data-loading/buffered-loading/buffered-loading.ipynb",
+   "frequency": "emerging",
+   "company_confidence": {},
+   "llm_path_order": null,
+   "graded": false,
+   "entries": [],
+   "hints": null
+  },
+  {
+   "id": "data-parallel-loading",
+   "legacy_ids": [],
+   "title": "Simulate DistributedSampler for Data Parallel Training",
+   "description": "Implement a distributed sampler from scratch that shards a dataset across ranks with deterministic shuffling and padding.",
+   "difficulty": "medium",
+   "category": "data-loading",
+   "tracks": [
+    "basics"
+   ],
+   "companies": [
+    "Meta",
+    "Google",
+    "NVIDIA",
+    "Anthropic"
+   ],
+   "question": "v3/data-loading/data-parallel-loading/data-parallel-loading.ipynb",
+   "solution": "v3/data-loading/data-parallel-loading/data-parallel-loading_SOLN.ipynb",
+   "colab": "https://colab.research.google.com/github/Exorust/TorchLeet/blob/main/v3/data-loading/data-parallel-loading/data-parallel-loading.ipynb",
+   "frequency": "common",
+   "company_confidence": {
+    "Meta": "inferred",
+    "Google": "inferred",
+    "NVIDIA": "inferred",
+    "Anthropic": "inferred"
+   },
+   "llm_path_order": null,
+   "graded": false,
+   "entries": [],
+   "hints": null
+  },
+  {
+   "id": "preloaded-dataset",
+   "legacy_ids": [],
+   "title": "Implement a Preloaded Map-Style Dataset",
+   "description": "Build a map-style Dataset that loads all data into memory and integrates with DataLoader for batching and shuffling.",
+   "difficulty": "easy",
+   "category": "data-loading",
+   "tracks": [
+    "basics"
+   ],
+   "companies": [],
+   "question": "v3/data-loading/preloaded-dataset/preloaded-dataset.ipynb",
+   "solution": "v3/data-loading/preloaded-dataset/preloaded-dataset_SOLN.ipynb",
+   "colab": "https://colab.research.google.com/github/Exorust/TorchLeet/blob/main/v3/data-loading/preloaded-dataset/preloaded-dataset.ipynb",
+   "frequency": "common",
+   "company_confidence": {},
+   "llm_path_order": null,
+   "graded": false,
+   "entries": [],
+   "hints": null
+  },
+  {
+   "id": "streaming-dataset",
+   "legacy_ids": [],
+   "title": "Implement a Streaming IterableDataset with Yield",
+   "description": "Build an IterableDataset that streams data line by line from a file using a generator, with multi-worker sharding support.",
+   "difficulty": "medium",
+   "category": "data-loading",
+   "tracks": [
+    "basics"
+   ],
+   "companies": [],
+   "question": "v3/data-loading/streaming-dataset/streaming-dataset.ipynb",
+   "solution": "v3/data-loading/streaming-dataset/streaming-dataset_SOLN.ipynb",
+   "colab": "https://colab.research.google.com/github/Exorust/TorchLeet/blob/main/v3/data-loading/streaming-dataset/streaming-dataset.ipynb",
+   "frequency": "common",
+   "company_confidence": {},
+   "llm_path_order": null,
+   "graded": false,
+   "entries": [],
+   "hints": null
+  },
   {
    "id": "lin-regression",
    "legacy_ids": [
@@ -830,6 +924,44 @@
    ]
   },
   {
+   "id": "kl-divergence",
+   "legacy_ids": [
+    "v2-1"
+   ],
+   "title": "Implement KL Divergence Loss",
+   "description": "Implement KL divergence every way it shows up in ML: from probabilities and logits, F.kl_div semantics, Jensen-Shannon, forward vs reverse, Gaussian closed form, masked token-level KL, and the k1/k2/k3 estimators used in PPO and GRPO.",
+   "difficulty": "medium",
+   "category": "alignment-training",
+   "tracks": [
+    "advanced",
+    "llm-path"
+   ],
+   "companies": [],
+   "question": "v3/alignment-training/kl-divergence/kl-divergence.ipynb",
+   "solution": "v3/alignment-training/kl-divergence/kl-divergence_SOLN.ipynb",
+   "colab": "https://colab.research.google.com/github/Exorust/TorchLeet/blob/main/v3/alignment-training/kl-divergence/kl-divergence.ipynb",
+   "frequency": "",
+   "company_confidence": {},
+   "llm_path_order": 11,
+   "graded": true,
+   "entries": [
+    "kl_categorical",
+    "kl_from_logits",
+    "my_kl_div",
+    "js_divergence",
+    "fit_gaussian",
+    "kl_gaussian",
+    "masked_token_kl",
+    "kl_estimators",
+    "kl_estimator_grad"
+   ],
+   "hints": [
+    "Everything is sum(p * (log p - log q)) over the last dim. Use torch.xlogy when you have probabilities and F.log_softmax when you have logits, so 0 * log 0 and softmax underflow never turn into nan.",
+    "F.kl_div(input, target) is KL(target || exp(input)): input is the model's log-probs, the target comes first in the math, and 'batchmean' (sum / batch size) is the true KL while 'mean' divides by every element.",
+    "For samples x ~ p with log r = log q(x) - log p(x): k1 = -log r, k2 = (log r)^2 / 2, k3 = (r - 1) - log r. For kl_estimator_grad, weight every category by pi.detach() and let the gradient flow only through log pi."
+   ]
+  },
+  {
    "id": "rms-norm",
    "legacy_ids": [
     "v2-2"
@@ -844,14 +976,20 @@
    ],
    "companies": [],
    "question": "llm/RMS-Norm/rms-norm.ipynb",
-   "solution": null,
+   "solution": "llm/RMS-Norm/rms-norm_SOLN.ipynb",
    "colab": "https://colab.research.google.com/github/Exorust/TorchLeet/blob/main/llm/RMS-Norm/rms-norm.ipynb",
    "frequency": "emerging",
    "company_confidence": {},
    "llm_path_order": null,
-   "graded": false,
-   "entries": [],
-   "hints": null
+   "graded": true,
+   "entries": [
+    "RMSNorm"
+   ],
+   "hints": [
+    "Square the input, take the mean along the last dimension, add epsilon, then take the square root.",
+    "Use keepdim=True in the mean so broadcasting works when you divide.",
+    "The scale parameter gamma should have shape (dim,) and be created with nn.Parameter(torch.ones(dim))."
+   ]
   },
   {
    "id": "byte-pair-encoder",
@@ -1069,6 +1207,39 @@
     "rotate_half splits the last dim in half and returns (-x2, x1) concatenated.",
     "repeat_kv expands each KV head n_rep times *in place* so head i of Q pairs with KV head i // n_rep \u2014 expand + reshape, not a plain repeat/tile.",
     "RopeAttention: project, split into num_heads (Q) and kv_heads (K/V), rotate Q and K, repeat_kv the K/V, then scaled dot-product attention plus the additive mask."
+   ]
+  },
+  {
+   "id": "sft-smollm",
+   "legacy_ids": [
+    "v2-20"
+   ],
+   "title": "Apply SFT on SmolLM",
+   "description": "Fine-tune the pretrained SmolLM-135M base model into a chat assistant: build prompt-masked examples, pad and collate, write the shifted token-level loss, and normalize gradient accumulation correctly.",
+   "difficulty": "hard",
+   "category": "alignment-training",
+   "tracks": [
+    "advanced",
+    "llm-path"
+   ],
+   "companies": [],
+   "question": "v3/alignment-training/sft-smollm/sft-smollm.ipynb",
+   "solution": "v3/alignment-training/sft-smollm/sft-smollm_SOLN.ipynb",
+   "colab": "https://colab.research.google.com/github/Exorust/TorchLeet/blob/main/v3/alignment-training/sft-smollm/sft-smollm.ipynb",
+   "frequency": "",
+   "company_confidence": {},
+   "llm_path_order": 13,
+   "graded": true,
+   "entries": [
+    "build_sft_example",
+    "sft_collate",
+    "sft_loss",
+    "sft_train_step"
+   ],
+   "hints": [
+    "labels are a copy of input_ids (prompt + response + end-of-turn) with every prompt position set to -100; keep them aligned with input_ids and shift inside the loss.",
+    "Pad input_ids with pad_id but labels with -100, so a pad id that equals a real token id never erases a real label.",
+    "sft_loss: cross_entropy(logits[:, :-1], labels[:, 1:], ignore_index=-100, reduction='sum') divided by the trained-token count of the whole optimizer step, counted across all micro-batches before any backward."
    ]
   },
   {

@@ -13,7 +13,7 @@ honestly than invent a precision we do not have.
 
 If you were asked one of these, [tell us](https://github.com/Exorust/TorchLeet/issues/new?template=interview-report.yml) and it becomes a **reported** tag with a real date.
 
-**0 reported, 136 inferred across 27 companies.**
+**0 reported, 140 inferred across 27 companies.**
 
 ### Adobe
 - Implement DDIM Sampling + Classifier-Free Guidance — _inferred_
@@ -40,6 +40,7 @@ If you were asked one of these, [tell us](https://github.com/Exorust/TorchLeet/i
 - Implement Temperature Sampling — _inferred_
 - Implement Top-k Sampling — _inferred_
 - Implement Top-p (Nucleus) Sampling — _inferred_
+- Simulate DistributedSampler for Data Parallel Training — _inferred_
 
 ### Anyscale
 - Build a Complete LLM Inference Engine — _inferred_
@@ -102,6 +103,7 @@ If you were asked one of these, [tell us](https://github.com/Exorust/TorchLeet/i
 - Implement Speculative Decoding — _inferred_
 - Implement Vision Transformer + MAE Pretraining — _inferred_
 - Implement a Swin Transformer Block (Shifted Window Attention) — _inferred_
+- Simulate DistributedSampler for Data Parallel Training — _inferred_
 - Write a Fused Softmax Kernel in Triton — _inferred_
 
 ### LinkedIn
@@ -128,6 +130,7 @@ If you were asked one of these, [tell us](https://github.com/Exorust/TorchLeet/i
 - Implement Softmax from Scratch — _inferred_
 - Implement Vision Transformer + MAE Pretraining — _inferred_
 - Implement a Swin Transformer Block (Shifted Window Attention) — _inferred_
+- Simulate DistributedSampler for Data Parallel Training — _inferred_
 - Write a Fused Softmax Kernel in Triton — _inferred_
 
 ### Microsoft
@@ -147,6 +150,7 @@ If you were asked one of these, [tell us](https://github.com/Exorust/TorchLeet/i
 - Implement FSDP from Scratch — _inferred_
 - Implement FlashAttention-2 in Triton — _inferred_
 - Implement Gradient Checkpointing — _inferred_
+- Simulate DistributedSampler for Data Parallel Training — _inferred_
 - Write a Fused Softmax Kernel in Triton — _inferred_
 
 ### OpenAI

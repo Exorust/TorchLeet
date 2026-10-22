@@ -47,11 +47,6 @@ title = "Implement a Variational Autoencoder"
 difficulty = "hard"
 
 [[planned]]
-id = "v2-1"
-title = "Implement KL Divergence Loss"
-difficulty = "easy"
-
-[[planned]]
 id = "v2-4"
 title = "Create a RAG Search of Embeddings"
 difficulty = "medium"
@@ -59,9 +54,4 @@ difficulty = "medium"
 [[planned]]
 id = "v2-13"
 title = "Implement Quantization (GPTQ)"
-difficulty = "hard"
-
-[[planned]]
-id = "v2-20"
-title = "Apply SFT on SmolLM"
 difficulty = "hard"

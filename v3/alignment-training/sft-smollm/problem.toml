@@ -1,0 +1,30 @@
+id = "sft-smollm"
+legacy_ids = ["v2-20"]
+title = "Apply SFT on SmolLM"
+description = "Fine-tune the pretrained SmolLM-135M base model into a chat assistant: build prompt-masked examples, pad and collate, write the shifted token-level loss, and normalize gradient accumulation correctly."
+difficulty = "hard"
+number = 20
+set = "v2"
+category = "alignment-training"
+tracks = ["advanced", "llm-path"]
+
+# GENERATED from the grader spec — edit python/torchleet/problems/*.py, then run: generate.py hints
+hints = [
+  "labels are a copy of input_ids (prompt + response + end-of-turn) with every prompt position set to -100; keep them aligned with input_ids and shift inside the loss.",
+  "Pad input_ids with pad_id but labels with -100, so a pad id that equals a real token id never erases a real label.",
+  "sft_loss: cross_entropy(logits[:, :-1], labels[:, 1:], ignore_index=-100, reduction='sum') divided by the trained-token count of the whole optimizer step, counted across all micro-batches before any backward.",
+]
+
+[notebooks]
+question = "sft-smollm.ipynb"
+solution = "sft-smollm_SOLN.ipynb"
+
+[grading]
+tier = "A"        # A=auto-graded B=partial C=not auto-graded (SEEDED, confirm)
+entries = ["build_sft_example", "sft_collate", "sft_loss", "sft_train_step"]
+extras = []
+device = "cpu"
+
+[llm_path]
+order = 13
+stage = "alignment"

@@ -233,6 +233,16 @@ export const authoredHints: Record<string, string[]> = {
   "L is the logsumexp of the scaled scores: running_max + log(l) at the end.",
   "tl.advance the K and V block pointers each iteration; K's block pointer is already transposed, so it advances along its second axis."
  ],
+ "kl-divergence": [
+  "Everything is sum(p * (log p - log q)) over the last dim. Use torch.xlogy when you have probabilities and F.log_softmax when you have logits, so 0 * log 0 and softmax underflow never turn into nan.",
+  "F.kl_div(input, target) is KL(target || exp(input)): input is the model's log-probs, the target comes first in the math, and 'batchmean' (sum / batch size) is the true KL while 'mean' divides by every element.",
+  "For samples x ~ p with log r = log q(x) - log p(x): k1 = -log r, k2 = (log r)^2 / 2, k3 = (r - 1) - log r. For kl_estimator_grad, weight every category by pi.detach() and let the gradient flow only through log pi."
+ ],
+ "v2-1": [
+  "Everything is sum(p * (log p - log q)) over the last dim. Use torch.xlogy when you have probabilities and F.log_softmax when you have logits, so 0 * log 0 and softmax underflow never turn into nan.",
+  "F.kl_div(input, target) is KL(target || exp(input)): input is the model's log-probs, the target comes first in the math, and 'batchmean' (sum / batch size) is the true KL while 'mean' divides by every element.",
+  "For samples x ~ p with log r = log q(x) - log p(x): k1 = -log r, k2 = (log r)^2 / 2, k3 = (r - 1) - log r. For kl_estimator_grad, weight every category by pi.detach() and let the gradient flow only through log pi."
+ ],
  "byte-pair-encoder": [
   "get_vocab splits each word into characters plus an end-of-word marker, and counts it.",
   "get_stats counts adjacent symbol pairs weighted by each word's frequency.",
@@ -302,6 +312,16 @@ export const authoredHints: Record<string, string[]> = {
   "rotate_half splits the last dim in half and returns (-x2, x1) concatenated.",
   "repeat_kv expands each KV head n_rep times *in place* so head i of Q pairs with KV head i // n_rep — expand + reshape, not a plain repeat/tile.",
   "RopeAttention: project, split into num_heads (Q) and kv_heads (K/V), rotate Q and K, repeat_kv the K/V, then scaled dot-product attention plus the additive mask."
+ ],
+ "sft-smollm": [
+  "labels are a copy of input_ids (prompt + response + end-of-turn) with every prompt position set to -100; keep them aligned with input_ids and shift inside the loss.",
+  "Pad input_ids with pad_id but labels with -100, so a pad id that equals a real token id never erases a real label.",
+  "sft_loss: cross_entropy(logits[:, :-1], labels[:, 1:], ignore_index=-100, reduction='sum') divided by the trained-token count of the whole optimizer step, counted across all micro-batches before any backward."
+ ],
+ "v2-20": [
+  "labels are a copy of input_ids (prompt + response + end-of-turn) with every prompt position set to -100; keep them aligned with input_ids and shift inside the loss.",
+  "Pad input_ids with pad_id but labels with -100, so a pad id that equals a real token id never erases a real label.",
+  "sft_loss: cross_entropy(logits[:, :-1], labels[:, 1:], ignore_index=-100, reduction='sum') divided by the trained-token count of the whole optimizer step, counted across all micro-batches before any backward."
  ],
  "softmax": [
   "exp() of a large number overflows. What can you subtract without changing the result?",

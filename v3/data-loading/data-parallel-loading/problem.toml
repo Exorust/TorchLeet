@@ -5,7 +5,6 @@ difficulty = "medium"
 frequency = "common"
 category = "data-loading"
 tracks = ["basics"]
-companies = ["Meta", "Google", "NVIDIA", "Anthropic"]
 
 [notebooks]
 question = "data-parallel-loading.ipynb"
@@ -16,3 +15,19 @@ tier = "C"
 entries = []
 extras = []
 device = "cpu"
+
+[[companies]]
+name = "Meta"
+confidence = "inferred"   # inferred | reported
+
+[[companies]]
+name = "Google"
+confidence = "inferred"   # inferred | reported
+
+[[companies]]
+name = "NVIDIA"
+confidence = "inferred"   # inferred | reported
+
+[[companies]]
+name = "Anthropic"
+confidence = "inferred"   # inferred | reported

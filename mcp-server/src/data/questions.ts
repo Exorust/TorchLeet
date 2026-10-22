@@ -447,11 +447,11 @@ const v2Questions: Omit<Question, "description" | "tracks" | "llmPathOrder" | "l
     set: "v2",
     number: 1,
     title: "Implement KL Divergence Loss",
-    difficulty: "easy",
+    difficulty: "medium",
     companies: [],
-    questionPath: null,
-    solutionPath: null,
-    hasNotebook: false,
+    questionPath: "v3/alignment-training/kl-divergence/kl-divergence.ipynb",
+    solutionPath: "v3/alignment-training/kl-divergence/kl-divergence_SOLN.ipynb",
+    hasNotebook: true,
   },
   {
     id: "v2-2",
@@ -575,9 +575,9 @@ const v2Questions: Omit<Question, "description" | "tracks" | "llmPathOrder" | "l
     title: "Apply SFT on SmolLM",
     difficulty: "hard",
     companies: [],
-    questionPath: null,
-    solutionPath: null,
-    hasNotebook: false,
+    questionPath: "v3/alignment-training/sft-smollm/sft-smollm.ipynb",
+    solutionPath: "v3/alignment-training/sft-smollm/sft-smollm_SOLN.ipynb",
+    hasNotebook: true,
   },
 ];
 
@@ -1064,7 +1064,7 @@ const DESCRIPTIONS: Record<string, string> = {
   "v1-38": "Implement the Muon optimizer from scratch on top of torch.optim.Optimizer: momentum orthogonalized by Newton–Schulz for matrix parameters, with an AdamW fallback for 1D parameters.",
 
   // V2
-  "v2-1": "Compute KL divergence between two probability distributions from scratch, essential for VAEs and knowledge distillation.",
+  "v2-1": "Implement KL divergence every way it shows up in ML: from probabilities and logits, F.kl_div semantics, Jensen-Shannon, forward vs reverse, Gaussian closed form, masked token-level KL, and the k1/k2/k3 estimators used in PPO and GRPO.",
   "v2-2": "Build Root Mean Square Layer Normalization used in LLaMA and modern transformers — simpler and faster than LayerNorm.",
   "v2-3": "Build the BPE tokenizer algorithm that iteratively merges frequent character pairs to build a subword vocabulary.",
   "v2-4": "Build retrieval-augmented generation by encoding a corpus, performing similarity search, and conditioning generation on retrieved context.",
@@ -1083,7 +1083,7 @@ const DESCRIPTIONS: Record<string, string> = {
   "v2-17": "Scale logits by a temperature parameter before softmax to control the randomness of generated text.",
   "v2-18": "Add low-rank adapter matrices to a pretrained layer, enabling efficient fine-tuning with a fraction of the parameters.",
   "v2-19": "Build a gated MoE layer that routes tokens to specialized expert networks, scaling model capacity without proportional compute.",
-  "v2-20": "Fine-tune a language model on instruction-following data using supervised fine-tuning with cross-entropy loss.",
+  "v2-20": "Fine-tune the pretrained SmolLM-135M base model into a chat assistant: build prompt-masked examples, pad and collate, write the shifted token-level loss, and normalize gradient accumulation correctly.",
   "v2-21": "Align a language model with human preferences using a reward model and reinforcement learning with PPO.",
   "v2-22": "Train a language model directly on preference pairs without a separate reward model using Direct Preference Optimization.",
   "v2-23": "Implement dynamic batching that adds/removes sequences mid-batch to maximize GPU utilization during inference.",
@@ -1148,19 +1148,21 @@ const LLM_PATH_CONFIG: Record<string, { order: number; stage: string }> = {
   // Full Model
   "v2-12": { order: 9, stage: "full-model" }, // SmolLM from Scratch
   // Alignment & PEFT
-  "v3-11": { order: 10, stage: "alignment" }, // LoRA
-  "v3-14": { order: 11, stage: "alignment" }, // DPO
-  "v3-15": { order: 12, stage: "alignment" }, // PPO
-  "v3-27": { order: 13, stage: "alignment" }, // GRPO
+  "v2-1": { order: 10, stage: "alignment" }, // KL Divergence
+  "v3-11": { order: 11, stage: "alignment" }, // LoRA
+  "v2-20": { order: 12, stage: "alignment" }, // SFT on SmolLM
+  "v3-14": { order: 13, stage: "alignment" }, // DPO
+  "v3-15": { order: 14, stage: "alignment" }, // PPO
+  "v3-27": { order: 15, stage: "alignment" }, // GRPO
   // Decoding & Inference
-  "v3-10": { order: 14, stage: "decoding-inference" }, // Temperature
-  "v3-8": { order: 15, stage: "decoding-inference" }, // Top-k
-  "v3-7": { order: 16, stage: "decoding-inference" }, // Top-p
-  "v3-18": { order: 17, stage: "decoding-inference" }, // Speculative Decoding
-  "v3-19": { order: 18, stage: "decoding-inference" }, // Continuous Batching
-  "v3-28": { order: 19, stage: "decoding-inference" }, // Full Inference Engine
+  "v3-10": { order: 16, stage: "decoding-inference" }, // Temperature
+  "v3-8": { order: 17, stage: "decoding-inference" }, // Top-k
+  "v3-7": { order: 18, stage: "decoding-inference" }, // Top-p
+  "v3-18": { order: 19, stage: "decoding-inference" }, // Speculative Decoding
+  "v3-19": { order: 20, stage: "decoding-inference" }, // Continuous Batching
+  "v3-28": { order: 21, stage: "decoding-inference" }, // Full Inference Engine
   // Systems (capstone for path)
-  "v3-17": { order: 20, stage: "systems" }, // MoE
+  "v3-17": { order: 22, stage: "systems" }, // MoE
 };
 
 function assignTracksAndPath(q: any): Partial<Question> {

@@ -1,0 +1,30 @@
+id = "kl-divergence"
+legacy_ids = ["v2-1"]
+title = "Implement KL Divergence Loss"
+description = "Implement KL divergence every way it shows up in ML: from probabilities and logits, F.kl_div semantics, Jensen-Shannon, forward vs reverse, Gaussian closed form, masked token-level KL, and the k1/k2/k3 estimators used in PPO and GRPO."
+difficulty = "medium"
+number = 1
+set = "v2"
+category = "alignment-training"
+tracks = ["advanced", "llm-path"]
+
+# GENERATED from the grader spec — edit python/torchleet/problems/*.py, then run: generate.py hints
+hints = [
+  "Everything is sum(p * (log p - log q)) over the last dim. Use torch.xlogy when you have probabilities and F.log_softmax when you have logits, so 0 * log 0 and softmax underflow never turn into nan.",
+  "F.kl_div(input, target) is KL(target || exp(input)): input is the model's log-probs, the target comes first in the math, and 'batchmean' (sum / batch size) is the true KL while 'mean' divides by every element.",
+  "For samples x ~ p with log r = log q(x) - log p(x): k1 = -log r, k2 = (log r)^2 / 2, k3 = (r - 1) - log r. For kl_estimator_grad, weight every category by pi.detach() and let the gradient flow only through log pi.",
+]
+
+[notebooks]
+question = "kl-divergence.ipynb"
+solution = "kl-divergence_SOLN.ipynb"
+
+[grading]
+tier = "A"        # A=auto-graded B=partial C=not auto-graded (SEEDED, confirm)
+entries = ["kl_categorical", "kl_from_logits", "my_kl_div", "js_divergence", "fit_gaussian", "kl_gaussian", "masked_token_kl", "kl_estimators", "kl_estimator_grad"]
+extras = []
+device = "cpu"
+
+[llm_path]
+order = 11
+stage = "alignment"

@@ -226,6 +226,163 @@ def ckpt_inputs_only(fn, *args):
     return CkptFnInputsOnly.apply(fn, *args)
 
 
+# ------------------------------------------------------------- kl-divergence
+def kl_categorical(p, q):
+    return (torch.xlogy(p, p) - torch.xlogy(p, q)).sum(-1)
+
+
+def kl_from_logits(pl, ql):
+    lp, lq = F.log_softmax(pl, -1), F.log_softmax(ql, -1)
+    return (lp.exp() * (lp - lq)).sum(-1)
+
+
+def kl_from_logits_lse(pl, ql):
+    """Correct, but normalizes by hand with logsumexp."""
+    lp = pl - torch.logsumexp(pl, -1, keepdim=True)
+    lq = ql - torch.logsumexp(ql, -1, keepdim=True)
+    return torch.sum(torch.softmax(pl, -1) * (lp - lq), dim=-1)
+
+
+def kl_from_logits_naive(pl, ql):
+    """Broken: goes through probabilities, so confident logits underflow to log(0)."""
+    p, q = pl.softmax(-1), ql.softmax(-1)
+    return (p * torch.log(p / q)).sum(-1)
+
+
+def my_kl_div(inp, tgt, reduction="mean", log_target=False):
+    pw = tgt.exp() * (tgt - inp) if log_target else torch.xlogy(tgt, tgt) - tgt * inp
+    return {"none": lambda: pw, "sum": pw.sum, "mean": pw.mean,
+            "batchmean": lambda: pw.sum() / inp.size(0)}[reduction]()
+
+
+def my_kl_div_mean_is_batchmean(inp, tgt, reduction="mean", log_target=False):
+    """Broken: 'fixes' mean to be the true KL, which is not what F.kl_div does."""
+    return my_kl_div(inp, tgt, "batchmean" if reduction == "mean" else reduction, log_target)
+
+
+def js_divergence(pl, ql):
+    lp, lq = F.log_softmax(pl, -1), F.log_softmax(ql, -1)
+    lm = torch.logsumexp(torch.stack([lp, lq]), 0) - math.log(2)
+    return 0.5 * (lp.exp() * (lp - lm)).sum(-1) + 0.5 * (lq.exp() * (lq - lm)).sum(-1)
+
+
+def fit_gaussian(target_logp, grid, direction, steps=500, lr=0.05, mu_init=1.0, sigma_init=0.5):
+    mu = torch.tensor(float(mu_init), requires_grad=True)
+    ls = torch.tensor(math.log(sigma_init), requires_grad=True)
+    opt = torch.optim.Adam([mu, ls], lr=lr)
+    for _ in range(steps):
+        ql = -0.5 * ((grid - mu) / ls.exp()) ** 2
+        loss = kl_from_logits(target_logp, ql) if direction == "forward" else kl_from_logits(ql, target_logp)
+        opt.zero_grad()
+        loss.backward()
+        opt.step()
+    return mu.item(), ls.exp().item()
+
+
+def kl_gaussian(mp, lp, mq, lq):
+    return 0.5 * (lq - lp + (lp.exp() + (mp - mq) ** 2) / lq.exp() - 1).sum(-1)
+
+
+def masked_token_kl(pl, ql, mask):
+    m = mask.float()
+    return (kl_from_logits(pl, ql) * m).sum() / m.sum().clamp(min=1)
+
+
+def kl_estimators(logp, logq):
+    lr = logq - logp
+    return -lr, 0.5 * lr ** 2, lr.exp() - 1 - lr
+
+
+def kl_estimator_grad(logits, ref, est):
+    th = logits.detach().requires_grad_(True)
+    lp, lq = F.log_softmax(th, -1), F.log_softmax(ref, -1).detach()
+    k = kl_estimators(lp, lq)[int(est[1]) - 1]
+    return torch.autograd.grad((lp.exp().detach() * k).sum(), th)[0]
+
+
+def kl_estimator_grad_no_detach(logits, ref, est):
+    """Broken: differentiates through pi(x) as well, i.e. the exact KL, not the estimator-as-loss."""
+    th = logits.detach().requires_grad_(True)
+    lp, lq = F.log_softmax(th, -1), F.log_softmax(ref, -1)
+    k = kl_estimators(lp, lq)[int(est[1]) - 1]
+    return torch.autograd.grad((lp.exp() * k).sum(), th)[0]
+
+
+KL = dict(kl_categorical=kl_categorical, kl_from_logits=kl_from_logits, my_kl_div=my_kl_div,
+          js_divergence=js_divergence, fit_gaussian=fit_gaussian, kl_gaussian=kl_gaussian,
+          masked_token_kl=masked_token_kl, kl_estimators=kl_estimators,
+          kl_estimator_grad=kl_estimator_grad)
+
+
+# ---------------------------------------------------------------- sft-smollm
+def build_sft_example(prompt, response, eos, max_len=None):
+    prompt, response = list(map(int, prompt)), list(map(int, response))
+    ids, lab = prompt + response + [eos], [-100] * len(prompt) + response + [eos]
+    return {"input_ids": torch.tensor(ids[:max_len]), "labels": torch.tensor(lab[:max_len])}
+
+
+def sft_collate(exs, pad_id):
+    """Correct, but built with pad_sequence instead of a preallocated tensor."""
+    ids = nn.utils.rnn.pad_sequence([e["input_ids"] for e in exs], batch_first=True, padding_value=pad_id)
+    lab = nn.utils.rnn.pad_sequence([e["labels"] for e in exs], batch_first=True, padding_value=-100)
+    am = nn.utils.rnn.pad_sequence([torch.ones_like(e["input_ids"]) for e in exs], batch_first=True)
+    return {"input_ids": ids, "attention_mask": am, "labels": lab}
+
+
+def sft_collate_pads_labels_with_pad(exs, pad_id):
+    """Broken: labels = input_ids with pad positions masked, so a real eos == pad is lost."""
+    b = sft_collate(exs, pad_id)
+    b["labels"] = b["labels"].masked_fill(b["input_ids"] == pad_id, -100)
+    return b
+
+
+def sft_loss(logits, labels, num_items_in_batch=None):
+    lg, tg = logits[:, :-1], labels[:, 1:]
+    s = F.cross_entropy(lg.reshape(-1, lg.size(-1)).float(), tg.reshape(-1), ignore_index=-100, reduction="sum")
+    n = num_items_in_batch if num_items_in_batch is not None else int((tg != -100).sum())
+    return s / max(int(n), 1)
+
+
+def sft_loss_unshifted(logits, labels, num_items_in_batch=None):
+    """Broken: scores position t against its own token instead of the next one."""
+    s = F.cross_entropy(logits.reshape(-1, logits.size(-1)), labels.reshape(-1), ignore_index=-100, reduction="sum")
+    n = num_items_in_batch if num_items_in_batch is not None else int((labels != -100).sum())
+    return s / max(int(n), 1)
+
+
+def sft_train_step(model, mbs, opt, max_grad_norm=None):
+    model.train()
+    n = sum(int((mb["labels"][:, 1:] != -100).sum()) for mb in mbs)
+    opt.zero_grad()
+    total = 0.0
+    for mb in mbs:
+        loss = sft_loss(model(input_ids=mb["input_ids"], attention_mask=mb["attention_mask"]).logits,
+                        mb["labels"], n)
+        loss.backward()
+        total += loss.item()
+    if max_grad_norm:
+        nn.utils.clip_grad_norm_(model.parameters(), max_grad_norm)
+    opt.step()
+    return total
+
+
+def sft_train_step_mean_of_means(model, mbs, opt, max_grad_norm=None):
+    """Broken: the classic gradient-accumulation bug — each micro-batch is its own mean."""
+    model.train()
+    opt.zero_grad()
+    total = 0.0
+    for mb in mbs:
+        loss = sft_loss(model(input_ids=mb["input_ids"]).logits, mb["labels"]) / len(mbs)
+        loss.backward()
+        total += loss.item()
+    opt.step()
+    return total
+
+
+SFT = dict(build_sft_example=build_sft_example, sft_collate=sft_collate, sft_loss=sft_loss,
+           sft_train_step=sft_train_step)
+
+
 CASES = [
     # (label, expected, problem_id, args, kwargs)
     ("kv-cache canonical", True, "kv-cache", (), dict(KVCache=KVCache, CachedAttention=Attn)),
@@ -242,6 +399,15 @@ CASES = [
     ("ckpt correct", True, "gradient-checkpointing", (CkptFn, ckpt), {}),
     ("ckpt no dummy input", False, "gradient-checkpointing", (CkptFn, ckpt_no_dummy), {}),
     ("ckpt inputs-only grads", False, "gradient-checkpointing", (CkptFnInputsOnly, ckpt_inputs_only), {}),
+    ("kl canonical", True, "kl-divergence", (), KL),
+    ("kl divergent logsumexp", True, "kl-divergence", (), {**KL, "kl_from_logits": kl_from_logits_lse}),
+    ("kl naive softmax", False, "kl-divergence", (), {**KL, "kl_from_logits": kl_from_logits_naive}),
+    ("kl 'mean' as batchmean", False, "kl-divergence", (), {**KL, "my_kl_div": my_kl_div_mean_is_batchmean}),
+    ("kl grad without detach", False, "kl-divergence", (), {**KL, "kl_estimator_grad": kl_estimator_grad_no_detach}),
+    ("sft divergent collate", True, "sft-smollm", (), SFT),
+    ("sft labels padded via pad id", False, "sft-smollm", (), {**SFT, "sft_collate": sft_collate_pads_labels_with_pad}),
+    ("sft unshifted loss", False, "sft-smollm", (), {**SFT, "sft_loss": sft_loss_unshifted}),
+    ("sft mean of micro-batch means", False, "sft-smollm", (), {**SFT, "sft_train_step": sft_train_step_mean_of_means}),
 ]
 
 
