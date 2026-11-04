@@ -18,13 +18,13 @@ def _nucleus(logits, p, temperature=1.0):
     probs = torch.softmax(logits / temperature, dim=-1)
     s, idx = probs.sort(descending=True)
     keep = (s.cumsum(-1) - s) < p          # prefix strictly before mass p is exceeded
-    keep[0] = True                          # never drop the top token
+    keep[..., 0] = True                        # never drop the top token
     return set(idx[keep].tolist())
 
 
 def check_returns_valid_token(ns):
     torch.manual_seed(0)
-    logits = torch.randn(V)
+    logits = torch.randn(1, V)
     for _ in range(20):
         t = ns.top_p_sample(logits, p=0.9)
         t = int(t.item()) if torch.is_tensor(t) else int(t)
@@ -33,7 +33,7 @@ def check_returns_valid_token(ns):
 
 def check_samples_only_from_nucleus(ns):
     torch.manual_seed(0)
-    logits = torch.randn(V)
+    logits = torch.randn(1, V)
     allowed = _nucleus(logits, 0.5)
     for _ in range(80):
         t = ns.top_p_sample(logits, p=0.5)
@@ -44,7 +44,7 @@ def check_samples_only_from_nucleus(ns):
 
 def check_tiny_p_gives_argmax(ns):
     torch.manual_seed(0)
-    logits = torch.randn(V)
+    logits = torch.randn(1, V)
     best = int(logits.argmax())
     for _ in range(15):
         t = ns.top_p_sample(logits, p=0.01)
@@ -55,7 +55,7 @@ def check_tiny_p_gives_argmax(ns):
 
 def check_large_p_can_reach_beyond_top_token(ns):
     torch.manual_seed(0)
-    logits = torch.zeros(V)      # uniform: every token is plausible
+    logits = torch.zeros(1, V)      # uniform: every token is plausible
     seen = set()
     for _ in range(150):
         t = ns.top_p_sample(logits, p=1.0)
